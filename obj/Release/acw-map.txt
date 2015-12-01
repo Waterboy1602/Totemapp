@@ -1,0 +1,24 @@
+Totem.MainActivity, Totem;md5b1d67ac94551c8753fec80729d65095f.MainActivity
+Totem.MainActivity, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.MainActivity
+Totem.MainActivity;md5b1d67ac94551c8753fec80729d65095f.MainActivity
+totem.MainActivity;md5b1d67ac94551c8753fec80729d65095f.MainActivity
+Totem.TotemAdapter, Totem;md5b1d67ac94551c8753fec80729d65095f.TotemAdapter
+Totem.TotemAdapter, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.TotemAdapter
+Totem.TotemAdapter;md5b1d67ac94551c8753fec80729d65095f.TotemAdapter
+totem.TotemAdapter;md5b1d67ac94551c8753fec80729d65095f.TotemAdapter
+Totem.TotemsActivity, Totem;md5b1d67ac94551c8753fec80729d65095f.TotemsActivity
+Totem.TotemsActivity, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.TotemsActivity
+Totem.TotemsActivity;md5b1d67ac94551c8753fec80729d65095f.TotemsActivity
+totem.TotemsActivity;md5b1d67ac94551c8753fec80729d65095f.TotemsActivity
+Totem.TotemDetailActivity, Totem;md5b1d67ac94551c8753fec80729d65095f.TotemDetailActivity
+Totem.TotemDetailActivity, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.TotemDetailActivity
+Totem.TotemDetailActivity;md5b1d67ac94551c8753fec80729d65095f.TotemDetailActivity
+totem.TotemDetailActivity;md5b1d67ac94551c8753fec80729d65095f.TotemDetailActivity
+Totem.EigenschappenActivity, Totem;md5b1d67ac94551c8753fec80729d65095f.EigenschappenActivity
+Totem.EigenschappenActivity, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.EigenschappenActivity
+Totem.EigenschappenActivity;md5b1d67ac94551c8753fec80729d65095f.EigenschappenActivity
+totem.EigenschappenActivity;md5b1d67ac94551c8753fec80729d65095f.EigenschappenActivity
+Totem.AllTotemsActivity, Totem;md5b1d67ac94551c8753fec80729d65095f.AllTotemsActivity
+Totem.AllTotemsActivity, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.AllTotemsActivity
+Totem.AllTotemsActivity;md5b1d67ac94551c8753fec80729d65095f.AllTotemsActivity
+totem.AllTotemsActivity;md5b1d67ac94551c8753fec80729d65095f.AllTotemsActivity
