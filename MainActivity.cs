@@ -40,18 +40,16 @@ namespace Totem
 		}
 
 		private void GoToActivity(string a) {
+			Intent intent;
 			if(a.Equals("totems")) {
-				var intent = new Intent(this, typeof(AllTotemsActivity));
+				intent = new Intent(this, typeof(AllTotemsActivity));
 				intent.PutExtra ("totemIDs", db.AllTotemIDs());
-				StartActivity (intent);
 			} else if(a.Equals("bepalen")) {
-				var intent = new Intent(this, typeof(EigenschappenActivity));
-				StartActivity (intent);
+				intent = new Intent(this, typeof(EigenschappenActivity));
 			} else if(a.Equals("profielen")) {
-				var intent = new Intent(this, typeof(ProfielenActivity));
-				StartActivity (intent);
+				intent = new Intent(this, typeof(ProfielenActivity));
 			}
-
+			StartActivity (intent);
 		}
 	}
 }
