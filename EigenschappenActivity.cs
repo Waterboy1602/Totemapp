@@ -21,7 +21,10 @@ namespace Totem
 		TextView adjectief;
 		List<Eigenschap> eigenschappen;
 		int eigenschapCount;
+
+		//dictionary with totem IDs as keys and frequencies as values
 		Dictionary<int, int> freqs;
+
 		Database db;
 
 		protected override void OnCreate (Bundle bundle)
@@ -32,7 +35,7 @@ namespace Totem
 
 			//setup
 			db = new Database(this);
-			eigenschappen = db.getEigenschappen ();
+			eigenschappen = db.GetEigenschappen ();
 
 			eigenschapCount = 1;
 			freqs = new Dictionary<int, int> ();
@@ -46,12 +49,11 @@ namespace Totem
 
 			UpdateScreen ();
 
-			jaKnop.Click += (sender, eventArgs) => pushJa();
-			neeKnop.Click += (sender, eventArgs) => pushNee();
+			jaKnop.Click += (sender, eventArgs) => PushJa();
+			neeKnop.Click += (sender, eventArgs) => PushNee();
 		}
 
-
-
+		//show next eigenschap
 		public void UpdateScreen() {
 			if(eigenschapCount < 359) {
 				adjectief.Text = eigenschappen [eigenschapCount].name;
@@ -60,19 +62,23 @@ namespace Totem
 			}
 		}
 
+		//redirect to the result activity
+		//totems and their frequencies are sorted and passed seperately as parameters
 		public void ResultList() {
 			var totemsActivity = new Intent(this, typeof(TotemsActivity));
 
-			int[] sortedTotems = DictMethods.getSortedTotemIDList (freqs);
-			int[] sortedFreqs = DictMethods.getSortedFreqList (freqs);
+			int[] sortedTotems = DictMethods.GetSortedList (freqs, true);
+			int[] sortedFreqs = DictMethods.GetSortedList (freqs, false);
 			totemsActivity.PutExtra ("totemIDs", sortedTotems);
 			totemsActivity.PutExtra ("freqs", sortedFreqs);
 
 			StartActivity(totemsActivity);
 		}
 
-		public void pushJa() {
-			List<Totem_eigenschap> toevoegen = db.getTotemsVanEigenschapsID (eigenschappen[eigenschapCount].tid);
+		//adds totem IDs related to the eigenschap to freqs
+		//increases eigenschap count next
+		public void PushJa() {
+			List<Totem_eigenschap> toevoegen = db.GetTotemsVanEigenschapsID (eigenschappen[eigenschapCount].tid);
 			foreach(Totem_eigenschap totem in toevoegen) {
 				int idx = Convert.ToInt32 (totem.nid);
 				DictMethods.AddOrUpdateDictionaryEntry (freqs, idx) ;
@@ -81,7 +87,8 @@ namespace Totem
 			UpdateScreen ();
 		}
 
-		public void pushNee() {
+		//increases eigenschap count
+		public void PushNee() {
 			eigenschapCount++;
 			UpdateScreen ();
 		}

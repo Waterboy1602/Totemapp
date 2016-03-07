@@ -38,7 +38,7 @@ namespace Totem
 		private void GoToActivity(string a) {
 			if(a.Equals("totems")) {
 				var intent = new Intent(this, typeof(AllTotemsActivity));
-				intent.PutExtra ("totemIDs", db.allTotemIDs());
+				intent.PutExtra ("totemIDs", db.AllTotemIDs());
 				StartActivity (intent);
 				
 			} else if(a.Equals("bepalen")) {

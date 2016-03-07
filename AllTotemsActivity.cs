@@ -21,8 +21,13 @@ namespace Totem
 	{
 		TotemAdapter totemAdapter;
 		ListView allTotemListView;
+
+		//list of Totem objects
 		List<Totem> totemList;
+
+		//array of totem IDs
 		int[] totemIDs;
+
 		Database db;
 		EditText query;
 
@@ -31,17 +36,16 @@ namespace Totem
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
-			//test
 
 			SetContentView (Resource.Layout.AllTotems);
 
 			db = new Database (this);
 
-			totemIDs = db.allTotemIDs ();
+			totemIDs = db.AllTotemIDs ();
 
 			totemList = new List<Totem> ();
 
-			populateResultList ();
+			PopulateResultList ();
 
 			totemAdapter = new TotemAdapter (this, totemList);
 			allTotemListView = FindViewById<ListView> (Resource.Id.all_totem_list);
@@ -54,6 +58,7 @@ namespace Totem
 
 		}
 
+		//removes focus from search bar on resume
 		protected override void OnResume ()
 		{
 			base.OnResume ();
@@ -61,23 +66,26 @@ namespace Totem
 			query.SetCursorVisible(false);
 		}
 
+		//update list after every keystroke
 		private void LiveSearch() {
 			
 			query.AfterTextChanged += (sender, args) =>
 			{
-				search();
+				Search();
 			};
 		}
 
-		private void search() {
+		//shows only totems that are searched
+		private void Search() {
 			fullList = false;
-			totemList = db.findTotemOpNaam (query.Text);
+			totemList = db.FindTotemOpNaam (query.Text);
 			totemList.Reverse ();
 			totemAdapter = new TotemAdapter (this, totemList);
 			allTotemListView.Adapter = totemAdapter;
 		}
 
-		private void reverseArray(int [] arr) {
+		//helper method to reverse an array
+		private void ReverseArray(int [] arr) {
 			for (int i = 0; i < arr.Length / 2; i++)
 			{
 				int tmp = arr[i];
@@ -86,13 +94,17 @@ namespace Totem
 			}
 		}
 
-		private void populateResultList() {
+		//fill totemList with Totem-objects whose ID is in totemIDs
+		//resulting list is reversed to order them descending by frequency
+		private void PopulateResultList() {
 			foreach(int idx in totemIDs) {
-				totemList.Add (db.getTotemOnID (idx));
+				totemList.Add (db.GetTotemOnID (idx));
 			}
 			totemList.Reverse ();
 		}
 
+		//get DetailActivity of the totem that is clicked
+		//ID is passed as parameter
 		private void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
 			int pos = e.Position;
@@ -103,18 +115,21 @@ namespace Totem
 			StartActivity (detailActivity);
 		}
 
+		//hides the keyboard
 		private void HideKeyboard() {
 			InputMethodManager inputManager = (InputMethodManager)this.GetSystemService (Context.InputMethodService);
 			inputManager.HideSoftInputFromWindow (this.CurrentFocus.WindowToken, HideSoftInputFlags.NotAlways);
 		}
-
+			
+		//return to full list and empty search field when 'back' is pressed
+		//this happens only when a search query is currently entered
 		public override void OnBackPressed() { 
 			if (fullList) {
 				base.OnBackPressed ();
 			} else {
 				query.Text = "";
 				fullList = true;
-				populateResultList ();
+				PopulateResultList ();
 				totemAdapter = new TotemAdapter (this, totemList);
 				allTotemListView.Adapter = totemAdapter;
 			}

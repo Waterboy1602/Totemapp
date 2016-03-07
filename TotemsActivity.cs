@@ -36,11 +36,13 @@ namespace Totem
 	
 			totemIDs = Intent.GetIntArrayExtra ("totemIDs");
 			freqs = Intent.GetIntArrayExtra ("freqs");
-			reverseArray (freqs);
+
+			//reverse frequency array to match it with the totems
+			ReverseArray (freqs);
 
 			totemList = new List<Totem> ();
 
-			populateResultList ();
+			PopulateResultList ();
 
 			totemAdapter = new TotemAdapter (this, totemList, freqs);
 			totemListView = FindViewById<ListView> (Resource.Id.totem_list);
@@ -50,7 +52,8 @@ namespace Totem
 
 		}
 
-		private void reverseArray(int [] arr) {
+		//helper method to reverse an array
+		private void ReverseArray(int [] arr) {
 			for (int i = 0; i < arr.Length / 2; i++)
 			{
 				int tmp = arr[i];
@@ -59,9 +62,11 @@ namespace Totem
 			}
 		}
 
-		private void populateResultList() {
+		//fill totemList with Totem-objects whose ID is in totemIDs
+		//resulting list is reversed to order them descending by frequency
+		private void PopulateResultList() {
 			foreach(int idx in totemIDs) {
-				totemList.Add (db.getTotemOnID (idx));
+				totemList.Add (db.GetTotemOnID (idx));
 			}
 			totemList.Reverse ();
 		}
@@ -75,7 +80,8 @@ namespace Totem
 			detailActivity.PutExtra ("totemID", item.nid);
 			StartActivity (detailActivity);
 		}
-			
+
+		//return to MainActivity and not to EigenschappenActivity when 'back' is pressed
 		public override void OnBackPressed() { 
 			var intent = new Intent(this, typeof(MainActivity));
 			StartActivity (intent);

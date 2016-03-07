@@ -10,7 +10,7 @@ namespace Totem
 {
 	public class Database
 	{
-		//DB shit
+		//DB params
 		static string dbName = "totems.sqlite";
 		string dbPath = System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), dbName);
 
@@ -22,11 +22,11 @@ namespace Totem
 		{
 			this.context = context;
 			ExtractDB ();
-			setEigenschappen ();
-			setTotems ();
+			SetEigenschappen ();
+			SetTotems ();
 		}
 
-		//DB inladen
+		//load DB
 		public void ExtractDB() {
 			if (!File.Exists(dbPath))
 			{
@@ -44,9 +44,9 @@ namespace Totem
 				}
 			}
 		}
-
-		//Eigenschappen uit DB halen en in List steken
-		private void setEigenschappen() {
+			
+		//extract eigenschappen from DB and put them in a list
+		private void SetEigenschappen() {
 			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
 				var cmd = new SQLite.SQLiteCommand (conn);
 				cmd.CommandText = "select * from eigenschap";
@@ -54,11 +54,12 @@ namespace Totem
 			}
 		}
 
-		public List<Eigenschap> getEigenschappen() {
+		public List<Eigenschap> GetEigenschappen() {
 			return eigenschappen;
 		}
 
-		public List<Totem_eigenschap> getTotemsVanEigenschapsID(string id) {
+		//returns List of Totem_eigenschapp related to eigenschap id
+		public List<Totem_eigenschap> GetTotemsVanEigenschapsID(string id) {
 			List<Totem_eigenschap> totemsVanEigenschap;
 			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
 				var cmd = new SQLite.SQLiteCommand (conn);
@@ -68,7 +69,8 @@ namespace Totem
 			return totemsVanEigenschap;
 		}
 
-		private void setTotems() {
+		//extract totems from DB and put them in a list
+		private void SetTotems() {
 			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
 				var cmd = new SQLite.SQLiteCommand (conn);
 				cmd.CommandText = "select * from totem";
@@ -76,7 +78,8 @@ namespace Totem
 			}
 		}
 
-		public int[] allTotemIDs() {
+		//returns array of all totem IDs
+		public int[] AllTotemIDs() {
 			List<Totem> list = totems;
 			list.Reverse ();
 			int[] result = new int[395];
@@ -88,7 +91,8 @@ namespace Totem
 			return result;
 		}
 
-		public Totem getTotemOnID(int idx) {
+		//returns totem-object with given id
+		public Totem GetTotemOnID(int idx) {
 			foreach(Totem t in totems) {
 				if(t.nid.Equals(idx.ToString())) {
 					return t;
@@ -97,11 +101,13 @@ namespace Totem
 			return null;
 		}
 
-		public Totem getTotemOnID(string idx) {
-			return getTotemOnID (Int32.Parse (idx));
+		//returns totem-object with given id
+		public Totem GetTotemOnID(string idx) {
+			return GetTotemOnID (Int32.Parse (idx));
 		}
 
-		public List<Totem> findTotemOpNaam(string name) {
+		//returns totem-object with given name
+		public List<Totem> FindTotemOpNaam(string name) {
 			List<Totem> result = new List<Totem> ();
 			foreach(Totem t in totems) {
 				if(t.title.ToLower().Contains(name.ToLower())) {

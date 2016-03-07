@@ -24,9 +24,6 @@ namespace Totem
 		TextView body;
 		Database db;
 
-		static string dbName = "totems.sqlite";
-		string dbPath = System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), dbName);
-
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
@@ -43,11 +40,12 @@ namespace Totem
 			body = FindViewById<TextView> (Resource.Id.body);
 
 			var nid = Intent.GetStringExtra ("totemID");
-			getInfo (nid);
+			GetInfo (nid);
 		}
 
-		private void getInfo(string idx) {
-			Totem t = db.getTotemOnID (idx);
+		//displays totem info
+		private void GetInfo(string idx) {
+			Totem t = db.GetTotemOnID (idx);
 			title.Text = t.title;
 			if(t.synonyms != null) {
 				synonyms.Text = t.synonyms;
