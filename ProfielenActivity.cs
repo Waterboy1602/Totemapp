@@ -75,14 +75,16 @@ namespace Totem
 					string value = input.Text;
 					if(db.GetProfielNamen().Contains(value)) {
 						input.Text = "";
-						HideKeyboard ();
 						mToast.SetText("Profiel " + value + " bestaat al");
 						mToast.Show();
+						input.ClearFocus();
+						HideKeyboard();
 					} else {
 						db.AddProfile(value);
-						HideKeyboard ();
-						var profi = new Intent (this, typeof(ProfielenActivity));
-						StartActivity (profi);
+						input.ClearFocus();
+						HideKeyboard();
+						Finish();
+						StartActivity (Intent);
 					}
 				});
 
@@ -98,7 +100,7 @@ namespace Totem
 				StartActivity (main);
 				return true;
 			}
-			HideKeyboard ();
+
 			return base.OnOptionsItemSelected(item);
 		}
 
@@ -112,7 +114,7 @@ namespace Totem
 
 		public void HideKeyboard() {
 			InputMethodManager inputManager = (InputMethodManager)this.GetSystemService (Context.InputMethodService);
-			inputManager.HideSoftInputFromWindow (this.CurrentFocus.WindowToken, HideSoftInputFlags.NotAlways);
+			inputManager.ToggleSoftInput (ShowFlags.Implicit, 0);
 		}
 	}
 }
