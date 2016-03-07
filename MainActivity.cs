@@ -30,9 +30,11 @@ namespace Totem
 
 			Button totems = FindViewById<Button> (Resource.Id.totems);
 			Button totemBepalen = FindViewById<Button> (Resource.Id.totemBepalen);
+			Button profielen = FindViewById<Button> (Resource.Id.profielen);
 
 			totems.Click += (sender, eventArgs) => GoToActivity("totems");
 			totemBepalen.Click += (sender, eventArgs) => GoToActivity("bepalen");
+			profielen.Click += (sender, eventArgs) => GoToActivity("profielen");
 		}
 
 		private void GoToActivity(string a) {
@@ -40,9 +42,11 @@ namespace Totem
 				var intent = new Intent(this, typeof(AllTotemsActivity));
 				intent.PutExtra ("totemIDs", db.AllTotemIDs());
 				StartActivity (intent);
-				
 			} else if(a.Equals("bepalen")) {
 				var intent = new Intent(this, typeof(EigenschappenActivity));
+				StartActivity (intent);
+			} else if(a.Equals("profielen")) {
+				var intent = new Intent(this, typeof(ProfielenActivity));
 				StartActivity (intent);
 			}
 

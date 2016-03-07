@@ -41,7 +41,8 @@ namespace Totem
 
 			db = new Database (this);
 
-			totemIDs = db.AllTotemIDs ();
+			totemIDs = Intent.GetIntArrayExtra ("profielTotems");
+			if(totemIDs == null) totemIDs = db.AllTotemIDs ();
 
 			totemList = new List<Totem> ();
 
@@ -100,6 +101,7 @@ namespace Totem
 			foreach(int idx in totemIDs) {
 				totemList.Add (db.GetTotemOnID (idx));
 			}
+			totemList.RemoveAll(item => item == null);
 			totemList.Reverse ();
 		}
 

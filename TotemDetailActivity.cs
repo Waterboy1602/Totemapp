@@ -32,6 +32,8 @@ namespace Totem
 
 			db = new Database (this);
 
+			Button voegtoe = FindViewById<Button> (Resource.Id.voegtoe);
+
 			title = FindViewById<TextView> (Resource.Id.title);
 			Typeface face = Typeface.CreateFromAsset(Assets,"fonts/DCC - Ash.otf");
 			title.SetTypeface (face, 0);
@@ -41,6 +43,26 @@ namespace Totem
 
 			var nid = Intent.GetStringExtra ("totemID");
 			GetInfo (nid);
+
+			voegtoe.Click += (sender, eventArgs) => {
+				PopupMenu menu = new PopupMenu (this, voegtoe);
+				menu.Inflate (Resource.Menu.Popup);
+				int count = 0;
+				foreach(Profiel p in db.GetProfielen()) {
+					menu.Menu.Add(0,count,count,p.name);
+					count++;
+				}
+
+				menu.MenuItemClick += (s1, arg1) => {
+					db.AddTotemToProfiel(nid, arg1.Item.TitleFormatted.ToString());
+					Toast mToast = Toast.MakeText (this, "", ToastLength.Short);
+					mToast.SetText(db.GetTotemOnID(nid).title + " toegevoegd aan profiel " + arg1.Item.TitleFormatted.ToString());
+					mToast.Show();
+				};
+
+
+				menu.Show ();
+			};
 		}
 
 		//displays totem info
