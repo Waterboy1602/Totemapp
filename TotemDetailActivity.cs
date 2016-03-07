@@ -29,6 +29,8 @@ namespace Totem
 		{
 			base.OnCreate (bundle);
 
+			RequestWindowFeature(WindowFeatures.NoTitle);
+
 			SetContentView (Resource.Layout.TotemDetail);
 
 			db = new Database (this);
@@ -84,4 +86,3 @@ namespace Totem
 		}
 	}
 }
-

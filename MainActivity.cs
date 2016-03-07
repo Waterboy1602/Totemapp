@@ -23,6 +23,8 @@ namespace Totem
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
+
+			//RequestWindowFeature(WindowFeatures.NoTitle);
 	
 			SetContentView (Resource.Layout.Main);
 
@@ -53,5 +55,3 @@ namespace Totem
 		}
 	}
 }
-
-
