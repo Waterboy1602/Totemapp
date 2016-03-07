@@ -38,6 +38,7 @@ namespace Totem
 			profielenListView.Adapter = profielAdapter;
 
 			profielenListView.ItemClick += listView_ItemClick;
+			profielenListView.ItemLongClick += listView_ItemLongClick;
 		}
 
 		private void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
@@ -53,6 +54,11 @@ namespace Totem
 				totemsActivity.PutExtra ("profielTotems", db.GetTotemIDsFromProfiel (item.name));
 				StartActivity (totemsActivity);
 			}
+		}
+
+		private void listView_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
+		{
+			// Implement delete
 		}
 
 		//create options menu

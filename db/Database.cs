@@ -101,6 +101,25 @@ namespace Totem
 			}
 		}
 
+		//delete a profile
+		public void DeleteProfile(string name) {
+			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
+				var cmd = new SQLite.SQLiteCommand (conn);
+				cmd.CommandText = "DELETE FROM profiel WHERE name='" + name + "'";
+				cmd.ExecuteQuery<Profiel> ();
+			}
+		}
+
+
+		//delete a totem from a profile
+		public void DeleteTotemFromProfile(string totemID, string profielName) {
+			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
+				var cmd = new SQLite.SQLiteCommand (conn);
+				cmd.CommandText = "DELETE FROM profiel WHERE name='" + profielName + "' AND nid=" + totemID;
+				cmd.ExecuteQuery<Profiel> ();
+			}
+		}
+
 		//retruns an array of ints with all totemIDs related to a profile
 		public int [] GetTotemIDsFromProfiel(string name) {
 			List<Profiel> list = new List<Profiel>();
