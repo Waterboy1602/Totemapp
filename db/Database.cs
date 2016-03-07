@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using SQLite;
 
 using Android.Content;
+using System.Collections;
+using System.Linq;
 
 namespace Totem
 {
@@ -52,6 +54,66 @@ namespace Totem
 				cmd.CommandText = "select * from eigenschap";
 				eigenschappen = cmd.ExecuteQuery<Eigenschap> ();
 			}
+		}
+
+		public List<Profiel> GetProfielen() {
+			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
+				var cmd = new SQLite.SQLiteCommand (conn);
+				cmd.CommandText = "select distinct name from profiel";
+				return cmd.ExecuteQuery<Profiel> ();
+			}
+		}
+
+		public List<string> GetProfielNamen() {
+			List<string> namen = new List<string> ();
+			foreach (Profiel p in this.GetProfielen()) {
+				namen.Add (p.name);
+			}
+			return namen;
+		}
+
+		public void AddTotemToProfiel(string totemID, string profielName) {
+			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
+				var cmd = new SQLite.SQLiteCommand (conn);
+				cmd.CommandText = "insert into profiel (name, nid) select '" + profielName + "'," + totemID + " WHERE NOT EXISTS ( SELECT * FROM profiel WHERE name='"+ profielName +"' AND nid=" + totemID + ");";
+				cmd.ExecuteQuery<Profiel> ();
+			}
+		}
+
+		public void ClearProfiles() {
+			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
+				var cmd = new SQLite.SQLiteCommand (conn);
+				cmd.CommandText = "DELETE FROM profiel";
+				cmd.ExecuteQuery<Profiel> ();
+			}
+		}
+
+		public void AddProfile(string name) {
+			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
+				var cmd = new SQLite.SQLiteCommand (conn);
+				cmd.CommandText = "insert into profiel (name) values ('" + name + "')";
+				cmd.ExecuteQuery<Profiel> ();
+			}
+		}
+
+		public int [] GetTotemIDsFromProfiel(string name) {
+			List<Profiel> list = new List<Profiel>();
+			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
+				var cmd = new SQLite.SQLiteCommand (conn);
+				cmd.CommandText = "select nid from profiel where name='" + name + "'";
+				list = cmd.ExecuteQuery<Profiel> ();
+			}
+			list.Reverse ();
+			int[] result = new int[395];
+			int index = 0;
+			foreach (Profiel p in list) {
+				if(p.nid != null) 
+					result.SetValue (Int32.Parse (p.nid), index);
+				index++;
+			}
+			result.Where(x => x != 0).ToArray();
+
+			return result;
 		}
 
 		public List<Eigenschap> GetEigenschappen() {

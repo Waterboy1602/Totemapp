@@ -23,6 +23,7 @@ namespace Totem
 		TextView synonyms;
 		TextView body;
 		Database db;
+		Toast mToast;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -31,6 +32,8 @@ namespace Totem
 			SetContentView (Resource.Layout.TotemDetail);
 
 			db = new Database (this);
+
+			mToast = Toast.MakeText (this, "", ToastLength.Short);
 
 			Button voegtoe = FindViewById<Button> (Resource.Id.voegtoe);
 
@@ -45,23 +48,26 @@ namespace Totem
 			GetInfo (nid);
 
 			voegtoe.Click += (sender, eventArgs) => {
-				PopupMenu menu = new PopupMenu (this, voegtoe);
-				menu.Inflate (Resource.Menu.Popup);
-				int count = 0;
-				foreach(Profiel p in db.GetProfielen()) {
-					menu.Menu.Add(0,count,count,p.name);
-					count++;
-				}
-
-				menu.MenuItemClick += (s1, arg1) => {
-					db.AddTotemToProfiel(nid, arg1.Item.TitleFormatted.ToString());
-					Toast mToast = Toast.MakeText (this, "", ToastLength.Short);
-					mToast.SetText(db.GetTotemOnID(nid).title + " toegevoegd aan profiel " + arg1.Item.TitleFormatted.ToString());
+				if (db.GetProfielNamen().Count == 0) {
+					mToast.SetText("Nog geen profielen toegevoegd");
 					mToast.Show();
-				};
+				} else {
+					PopupMenu menu = new PopupMenu (this, voegtoe);
+					menu.Inflate (Resource.Menu.Popup);
+					int count = 0;
+					foreach(Profiel p in db.GetProfielen()) {
+						menu.Menu.Add(0,count,count,p.name);
+						count++;
+					}
 
+					menu.MenuItemClick += (s1, arg1) => {
+						db.AddTotemToProfiel(nid, arg1.Item.TitleFormatted.ToString());
+						mToast.SetText(db.GetTotemOnID(nid).title + " toegevoegd aan profiel " + arg1.Item.TitleFormatted.ToString());
+						mToast.Show();
+					};
 
-				menu.Show ();
+					menu.Show ();
+				}
 			};
 		}
 
