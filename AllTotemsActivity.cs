@@ -31,6 +31,7 @@ namespace Totem
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
+			//test
 
 			SetContentView (Resource.Layout.AllTotems);
 
