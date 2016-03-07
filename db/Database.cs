@@ -56,6 +56,7 @@ namespace Totem
 			}
 		}
 
+		//get list of profile-objects
 		public List<Profiel> GetProfielen() {
 			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
 				var cmd = new SQLite.SQLiteCommand (conn);
@@ -64,6 +65,7 @@ namespace Totem
 			}
 		}
 
+		//get list of profile names
 		public List<string> GetProfielNamen() {
 			List<string> namen = new List<string> ();
 			foreach (Profiel p in this.GetProfielen()) {
@@ -72,6 +74,7 @@ namespace Totem
 			return namen;
 		}
 
+		//add totem to profile in db
 		public void AddTotemToProfiel(string totemID, string profielName) {
 			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
 				var cmd = new SQLite.SQLiteCommand (conn);
@@ -80,6 +83,7 @@ namespace Totem
 			}
 		}
 
+		//remove all profiles
 		public void ClearProfiles() {
 			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
 				var cmd = new SQLite.SQLiteCommand (conn);
@@ -88,6 +92,7 @@ namespace Totem
 			}
 		}
 
+		//add a profile
 		public void AddProfile(string name) {
 			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
 				var cmd = new SQLite.SQLiteCommand (conn);
@@ -96,6 +101,7 @@ namespace Totem
 			}
 		}
 
+		//retruns an array of ints with all totemIDs related to a profile
 		public int [] GetTotemIDsFromProfiel(string name) {
 			List<Profiel> list = new List<Profiel>();
 			using (var conn = new SQLite.SQLiteConnection (dbPath)) {

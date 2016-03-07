@@ -30,6 +30,7 @@ namespace Totem
 
 			db = new Database (this);
 
+			//single toast for entire activity
 			mToast = Toast.MakeText (this, "", ToastLength.Short);
 
 			profielAdapter = new ProfielAdapter (this, db.GetProfielen());
@@ -54,12 +55,14 @@ namespace Totem
 			}
 		}
 
+		//create options menu
 		public override bool OnCreateOptionsMenu(IMenu menu)
 		{
 			MenuInflater.Inflate(Resource.Menu.menu, menu);
 			return base.OnCreateOptionsMenu(menu);
 		}
 
+		//options menu: add profile or delete all
 		public override bool OnOptionsItemSelected(IMenuItem item)
 		{
 			switch (item.ItemId)
@@ -77,12 +80,12 @@ namespace Totem
 						input.Text = "";
 						mToast.SetText("Profiel " + value + " bestaat al");
 						mToast.Show();
-						input.ClearFocus();
 						HideKeyboard();
 					} else {
 						db.AddProfile(value);
-						input.ClearFocus();
 						HideKeyboard();
+
+						//refresh list
 						Finish();
 						StartActivity (Intent);
 					}
@@ -104,6 +107,7 @@ namespace Totem
 			return base.OnOptionsItemSelected(item);
 		}
 
+		//helper
 		public void ShowKeyboard(View pView) {
 			pView.RequestFocus();
 
@@ -112,6 +116,7 @@ namespace Totem
 			inputMethodManager.ToggleSoftInput(ShowFlags.Forced, HideSoftInputFlags.ImplicitOnly);
 		}
 
+		//helper
 		public void HideKeyboard() {
 			InputMethodManager inputManager = (InputMethodManager)this.GetSystemService (Context.InputMethodService);
 			inputManager.ToggleSoftInput (ShowFlags.Implicit, 0);

@@ -33,6 +33,7 @@ namespace Totem
 
 			db = new Database (this);
 
+			//single toast for entire activity
 			mToast = Toast.MakeText (this, "", ToastLength.Short);
 
 			Button voegtoe = FindViewById<Button> (Resource.Id.voegtoe);
@@ -47,6 +48,7 @@ namespace Totem
 			var nid = Intent.GetStringExtra ("totemID");
 			GetInfo (nid);
 
+			//add to profiles
 			voegtoe.Click += (sender, eventArgs) => {
 				if (db.GetProfielNamen().Count == 0) {
 					mToast.SetText("Nog geen profielen toegevoegd");

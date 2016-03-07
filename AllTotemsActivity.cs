@@ -41,6 +41,8 @@ namespace Totem
 
 			db = new Database (this);
 
+			//if redirected from profiles page, show only these totems
+			//otherwise show all totems
 			totemIDs = Intent.GetIntArrayExtra ("profielTotems");
 			if(totemIDs == null) totemIDs = db.AllTotemIDs ();
 
