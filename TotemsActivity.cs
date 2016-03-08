@@ -82,7 +82,8 @@ namespace Totem
 		}
 
 		//return to MainActivity and not to EigenschappenActivity when 'back' is pressed
-		public override void OnBackPressed() { 
+		public override void OnBackPressed() {
+			Finish ();
 			var intent = new Intent(this, typeof(MainActivity));
 			StartActivity (intent);
 		}

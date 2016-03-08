@@ -19,10 +19,6 @@ namespace Totem
 			this._activity = activity;
 			this.eigenschapList = list;
 			this.checkList = checkList;
-			/*foreach (Eigenschap e in eigenschapList) {
-				checkList.Add (e.tid, false);
-			}
-			checkList ["370"] = true;*/
 		}
 
 		public override Eigenschap this[int index] {

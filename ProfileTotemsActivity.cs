@@ -100,7 +100,7 @@ namespace Totem
 			var item = totemAdapter.GetItemAtPosition(pos);
 
 			AlertDialog.Builder alert = new AlertDialog.Builder (this);
-			alert.SetMessage (item.title + " verwijderen uit profiel?");
+			alert.SetMessage (item.title + " verwijderen uit profiel " + profileName + "?");
 			alert.SetPositiveButton ("Ja", (senderAlert, args) => {
 				db.DeleteTotemFromProfile(item.nid, profileName);
 				mToast.SetText(item.title + " verwijderd");

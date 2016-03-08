@@ -122,7 +122,7 @@ namespace Totem
 			int[] sortedFreqs = DictMethods.GetSortedList (freqs, false);
 			totemsActivity.PutExtra ("totemIDs", sortedTotems);
 			totemsActivity.PutExtra ("freqs", sortedFreqs);
-
+			Finish ();
 			StartActivity(totemsActivity);
 		}
 
