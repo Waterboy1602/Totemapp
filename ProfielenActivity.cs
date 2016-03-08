@@ -17,9 +17,10 @@ namespace Totem
 	[Activity (Label = "ProfielenActivity")]			
 	public class ProfielenActivity : Activity
 	{
-		ListView profielenListView;
-		Database db;
 		ProfielAdapter profielAdapter;
+		ListView profielenListView;
+
+		Database db;
 		Toast mToast;
 
 		protected override void OnCreate (Bundle savedInstanceState)

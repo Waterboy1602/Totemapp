@@ -23,6 +23,7 @@ namespace Totem
 		TextView title;
 		TextView synonyms;
 		TextView body;
+
 		Database db;
 		Toast mToast;
 

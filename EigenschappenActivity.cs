@@ -58,13 +58,13 @@ namespace Totem
 			if(eigenschapCount < 359) {
 				adjectief.Text = eigenschappen [eigenschapCount].name;
 			} else {
-				ResultList ();
+				VindTotem ();
 			}
 		}
 
 		//redirect to the result activity
 		//totems and their frequencies are sorted and passed seperately as parameters
-		public void ResultList() {
+		public void VindTotem() {
 			var totemsActivity = new Intent(this, typeof(TotemsActivity));
 
 			int[] sortedTotems = DictMethods.GetSortedList (freqs, true);

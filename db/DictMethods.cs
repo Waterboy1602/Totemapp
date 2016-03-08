@@ -30,8 +30,9 @@ namespace Totem
 				mySortedDictionary.Values.CopyTo(foos, 0);
 			}
 
-			return foos;
+			ReverseArray (foos);
 
+			return foos;
 		}
 
 		//adds entry to dictionary if it doesn't exist
@@ -45,6 +46,16 @@ namespace Totem
 			else
 			{
 				dict.Add(key, 1);
+			}
+		}
+
+		//helper method to reverse an array
+		private static void ReverseArray(int [] arr) {
+			for (int i = 0; i < arr.Length / 2; i++)
+			{
+				int tmp = arr[i];
+				arr[i] = arr[arr.Length - i - 1];
+				arr[arr.Length - i - 1] = tmp;
 			}
 		}
 	}

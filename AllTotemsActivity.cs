@@ -22,11 +22,7 @@ namespace Totem
 		TotemAdapter totemAdapter;
 		ListView allTotemListView;
 
-		//list of Totem objects
 		List<Totem> totemList;
-
-		//array of totem IDs
-		int[] totemIDs;
 
 		Database db;
 		EditText query;
@@ -41,12 +37,7 @@ namespace Totem
 
 			db = new Database (this);
 
-
-			totemIDs = db.AllTotemIDs ();
-
-			totemList = new List<Totem> ();
-
-			PopulateResultList ();
+			totemList = db.GetTotems ();
 
 			totemAdapter = new TotemAdapter (this, totemList);
 			allTotemListView = FindViewById<ListView> (Resource.Id.all_totem_list);
@@ -56,7 +47,6 @@ namespace Totem
 			LiveSearch ();
 
 			allTotemListView.ItemClick += listView_ItemClick;
-
 		}
 
 		//removes focus from search bar on resume
@@ -80,28 +70,8 @@ namespace Totem
 		private void Search() {
 			fullList = false;
 			totemList = db.FindTotemOpNaam (query.Text);
-			totemList.Reverse ();
 			totemAdapter = new TotemAdapter (this, totemList);
 			allTotemListView.Adapter = totemAdapter;
-		}
-
-		//helper method to reverse an array
-		private void ReverseArray(int [] arr) {
-			for (int i = 0; i < arr.Length / 2; i++)
-			{
-				int tmp = arr[i];
-				arr[i] = arr[arr.Length - i - 1];
-				arr[arr.Length - i - 1] = tmp;
-			}
-		}
-
-		//fill totemList with Totem-objects whose ID is in totemIDs
-		//resulting list is reversed to order them descending by frequency
-		private void PopulateResultList() {
-			foreach(int idx in totemIDs) {
-				totemList.Add (db.GetTotemOnID (idx));
-			}
-			totemList.Reverse ();
 		}
 
 		//get DetailActivity of the totem that is clicked
@@ -130,8 +100,7 @@ namespace Totem
 			} else {
 				query.Text = "";
 				fullList = true;
-				PopulateResultList ();
-				totemAdapter = new TotemAdapter (this, totemList);
+				totemAdapter = new TotemAdapter (this, db.GetTotems());
 				allTotemListView.Adapter = totemAdapter;
 			}
 		}

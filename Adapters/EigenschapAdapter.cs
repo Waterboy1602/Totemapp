@@ -12,6 +12,8 @@ namespace Totem
 	{
 		Activity _activity;
 		List<Eigenschap> eigenschapList;
+
+		//keeps track of which eigenschappen are checked
 		Dictionary<string, bool> checkList;
 
 		public EigenschapAdapter (Activity activity, List<Eigenschap> list, Dictionary<string, bool> checkList)

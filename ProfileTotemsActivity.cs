@@ -25,9 +25,6 @@ namespace Totem
 		//list of Totem objects
 		List<Totem> totemList;
 
-		//array of totem IDs
-		int[] totemIDs;
-
 		Database db;
 		Toast mToast;
 		string profileName;
@@ -44,12 +41,9 @@ namespace Totem
 			mToast = Toast.MakeText (this, "", ToastLength.Short);
 
 			profileName = Intent.GetStringExtra ("profileName");
-			totemIDs = db.GetTotemIDsFromProfiel(profileName);
-			totemIDs = totemIDs.OrderBy (i => i).ToArray();
+			int[] totemIDs = db.GetTotemIDsFromProfiel(profileName).OrderByDescending (i => i).ToArray();
 
-			totemList = new List<Totem> ();
-
-			PopulateResultList ();
+			totemList = ConvertIDArrayToTotemList (totemIDs);
 
 			totemAdapter = new TotemAdapter (this, totemList);
 			allTotemListView = FindViewById<ListView> (Resource.Id.all_totem_list);
@@ -62,24 +56,15 @@ namespace Totem
 			allTotemListView.ItemLongClick += listView_ItemLongClick;
 		}
 
-		//helper method to reverse an array
-		private void ReverseArray(int [] arr) {
-			for (int i = 0; i < arr.Length / 2; i++)
-			{
-				int tmp = arr[i];
-				arr[i] = arr[arr.Length - i - 1];
-				arr[arr.Length - i - 1] = tmp;
-			}
-		}
-
 		//fill totemList with Totem-objects whose ID is in totemIDs
-		//resulting list is reversed to order them descending by frequency
-		private void PopulateResultList() {
+		private List<Totem> ConvertIDArrayToTotemList(int[] totemIDs) {
+			List<Totem> totemList = new List<Totem> ();
 			foreach(int idx in totemIDs) {
 				totemList.Add (db.GetTotemOnID (idx));
 			}
 			totemList.RemoveAll(item => item == null);
-			totemList.Reverse ();
+
+			return totemList;
 		}
 
 		//get DetailActivity of the totem that is clicked

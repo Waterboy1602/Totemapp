@@ -22,7 +22,6 @@ namespace Totem
 		EigenschapAdapter eigenschapAdapter;
 		ListView allEigenschappenListView;
 
-		//list of Totem objects
 		List<Eigenschap> eigenschappenList;
 		Dictionary<string, bool> checkList;
 		Dictionary<int, int> freqs;
@@ -82,19 +81,8 @@ namespace Totem
 		private void Search() {
 			fullList = false;
 			eigenschappenList = db.FindEigenschapOpNaam (query.Text);
-			eigenschappenList.Reverse ();
 			eigenschapAdapter = new EigenschapAdapter (this, eigenschappenList, checkList);
 			allEigenschappenListView.Adapter = eigenschapAdapter;
-		}
-
-		//helper method to reverse an array
-		private void ReverseArray(int [] arr) {
-			for (int i = 0; i < arr.Length / 2; i++)
-			{
-				int tmp = arr[i];
-				arr[i] = arr[arr.Length - i - 1];
-				arr[arr.Length - i - 1] = tmp;
-			}
 		}
 
 		//get DetailActivity of the totem that is clicked
@@ -105,6 +93,8 @@ namespace Totem
 			var item = eigenschapAdapter.GetItemAtPosition(pos);
 		}
 
+		//renders list of totems with frequencies based on selected eigenschappen
+		//and redirects to TotemsActivity to view them
 		private void VindTotem() {
 			foreach (Eigenschap e in eigenschappenList) {
 				if(checkList[e.tid]) {

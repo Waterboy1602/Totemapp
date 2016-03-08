@@ -22,8 +22,7 @@ namespace Totem
 		TotemAdapter totemAdapter;
 		ListView totemListView;
 		List<Totem> totemList;
-		int[] totemIDs;
-		int[] freqs;
+
 		Database db;
 
 		protected override void OnCreate (Bundle bundle)
@@ -34,15 +33,10 @@ namespace Totem
 
 			db = new Database (this);
 	
-			totemIDs = Intent.GetIntArrayExtra ("totemIDs");
-			freqs = Intent.GetIntArrayExtra ("freqs");
+			int[] totemIDs = Intent.GetIntArrayExtra ("totemIDs");
+			int[] freqs = Intent.GetIntArrayExtra ("freqs");
 
-			//reverse frequency array to match it with the totems
-			ReverseArray (freqs);
-
-			totemList = new List<Totem> ();
-
-			PopulateResultList ();
+			totemList = ConvertIDArrayToTotemList (totemIDs);
 
 			totemAdapter = new TotemAdapter (this, totemList, freqs);
 			totemListView = FindViewById<ListView> (Resource.Id.totem_list);
@@ -52,23 +46,15 @@ namespace Totem
 
 		}
 
-		//helper method to reverse an array
-		private void ReverseArray(int [] arr) {
-			for (int i = 0; i < arr.Length / 2; i++)
-			{
-				int tmp = arr[i];
-				arr[i] = arr[arr.Length - i - 1];
-				arr[arr.Length - i - 1] = tmp;
-			}
-		}
-
 		//fill totemList with Totem-objects whose ID is in totemIDs
 		//resulting list is reversed to order them descending by frequency
-		private void PopulateResultList() {
+		private List<Totem> ConvertIDArrayToTotemList(int[] totemIDs) {
+			List<Totem> totemList = new List<Totem> ();
 			foreach(int idx in totemIDs) {
 				totemList.Add (db.GetTotemOnID (idx));
 			}
-			totemList.Reverse ();
+
+			return totemList;
 		}
 
 		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)

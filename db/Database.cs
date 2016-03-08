@@ -12,7 +12,7 @@ namespace Totem
 {
 	public class Database
 	{
-		//DB params
+		//DB parameters
 		static string dbName = "totems.sqlite";
 		string dbPath = System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), dbName);
 
@@ -28,7 +28,10 @@ namespace Totem
 			SetTotems ();
 		}
 
-		//load DB
+
+		/* ------------------------------ INITIALIZE DB ------------------------------ */
+
+
 		public void ExtractDB() {
 			if (!File.Exists(dbPath))
 			{
@@ -46,7 +49,7 @@ namespace Totem
 				}
 			}
 		}
-			
+
 		//extract eigenschappen from DB and put them in a list
 		private void SetEigenschappen() {
 			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
@@ -55,6 +58,19 @@ namespace Totem
 				eigenschappen = cmd.ExecuteQuery<Eigenschap> ();
 			}
 		}
+
+		//extract totems from DB and put them in a list
+		private void SetTotems() {
+			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
+				var cmd = new SQLite.SQLiteCommand (conn);
+				cmd.CommandText = "select * from totem";
+				totems = cmd.ExecuteQuery<Totem> ();
+			}
+		}
+
+
+		/* ------------------------------ PROFIELEN ------------------------------ */
+
 
 		//get list of profile-objects
 		public List<Profiel> GetProfielen() {
@@ -78,7 +94,8 @@ namespace Totem
 		public void AddTotemToProfiel(string totemID, string profielName) {
 			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
 				var cmd = new SQLite.SQLiteCommand (conn);
-				cmd.CommandText = "insert into profiel (name, nid) select '" + profielName + "'," + totemID + " WHERE NOT EXISTS ( SELECT * FROM profiel WHERE name='"+ profielName +"' AND nid=" + totemID + ");";
+				cmd.CommandText = "insert into profiel (name, nid) select '" + profielName + "'," + totemID + 
+					" WHERE NOT EXISTS ( SELECT * FROM profiel WHERE name='"+ profielName +"' AND nid=" + totemID + ");";
 				cmd.ExecuteQuery<Profiel> ();
 			}
 		}
@@ -141,8 +158,16 @@ namespace Totem
 			return result;
 		}
 
+
+		/* ------------------------------ TOTEMS EN EIGENSCHAPPEN ------------------------------ */
+
+
 		public List<Eigenschap> GetEigenschappen() {
 			return eigenschappen;
+		}
+
+		public List<Totem> GetTotems() {
+			return totems;
 		}
 
 		//returns List of Totem_eigenschapp related to eigenschap id
@@ -154,28 +179,6 @@ namespace Totem
 				totemsVanEigenschap = cmd.ExecuteQuery<Totem_eigenschap> ();
 			}
 			return totemsVanEigenschap;
-		}
-
-		//extract totems from DB and put them in a list
-		private void SetTotems() {
-			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
-				var cmd = new SQLite.SQLiteCommand (conn);
-				cmd.CommandText = "select * from totem";
-				totems = cmd.ExecuteQuery<Totem> ();
-			}
-		}
-
-		//returns array of all totem IDs
-		public int[] AllTotemIDs() {
-			List<Totem> list = totems;
-			list.Reverse ();
-			int[] result = new int[395];
-			int index = 0;
-			foreach(Totem t in list) {
-				result.SetValue(Int32.Parse(t.nid), index);
-				index++;
-			}
-			return result;
 		}
 
 		//returns totem-object with given id
@@ -204,7 +207,7 @@ namespace Totem
 			return result;
 		}
 
-		//returns totem-object with given name
+		//returns eigenschap-object with given name
 		public List<Eigenschap> FindEigenschapOpNaam(string name) {
 			List<Eigenschap> result = new List<Eigenschap> ();
 			foreach(Eigenschap e in eigenschappen) {
@@ -212,7 +215,6 @@ namespace Totem
 					result.Add (e);
 				}
 			}
-			result.Reverse ();
 			return result;
 		}
 	}
