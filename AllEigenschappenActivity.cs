@@ -28,6 +28,7 @@ namespace Totem
 
 		Database db;
 		EditText query;
+		Button vindButton;
 
 		bool fullList = true;
 
@@ -51,7 +52,7 @@ namespace Totem
 			allEigenschappenListView = FindViewById<ListView> (Resource.Id.all_eigenschappen_list);
 			allEigenschappenListView.Adapter = eigenschapAdapter;
 
-			Button vindButton = FindViewById<Button> (Resource.Id.vind_button);
+			vindButton = FindViewById<Button> (Resource.Id.vind_button);
 		
 			query = FindViewById<EditText>(Resource.Id.query);
 			LiveSearch ();
@@ -80,6 +81,7 @@ namespace Totem
 		//shows only totems that are searched
 		private void Search() {
 			fullList = false;
+			vindButton.Visibility = ViewStates.Gone;
 			eigenschappenList = db.FindEigenschapOpNaam (query.Text);
 			eigenschapAdapter = new EigenschapAdapter (this, eigenschappenList, checkList);
 			allEigenschappenListView.Adapter = eigenschapAdapter;
@@ -133,6 +135,7 @@ namespace Totem
 				eigenschapAdapter = new EigenschapAdapter (this, db.GetEigenschappen(), checkList);
 				allEigenschappenListView.Adapter = eigenschapAdapter;
 			}
+			vindButton.Visibility = ViewStates.Visible;
 		}
 	}
 }
