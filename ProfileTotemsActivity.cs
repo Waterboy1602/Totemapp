@@ -17,7 +17,7 @@ using Android.Views.InputMethods;
 namespace Totem
 {
 	[Activity (Label = "Totems")]			
-	public class AllTotemsActivity : Activity
+	public class ProfileTotemsActivity : Activity
 	{
 		TotemAdapter totemAdapter;
 		ListView allTotemListView;
@@ -29,9 +29,8 @@ namespace Totem
 		int[] totemIDs;
 
 		Database db;
-		EditText query;
-
-		bool fullList = true;
+		Toast mToast;
+		string profileName;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -41,8 +40,12 @@ namespace Totem
 
 			db = new Database (this);
 
+			//single toast for entire activity
+			mToast = Toast.MakeText (this, "", ToastLength.Short);
 
-			totemIDs = db.AllTotemIDs ();
+			profileName = Intent.GetStringExtra ("profileName");
+			totemIDs = db.GetTotemIDsFromProfiel(profileName);
+			totemIDs = totemIDs.OrderBy (i => i).ToArray();
 
 			totemList = new List<Totem> ();
 
@@ -52,37 +55,11 @@ namespace Totem
 			allTotemListView = FindViewById<ListView> (Resource.Id.all_totem_list);
 			allTotemListView.Adapter = totemAdapter;
 
-			query = FindViewById<EditText>(Resource.Id.query);
-			LiveSearch ();
+			EditText query = FindViewById<EditText>(Resource.Id.query);
+			query.Visibility = ViewStates.Gone;
 
 			allTotemListView.ItemClick += listView_ItemClick;
-
-		}
-
-		//removes focus from search bar on resume
-		protected override void OnResume ()
-		{
-			base.OnResume ();
-			query.ClearFocus ();
-			query.SetCursorVisible(false);
-		}
-
-		//update list after every keystroke
-		private void LiveSearch() {
-			
-			query.AfterTextChanged += (sender, args) =>
-			{
-				Search();
-			};
-		}
-
-		//shows only totems that are searched
-		private void Search() {
-			fullList = false;
-			totemList = db.FindTotemOpNaam (query.Text);
-			totemList.Reverse ();
-			totemAdapter = new TotemAdapter (this, totemList);
-			allTotemListView.Adapter = totemAdapter;
+			allTotemListView.ItemLongClick += listView_ItemLongClick;
 		}
 
 		//helper method to reverse an array
@@ -101,6 +78,7 @@ namespace Totem
 			foreach(int idx in totemIDs) {
 				totemList.Add (db.GetTotemOnID (idx));
 			}
+			totemList.RemoveAll(item => item == null);
 			totemList.Reverse ();
 		}
 
@@ -116,24 +94,27 @@ namespace Totem
 			StartActivity (detailActivity);
 		}
 
-		//hides the keyboard
-		private void HideKeyboard() {
-			InputMethodManager inputManager = (InputMethodManager)this.GetSystemService (Context.InputMethodService);
-			inputManager.HideSoftInputFromWindow (this.CurrentFocus.WindowToken, HideSoftInputFlags.NotAlways);
-		}
-			
-		//return to full list and empty search field when 'back' is pressed
-		//this happens only when a search query is currently entered
-		public override void OnBackPressed() { 
-			if (fullList) {
-				base.OnBackPressed ();
-			} else {
-				query.Text = "";
-				fullList = true;
-				PopulateResultList ();
-				totemAdapter = new TotemAdapter (this, totemList);
-				allTotemListView.Adapter = totemAdapter;
-			}
+		private void listView_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
+		{
+			int pos = e.Position;
+			var item = totemAdapter.GetItemAtPosition(pos);
+
+			AlertDialog.Builder alert = new AlertDialog.Builder (this);
+			alert.SetMessage (item.title + " verwijderen uit profiel?");
+			alert.SetPositiveButton ("Ja", (senderAlert, args) => {
+				db.DeleteTotemFromProfile(item.nid, profileName);
+				mToast.SetText(item.title + " verwijderd");
+				mToast.Show();
+				Finish();
+				StartActivity(Intent);
+			});
+
+			alert.SetNegativeButton ("Nee", (senderAlert, args) => {
+
+			});
+
+			Dialog dialog = alert.Create();
+			dialog.Show();
 		}
 	}
 }

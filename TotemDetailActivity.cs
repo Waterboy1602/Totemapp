@@ -12,6 +12,7 @@ using Android.Views;
 using Android.Widget;
 using Android.Graphics;
 using Android.Text.Method;
+using Android.Views.InputMethods;
 
 
 namespace Totem
@@ -63,11 +64,41 @@ namespace Totem
 						menu.Menu.Add(0,count,count,p.name);
 						count++;
 					}
+					menu.Menu.Add(0,count,count, "Nieuw profiel");
 
 					menu.MenuItemClick += (s1, arg1) => {
-						db.AddTotemToProfiel(nid, arg1.Item.TitleFormatted.ToString());
-						mToast.SetText(db.GetTotemOnID(nid).title + " toegevoegd aan profiel " + arg1.Item.TitleFormatted.ToString());
-						mToast.Show();
+						if(arg1.Item.TitleFormatted.ToString().Equals("Nieuw profiel")) {
+							AlertDialog.Builder alert = new AlertDialog.Builder (this);
+							alert.SetTitle ("Naam");
+							EditText input = new EditText (this); 
+							input.InputType = Android.Text.InputTypes.TextFlagCapWords;
+							ShowKeyboard (input);
+							alert.SetView (input);
+							alert.SetPositiveButton ("Ok", (s, args) => {
+								string value = input.Text;
+								if(db.GetProfielNamen().Contains(value)) {
+									input.Text = "";
+									mToast.SetText("Profiel " + value + " bestaat al");
+									mToast.Show();
+									HideKeyboard();
+								} else {
+									db.AddProfile(value);
+									HideKeyboard();
+									db.AddTotemToProfiel(nid, value);
+									mToast.SetText(db.GetTotemOnID(nid).title + " toegevoegd aan profiel " + value);
+									mToast.Show();
+								}
+							});
+								
+							RunOnUiThread (() => {
+								alert.Show();
+							} );
+
+						} else {
+							db.AddTotemToProfiel(nid, arg1.Item.TitleFormatted.ToString());
+							mToast.SetText(db.GetTotemOnID(nid).title + " toegevoegd aan profiel " + arg1.Item.TitleFormatted.ToString());
+							mToast.Show();
+						}
 					};
 
 					menu.Show ();
@@ -83,6 +114,21 @@ namespace Totem
 				synonyms.Text = t.synonyms;
 			}
 			body.Text = t.body;
+		}
+
+		//helper
+		public void ShowKeyboard(View pView) {
+			pView.RequestFocus();
+
+			InputMethodManager inputMethodManager = Application.GetSystemService(Context.InputMethodService) as InputMethodManager;
+			inputMethodManager.ShowSoftInput(pView, ShowFlags.Forced);
+			inputMethodManager.ToggleSoftInput(ShowFlags.Forced, HideSoftInputFlags.ImplicitOnly);
+		}
+
+		//helper
+		public void HideKeyboard() {
+			InputMethodManager inputManager = (InputMethodManager)this.GetSystemService (Context.InputMethodService);
+			inputManager.ToggleSoftInput (ShowFlags.Implicit, 0);
 		}
 	}
 }

@@ -18,8 +18,6 @@ namespace Totem
 	[Activity (Label = "Totem", MainLauncher = true, Icon = "@drawable/icon")]
 	public class MainActivity : Activity
 	{
-		Database db;
-
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
@@ -27,8 +25,6 @@ namespace Totem
 			//RequestWindowFeature(WindowFeatures.NoTitle);
 	
 			SetContentView (Resource.Layout.Main);
-
-			db = new Database (this);
 
 			Button totems = FindViewById<Button> (Resource.Id.totems);
 			Button totemBepalen = FindViewById<Button> (Resource.Id.totemBepalen);
@@ -40,10 +36,9 @@ namespace Totem
 		}
 
 		private void GoToActivity(string a) {
-			Intent intent;
+			Intent intent = null;
 			if(a.Equals("totems")) {
 				intent = new Intent(this, typeof(AllTotemsActivity));
-				intent.PutExtra ("totemIDs", db.AllTotemIDs());
 			} else if(a.Equals("bepalen")) {
 				intent = new Intent(this, typeof(EigenschappenActivity));
 			} else if(a.Equals("profielen")) {

@@ -50,15 +50,33 @@ namespace Totem
 				mToast.SetText("Profiel " + item.name + " bevat geen totems");
 				mToast.Show();
 			} else {
-				var totemsActivity = new Intent (this, typeof(AllTotemsActivity));
-				totemsActivity.PutExtra ("profielTotems", db.GetTotemIDsFromProfiel (item.name));
+				var totemsActivity = new Intent (this, typeof(ProfileTotemsActivity));
+				totemsActivity.PutExtra ("profileName", item.name);
 				StartActivity (totemsActivity);
 			}
 		}
 
 		private void listView_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
 		{
-			// Implement delete
+			int pos = e.Position;
+			var item = profielAdapter.GetItemAtPosition(pos);
+
+			AlertDialog.Builder alert = new AlertDialog.Builder (this);
+			alert.SetMessage ("Profiel " + item.name + " verwijderen?");
+			alert.SetPositiveButton ("Ja", (senderAlert, args) => {
+				db.DeleteProfile(item.name);
+				mToast.SetText("Profiel " + item.name + " verwijderd");
+				mToast.Show();
+				Finish();
+				StartActivity(Intent);
+			});
+
+			alert.SetNegativeButton ("Nee", (senderAlert, args) => {
+				
+			});
+
+			Dialog dialog = alert.Create();
+			dialog.Show();
 		}
 
 		//create options menu
