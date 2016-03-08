@@ -12,11 +12,17 @@ namespace Totem
 	{
 		Activity _activity;
 		List<Eigenschap> eigenschapList;
+		Dictionary<string, bool> checkList;
 
-		public EigenschapAdapter (Activity activity, List<Eigenschap> list)
+		public EigenschapAdapter (Activity activity, List<Eigenschap> list, Dictionary<string, bool> checkList)
 		{	
 			this._activity = activity;
 			this.eigenschapList = list;
+			this.checkList = checkList;
+			/*foreach (Eigenschap e in eigenschapList) {
+				checkList.Add (e.tid, false);
+			}
+			checkList ["370"] = true;*/
 		}
 
 		public override Eigenschap this[int index] {
@@ -32,9 +38,19 @@ namespace Totem
 
 		public override View GetView (int position, View convertView, ViewGroup parent)
 		{
-			var view = convertView ?? _activity.LayoutInflater.Inflate (Resource.Layout.TotemListItem, parent, false);
-			var totem = view.FindViewById<TextView> (Resource.Id.totem);
-			totem.Text = eigenschapList [position].name;
+			var view = _activity.LayoutInflater.Inflate (Resource.Layout.EigenschapListItem, parent, false);
+			var eigenschap = view.FindViewById<TextView> (Resource.Id.eigenschap);
+			var checkbox = view.FindViewById<CheckBox> (Resource.Id.checkbox);
+			eigenschap.Text = eigenschapList [position].name;
+			checkbox.Checked = checkList [eigenschapList [position].tid];
+
+			checkbox.Click += (o, e) => {
+				if (checkbox.Checked)
+					checkList [eigenschapList [position].tid] = true;
+				else
+					checkList [eigenschapList [position].tid] = false;;
+			};
+
 			return view;
 		}
 

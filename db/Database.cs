@@ -203,6 +203,18 @@ namespace Totem
 			}
 			return result;
 		}
+
+		//returns totem-object with given name
+		public List<Eigenschap> FindEigenschapOpNaam(string name) {
+			List<Eigenschap> result = new List<Eigenschap> ();
+			foreach(Eigenschap e in eigenschappen) {
+				if(e.name.ToLower().Contains(name.ToLower())) {
+					result.Add (e);
+				}
+			}
+			result.Reverse ();
+			return result;
+		}
 	}
 }
 

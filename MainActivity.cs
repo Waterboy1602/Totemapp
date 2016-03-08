@@ -18,6 +18,8 @@ namespace Totem
 	[Activity (Label = "Totem", MainLauncher = true, Icon = "@drawable/icon")]
 	public class MainActivity : Activity
 	{
+		Button totems;
+
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
@@ -26,7 +28,7 @@ namespace Totem
 	
 			SetContentView (Resource.Layout.Main);
 
-			Button totems = FindViewById<Button> (Resource.Id.totems);
+			totems = FindViewById<Button> (Resource.Id.totems);
 			Button totemBepalen = FindViewById<Button> (Resource.Id.totemBepalen);
 			Button profielen = FindViewById<Button> (Resource.Id.profielen);
 
@@ -36,15 +38,34 @@ namespace Totem
 		}
 
 		private void GoToActivity(string a) {
-			Intent intent = null;
 			if(a.Equals("totems")) {
-				intent = new Intent(this, typeof(AllTotemsActivity));
+				TotemLijst();
 			} else if(a.Equals("bepalen")) {
-				intent = new Intent(this, typeof(EigenschappenActivity));
+				Intent intent = new Intent(this, typeof(EigenschappenActivity));
+				StartActivity (intent);
 			} else if(a.Equals("profielen")) {
-				intent = new Intent(this, typeof(ProfielenActivity));
+				Intent intent = new Intent(this, typeof(ProfielenActivity));
+				StartActivity (intent);
 			}
-			StartActivity (intent);
+		}
+
+		private void TotemLijst() {
+			PopupMenu menu = new PopupMenu (this, totems);
+			menu.Inflate (Resource.Menu.Popup);
+			menu.Menu.Add(0,1,1,"Zoeken op totem");
+			menu.Menu.Add(0,2,2,"Zoeken op eigenschappen");
+			menu.MenuItemClick += (s1, arg1) => {
+				if(arg1.Item.TitleFormatted.ToString().Equals("Zoeken op totem")) {
+					Intent intent = new Intent(this, typeof(AllTotemsActivity));
+					StartActivity (intent);				
+				}
+				else {
+					Intent intent = new Intent(this, typeof(AllEigenschappenActivity));
+					StartActivity (intent);				
+				}
+			};
+
+			menu.Show ();
 		}
 	}
 }
