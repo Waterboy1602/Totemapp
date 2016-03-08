@@ -76,6 +76,7 @@ namespace Totem
 
 			var detailActivity = new Intent(this, typeof(TotemDetailActivity));
 			detailActivity.PutExtra ("totemID", item.nid);
+			detailActivity.PutExtra ("hideButton", "true");
 			StartActivity (detailActivity);
 		}
 

@@ -50,60 +50,59 @@ namespace Totem
 			body = FindViewById<TextView> (Resource.Id.body);
 
 			var nid = Intent.GetStringExtra ("totemID");
+			var hideButton = Intent.GetStringExtra ("hideButton");
+			if (hideButton != null)
+				voegtoe.Visibility = ViewStates.Gone;
 			GetInfo (nid);
 
 			//add to profiles
 			voegtoe.Click += (sender, eventArgs) => {
-				if (db.GetProfielNamen().Count == 0) {
-					mToast.SetText("Nog geen profielen toegevoegd");
-					mToast.Show();
-				} else {
-					PopupMenu menu = new PopupMenu (this, voegtoe);
-					menu.Inflate (Resource.Menu.Popup);
-					int count = 0;
-					foreach(Profiel p in db.GetProfielen()) {
-						menu.Menu.Add(0,count,count,p.name);
-						count++;
-					}
-					menu.Menu.Add(0,count,count, "Nieuw profiel");
-
-					menu.MenuItemClick += (s1, arg1) => {
-						if(arg1.Item.TitleFormatted.ToString().Equals("Nieuw profiel")) {
-							AlertDialog.Builder alert = new AlertDialog.Builder (this);
-							alert.SetTitle ("Naam");
-							EditText input = new EditText (this); 
-							input.InputType = Android.Text.InputTypes.TextFlagCapWords;
-							ShowKeyboard (input);
-							alert.SetView (input);
-							alert.SetPositiveButton ("Ok", (s, args) => {
-								string value = input.Text;
-								if(db.GetProfielNamen().Contains(value)) {
-									input.Text = "";
-									mToast.SetText("Profiel " + value + " bestaat al");
-									mToast.Show();
-									HideKeyboard();
-								} else {
-									db.AddProfile(value);
-									HideKeyboard();
-									db.AddTotemToProfiel(nid, value);
-									mToast.SetText(db.GetTotemOnID(nid).title + " toegevoegd aan profiel " + value);
-									mToast.Show();
-								}
-							});
-								
-							RunOnUiThread (() => {
-								alert.Show();
-							} );
-
-						} else {
-							db.AddTotemToProfiel(nid, arg1.Item.TitleFormatted.ToString());
-							mToast.SetText(db.GetTotemOnID(nid).title + " toegevoegd aan profiel " + arg1.Item.TitleFormatted.ToString());
-							mToast.Show();
-						}
-					};
-
-					menu.Show ();
+				PopupMenu menu = new PopupMenu (this, voegtoe);
+				menu.Inflate (Resource.Menu.Popup);
+				int count = 0;
+				foreach(Profiel p in db.GetProfielen()) {
+					menu.Menu.Add(0,count,count,p.name);
+					count++;
 				}
+
+				menu.Menu.Add(0,count,count, "Nieuw profiel");
+
+				menu.MenuItemClick += (s1, arg1) => {
+					if(arg1.Item.TitleFormatted.ToString().Equals("Nieuw profiel")) {
+						AlertDialog.Builder alert = new AlertDialog.Builder (this);
+						alert.SetTitle ("Naam");
+						EditText input = new EditText (this); 
+						input.InputType = Android.Text.InputTypes.TextFlagCapWords;
+						ShowKeyboard (input);
+						alert.SetView (input);
+						alert.SetPositiveButton ("Ok", (s, args) => {
+							string value = input.Text;
+							if(db.GetProfielNamen().Contains(value)) {
+								input.Text = "";
+								mToast.SetText("Profiel " + value + " bestaat al");
+								mToast.Show();
+								HideKeyboard();
+							} else {
+								db.AddProfile(value);
+								HideKeyboard();
+								db.AddTotemToProfiel(nid, value);
+								mToast.SetText(db.GetTotemOnID(nid).title + " toegevoegd aan profiel " + value);
+								mToast.Show();
+							}
+						});
+							
+						RunOnUiThread (() => {
+							alert.Show();
+						} );
+
+					} else {
+						db.AddTotemToProfiel(nid, arg1.Item.TitleFormatted.ToString());
+						mToast.SetText(db.GetTotemOnID(nid).title + " toegevoegd aan profiel " + arg1.Item.TitleFormatted.ToString());
+						mToast.Show();
+					}
+				};
+
+				menu.Show ();
 			};
 		}
 
