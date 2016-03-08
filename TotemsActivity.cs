@@ -31,7 +31,7 @@ namespace Totem
 
 			SetContentView (Resource.Layout.Totems);
 
-			db = new Database (this);
+			db = DatabaseHelper.GetInstance (this);
 	
 			int[] totemIDs = Intent.GetIntArrayExtra ("totemIDs");
 			int[] freqs = Intent.GetIntArrayExtra ("freqs");
@@ -47,7 +47,6 @@ namespace Totem
 		}
 
 		//fill totemList with Totem-objects whose ID is in totemIDs
-		//resulting list is reversed to order them descending by frequency
 		private List<Totem> ConvertIDArrayToTotemList(int[] totemIDs) {
 			List<Totem> totemList = new List<Totem> ();
 			foreach(int idx in totemIDs) {

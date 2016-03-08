@@ -37,7 +37,7 @@ namespace Totem
 
 			SetContentView (Resource.Layout.AllEigenschappen);
 
-			db = new Database (this);
+			db = DatabaseHelper.GetInstance (this);
 
 			eigenschappenList = db.GetEigenschappen ();
 			freqs = new Dictionary<int, int> ();

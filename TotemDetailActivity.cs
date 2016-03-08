@@ -35,7 +35,7 @@ namespace Totem
 
 			SetContentView (Resource.Layout.TotemDetail);
 
-			db = new Database (this);
+			db = DatabaseHelper.GetInstance (this);
 
 			//single toast for entire activity
 			mToast = Toast.MakeText (this, "", ToastLength.Short);

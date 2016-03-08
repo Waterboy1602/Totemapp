@@ -33,8 +33,7 @@ namespace Totem
 
 			SetContentView (Resource.Layout.Eigenschappen);
 
-			//setup
-			db = new Database(this);
+			db = DatabaseHelper.GetInstance (this);
 			eigenschappen = db.GetEigenschappen ();
 
 			eigenschapCount = 1;

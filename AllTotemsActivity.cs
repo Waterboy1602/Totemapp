@@ -35,7 +35,7 @@ namespace Totem
 
 			SetContentView (Resource.Layout.AllTotems);
 
-			db = new Database (this);
+			db = DatabaseHelper.GetInstance (this);
 
 			totemList = db.GetTotems ();
 
