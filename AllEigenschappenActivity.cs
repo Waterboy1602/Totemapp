@@ -13,14 +13,17 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Views.InputMethods;
+using Android.Content.PM;
 
 namespace Totem
 {
-	[Activity (Label = "Totems", WindowSoftInputMode = Android.Views.SoftInput.AdjustPan)]			
+	[Activity (Label = "Totems", WindowSoftInputMode = Android.Views.SoftInput.AdjustPan, ScreenOrientation = ScreenOrientation.Portrait)]			
 	public class AllEigenschappenActivity : Activity
 	{
 		EigenschapAdapter eigenschapAdapter;
 		ListView allEigenschappenListView;
+
+		ISharedPreferences data;
 
 		List<Eigenschap> eigenschappenList;
 		Dictionary<string, bool> checkList;
@@ -36,9 +39,11 @@ namespace Totem
 		{
 			base.OnCreate (bundle);
 
+			//RequestWindowFeature(WindowFeatures.NoTitle);
 			SetContentView (Resource.Layout.AllEigenschappen);
 
 			db = DatabaseHelper.GetInstance (this);
+			data = this.GetSharedPreferences ("filename", 0);
 
 			eigenschappenList = db.GetEigenschappen ();
 			freqs = new Dictionary<int, int> ();
@@ -57,16 +62,15 @@ namespace Totem
 			query = FindViewById<EditText>(Resource.Id.query);
 			LiveSearch ();
 
-			allEigenschappenListView.ItemClick += listView_ItemClick;
 			vindButton.Click += (sender, eventArgs) => VindTotem();
 		}
 
 		//removes focus from search bar on resume
-		protected override void OnResume ()
-		{
+		protected override void OnResume ()	{
 			base.OnResume ();
 			query.ClearFocus ();
 			query.SetCursorVisible(false);
+			vindButton.Visibility = ViewStates.Visible;
 		}
 
 		//update list after every keystroke
@@ -85,14 +89,6 @@ namespace Totem
 			eigenschappenList = db.FindEigenschapOpNaam (query.Text);
 			eigenschapAdapter = new EigenschapAdapter (this, eigenschappenList, checkList);
 			allEigenschappenListView.Adapter = eigenschapAdapter;
-		}
-
-		//get DetailActivity of the totem that is clicked
-		//ID is passed as parameter
-		private void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
-		{
-			int pos = e.Position;
-			var item = eigenschapAdapter.GetItemAtPosition(pos);
 		}
 
 		//renders list of totems with frequencies based on selected eigenschappen

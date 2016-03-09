@@ -123,9 +123,21 @@ namespace Totem
 				return true;
 
 			case Resource.Id.Verwijder:
-				db.ClearProfiles ();
-				var main = new Intent (this, typeof(MainActivity));
-				StartActivity (main);
+				AlertDialog.Builder alert1 = new AlertDialog.Builder (this);
+				alert1.SetMessage ("Alle profielen verwijderen?");
+				alert1.SetPositiveButton ("Ja", (senderAlert, args) => {
+					db.ClearProfiles ();
+					var main = new Intent (this, typeof(MainActivity));
+					StartActivity (main);
+				});
+
+				alert1.SetNegativeButton ("Nee", (senderAlert, args) => {
+
+				});
+
+				Dialog dialog = alert1.Create();
+				dialog.Show();
+
 				return true;
 			}
 
