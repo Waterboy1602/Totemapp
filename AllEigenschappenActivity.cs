@@ -115,6 +115,53 @@ namespace Totem
 			}
 		}
 
+		//create options menu
+		public override bool OnCreateOptionsMenu(IMenu menu) {
+			MenuInflater.Inflate(Resource.Menu.EigenschapSelectieMenu, menu);
+			return base.OnCreateOptionsMenu(menu);
+		}
+
+		//options menu: add profile or delete all
+		public override bool OnOptionsItemSelected(IMenuItem item) {
+			switch (item.ItemId) {
+			case Resource.Id.reset:
+				query.Text = "";
+				fullList = true;
+				checkList = new Dictionary<string, bool> ();
+				foreach (Eigenschap e in eigenschappenList) {
+					checkList.Add (e.tid, false);
+				}
+				eigenschapAdapter = new EigenschapAdapter (this, db.GetEigenschappen (), checkList);
+				allEigenschappenListView.Adapter = eigenschapAdapter;
+				vindButton.Visibility = ViewStates.Visible;
+				return true;
+
+			case Resource.Id.select:
+				List<Eigenschap> list = GetSelectedEigenschappen ();
+				if (list.Count == 0) {
+					mToast.SetText ("Geen eigenschappen geselecteerd");
+					mToast.Show ();
+				} else {
+					eigenschapAdapter = new EigenschapAdapter (this, list, checkList);
+					allEigenschappenListView.Adapter = eigenschapAdapter;
+					vindButton.Visibility = ViewStates.Visible;
+				}
+				return true;
+			}
+
+			return base.OnOptionsItemSelected(item);
+		}
+
+		private List<Eigenschap> GetSelectedEigenschappen() {
+			List<Eigenschap> result = new List<Eigenschap> ();
+			foreach(Eigenschap e in eigenschappenList) {
+				if (checkList [e.tid]) {
+					result.Add (e);
+				}
+			}
+			return result;
+		}
+
 		//helper
 		private void HideKeyboard() {
 			InputMethodManager inputManager = (InputMethodManager)this.GetSystemService (Context.InputMethodService);

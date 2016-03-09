@@ -49,7 +49,7 @@ namespace Totem
 				mToast.SetText("Profiel " + item.name + " bevat geen totems");
 				mToast.Show();
 			} else {
-				var totemsActivity = new Intent (this, typeof(ProfileTotemsActivity));
+				var totemsActivity = new Intent (this, typeof(ProfielTotemsActivity));
 				totemsActivity.PutExtra ("profileName", item.name);
 				StartActivity (totemsActivity);
 			}
@@ -70,7 +70,7 @@ namespace Totem
 			});
 
 			alert.SetNegativeButton ("Nee", (senderAlert, args) => {
-				
+
 			});
 
 			Dialog dialog = alert.Create();
@@ -79,7 +79,7 @@ namespace Totem
 
 		//create options menu
 		public override bool OnCreateOptionsMenu(IMenu menu) {
-			MenuInflater.Inflate(Resource.Menu.menu, menu);
+			MenuInflater.Inflate(Resource.Menu.profielMenu, menu);
 			return base.OnCreateOptionsMenu(menu);
 		}
 
