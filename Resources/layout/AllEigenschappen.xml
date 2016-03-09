@@ -1,40 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-    <LinearLayout
-        android:orientation="vertical"
+    <FrameLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:descendantFocusability="beforeDescendants"
-            android:focusableInTouchMode="true">
-            <EditText
-                android:id="@+id/query"
+            android:layout_height="fill_parent">
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="fill_parent"
-                android:singleLine="true"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:imeOptions="actionDone"
-                android:inputType="text"
-                android:hint="Zoek eigenschap" />
+                android:descendantFocusability="beforeDescendants"
+                android:focusableInTouchMode="true">
+                <EditText
+                    android:id="@+id/query"
+                    android:layout_width="fill_parent"
+                    android:singleLine="true"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:hint="Zoek eigenschap" />
+            </LinearLayout>
+            <ListView
+                android:id="@+id/all_eigenschappen_list"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="" />
         </LinearLayout>
-        <ListView
-            android:id="@+id/all_eigenschappen_list"
-            android:layout_width="fill_parent"
+        <Button
+            android:id="@+id/vind_button"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="" />
-    </LinearLayout>
-    <Button
-        android:id="@+id/vind_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Vind totem"
-        android:padding="15dip"
-        android:textSize="17dip"
-        android:layout_margin="8dip"
-        android:layout_gravity="right|bottom" />
-</FrameLayout>
+            android:text="Vind totem"
+            android:padding="15dip"
+            android:textSize="17dip"
+            android:layout_margin="8dip"
+            android:layout_gravity="right|bottom" />
+    </FrameLayout>
+</LinearLayout>

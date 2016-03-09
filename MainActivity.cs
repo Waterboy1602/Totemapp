@@ -19,18 +19,23 @@ namespace Totem
 	public class MainActivity : Activity
 	{
 		Button totems;
+		Database db;
 
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 
-			//RequestWindowFeature(WindowFeatures.NoTitle);
+			db = DatabaseHelper.GetInstance (this);
 	
 			SetContentView (Resource.Layout.Main);
 
 			totems = FindViewById<Button> (Resource.Id.totems);
 			Button totemBepalen = FindViewById<Button> (Resource.Id.totemBepalen);
 			Button profielen = FindViewById<Button> (Resource.Id.profielen);
+
+			if(db.GetPreference("tips").value.Equals("true")) {
+				ShowTipDialog ();
+			}
 
 			totems.Click += (sender, eventArgs) => GoToActivity("totems");
 			totemBepalen.Click += (sender, eventArgs) => GoToActivity("bepalen");
@@ -66,6 +71,11 @@ namespace Totem
 			};
 
 			menu.Show ();
+		}
+
+		public void ShowTipDialog() {
+			var dialog = TipDialog.NewInstance();
+			dialog.Show(FragmentManager, "dialog");
 		}
 	}
 }

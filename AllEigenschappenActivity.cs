@@ -23,8 +23,6 @@ namespace Totem
 		EigenschapAdapter eigenschapAdapter;
 		ListView allEigenschappenListView;
 
-		ISharedPreferences data;
-
 		List<Eigenschap> eigenschappenList;
 		Dictionary<string, bool> checkList;
 		Dictionary<int, int> freqs;
@@ -43,7 +41,6 @@ namespace Totem
 			SetContentView (Resource.Layout.AllEigenschappen);
 
 			db = DatabaseHelper.GetInstance (this);
-			data = this.GetSharedPreferences ("filename", 0);
 
 			eigenschappenList = db.GetEigenschappen ();
 			freqs = new Dictionary<int, int> ();
