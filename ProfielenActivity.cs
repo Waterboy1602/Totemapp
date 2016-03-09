@@ -23,8 +23,7 @@ namespace Totem
 		Database db;
 		Toast mToast;
 
-		protected override void OnCreate (Bundle savedInstanceState)
-		{
+		protected override void OnCreate (Bundle savedInstanceState) {
 			base.OnCreate (savedInstanceState);
 
 			SetContentView (Resource.Layout.Profielen);
@@ -38,12 +37,11 @@ namespace Totem
 			profielenListView = FindViewById<ListView> (Resource.Id.profielen_list);
 			profielenListView.Adapter = profielAdapter;
 
-			profielenListView.ItemClick += listView_ItemClick;
-			profielenListView.ItemLongClick += listView_ItemLongClick;
+			profielenListView.ItemClick += ProfielClick;
+			profielenListView.ItemLongClick += ProfielLongClick;
 		}
 
-		private void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
-		{
+		private void ProfielClick(object sender, AdapterView.ItemClickEventArgs e) {
 			int pos = e.Position;
 			var item = profielAdapter.GetItemAtPosition(pos);
 
@@ -57,8 +55,7 @@ namespace Totem
 			}
 		}
 
-		private void listView_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
-		{
+		private void ProfielLongClick(object sender, AdapterView.ItemLongClickEventArgs e) {
 			int pos = e.Position;
 			var item = profielAdapter.GetItemAtPosition(pos);
 
@@ -81,17 +78,14 @@ namespace Totem
 		}
 
 		//create options menu
-		public override bool OnCreateOptionsMenu(IMenu menu)
-		{
+		public override bool OnCreateOptionsMenu(IMenu menu) {
 			MenuInflater.Inflate(Resource.Menu.menu, menu);
 			return base.OnCreateOptionsMenu(menu);
 		}
 
 		//options menu: add profile or delete all
-		public override bool OnOptionsItemSelected(IMenuItem item)
-		{
-			switch (item.ItemId)
-			{
+		public override bool OnOptionsItemSelected(IMenuItem item) {
+			switch (item.ItemId) {
 			case Resource.Id.voegProfielToe:
 				AlertDialog.Builder alert = new AlertDialog.Builder (this);
 				alert.SetTitle ("Naam");
@@ -160,4 +154,3 @@ namespace Totem
 		}
 	}
 }
-

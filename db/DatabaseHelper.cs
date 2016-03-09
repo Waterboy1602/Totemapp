@@ -6,6 +6,7 @@ using Android.Content;
 
 namespace Totem
 {
+	//database singleton
 	public static class DatabaseHelper
 	{
 		private static Database dbInstance = null;
@@ -22,4 +23,3 @@ namespace Totem
 		}
 	}
 }
-

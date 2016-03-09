@@ -25,27 +25,27 @@ namespace Totem
 
 		List<Eigenschap> eigenschappenList;
 		Dictionary<string, bool> checkList;
-		Dictionary<int, int> freqs;
 
 		Database db;
 		EditText query;
 		Button vindButton;
 
+		Toast mToast;
+
 		bool fullList = true;
 
-		protected override void OnCreate (Bundle bundle)
-		{
+		protected override void OnCreate (Bundle bundle) {
 			base.OnCreate (bundle);
 
-			//RequestWindowFeature(WindowFeatures.NoTitle);
 			SetContentView (Resource.Layout.AllEigenschappen);
 
 			db = DatabaseHelper.GetInstance (this);
 
-			eigenschappenList = db.GetEigenschappen ();
-			freqs = new Dictionary<int, int> ();
-			checkList = new Dictionary<string, bool> ();
+			mToast = Toast.MakeText (this, "", ToastLength.Short);
 
+			eigenschappenList = db.GetEigenschappen ();
+
+			checkList = new Dictionary<string, bool> ();
 			foreach (Eigenschap e in eigenschappenList) {
 				checkList.Add (e.tid, false);
 			}
@@ -72,9 +72,7 @@ namespace Totem
 
 		//update list after every keystroke
 		private void LiveSearch() {
-
-			query.AfterTextChanged += (sender, args) =>
-			{
+			query.AfterTextChanged += (sender, args) => {
 				Search();
 			};
 		}
@@ -91,6 +89,7 @@ namespace Totem
 		//renders list of totems with frequencies based on selected eigenschappen
 		//and redirects to TotemsActivity to view them
 		private void VindTotem() {
+			Dictionary<int, int> freqs = new Dictionary<int, int> ();
 			foreach (Eigenschap e in eigenschappenList) {
 				if(checkList[e.tid]) {
 					List<Totem_eigenschap> toevoegen = db.GetTotemsVanEigenschapsID (e.tid);
@@ -101,14 +100,19 @@ namespace Totem
 				}
 			}
 
-			var totemsActivity = new Intent(this, typeof(TotemsActivity));
+			if (freqs.Count == 0) {
+				mToast.SetText ("Geen eigenschappen geselecteerd");
+				mToast.Show ();
+			} else {
+				var totemsActivity = new Intent (this, typeof(TotemsActivity));
 
-			int[] sortedTotems = DictMethods.GetSortedList (freqs, true);
-			int[] sortedFreqs = DictMethods.GetSortedList (freqs, false);
-			totemsActivity.PutExtra ("totemIDs", sortedTotems);
-			totemsActivity.PutExtra ("freqs", sortedFreqs);
-			Finish ();
-			StartActivity(totemsActivity);
+				int[] sortedTotems = DictMethods.GetSortedList (freqs, true);
+				int[] sortedFreqs = DictMethods.GetSortedList (freqs, false);
+				totemsActivity.PutExtra ("totemIDs", sortedTotems);
+				totemsActivity.PutExtra ("freqs", sortedFreqs);
+
+				StartActivity (totemsActivity);
+			}
 		}
 
 		//helper
@@ -132,4 +136,3 @@ namespace Totem
 		}
 	}
 }
-

@@ -13,8 +13,7 @@ namespace Totem
 
 		Database db;
 
-		public static TipDialog NewInstance()
-		{
+		public static TipDialog NewInstance() {
 			var dialogFragment = new TipDialog();
 			return dialogFragment;
 		}

@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,8 +24,7 @@ namespace Totem
 
 		Database db;
 
-		protected override void OnCreate (Bundle bundle)
-		{
+		protected override void OnCreate (Bundle bundle) {
 			base.OnCreate (bundle);
 
 			SetContentView (Resource.Layout.Totems);
@@ -42,8 +40,7 @@ namespace Totem
 			totemListView = FindViewById<ListView> (Resource.Id.totem_list);
 			totemListView.Adapter = totemAdapter;
 
-			totemListView.ItemClick += listView_ItemClick;
-
+			totemListView.ItemClick += TotemClick;
 		}
 
 		//fill totemList with Totem-objects whose ID is in totemIDs
@@ -56,8 +53,7 @@ namespace Totem
 			return totemList;
 		}
 
-		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
-		{
+		void TotemClick(object sender, AdapterView.ItemClickEventArgs e) {
 			int pos = e.Position;
 			var item = totemAdapter.GetItemAtPosition(pos);
 
@@ -65,13 +61,5 @@ namespace Totem
 			detailActivity.PutExtra ("totemID", item.nid);
 			StartActivity (detailActivity);
 		}
-
-		//return to MainActivity and not to EigenschappenActivity when 'back' is pressed
-		public override void OnBackPressed() {
-			Finish ();
-			var intent = new Intent(this, typeof(MainActivity));
-			StartActivity (intent);
-		}
 	}
 }
-

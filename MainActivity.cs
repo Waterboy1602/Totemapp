@@ -21,8 +21,7 @@ namespace Totem
 		Button totems;
 		Database db;
 
-		protected override void OnCreate (Bundle bundle)
-		{
+		protected override void OnCreate (Bundle bundle) {
 			base.OnCreate (bundle);
 
 			db = DatabaseHelper.GetInstance (this);

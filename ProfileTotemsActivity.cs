@@ -29,8 +29,7 @@ namespace Totem
 		Toast mToast;
 		string profileName;
 
-		protected override void OnCreate (Bundle bundle)
-		{
+		protected override void OnCreate (Bundle bundle) {
 			base.OnCreate (bundle);
 
 			SetContentView (Resource.Layout.AllTotems);
@@ -52,8 +51,8 @@ namespace Totem
 			EditText query = FindViewById<EditText>(Resource.Id.query);
 			query.Visibility = ViewStates.Gone;
 
-			allTotemListView.ItemClick += listView_ItemClick;
-			allTotemListView.ItemLongClick += listView_ItemLongClick;
+			allTotemListView.ItemClick += TotemClick;
+			allTotemListView.ItemLongClick += TotemLongClick;
 		}
 
 		//fill totemList with Totem-objects whose ID is in totemIDs
@@ -69,8 +68,7 @@ namespace Totem
 
 		//get DetailActivity of the totem that is clicked
 		//ID is passed as parameter
-		private void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
-		{
+		private void TotemClick(object sender, AdapterView.ItemClickEventArgs e) {
 			int pos = e.Position;
 			var item = totemAdapter.GetItemAtPosition(pos);
 
@@ -80,8 +78,7 @@ namespace Totem
 			StartActivity (detailActivity);
 		}
 
-		private void listView_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
-		{
+		private void TotemLongClick(object sender, AdapterView.ItemLongClickEventArgs e) {
 			int pos = e.Position;
 			var item = totemAdapter.GetItemAtPosition(pos);
 
@@ -104,4 +101,3 @@ namespace Totem
 		}
 	}
 }
-

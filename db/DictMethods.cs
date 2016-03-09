@@ -10,15 +10,13 @@ namespace Totem
 		public static int[] GetSortedList(Dictionary<int, int> dict, bool keys) {
 			List<KeyValuePair<int, int>> tempList = new List<KeyValuePair<int, int>>(dict);
 
-			tempList.Sort(delegate(KeyValuePair<int, int> firstPair, KeyValuePair<int, int> secondPair)
-				{
+			tempList.Sort(delegate(KeyValuePair<int, int> firstPair, KeyValuePair<int, int> secondPair) {
 					return firstPair.Value.CompareTo(secondPair.Value);
 				}
 			);
 
 			Dictionary<int, int> mySortedDictionary = new Dictionary<int, int>();
-			foreach(KeyValuePair<int, int> pair in tempList)
-			{
+			foreach(KeyValuePair<int, int> pair in tempList) {
 				mySortedDictionary.Add(pair.Key, pair.Value);
 			}
 
@@ -37,8 +35,7 @@ namespace Totem
 
 		//adds entry to dictionary if it doesn't exist
 		//updates it if it does
-		public static void AddOrUpdateDictionaryEntry(Dictionary<int, int> dict, int key)
-		{
+		public static void AddOrUpdateDictionaryEntry(Dictionary<int, int> dict, int key) {
 			if (dict.ContainsKey(key))
 			{
 				dict[key]++;
@@ -60,4 +57,3 @@ namespace Totem
 		}
 	}
 }
-

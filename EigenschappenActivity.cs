@@ -27,8 +27,7 @@ namespace Totem
 
 		Database db;
 
-		protected override void OnCreate (Bundle bundle)
-		{
+		protected override void OnCreate (Bundle bundle) {
 			base.OnCreate (bundle);
 
 			SetContentView (Resource.Layout.Eigenschappen);
@@ -93,5 +92,3 @@ namespace Totem
 		}
 	}
 }
-
-

@@ -27,8 +27,7 @@ namespace Totem
 		Database db;
 		Toast mToast;
 
-		protected override void OnCreate (Bundle bundle)
-		{
+		protected override void OnCreate (Bundle bundle) {
 			base.OnCreate (bundle);
 
 			RequestWindowFeature(WindowFeatures.NoTitle);
@@ -53,6 +52,7 @@ namespace Totem
 			var hideButton = Intent.GetStringExtra ("hideButton");
 			if (hideButton != null)
 				voegtoe.Visibility = ViewStates.Gone;
+			
 			GetInfo (nid);
 
 			//add to profiles

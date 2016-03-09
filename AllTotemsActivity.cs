@@ -29,8 +29,7 @@ namespace Totem
 
 		bool fullList = true;
 
-		protected override void OnCreate (Bundle bundle)
-		{
+		protected override void OnCreate (Bundle bundle) {
 			base.OnCreate (bundle);
 
 			SetContentView (Resource.Layout.AllTotems);
@@ -59,9 +58,7 @@ namespace Totem
 
 		//update list after every keystroke
 		private void LiveSearch() {
-			
-			query.AfterTextChanged += (sender, args) =>
-			{
+			query.AfterTextChanged += (sender, args) => {
 				Search();
 			};
 		}
@@ -76,8 +73,7 @@ namespace Totem
 
 		//get DetailActivity of the totem that is clicked
 		//ID is passed as parameter
-		private void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
-		{
+		private void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e) {
 			int pos = e.Position;
 			var item = totemAdapter.GetItemAtPosition(pos);
 
@@ -106,4 +102,3 @@ namespace Totem
 		}
 	}
 }
-

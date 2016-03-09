@@ -221,6 +221,7 @@ namespace Totem
 
 		/* ------------------------------ UTILS ------------------------------ */
 
+		//returns Userpref-object based on parameter
 		public Userpref GetPreference(string preference) {
 			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
 				List<Userpref> list = new List<Userpref> ();
@@ -231,6 +232,7 @@ namespace Totem
 			}
 		}
 
+		//updates the preference with new value
 		public void ChangePreference(string preference, string value) {
 			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
 				var cmd = new SQLite.SQLiteCommand (conn);
@@ -239,6 +241,7 @@ namespace Totem
 			}
 		}
 
+		//returns random tip out of the database
 		public string GetRandomTip() {
 			List<Tip> list = new List<Tip> ();
 			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
@@ -251,4 +254,3 @@ namespace Totem
 		}
 	}
 }
-
