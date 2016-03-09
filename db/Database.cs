@@ -217,6 +217,38 @@ namespace Totem
 			}
 			return result;
 		}
+
+
+		/* ------------------------------ UTILS ------------------------------ */
+
+		public Userpref GetPreference(string preference) {
+			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
+				List<Userpref> list = new List<Userpref> ();
+				var cmd = new SQLite.SQLiteCommand (conn);
+				cmd.CommandText = "select value from userprefs where preference='" + preference + "'";
+				list = cmd.ExecuteQuery<Userpref> ();
+				return list [0];
+			}
+		}
+
+		public void ChangePreference(string preference, string value) {
+			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
+				var cmd = new SQLite.SQLiteCommand (conn);
+				cmd.CommandText = "update userprefs set value='" + value + "' where preference='" + preference + "'";
+				cmd.ExecuteQuery<Userpref> ();
+			}
+		}
+
+		public string GetRandomTip() {
+			List<Tip> list = new List<Tip> ();
+			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
+				var cmd = new SQLite.SQLiteCommand (conn);
+				cmd.CommandText = "select * from tip";
+				list = cmd.ExecuteQuery<Tip> ();
+			}
+			Random rnd = new Random ();
+			return list [rnd.Next (list.Count)].tip;
+		}
 	}
 }
 

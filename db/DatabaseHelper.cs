@@ -16,6 +16,10 @@ namespace Totem
 
 			return dbInstance;
 		}
+
+		public static Database GetInstance() {
+			return dbInstance;
+		}
 	}
 }
 

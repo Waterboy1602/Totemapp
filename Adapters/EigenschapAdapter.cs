@@ -43,10 +43,11 @@ namespace Totem
 			checkbox.Checked = checkList [eigenschapList [position].tid];
 
 			checkbox.Click += (o, e) => {
-				if (checkbox.Checked)
+				if (checkbox.Checked) {
 					checkList [eigenschapList [position].tid] = true;
-				else
-					checkList [eigenschapList [position].tid] = false;;
+				} else {
+					checkList [eigenschapList [position].tid] = false;
+				}
 			};
 
 			return view;
