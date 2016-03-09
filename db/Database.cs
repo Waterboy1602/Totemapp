@@ -7,6 +7,7 @@ using SQLite;
 using Android.Content;
 using System.Collections;
 using System.Linq;
+using Android.Database;
 
 namespace Totem
 {
@@ -94,8 +95,10 @@ namespace Totem
 		public void AddTotemToProfiel(string totemID, string profielName) {
 			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
 				var cmd = new SQLite.SQLiteCommand (conn);
-				cmd.CommandText = "insert into profiel (name, nid) select '" + profielName + "'," + totemID + 
-					" WHERE NOT EXISTS ( SELECT * FROM profiel WHERE name='"+ profielName +"' AND nid=" + totemID + ");";
+				var cleanProfielName = profielName.Replace("'", "");
+				var cleanTotemID = totemID.Replace("'", "");
+				cmd.CommandText = "insert into profiel (name, nid) select '" + cleanProfielName + "'," + cleanTotemID + 
+					" WHERE NOT EXISTS ( SELECT * FROM profiel WHERE name='"+ cleanProfielName +"' AND nid=" + cleanTotemID + ");";
 				cmd.ExecuteQuery<Profiel> ();
 			}
 		}
@@ -113,7 +116,8 @@ namespace Totem
 		public void AddProfile(string name) {
 			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
 				var cmd = new SQLite.SQLiteCommand (conn);
-				cmd.CommandText = "insert into profiel (name) values ('" + name + "')";
+				var cleanName = name.Replace("'", "");
+				cmd.CommandText = "insert into profiel (name) values ('" + cleanName + "')";
 				cmd.ExecuteQuery<Profiel> ();
 			}
 		}
@@ -122,7 +126,8 @@ namespace Totem
 		public void DeleteProfile(string name) {
 			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
 				var cmd = new SQLite.SQLiteCommand (conn);
-				cmd.CommandText = "DELETE FROM profiel WHERE name='" + name + "'";
+				var cleanName = name.Replace("'", "");
+				cmd.CommandText = "DELETE FROM profiel WHERE name='" + cleanName + "'";
 				cmd.ExecuteQuery<Profiel> ();
 			}
 		}
@@ -132,7 +137,9 @@ namespace Totem
 		public void DeleteTotemFromProfile(string totemID, string profielName) {
 			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
 				var cmd = new SQLite.SQLiteCommand (conn);
-				cmd.CommandText = "DELETE FROM profiel WHERE name='" + profielName + "' AND nid=" + totemID;
+				var cleanProfielName = profielName.Replace("'", "");
+				var cleanTotemID = totemID.Replace("'", "");
+				cmd.CommandText = "DELETE FROM profiel WHERE name='" + cleanProfielName + "' AND nid=" + cleanTotemID;
 				cmd.ExecuteQuery<Profiel> ();
 			}
 		}
@@ -142,7 +149,8 @@ namespace Totem
 			List<Profiel> list = new List<Profiel>();
 			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
 				var cmd = new SQLite.SQLiteCommand (conn);
-				cmd.CommandText = "select nid from profiel where name='" + name + "'";
+				var cleanName = name.Replace("'", "");
+				cmd.CommandText = "select nid from profiel where name='" + cleanName + "'";
 				list = cmd.ExecuteQuery<Profiel> ();
 			}
 			list.Reverse ();
@@ -175,7 +183,8 @@ namespace Totem
 			List<Totem_eigenschap> totemsVanEigenschap;
 			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
 				var cmd = new SQLite.SQLiteCommand (conn);
-				cmd.CommandText = "select nid from totem_eigenschap where tid = " + id;
+				var cleanId = id.Replace("'", "");
+				cmd.CommandText = "select nid from totem_eigenschap where tid = " + cleanId;
 				totemsVanEigenschap = cmd.ExecuteQuery<Totem_eigenschap> ();
 			}
 			return totemsVanEigenschap;
@@ -226,7 +235,8 @@ namespace Totem
 			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
 				List<Userpref> list = new List<Userpref> ();
 				var cmd = new SQLite.SQLiteCommand (conn);
-				cmd.CommandText = "select value from userprefs where preference='" + preference + "'";
+				var cleanPreference = preference.Replace("'", "");
+				cmd.CommandText = "select value from userprefs where preference='" + cleanPreference + "'";
 				list = cmd.ExecuteQuery<Userpref> ();
 				return list [0];
 			}
@@ -236,7 +246,9 @@ namespace Totem
 		public void ChangePreference(string preference, string value) {
 			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
 				var cmd = new SQLite.SQLiteCommand (conn);
-				cmd.CommandText = "update userprefs set value='" + value + "' where preference='" + preference + "'";
+				var cleanPreference = preference.Replace("'", "");
+				var cleanValue = value.Replace("'", "");
+				cmd.CommandText = "update userprefs set value='" + cleanValue + "' where preference='" + cleanPreference + "'";
 				cmd.ExecuteQuery<Userpref> ();
 			}
 		}

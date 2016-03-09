@@ -14,7 +14,7 @@ using Android.Views.InputMethods;
 
 namespace Totem
 {
-	[Activity (Label = "ProfielenActivity")]			
+	[Activity (Label = "Profielen")]			
 	public class ProfielenActivity : Activity
 	{
 		ProfielAdapter profielAdapter;
@@ -33,7 +33,11 @@ namespace Totem
 			//single toast for entire activity
 			mToast = Toast.MakeText (this, "", ToastLength.Short);
 
-			profielAdapter = new ProfielAdapter (this, db.GetProfielen());
+
+			var profielen = db.GetProfielen ();
+			if (profielen.Count == 0)
+				FindViewById<TextView> (Resource.Id.empty_profiel).Visibility = ViewStates.Visible;
+			profielAdapter = new ProfielAdapter (this, profielen);
 			profielenListView = FindViewById<ListView> (Resource.Id.profielen_list);
 			profielenListView.Adapter = profielAdapter;
 

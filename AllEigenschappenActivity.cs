@@ -17,7 +17,7 @@ using Android.Content.PM;
 
 namespace Totem
 {
-	[Activity (Label = "Totems", WindowSoftInputMode = Android.Views.SoftInput.AdjustPan, ScreenOrientation = ScreenOrientation.Portrait)]			
+	[Activity (Label = "Eigenschappen", WindowSoftInputMode = Android.Views.SoftInput.AdjustPan, ScreenOrientation = ScreenOrientation.Portrait)]			
 	public class AllEigenschappenActivity : Activity
 	{
 		EigenschapAdapter eigenschapAdapter;
