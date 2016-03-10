@@ -77,16 +77,20 @@ namespace Totem
 						alert.SetView (input);
 						alert.SetPositiveButton ("Ok", (s, args) => {
 							string value = input.Text;
-							if(db.GetProfielNamen().Contains(value)) {
+							if(value.Replace("'", "").Equals("")) {
+								mToast.SetText("Ongeldige naam");
+								mToast.Show();
+								HideKeyboard(); 
+							} else if(db.GetProfielNamen().Contains(value)) {
 								input.Text = "";
 								mToast.SetText("Profiel " + value + " bestaat al");
 								mToast.Show();
-								HideKeyboard();
+								HideKeyboard(); 
 							} else {
 								db.AddProfile(value);
 								HideKeyboard();
 								db.AddTotemToProfiel(nid, value);
-								mToast.SetText(db.GetTotemOnID(nid).title + " toegevoegd aan profiel " + value);
+								mToast.SetText(db.GetTotemOnID(nid).title + " toegevoegd aan profiel " + value.Replace("'", ""));
 								mToast.Show();
 							}
 						});

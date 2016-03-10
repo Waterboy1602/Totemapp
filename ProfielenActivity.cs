@@ -87,8 +87,6 @@ namespace Totem
 			return base.OnCreateOptionsMenu(menu);
 		}
 
-		//test
-
 		//options menu: add profile or delete all
 		public override bool OnOptionsItemSelected(IMenuItem item) {
 			switch (item.ItemId) {
@@ -101,11 +99,15 @@ namespace Totem
 				alert.SetView (input);
 				alert.SetPositiveButton ("Ok", (sender, args) => {
 					string value = input.Text;
-					if(db.GetProfielNamen().Contains(value)) {
+					if(value.Replace("'", "").Equals("")) {
+						mToast.SetText("Ongeldige naam");
+						mToast.Show();
+						HideKeyboard();					
+					} else if(db.GetProfielNamen().Contains(value)) {
 						input.Text = "";
 						mToast.SetText("Profiel " + value + " bestaat al");
 						mToast.Show();
-						HideKeyboard();
+						HideKeyboard(); 
 					} else {
 						db.AddProfile(value);
 						HideKeyboard();
@@ -127,6 +129,8 @@ namespace Totem
 				alert1.SetMessage ("Alle profielen verwijderen?");
 				alert1.SetPositiveButton ("Ja", (senderAlert, args) => {
 					db.ClearProfiles ();
+					mToast.SetText("Alle profielen verwijderd");
+					mToast.Show();
 					var main = new Intent (this, typeof(MainActivity));
 					StartActivity (main);
 				});

@@ -55,7 +55,7 @@ namespace Totem
 		private void SetEigenschappen() {
 			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
 				var cmd = new SQLite.SQLiteCommand (conn);
-				cmd.CommandText = "select * from eigenschap";
+				cmd.CommandText = "select * from eigenschap_nieuw";
 				eigenschappen = cmd.ExecuteQuery<Eigenschap> ();
 			}
 		}
@@ -64,7 +64,7 @@ namespace Totem
 		private void SetTotems() {
 			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
 				var cmd = new SQLite.SQLiteCommand (conn);
-				cmd.CommandText = "select * from totem";
+				cmd.CommandText = "select * from totem_nieuw";
 				totems = cmd.ExecuteQuery<Totem> ();
 			}
 		}
@@ -184,7 +184,7 @@ namespace Totem
 			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
 				var cmd = new SQLite.SQLiteCommand (conn);
 				var cleanId = id.Replace("'", "");
-				cmd.CommandText = "select nid from totem_eigenschap where tid = " + cleanId;
+				cmd.CommandText = "select nid from totem_eigenschap_nieuw where tid = " + cleanId;
 				totemsVanEigenschap = cmd.ExecuteQuery<Totem_eigenschap> ();
 			}
 			return totemsVanEigenschap;
