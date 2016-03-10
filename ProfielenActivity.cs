@@ -87,6 +87,8 @@ namespace Totem
 			return base.OnCreateOptionsMenu(menu);
 		}
 
+		//test
+
 		//options menu: add profile or delete all
 		public override bool OnOptionsItemSelected(IMenuItem item) {
 			switch (item.ItemId) {
