@@ -2,10 +2,6 @@ Totem.MainActivity, Totem;md5b1d67ac94551c8753fec80729d65095f.MainActivity
 Totem.MainActivity, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.MainActivity
 Totem.MainActivity;md5b1d67ac94551c8753fec80729d65095f.MainActivity
 totem.MainActivity;md5b1d67ac94551c8753fec80729d65095f.MainActivity
-Totem.TotemAdapter, Totem;md5b1d67ac94551c8753fec80729d65095f.TotemAdapter
-Totem.TotemAdapter, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.TotemAdapter
-Totem.TotemAdapter;md5b1d67ac94551c8753fec80729d65095f.TotemAdapter
-totem.TotemAdapter;md5b1d67ac94551c8753fec80729d65095f.TotemAdapter
 Totem.TotemsActivity, Totem;md5b1d67ac94551c8753fec80729d65095f.TotemsActivity
 Totem.TotemsActivity, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.TotemsActivity
 Totem.TotemsActivity;md5b1d67ac94551c8753fec80729d65095f.TotemsActivity
@@ -26,7 +22,31 @@ Totem.AllEigenschappenActivity, Totem;md5b1d67ac94551c8753fec80729d65095f.AllEig
 Totem.AllEigenschappenActivity, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.AllEigenschappenActivity
 Totem.AllEigenschappenActivity;md5b1d67ac94551c8753fec80729d65095f.AllEigenschappenActivity
 totem.AllEigenschappenActivity;md5b1d67ac94551c8753fec80729d65095f.AllEigenschappenActivity
+Totem.ProfielenActivity, Totem;md5b1d67ac94551c8753fec80729d65095f.ProfielenActivity
+Totem.ProfielenActivity, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.ProfielenActivity
+Totem.ProfielenActivity;md5b1d67ac94551c8753fec80729d65095f.ProfielenActivity
+totem.ProfielenActivity;md5b1d67ac94551c8753fec80729d65095f.ProfielenActivity
 Totem.EigenschapAdapter, Totem;md5b1d67ac94551c8753fec80729d65095f.EigenschapAdapter
 Totem.EigenschapAdapter, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.EigenschapAdapter
 Totem.EigenschapAdapter;md5b1d67ac94551c8753fec80729d65095f.EigenschapAdapter
 totem.EigenschapAdapter;md5b1d67ac94551c8753fec80729d65095f.EigenschapAdapter
+Totem.TotemAdapter, Totem;md5b1d67ac94551c8753fec80729d65095f.TotemAdapter
+Totem.TotemAdapter, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.TotemAdapter
+Totem.TotemAdapter;md5b1d67ac94551c8753fec80729d65095f.TotemAdapter
+totem.TotemAdapter;md5b1d67ac94551c8753fec80729d65095f.TotemAdapter
+Totem.ProfielAdapter, Totem;md5b1d67ac94551c8753fec80729d65095f.ProfielAdapter
+Totem.ProfielAdapter, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.ProfielAdapter
+Totem.ProfielAdapter;md5b1d67ac94551c8753fec80729d65095f.ProfielAdapter
+totem.ProfielAdapter;md5b1d67ac94551c8753fec80729d65095f.ProfielAdapter
+Totem.TipDialog, Totem;md5b1d67ac94551c8753fec80729d65095f.TipDialog
+Totem.TipDialog, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.TipDialog
+Totem.TipDialog;md5b1d67ac94551c8753fec80729d65095f.TipDialog
+totem.TipDialog;md5b1d67ac94551c8753fec80729d65095f.TipDialog
+Totem.CheckListActivity, Totem;md5b1d67ac94551c8753fec80729d65095f.CheckListActivity
+Totem.CheckListActivity, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.CheckListActivity
+Totem.CheckListActivity;md5b1d67ac94551c8753fec80729d65095f.CheckListActivity
+totem.CheckListActivity;md5b1d67ac94551c8753fec80729d65095f.CheckListActivity
+Totem.ProfielTotemsActivity, Totem;md5b1d67ac94551c8753fec80729d65095f.ProfielTotemsActivity
+Totem.ProfielTotemsActivity, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.ProfielTotemsActivity
+Totem.ProfielTotemsActivity;md5b1d67ac94551c8753fec80729d65095f.ProfielTotemsActivity
+totem.ProfielTotemsActivity;md5b1d67ac94551c8753fec80729d65095f.ProfielTotemsActivity

@@ -50,10 +50,6 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SQLite.cs" />
-    <Compile Include="data\Totem.cs" />
-    <Compile Include="data\Eigenschap.cs" />
-    <Compile Include="data\Totem_eigenschap.cs" />
     <Compile Include="TotemsActivity.cs" />
     <Compile Include="TotemDetailActivity.cs" />
     <Compile Include="EigenschappenActivity.cs" />
@@ -62,10 +58,20 @@
     <Compile Include="AllEigenschappenActivity.cs" />
     <Compile Include="db\DictMethods.cs" />
     <Compile Include="ProfielenActivity.cs" />
-    <Compile Include="data\Profiel.cs" />
     <Compile Include="Adapters\EigenschapAdapter.cs" />
     <Compile Include="Adapters\TotemAdapter.cs" />
     <Compile Include="Adapters\ProfielAdapter.cs" />
+    <Compile Include="db\DatabaseHelper.cs" />
+    <Compile Include="db\SQLite.cs" />
+    <Compile Include="model\Totem.cs" />
+    <Compile Include="model\Eigenschap.cs" />
+    <Compile Include="model\Totem_eigenschap.cs" />
+    <Compile Include="model\Profiel.cs" />
+    <Compile Include="model\Userpref.cs" />
+    <Compile Include="TipDialog.cs" />
+    <Compile Include="model\Tip.cs" />
+    <Compile Include="CheckListActivity.cs" />
+    <Compile Include="ProfielTotemsActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -87,18 +93,22 @@
     <AndroidResource Include="Resources\layout\AllTotems.xml" />
     <AndroidResource Include="Resources\layout\Profielen.xml" />
     <AndroidResource Include="Resources\Menu\Popup.xml" />
-    <AndroidResource Include="Resources\Menu\menu.xml" />
+    <AndroidResource Include="Resources\layout\AllEigenschappen.xml" />
+    <AndroidResource Include="Resources\layout\EigenschapListItem.xml" />
+    <AndroidResource Include="Resources\layout\TipPopUp.xml" />
+    <AndroidResource Include="Resources\Menu\profielMenu.xml" />
+    <AndroidResource Include="Resources\Menu\EigenschapSelectieMenu.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\totems.sqlite" />
     <AndroidAsset Include="Assets\fonts\DCC - Ash.otf" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="data\" />
     <Folder Include="Assets\fonts\" />
     <Folder Include="db\" />
     <Folder Include="Adapters\" />
     <Folder Include="Resources\Menu\" />
+    <Folder Include="model\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

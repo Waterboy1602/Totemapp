@@ -230,6 +230,7 @@ namespace Totem
 
 		/* ------------------------------ UTILS ------------------------------ */
 
+
 		//returns Userpref-object based on parameter
 		public Userpref GetPreference(string preference) {
 			using (var conn = new SQLite.SQLiteConnection (dbPath)) {

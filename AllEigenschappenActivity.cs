@@ -142,6 +142,7 @@ namespace Totem
 					mToast.SetText ("Geen eigenschappen geselecteerd");
 					mToast.Show ();
 				} else {
+					fullList = false;
 					eigenschapAdapter = new EigenschapAdapter (this, list, checkList);
 					allEigenschappenListView.Adapter = eigenschapAdapter;
 					vindButton.Visibility = ViewStates.Visible;

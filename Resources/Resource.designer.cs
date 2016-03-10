@@ -60,8 +60,8 @@ namespace Totem
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f060016
-			public const int Verwijder = 2131099670;
+			// aapt resource value: 0x7f06001c
+			public const int Verwijder = 2131099676;
 			
 			// aapt resource value: 0x7f060001
 			public const int all_eigenschappen_list = 2131099649;
@@ -69,20 +69,26 @@ namespace Totem
 			// aapt resource value: 0x7f060003
 			public const int all_totem_list = 2131099651;
 			
-			// aapt resource value: 0x7f060010
-			public const int body = 2131099664;
+			// aapt resource value: 0x7f060014
+			public const int body = 2131099668;
 			
 			// aapt resource value: 0x7f060005
 			public const int checkbox = 2131099653;
 			
-			// aapt resource value: 0x7f06000d
-			public const int detail = 2131099661;
+			// aapt resource value: 0x7f06000f
+			public const int checkboxWeergeven = 2131099663;
+			
+			// aapt resource value: 0x7f060011
+			public const int detail = 2131099665;
 			
 			// aapt resource value: 0x7f060004
 			public const int eigenschap = 2131099652;
 			
-			// aapt resource value: 0x7f060013
-			public const int freq = 2131099667;
+			// aapt resource value: 0x7f06000b
+			public const int empty_profiel = 2131099659;
+			
+			// aapt resource value: 0x7f060017
+			public const int freq = 2131099671;
 			
 			// aapt resource value: 0x7f060006
 			public const int jaKnop = 2131099654;
@@ -93,29 +99,41 @@ namespace Totem
 			// aapt resource value: 0x7f06000a
 			public const int profielen = 2131099658;
 			
-			// aapt resource value: 0x7f06000b
-			public const int profielen_list = 2131099659;
+			// aapt resource value: 0x7f06000c
+			public const int profielen_list = 2131099660;
 			
 			// aapt resource value: 0x7f060000
 			public const int query = 2131099648;
 			
-			// aapt resource value: 0x7f06000c
-			public const int scroll = 2131099660;
+			// aapt resource value: 0x7f060019
+			public const int reset = 2131099673;
 			
-			// aapt resource value: 0x7f06000f
-			public const int synonyms = 2131099663;
+			// aapt resource value: 0x7f060010
+			public const int scroll = 2131099664;
+			
+			// aapt resource value: 0x7f06001a
+			public const int select = 2131099674;
+			
+			// aapt resource value: 0x7f060013
+			public const int synonyms = 2131099667;
 			
 			// aapt resource value: 0x7f06000e
-			public const int title = 2131099662;
+			public const int tip = 2131099662;
+			
+			// aapt resource value: 0x7f06000d
+			public const int titel = 2131099661;
 			
 			// aapt resource value: 0x7f060012
-			public const int totem = 2131099666;
+			public const int title = 2131099666;
+			
+			// aapt resource value: 0x7f060016
+			public const int totem = 2131099670;
 			
 			// aapt resource value: 0x7f060009
 			public const int totemBepalen = 2131099657;
 			
-			// aapt resource value: 0x7f060014
-			public const int totem_list = 2131099668;
+			// aapt resource value: 0x7f060018
+			public const int totem_list = 2131099672;
 			
 			// aapt resource value: 0x7f060008
 			public const int totems = 2131099656;
@@ -123,11 +141,11 @@ namespace Totem
 			// aapt resource value: 0x7f060002
 			public const int vind_button = 2131099650;
 			
-			// aapt resource value: 0x7f060015
-			public const int voegProfielToe = 2131099669;
+			// aapt resource value: 0x7f06001b
+			public const int voegProfielToe = 2131099675;
 			
-			// aapt resource value: 0x7f060011
-			public const int voegtoe = 2131099665;
+			// aapt resource value: 0x7f060015
+			public const int voegtoe = 2131099669;
 			
 			static Id()
 			{
@@ -161,13 +179,16 @@ namespace Totem
 			public const int Profielen = 2130903045;
 			
 			// aapt resource value: 0x7f030006
-			public const int TotemDetail = 2130903046;
+			public const int TipPopUp = 2130903046;
 			
 			// aapt resource value: 0x7f030007
-			public const int TotemListItem = 2130903047;
+			public const int TotemDetail = 2130903047;
 			
 			// aapt resource value: 0x7f030008
-			public const int Totems = 2130903048;
+			public const int TotemListItem = 2130903048;
+			
+			// aapt resource value: 0x7f030009
+			public const int Totems = 2130903049;
 			
 			static Layout()
 			{
@@ -183,10 +204,13 @@ namespace Totem
 		{
 			
 			// aapt resource value: 0x7f050000
-			public const int menu = 2131034112;
+			public const int EigenschapSelectieMenu = 2131034112;
 			
 			// aapt resource value: 0x7f050001
 			public const int Popup = 2131034113;
+			
+			// aapt resource value: 0x7f050002
+			public const int profielMenu = 2131034114;
 			
 			static Menu()
 			{

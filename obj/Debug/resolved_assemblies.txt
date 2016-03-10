@@ -1,6 +1,8 @@
-C:\Users\frede\Documents\Projects\Totem\Totem\obj\Debug\assemblies\Totem.dll
-C:\Users\frede\Documents\Projects\Totem\Totem\obj\Debug\assemblies\Mono.Android.dll
-C:\Users\frede\Documents\Projects\Totem\Totem\obj\Debug\assemblies\mscorlib.dll
-C:\Users\frede\Documents\Projects\Totem\Totem\obj\Debug\assemblies\System.Core.dll
-C:\Users\frede\Documents\Projects\Totem\Totem\obj\Debug\assemblies\System.dll
-C:\Users\frede\Documents\Projects\Totem\Totem\obj\Debug\assemblies\System.Xml.dll
+C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\assemblies\Totem.dll
+C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\assemblies\Mono.Android.dll
+C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\assemblies\mscorlib.dll
+C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\assemblies\System.Core.dll
+C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\assemblies\System.dll
+C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\assemblies\System.Xml.dll
+C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\assemblies\System.Runtime.Serialization.dll
+C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\assemblies\System.ServiceModel.Internals.dll
