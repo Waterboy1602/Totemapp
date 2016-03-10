@@ -14,29 +14,35 @@ public final class R {
         public static final int icon=0x7f020000;
     }
     public static final class id {
-        public static final int Verwijder=0x7f060016;
+        public static final int Verwijder=0x7f06001c;
         public static final int all_eigenschappen_list=0x7f060001;
         public static final int all_totem_list=0x7f060003;
-        public static final int body=0x7f060010;
+        public static final int body=0x7f060014;
         public static final int checkbox=0x7f060005;
-        public static final int detail=0x7f06000d;
+        public static final int checkboxWeergeven=0x7f06000f;
+        public static final int detail=0x7f060011;
         public static final int eigenschap=0x7f060004;
-        public static final int freq=0x7f060013;
+        public static final int empty_profiel=0x7f06000b;
+        public static final int freq=0x7f060017;
         public static final int jaKnop=0x7f060006;
         public static final int neeKnop=0x7f060007;
         public static final int profielen=0x7f06000a;
-        public static final int profielen_list=0x7f06000b;
+        public static final int profielen_list=0x7f06000c;
         public static final int query=0x7f060000;
-        public static final int scroll=0x7f06000c;
-        public static final int synonyms=0x7f06000f;
-        public static final int title=0x7f06000e;
-        public static final int totem=0x7f060012;
+        public static final int reset=0x7f060019;
+        public static final int scroll=0x7f060010;
+        public static final int select=0x7f06001a;
+        public static final int synonyms=0x7f060013;
+        public static final int tip=0x7f06000e;
+        public static final int titel=0x7f06000d;
+        public static final int title=0x7f060012;
+        public static final int totem=0x7f060016;
         public static final int totemBepalen=0x7f060009;
-        public static final int totem_list=0x7f060014;
+        public static final int totem_list=0x7f060018;
         public static final int totems=0x7f060008;
         public static final int vind_button=0x7f060002;
-        public static final int voegProfielToe=0x7f060015;
-        public static final int voegtoe=0x7f060011;
+        public static final int voegProfielToe=0x7f06001b;
+        public static final int voegtoe=0x7f060015;
     }
     public static final class layout {
         public static final int alleigenschappen=0x7f030000;
@@ -45,13 +51,16 @@ public final class R {
         public static final int eigenschappen=0x7f030003;
         public static final int main=0x7f030004;
         public static final int profielen=0x7f030005;
-        public static final int totemdetail=0x7f030006;
-        public static final int totemlistitem=0x7f030007;
-        public static final int totems=0x7f030008;
+        public static final int splashscreen=0x7f030006;
+        public static final int tippopup=0x7f030007;
+        public static final int totemdetail=0x7f030008;
+        public static final int totemlistitem=0x7f030009;
+        public static final int totems=0x7f03000a;
     }
     public static final class menu {
-        public static final int menu=0x7f050000;
+        public static final int eigenschapselectiemenu=0x7f050000;
         public static final int popup=0x7f050001;
+        public static final int profielmenu=0x7f050002;
     }
     public static final class string {
         public static final int app_name=0x7f040001;

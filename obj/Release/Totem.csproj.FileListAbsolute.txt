@@ -40,8 +40,11 @@ C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Release\res\layout\eigenscha
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Release\res\layout\alltotems.xml
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Release\res\layout\profielen.xml
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Release\res\menu\popup.xml
-C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Release\res\menu\menu.xml
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Release\R.cs.flag
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Release\uploadflags.txt
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Release\res\layout\alleigenschappen.xml
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Release\res\layout\eigenschaplistitem.xml
+C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Release\res\layout\tippopup.xml
+C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Release\res\menu\profielmenu.xml
+C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Release\res\menu\eigenschapselectiemenu.xml
+C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Release\res\layout\splashscreen.xml

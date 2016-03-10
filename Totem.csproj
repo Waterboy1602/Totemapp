@@ -72,6 +72,7 @@
     <Compile Include="model\Tip.cs" />
     <Compile Include="CheckListActivity.cs" />
     <Compile Include="ProfielTotemsActivity.cs" />
+    <Compile Include="SplashScreenActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -98,6 +99,7 @@
     <AndroidResource Include="Resources\layout\TipPopUp.xml" />
     <AndroidResource Include="Resources\Menu\profielMenu.xml" />
     <AndroidResource Include="Resources\Menu\EigenschapSelectieMenu.xml" />
+    <AndroidResource Include="Resources\layout\SplashScreen.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\totems.sqlite" />

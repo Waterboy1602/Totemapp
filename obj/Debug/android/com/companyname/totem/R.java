@@ -51,10 +51,11 @@ public final class R {
         public static final int eigenschappen=0x7f030003;
         public static final int main=0x7f030004;
         public static final int profielen=0x7f030005;
-        public static final int tippopup=0x7f030006;
-        public static final int totemdetail=0x7f030007;
-        public static final int totemlistitem=0x7f030008;
-        public static final int totems=0x7f030009;
+        public static final int splashscreen=0x7f030006;
+        public static final int tippopup=0x7f030007;
+        public static final int totemdetail=0x7f030008;
+        public static final int totemlistitem=0x7f030009;
+        public static final int totems=0x7f03000a;
     }
     public static final class menu {
         public static final int eigenschapselectiemenu=0x7f050000;

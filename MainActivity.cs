@@ -15,7 +15,7 @@ using Android.Content.PM;
 
 namespace Totem
 {
-	[Activity (Label = "Totem", MainLauncher = true, Icon = "@drawable/icon")]
+	[Activity (Label = "Totem", MainLauncher = false, Icon = "@drawable/icon")]
 	public class MainActivity : Activity
 	{
 		Button totems;
