@@ -8,6 +8,7 @@
         android:layout_height="50dp"
         android:layout_marginLeft="10sp"
         android:textSize="20sp"
+        android:textColor="#000"
         android:gravity="center"
         android:layout_alignParentLeft="true" />
     <CheckBox
@@ -16,5 +17,6 @@
         android:layout_height="50dp"
         android:layout_marginRight="10sp"
         android:gravity="center"
+        android:buttonTint="#0061A1"
         android:layout_alignParentRight="true" />
 </RelativeLayout>

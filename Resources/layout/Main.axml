@@ -1,34 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-    <Button
-        android:id="@+id/totems"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:gravity="center"
-        android:text="Totemlijst" />
-    <Button
-        android:id="@+id/totemBepalen"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:gravity="center"
-        android:text="Totem bepalen" />
-    <Button
-        android:id="@+id/profielen"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:gravity="center"
-        android:text="Profielen" />
-    <Button
-        android:id="@+id/profielen"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:gravity="center"
-        android:text="Wat is een goede totemisatie?" />
-</LinearLayout>
+        android:layout_height="fill_parent">
+        <Button
+            android:id="@+id/totems"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:gravity="center"
+            android:text="Totemlijst"
+            android:textColor="@android:color/white" />
+        <Button
+            android:id="@+id/totemBepalen"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:gravity="center"
+            android:text="Totem bepalen"
+            android:textColor="@android:color/white" />
+        <Button
+            android:id="@+id/profielen"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:gravity="center"
+            android:text="Profielen"
+            android:textColor="@android:color/white" />
+        <Button
+            android:id="@+id/profielen"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:gravity="center"
+            android:text="Wat is een goede totemisatie?"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="-85dp"
+        android:layout_marginRight="-133dp"
+        android:src="@drawable/totem_scaled" />
+</RelativeLayout>

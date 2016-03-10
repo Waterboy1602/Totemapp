@@ -10,5 +10,5 @@
         android:text="Totem App"
         android:textSize="40dp"
         android:gravity="center"
-        android:textColor="@android:color/holo_blue_dark" />
+        android:textColor="#0061A1" />
 </LinearLayout>
