@@ -26,6 +26,8 @@ namespace Totem
 
 			db = DatabaseHelper.GetInstance (this);
 	
+			RequestWindowFeature(WindowFeatures.NoTitle);
+
 			SetContentView (Resource.Layout.Main);
 
 			totems = FindViewById<Button> (Resource.Id.totems);
