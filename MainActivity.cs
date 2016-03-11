@@ -15,7 +15,7 @@ using Android.Content.PM;
 
 namespace Totem
 {
-	[Activity (Label = "Totem", MainLauncher = true, Icon = "@drawable/icon")]
+	[Activity (Label = "Totem", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/AppThemeNoAction")]
 	public class MainActivity : Activity
 	{
 		Button totems;
@@ -25,8 +25,6 @@ namespace Totem
 			base.OnCreate (bundle);
 
 			db = DatabaseHelper.GetInstance (this);
-	
-			RequestWindowFeature(WindowFeatures.NoTitle);
 
 			SetContentView (Resource.Layout.Main);
 

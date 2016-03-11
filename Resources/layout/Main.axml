@@ -10,7 +10,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/Titel_scaled"
-            android:padding="20dp" />
+            android:padding="10dp" />
         <Button
             android:id="@+id/totems"
             android:layout_width="fill_parent"

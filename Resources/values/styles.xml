@@ -9,8 +9,13 @@
 	    <item name="android:statusBarColor">#0061A1</item>
 	</style>
 
-	<!-- Application theme. -->
-	<style name="AppTheme" parent="AppBaseTheme">
-	    <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+	<style name="AppThemeNoAction" parent="@android:style/Theme.Material.Light.NoActionBar">
+		<item name="android:textColorPrimary">#000</item>
+		<item name="android:textColorSecondary">#000</item>
+	    <item name="android:textColorTertiary">#000</item>
+	    <item name="android:colorButtonNormal">#0061A1</item>
+	    <item name="android:colorControlNormal">#0061A1</item>
+	    <item name="android:colorAccent">#0061A1</item>
+	    <item name="android:statusBarColor">#0061A1</item>
 	</style>
 </resources>
