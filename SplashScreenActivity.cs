@@ -12,7 +12,7 @@ using Android.Widget;
 
 namespace Totem
 {
-	[Activity (Label = "Totem", MainLauncher = true, NoHistory = true, Theme = "@android:style/Theme.Material.Light.NoActionBar")]			
+	[Activity (Label = "Totem", MainLauncher = false, NoHistory = true, Theme = "@android:style/Theme.Material.Light.NoActionBar")]			
 	public class SplashScreenActivity : Activity
 	{
 		private static int SPLASH_TIME = 2000;

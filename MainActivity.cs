@@ -15,7 +15,7 @@ using Android.Content.PM;
 
 namespace Totem
 {
-	[Activity (Label = "Totem", MainLauncher = false, Icon = "@drawable/icon")]
+	[Activity (Label = "Totem", MainLauncher = true, Icon = "@drawable/icon")]
 	public class MainActivity : Activity
 	{
 		Button totems;
@@ -75,6 +75,13 @@ namespace Totem
 		public void ShowTipDialog() {
 			var dialog = TipDialog.NewInstance();
 			dialog.Show(FragmentManager, "dialog");
+		}
+
+		public override void OnBackPressed() {
+			Intent StartMain = new Intent (Intent.ActionMain);
+			StartMain.AddCategory (Intent.CategoryHome);
+			StartMain.SetFlags (ActivityFlags.NewTask);
+			StartActivity (StartMain);
 		}
 	}
 }
