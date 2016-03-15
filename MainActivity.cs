@@ -13,11 +13,9 @@ using Android.OS;
 using Android.Graphics;
 using Android.Content.PM;
 
-namespace Totem
-{
+namespace Totem {
 	[Activity (Label = "Totem", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/AppThemeNoAction")]
-	public class MainActivity : Activity
-	{
+	public class MainActivity : Activity 	{
 		Database db;
 
 		protected override void OnCreate (Bundle bundle) {
@@ -53,7 +51,7 @@ namespace Totem
 		}
 
 		public void ShowTipDialog() {
-			var dialog = TipDialog.NewInstance();
+			var dialog = TipDialog.NewInstance(this);
 			dialog.Show(FragmentManager, "dialog");
 		}
 

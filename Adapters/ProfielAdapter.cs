@@ -6,15 +6,12 @@ using Android.Provider;
 using Android.Views;
 using Android.Widget;
 
-namespace Totem
-{
-	public class ProfielAdapter: BaseAdapter<Profiel>
-	{
+namespace Totem {
+	public class ProfielAdapter: BaseAdapter<Profiel> {
 		Activity _activity;
 		List<Profiel> profielList;
 
-		public ProfielAdapter (Activity activity, List<Profiel> list)
-		{	
+		public ProfielAdapter (Activity activity, List<Profiel> list) {	
 			this._activity = activity;
 			this.profielList = list;
 		}
@@ -25,13 +22,11 @@ namespace Totem
 			}
 		}
 
-		public override long GetItemId (int position)
-		{
+		public override long GetItemId (int position) {
 			return position;
 		}
 
-		public override View GetView (int position, View convertView, ViewGroup parent)
-		{
+		public override View GetView (int position, View convertView, ViewGroup parent) {
 			var view = convertView ?? _activity.LayoutInflater.Inflate (Resource.Layout.TotemListItem, parent, false);
 			var totem = view.FindViewById<TextView> (Resource.Id.totem);
 			totem.Text = profielList[position].name;
@@ -45,8 +40,7 @@ namespace Totem
 			}
 		}
 
-		public Profiel GetItemAtPosition(int position)
-		{
+		public Profiel GetItemAtPosition(int position) {
 			return profielList[position];
 		}
 	}

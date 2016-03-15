@@ -13,11 +13,9 @@ using Android.OS;
 using Android.Graphics;
 using Android.Content.PM;
 
-namespace Totem
-{
+namespace Totem {
 	[Activity (Label = "Totem bepalen", Icon = "@drawable/icon", ScreenOrientation = ScreenOrientation.Portrait)]
-	public class EigenschappenActivity : Activity
-	{
+	public class EigenschappenActivity : Activity {
 		TextView adjectief;
 		List<Eigenschap> eigenschappen;
 		int eigenschapCount;
@@ -65,8 +63,8 @@ namespace Totem
 		public void VindTotem() {
 			var totemsActivity = new Intent(this, typeof(TotemsActivity));
 
-			int[] sortedTotems = DictMethods.GetSortedList (freqs, true);
-			int[] sortedFreqs = DictMethods.GetSortedList (freqs, false);
+			int[] sortedTotems = CollectionHelper.GetSortedList (freqs, true);
+			int[] sortedFreqs = CollectionHelper.GetSortedList (freqs, false);
 			totemsActivity.PutExtra ("totemIDs", sortedTotems);
 			totemsActivity.PutExtra ("freqs", sortedFreqs);
 
@@ -79,7 +77,7 @@ namespace Totem
 			List<Totem_eigenschap> toevoegen = db.GetTotemsVanEigenschapsID (eigenschappen[eigenschapCount].tid);
 			foreach(Totem_eigenschap totem in toevoegen) {
 				int idx = Convert.ToInt32 (totem.nid);
-				DictMethods.AddOrUpdateDictionaryEntry (freqs, idx) ;
+				CollectionHelper.AddOrUpdateDictionaryEntry (freqs, idx) ;
 			}
 			eigenschapCount++;
 			UpdateScreen ();

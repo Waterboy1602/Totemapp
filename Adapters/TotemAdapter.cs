@@ -6,22 +6,18 @@ using Android.Provider;
 using Android.Views;
 using Android.Widget;
 
-namespace Totem
-{
-	public class TotemAdapter: BaseAdapter<Totem>
-	{
+namespace Totem {
+	public class TotemAdapter: BaseAdapter<Totem> {
 		Activity _activity;
 		List<Totem> totemList;
 		int[] freqs;
 
-		public TotemAdapter (Activity activity, List<Totem> list)
-		{	
+		public TotemAdapter (Activity activity, List<Totem> list) {	
 			this._activity = activity;
 			this.totemList = list;
 		}
 
-		public TotemAdapter (Activity activity, List<Totem> list, int[] freqs): this(activity, list)
-		{	
+		public TotemAdapter (Activity activity, List<Totem> list, int[] freqs): this(activity, list) {	
 			this.freqs = freqs;
 		}
 
@@ -31,13 +27,11 @@ namespace Totem
 			}
 		}
 
-		public override long GetItemId (int position)
-		{
+		public override long GetItemId (int position) {
 			return position;
 		}
 
-		public override View GetView (int position, View convertView, ViewGroup parent)
-		{
+		public override View GetView (int position, View convertView, ViewGroup parent) {
 			var view = convertView ?? _activity.LayoutInflater.Inflate (Resource.Layout.TotemListItem, parent, false);
 			var totem = view.FindViewById<TextView> (Resource.Id.totem);
 			totem.Text = totemList[position].title;
@@ -55,10 +49,8 @@ namespace Totem
 			}
 		}
 
-		public Totem GetItemAtPosition(int position)
-		{
+		public Totem GetItemAtPosition(int position) {
 			return totemList[position];
 		}
 	}
 }
-

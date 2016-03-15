@@ -12,11 +12,9 @@ using Android.Views;
 using Android.Widget;
 using Android.Views.InputMethods;
 
-namespace Totem
-{
+namespace Totem {
 	[Activity (Label = "Profielen")]			
-	public class ProfielenActivity : Activity
-	{
+	public class ProfielenActivity : Activity {
 		ProfielAdapter profielAdapter;
 		ListView profielenListView;
 
@@ -95,22 +93,22 @@ namespace Totem
 				alert.SetTitle ("Naam");
 				EditText input = new EditText (this); 
 				input.InputType = Android.Text.InputTypes.TextFlagCapWords;
-				ShowKeyboard (input);
+				KeyboardHelper.ShowKeyboardDialog (this, input);
 				alert.SetView (input);
 				alert.SetPositiveButton ("Ok", (sender, args) => {
 					string value = input.Text;
 					if(value.Replace("'", "").Equals("")) {
 						mToast.SetText("Ongeldige naam");
 						mToast.Show();
-						HideKeyboard();					
+						KeyboardHelper.HideKeyboardDialog(this);				
 					} else if(db.GetProfielNamen().Contains(value)) {
 						input.Text = "";
 						mToast.SetText("Profiel " + value + " bestaat al");
 						mToast.Show();
-						HideKeyboard(); 
+						KeyboardHelper.HideKeyboardDialog(this);
 					} else {
 						db.AddProfile(value);
-						HideKeyboard();
+						KeyboardHelper.HideKeyboardDialog(this); 
 
 						//refresh list
 						Finish();
@@ -146,21 +144,6 @@ namespace Totem
 			}
 
 			return base.OnOptionsItemSelected(item);
-		}
-
-		//helper
-		public void ShowKeyboard(View pView) {
-			pView.RequestFocus();
-
-			InputMethodManager inputMethodManager = Application.GetSystemService(Context.InputMethodService) as InputMethodManager;
-			inputMethodManager.ShowSoftInput(pView, ShowFlags.Forced);
-			inputMethodManager.ToggleSoftInput(ShowFlags.Forced, HideSoftInputFlags.ImplicitOnly);
-		}
-
-		//helper
-		public void HideKeyboard() {
-			InputMethodManager inputManager = (InputMethodManager)this.GetSystemService (Context.InputMethodService);
-			inputManager.ToggleSoftInput (ShowFlags.Implicit, 0);
 		}
 	}
 }

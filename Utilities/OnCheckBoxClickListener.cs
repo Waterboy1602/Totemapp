@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace Totem
-{
+namespace Totem {
+	
+	//simple interface
 	public interface OnCheckBoxClickListener {
 		void OnCheckboxClicked();
 	}
 }
-

@@ -7,10 +7,8 @@ using Android.Views;
 using Android.Widget;
 using Android.Views.InputMethods;
 
-namespace Totem
-{
-	public class EigenschapAdapter: BaseAdapter<Eigenschap>
-	{
+namespace Totem {
+	public class EigenschapAdapter: BaseAdapter<Eigenschap> {
 		Activity _activity;
 		List<Eigenschap> eigenschapList;
 
@@ -19,8 +17,7 @@ namespace Totem
 
 		OnCheckBoxClickListener mListener;
 
-		public EigenschapAdapter (Activity activity, List<Eigenschap> list, Dictionary<string, bool> checkList, OnCheckBoxClickListener listener)
-		{	
+		public EigenschapAdapter (Activity activity, List<Eigenschap> list, Dictionary<string, bool> checkList, OnCheckBoxClickListener listener) {	
 			this._activity = activity;
 			this.eigenschapList = list;
 			this.checkList = checkList;
@@ -33,22 +30,20 @@ namespace Totem
 			}
 		}
 
-		public override long GetItemId (int position)
-		{
+		public override long GetItemId (int position) {
 			return position;
 		}
 
-		public override View GetView (int position, View convertView, ViewGroup parent)
-		{
+		public override View GetView (int position, View convertView, ViewGroup parent) {
 			var view = _activity.LayoutInflater.Inflate (Resource.Layout.EigenschapListItem, parent, false);
 			var eigenschap = view.FindViewById<TextView> (Resource.Id.eigenschap);
 			var checkbox = view.FindViewById<CheckBox> (Resource.Id.checkbox);
 			eigenschap.Text = eigenschapList [position].name;
 			checkbox.Checked = checkList [eigenschapList [position].tid];
 
-			view.Click += (o, e) => {
-				checkbox.Checked = !(checkbox.Checked);
-				//view.StartAnimation();
+			//notifies CheckBoxListener and updates checklist
+			checkbox.Click += (o, e) => {
+				mListener.OnCheckboxClicked ();
 				if (checkbox.Checked) {
 					checkList [eigenschapList [position].tid] = true;
 				} else {
@@ -56,7 +51,10 @@ namespace Totem
 				}
 			};
 
-			checkbox.Click += (o, e) => {
+			//when the row item is clicked, it also checks or unchecks the box
+			//notifies CheckBoxListener and updates checklist
+			view.Click += (o, e) => {
+				checkbox.Checked = !(checkbox.Checked);
 				mListener.OnCheckboxClicked ();
 				if (checkbox.Checked) {
 					checkList [eigenschapList [position].tid] = true;
@@ -74,10 +72,8 @@ namespace Totem
 			}
 		}
 
-		public Eigenschap GetItemAtPosition(int position)
-		{
+		public Eigenschap GetItemAtPosition(int position) {
 			return eigenschapList[position];
 		}
 	}
 }
-

@@ -1,44 +1,41 @@
 ﻿<Properties StartupItem="Totem.csproj" RefactoringSettings.EnableRefactorings="True">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.Emulator" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="db\Database.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.0bb3642e43e4b26c" />
+  <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="Resources\Resource.designer.cs" Line="1" Column="1" />
-      <File FileName="AllEigenschappenActivity.cs" Line="20" Column="35" />
-      <File FileName="ProfielenActivity.cs" Line="17" Column="31" />
-      <File FileName="Resources\Menu\profielMenu.xml" Line="7" Column="8" />
-      <File FileName="Resources\Menu\EigenschapSelectieMenu.xml" Line="6" Column="36" />
-      <File FileName="Adapters\EigenschapAdapter.cs" Line="42" Column="19" />
-      <File FileName="AllTotemsActivity.cs" Line="104" Column="2" />
-      <File FileName="CheckListActivity.cs" Line="19" Column="64" />
-      <File FileName="EigenschappenActivity.cs" Line="30" Column="52" />
-      <File FileName="MainActivity.cs" Line="24" Column="52" />
-      <File FileName="ProfielTotemsActivity.cs" Line="20" Column="22" />
-      <File FileName="TipDialog.cs" Line="16" Column="41" />
-      <File FileName="TotemDetailActivity.cs" Line="55" Column="4" />
-      <File FileName="TotemsActivity.cs" Line="56" Column="68" />
-      <File FileName="c:\Users\fe\Totem App\FrederickEskens\Totem.git\db\SQLite.cs" Line="3148" Column="1" />
-      <File FileName="db\Database.cs" Line="251" Column="109" />
+      <File FileName="AllEigenschappenActivity.cs" Line="48" Column="48" />
+      <File FileName="ProfielenActivity.cs" Line="1" Column="1" />
+      <File FileName="Resources\Menu\profielMenu.xml" Line="1" Column="1" />
+      <File FileName="Resources\Menu\EigenschapSelectieMenu.xml" Line="1" Column="1" />
+      <File FileName="Adapters\EigenschapAdapter.cs" Line="1" Column="1" />
+      <File FileName="AllTotemsActivity.cs" Line="1" Column="1" />
+      <File FileName="CheckListActivity.cs" Line="1" Column="1" />
+      <File FileName="EigenschappenActivity.cs" Line="1" Column="1" />
+      <File FileName="MainActivity.cs" Line="27" Column="43" />
+      <File FileName="ProfielTotemsActivity.cs" Line="1" Column="1" />
+      <File FileName="TipDialog.cs" Line="1" Column="1" />
+      <File FileName="TotemDetailActivity.cs" Line="33" Column="49" />
+      <File FileName="TotemsActivity.cs" Line="1" Column="1" />
+      <File FileName="db\Database.cs" Line="1" Column="1" />
+      <File FileName="SplashScreenActivity.cs" Line="15" Column="127" />
+      <File FileName="Properties\AndroidManifest.xml" Line="1" Column="1" />
+      <File FileName="Resources\values\styles.xml" Line="12" Column="88" />
+      <File FileName="Resources\values\Strings.xml" Line="1" Column="1" />
+      <File FileName="Utilities\DynamicImageView.cs" Line="26" Column="2" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="Totem" expanded="True">
+          <Node name="Totem" expanded="True" selected="True">
             <Node name="Totem" expanded="True">
-              <Node name="Adapters" expanded="True" />
-              <Node name="db" expanded="True">
-                <Node name="Database.cs" selected="True" />
-              </Node>
-              <Node name="model" expanded="True" />
+              <Node name="Properties" expanded="True" />
               <Node name="Resources" expanded="True">
                 <Node name="layout" expanded="True" />
-                <Node name="Menu" expanded="True" />
+                <Node name="values" expanded="True" />
               </Node>
+              <Node name="Utilities" expanded="True" />
             </Node>
           </Node>
         </State>
-      </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>

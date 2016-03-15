@@ -4,24 +4,28 @@ using Android.Widget;
 using Android.OS;
 using Android.Content;
 
-namespace Totem
-{
-	public class TipDialog : DialogFragment
-	{
+namespace Totem {
+	public class TipDialog : DialogFragment	{
 		CheckBox weergeven_checkbox;
 		TextView tip;
 
 		Database db;
 
-		public static TipDialog NewInstance() {
-			var dialogFragment = new TipDialog();
+		Context context;
+
+		public TipDialog(Context context) {
+			this.context = context;
+		}
+
+		public static TipDialog NewInstance(Context context) {
+			var dialogFragment = new TipDialog(context);
 			return dialogFragment;
 		}
 
 		public override Dialog OnCreateDialog(Bundle savedInstanceState) {
 			var builder = new AlertDialog.Builder (Activity);
 
-			db = DatabaseHelper.GetInstance ();
+			db = DatabaseHelper.GetInstance (context); 
 
 			var inflater = Activity.LayoutInflater;
 			var dialogView = inflater.Inflate (Resource.Layout.TipPopUp, null);
@@ -42,7 +46,7 @@ namespace Totem
 		}
 
 		private void HandlePositiveButtonClick(object sender, DialogClickEventArgs e) {
-			var dialog = TipDialog.NewInstance();
+			var dialog = TipDialog.NewInstance(context);
 			dialog.Show(FragmentManager, "dialog");
 		}
 

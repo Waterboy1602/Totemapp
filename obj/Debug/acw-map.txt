@@ -42,10 +42,6 @@ Totem.TipDialog, Totem;md5b1d67ac94551c8753fec80729d65095f.TipDialog
 Totem.TipDialog, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.TipDialog
 Totem.TipDialog;md5b1d67ac94551c8753fec80729d65095f.TipDialog
 totem.TipDialog;md5b1d67ac94551c8753fec80729d65095f.TipDialog
-Totem.CheckListActivity, Totem;md5b1d67ac94551c8753fec80729d65095f.CheckListActivity
-Totem.CheckListActivity, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.CheckListActivity
-Totem.CheckListActivity;md5b1d67ac94551c8753fec80729d65095f.CheckListActivity
-totem.CheckListActivity;md5b1d67ac94551c8753fec80729d65095f.CheckListActivity
 Totem.ProfielTotemsActivity, Totem;md5b1d67ac94551c8753fec80729d65095f.ProfielTotemsActivity
 Totem.ProfielTotemsActivity, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.ProfielTotemsActivity
 Totem.ProfielTotemsActivity;md5b1d67ac94551c8753fec80729d65095f.ProfielTotemsActivity
@@ -54,3 +50,7 @@ Totem.SplashScreenActivity, Totem;md5b1d67ac94551c8753fec80729d65095f.SplashScre
 Totem.SplashScreenActivity, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.SplashScreenActivity
 Totem.SplashScreenActivity;md5b1d67ac94551c8753fec80729d65095f.SplashScreenActivity
 totem.SplashScreenActivity;md5b1d67ac94551c8753fec80729d65095f.SplashScreenActivity
+Totem.DynamicImageView, Totem;md5b1d67ac94551c8753fec80729d65095f.DynamicImageView
+Totem.DynamicImageView, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.DynamicImageView
+Totem.DynamicImageView;md5b1d67ac94551c8753fec80729d65095f.DynamicImageView
+totem.DynamicImageView;md5b1d67ac94551c8753fec80729d65095f.DynamicImageView

@@ -14,11 +14,9 @@ using Android.Views;
 using Android.Widget;
 using Android.Views.InputMethods;
 
-namespace Totem
-{
+namespace Totem {
 	[Activity (Label = "Totems")]			
-	public class AllTotemsActivity : Activity
-	{
+	public class AllTotemsActivity : Activity {
 		TotemAdapter totemAdapter;
 		ListView allTotemListView;
 
@@ -45,12 +43,11 @@ namespace Totem
 			query = FindViewById<EditText>(Resource.Id.totemQuery);
 			LiveSearch ();
 
-			allTotemListView.ItemClick += listView_ItemClick;
+			allTotemListView.ItemClick += TotemClick;
 		}
 
 		//removes focus from search bar on resume
-		protected override void OnResume ()
-		{
+		protected override void OnResume () {
 			base.OnResume ();
 			query.ClearFocus ();
 			query.SetCursorVisible(false);
@@ -73,19 +70,13 @@ namespace Totem
 
 		//get DetailActivity of the totem that is clicked
 		//ID is passed as parameter
-		private void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e) {
+		private void TotemClick(object sender, AdapterView.ItemClickEventArgs e) {
 			int pos = e.Position;
 			var item = totemAdapter.GetItemAtPosition(pos);
 
 			var detailActivity = new Intent(this, typeof(TotemDetailActivity));
 			detailActivity.PutExtra ("totemID", item.nid);
 			StartActivity (detailActivity);
-		}
-
-		//hides the keyboard
-		private void HideKeyboard() {
-			InputMethodManager inputManager = (InputMethodManager)this.GetSystemService (Context.InputMethodService);
-			inputManager.HideSoftInputFromWindow (this.CurrentFocus.WindowToken, HideSoftInputFlags.NotAlways);
 		}
 			
 		//return to full list and empty search field when 'back' is pressed

@@ -9,10 +9,9 @@ using System.Collections;
 using System.Linq;
 using Android.Database;
 
-namespace Totem
-{
-	public class Database
-	{
+namespace Totem {
+	public class Database {
+		
 		//DB parameters
 		static string dbName = "totems.sqlite";
 		string dbPath = System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), dbName);
@@ -21,8 +20,7 @@ namespace Totem
 		List<Eigenschap> eigenschappen;
 		List<Totem> totems;
 
-		public Database (Context context)
-		{
+		public Database (Context context) {
 			this.context = context;
 			ExtractDB ();
 			SetEigenschappen ();
@@ -144,7 +142,7 @@ namespace Totem
 			}
 		}
 
-		//retruns an array of ints with all totemIDs related to a profile
+		//returns an array of ints with all totemIDs related to a profile
 		public int [] GetTotemIDsFromProfiel(string name) {
 			List<Profiel> list = new List<Profiel>();
 			using (var conn = new SQLite.SQLiteConnection (dbPath)) {

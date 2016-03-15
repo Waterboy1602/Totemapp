@@ -15,11 +15,9 @@ using Android.Widget;
 using Android.Views.InputMethods;
 using Android.Content.PM;
 
-namespace Totem
-{
+namespace Totem {
 	[Activity (Label = "Eigenschappen", WindowSoftInputMode = Android.Views.SoftInput.AdjustPan, ScreenOrientation = ScreenOrientation.Portrait)]			
-	public class AllEigenschappenActivity : Activity
-	{
+	public class AllEigenschappenActivity : Activity {
 		EigenschapAdapter eigenschapAdapter;
 		ListView allEigenschappenListView;
 
@@ -47,11 +45,13 @@ namespace Totem
 
 			eigenschappenList = db.GetEigenschappen ();
 
+			//initialize checkList with default values (false) for each eigenschap
 			checkList = new Dictionary<string, bool> ();
 			foreach (Eigenschap e in eigenschappenList) {
 				checkList.Add (e.tid, false);
 			}
 
+			//listener to pass to EigenschapAdapter containing context
 			mListener = new MyOnCheckBoxClickListener (this);
 
 			eigenschapAdapter = new EigenschapAdapter (this, eigenschappenList, checkList, mListener);
@@ -99,7 +99,7 @@ namespace Totem
 					List<Totem_eigenschap> toevoegen = db.GetTotemsVanEigenschapsID (e.tid);
 					foreach(Totem_eigenschap totem in toevoegen) {
 						int idx = Convert.ToInt32 (totem.nid);
-						DictMethods.AddOrUpdateDictionaryEntry (freqs, idx) ;
+						CollectionHelper.AddOrUpdateDictionaryEntry (freqs, idx) ;
 					}
 				}
 			}
@@ -110,8 +110,8 @@ namespace Totem
 			} else {
 				var totemsActivity = new Intent (this, typeof(TotemsActivity));
 
-				int[] sortedTotems = DictMethods.GetSortedList (freqs, true);
-				int[] sortedFreqs = DictMethods.GetSortedList (freqs, false);
+				int[] sortedTotems = CollectionHelper.GetSortedList (freqs, true);
+				int[] sortedFreqs = CollectionHelper.GetSortedList (freqs, false);
 				totemsActivity.PutExtra ("totemIDs", sortedTotems);
 				totemsActivity.PutExtra ("freqs", sortedFreqs);
 
@@ -166,13 +166,6 @@ namespace Totem
 			}
 			return result;
 		}
-
-		//helper
-		private void HideKeyboard() {
-			InputMethodManager inputManager = (InputMethodManager)this.GetSystemService (Context.InputMethodService);
-			inputManager.HideSoftInputFromWindow (this.CurrentFocus.WindowToken, HideSoftInputFlags.NotAlways);
-		}
-
 
 		//return to full list and empty search field when 'back' is pressed
 		//this happens only when a search query is currently entered

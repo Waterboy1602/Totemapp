@@ -14,11 +14,9 @@ using Android.Views;
 using Android.Widget;
 using Android.Views.InputMethods;
 
-namespace Totem
-{
-	[Activity (Label = "Totems")]			
-	public class ProfielTotemsActivity : Activity
-	{
+namespace Totem {
+	[Activity (Label = "Totems")]
+	public class ProfielTotemsActivity : Activity {
 		TotemAdapter totemAdapter;
 		ListView allTotemListView;
 

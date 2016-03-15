@@ -13,11 +13,9 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
-namespace Totem
-{
+namespace Totem {
 	[Activity (Label = "Totems")]			
-	public class TotemsActivity : Activity
-	{
+	public class TotemsActivity : Activity {
 		TotemAdapter totemAdapter;
 		ListView totemListView;
 		List<Totem> totemList;
