@@ -10,7 +10,7 @@
         android:descendantFocusability="beforeDescendants"
         android:focusableInTouchMode="true">
         <EditText
-            android:id="@+id/query"
+            android:id="@+id/totemQuery"
             android:layout_width="fill_parent"
             android:singleLine="true"
             android:layout_height="wrap_content"

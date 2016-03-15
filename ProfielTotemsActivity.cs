@@ -48,8 +48,7 @@ namespace Totem
 			allTotemListView = FindViewById<ListView> (Resource.Id.all_totem_list);
 			allTotemListView.Adapter = totemAdapter;
 
-			EditText query = FindViewById<EditText>(Resource.Id.query);
-			query.Visibility = ViewStates.Gone;
+			FindViewById<EditText>(Resource.Id.totemQuery).Visibility = ViewStates.Gone;
 
 			allTotemListView.ItemClick += TotemClick;
 			allTotemListView.ItemLongClick += TotemLongClick;

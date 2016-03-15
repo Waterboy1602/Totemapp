@@ -32,6 +32,8 @@ namespace Totem
 
 		Toast mToast;
 
+		OnCheckBoxClickListener mListener;
+
 		bool fullList = true;
 
 		protected override void OnCreate (Bundle bundle) {
@@ -50,13 +52,15 @@ namespace Totem
 				checkList.Add (e.tid, false);
 			}
 
-			eigenschapAdapter = new EigenschapAdapter (this, eigenschappenList, checkList);
+			mListener = new MyOnCheckBoxClickListener (this);
+
+			eigenschapAdapter = new EigenschapAdapter (this, eigenschappenList, checkList, mListener);
 			allEigenschappenListView = FindViewById<ListView> (Resource.Id.all_eigenschappen_list);
 			allEigenschappenListView.Adapter = eigenschapAdapter;
 
 			vindButton = FindViewById<Button> (Resource.Id.vind_button);
 		
-			query = FindViewById<EditText>(Resource.Id.query);
+			query = FindViewById<EditText>(Resource.Id.eigenschapQuery);
 			LiveSearch ();
 
 			vindButton.Click += (sender, eventArgs) => VindTotem();
@@ -82,7 +86,7 @@ namespace Totem
 			fullList = false;
 			vindButton.Visibility = ViewStates.Gone;
 			eigenschappenList = db.FindEigenschapOpNaam (query.Text);
-			eigenschapAdapter = new EigenschapAdapter (this, eigenschappenList, checkList);
+			eigenschapAdapter = new EigenschapAdapter (this, eigenschappenList, checkList, mListener);
 			allEigenschappenListView.Adapter = eigenschapAdapter;
 		}
 
@@ -131,7 +135,7 @@ namespace Totem
 				foreach (Eigenschap e in eigenschappenList) {
 					checkList.Add (e.tid, false);
 				}
-				eigenschapAdapter = new EigenschapAdapter (this, db.GetEigenschappen (), checkList);
+				eigenschapAdapter = new EigenschapAdapter (this, db.GetEigenschappen (), checkList, mListener);
 				allEigenschappenListView.Adapter = eigenschapAdapter;
 				vindButton.Visibility = ViewStates.Visible;
 				return true;
@@ -143,7 +147,7 @@ namespace Totem
 					mToast.Show ();
 				} else {
 					fullList = false;
-					eigenschapAdapter = new EigenschapAdapter (this, list, checkList);
+					eigenschapAdapter = new EigenschapAdapter (this, list, checkList, mListener);
 					allEigenschappenListView.Adapter = eigenschapAdapter;
 					vindButton.Visibility = ViewStates.Visible;
 				}
@@ -169,6 +173,7 @@ namespace Totem
 			inputManager.HideSoftInputFromWindow (this.CurrentFocus.WindowToken, HideSoftInputFlags.NotAlways);
 		}
 
+
 		//return to full list and empty search field when 'back' is pressed
 		//this happens only when a search query is currently entered
 		public override void OnBackPressed() { 
@@ -177,7 +182,7 @@ namespace Totem
 			} else {
 				query.Text = "";
 				fullList = true;
-				eigenschapAdapter = new EigenschapAdapter (this, db.GetEigenschappen(), checkList);
+				eigenschapAdapter = new EigenschapAdapter (this, db.GetEigenschappen(), checkList, mListener);
 				allEigenschappenListView.Adapter = eigenschapAdapter;
 			}
 			vindButton.Visibility = ViewStates.Visible;

@@ -42,7 +42,7 @@ namespace Totem
 			allTotemListView = FindViewById<ListView> (Resource.Id.all_totem_list);
 			allTotemListView.Adapter = totemAdapter;
 
-			query = FindViewById<EditText>(Resource.Id.query);
+			query = FindViewById<EditText>(Resource.Id.totemQuery);
 			LiveSearch ();
 
 			allTotemListView.ItemClick += listView_ItemClick;

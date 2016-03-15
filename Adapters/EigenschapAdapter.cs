@@ -5,6 +5,7 @@ using Android.Content;
 using Android.Provider;
 using Android.Views;
 using Android.Widget;
+using Android.Views.InputMethods;
 
 namespace Totem
 {
@@ -16,11 +17,14 @@ namespace Totem
 		//keeps track of which eigenschappen are checked
 		Dictionary<string, bool> checkList;
 
-		public EigenschapAdapter (Activity activity, List<Eigenschap> list, Dictionary<string, bool> checkList)
+		OnCheckBoxClickListener mListener;
+
+		public EigenschapAdapter (Activity activity, List<Eigenschap> list, Dictionary<string, bool> checkList, OnCheckBoxClickListener listener)
 		{	
 			this._activity = activity;
 			this.eigenschapList = list;
 			this.checkList = checkList;
+			this.mListener = listener;
 		}
 
 		public override Eigenschap this[int index] {
@@ -42,7 +46,18 @@ namespace Totem
 			eigenschap.Text = eigenschapList [position].name;
 			checkbox.Checked = checkList [eigenschapList [position].tid];
 
+			view.Click += (o, e) => {
+				checkbox.Checked = !(checkbox.Checked);
+				//view.StartAnimation();
+				if (checkbox.Checked) {
+					checkList [eigenschapList [position].tid] = true;
+				} else {
+					checkList [eigenschapList [position].tid] = false;
+				}
+			};
+
 			checkbox.Click += (o, e) => {
+				mListener.OnCheckboxClicked ();
 				if (checkbox.Checked) {
 					checkList [eigenschapList [position].tid] = true;
 				} else {
