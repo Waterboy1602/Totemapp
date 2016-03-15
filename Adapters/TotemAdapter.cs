@@ -5,19 +5,23 @@ using Android.Content;
 using Android.Provider;
 using Android.Views;
 using Android.Widget;
+using Android.Graphics;
+using Android.Content.Res;
 
 namespace Totem {
 	public class TotemAdapter: BaseAdapter<Totem> {
 		Activity _activity;
 		List<Totem> totemList;
 		int[] freqs;
+		Typeface Din;
 
-		public TotemAdapter (Activity activity, List<Totem> list) {	
+		public TotemAdapter (Activity activity, List<Totem> list, Context context) {	
 			this._activity = activity;
 			this.totemList = list;
+			Din = Typeface.CreateFromAsset(context.Assets,"fonts/DINPro-Regular.ttf");
 		}
 
-		public TotemAdapter (Activity activity, List<Totem> list, int[] freqs): this(activity, list) {	
+		public TotemAdapter (Activity activity, List<Totem> list, Context context, int[] freqs): this(activity, list, context) {	
 			this.freqs = freqs;
 		}
 
@@ -34,9 +38,11 @@ namespace Totem {
 		public override View GetView (int position, View convertView, ViewGroup parent) {
 			var view = convertView ?? _activity.LayoutInflater.Inflate (Resource.Layout.TotemListItem, parent, false);
 			var totem = view.FindViewById<TextView> (Resource.Id.totem);
+			totem.SetTypeface (Din, 0);
 			totem.Text = totemList[position].title;
 			if (freqs != null) {
 				var freq = view.FindViewById<TextView> (Resource.Id.freq);
+				freq.SetTypeface (Din, 0);
 				freq.Text = freqs [position].ToString ();
 			}
 

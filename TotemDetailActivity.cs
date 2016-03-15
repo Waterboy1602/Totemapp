@@ -18,6 +18,7 @@ using Android.Views.InputMethods;
 namespace Totem {
 	[Activity (Label = "Totem detail")]			
 	public class TotemDetailActivity : Activity	{
+		TextView number;
 		TextView title;
 		TextView synonyms;
 		TextView body;
@@ -34,17 +35,24 @@ namespace Totem {
 
 			db = DatabaseHelper.GetInstance (this);
 
+			Typeface Vervein = Typeface.CreateFromAsset(Assets,"fonts/Verveine W01 Regular.ttf");
+			Typeface Din = Typeface.CreateFromAsset(Assets,"fonts/DINPro-Light.ttf");
+
 			//single toast for entire activity
 			mToast = Toast.MakeText (this, "", ToastLength.Short);
 
 			Button voegtoe = FindViewById<Button> (Resource.Id.voegtoe);
+			voegtoe.SetTypeface(Din, 0);
 
+			number = FindViewById<TextView> (Resource.Id.number);
 			title = FindViewById<TextView> (Resource.Id.title);
-			Typeface face = Typeface.CreateFromAsset(Assets,"fonts/DCC - Ash.otf");
-			title.SetTypeface (face, 0);
-
 			synonyms = FindViewById<TextView> (Resource.Id.synonyms);
 			body = FindViewById<TextView> (Resource.Id.body);
+
+			number.SetTypeface (Vervein, 0);
+			title.SetTypeface (Vervein, 0);
+			synonyms.SetTypeface (Din, TypefaceStyle.Italic);
+			body.SetTypeface (Din, 0);
 
 			var nid = Intent.GetStringExtra ("totemID");
 			var hideButton = Intent.GetStringExtra ("hideButton");
@@ -111,6 +119,7 @@ namespace Totem {
 		//displays totem info
 		private void GetInfo(string idx) {
 			Totem t = db.GetTotemOnID (idx);
+			number.Text = t.nummer + ". ";
 			title.Text = t.title;
 			if(t.synonyms != null) {
 				synonyms.Text = t.synonyms;

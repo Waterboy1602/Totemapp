@@ -9,7 +9,7 @@
         <Totem.DynamicImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/Titel_scaled"
+            android:src="@drawable/Totemapp"
             android:padding="10dp" />
         <Button
             android:id="@+id/totems"
@@ -36,7 +36,7 @@
             android:text="Profielen"
             android:textColor="@android:color/white" />
         <Button
-            android:id="@+id/profielen"
+            android:id="@+id/goede_totemisatie"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:padding="20dp"
@@ -51,5 +51,5 @@
         android:layout_alignParentRight="true"
         android:layout_marginBottom="-85dp"
         android:layout_marginRight="-133dp"
-        android:src="@drawable/totem_scaled" />
+        android:src="@drawable/Totem" />
 </RelativeLayout>

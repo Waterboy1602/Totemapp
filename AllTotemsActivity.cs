@@ -13,6 +13,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Views.InputMethods;
+using Android.Graphics;
 
 namespace Totem {
 	[Activity (Label = "Totems")]			
@@ -36,11 +37,13 @@ namespace Totem {
 
 			totemList = db.GetTotems ();
 
-			totemAdapter = new TotemAdapter (this, totemList);
+			totemAdapter = new TotemAdapter (this, totemList, this);
 			allTotemListView = FindViewById<ListView> (Resource.Id.all_totem_list);
 			allTotemListView.Adapter = totemAdapter;
 
 			query = FindViewById<EditText>(Resource.Id.totemQuery);
+			Typeface Din = Typeface.CreateFromAsset(Assets,"fonts/DINPro-Regular.ttf");
+			query.SetTypeface (Din, 0);
 			LiveSearch ();
 
 			allTotemListView.ItemClick += TotemClick;
@@ -64,7 +67,7 @@ namespace Totem {
 		private void Search() {
 			fullList = false;
 			totemList = db.FindTotemOpNaam (query.Text);
-			totemAdapter = new TotemAdapter (this, totemList);
+			totemAdapter = new TotemAdapter (this, totemList, this);
 			allTotemListView.Adapter = totemAdapter;
 		}
 
@@ -87,7 +90,7 @@ namespace Totem {
 			} else {
 				query.Text = "";
 				fullList = true;
-				totemAdapter = new TotemAdapter (this, db.GetTotems());
+				totemAdapter = new TotemAdapter (this, db.GetTotems(), this);
 				allTotemListView.Adapter = totemAdapter;
 			}
 		}

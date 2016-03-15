@@ -13,6 +13,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Views.InputMethods;
+using Java.Lang;
 
 namespace Totem {
 	[Activity (Label = "Totems")]
@@ -42,7 +43,7 @@ namespace Totem {
 
 			totemList = ConvertIDArrayToTotemList (totemIDs);
 
-			totemAdapter = new TotemAdapter (this, totemList);
+			totemAdapter = new TotemAdapter (this, totemList, this);
 			allTotemListView = FindViewById<ListView> (Resource.Id.all_totem_list);
 			allTotemListView.Adapter = totemAdapter;
 
