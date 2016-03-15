@@ -119,7 +119,7 @@ namespace Totem {
 		//displays totem info
 		private void GetInfo(string idx) {
 			Totem t = db.GetTotemOnID (idx);
-			number.Text = t.nummer + ". ";
+			number.Text = t.number + ". ";
 			title.Text = t.title;
 			if(t.synonyms != null) {
 				synonyms.Text = t.synonyms;
