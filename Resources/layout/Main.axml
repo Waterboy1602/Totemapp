@@ -7,11 +7,14 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
-        <Totem.DynamicImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/Totemapp"
-            android:padding="10dp" />
+        <Totem.CustomFontTextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="80sp"
+            android:text="TOTEMAPP"
+            android:textColor="#0061A1"
+            app:font="@string/Verveine" />
         <Totem.CustomFontButton
             android:id="@+id/totems"
             android:layout_width="fill_parent"
