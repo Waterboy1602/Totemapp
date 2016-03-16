@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 
 namespace Totem {
-	
+
 	//static helper class for operations on Dictionaries and other collections
 	public static class CollectionHelper {
-		
+
 		//return sorted array of keys or values from dictionary
 		public static int[] GetSortedList(Dictionary<int, int> dict, bool keys) {
 			List<KeyValuePair<int, int>> tempList = new List<KeyValuePair<int, int>>(dict);
 
 			tempList.Sort(delegate(KeyValuePair<int, int> firstPair, KeyValuePair<int, int> secondPair) {
-					return firstPair.Value.CompareTo(secondPair.Value);
-				}
+				return firstPair.Value.CompareTo(secondPair.Value);
+			}
 			);
 
 			Dictionary<int, int> mySortedDictionary = new Dictionary<int, int>();

@@ -37,13 +37,12 @@ namespace Totem {
 
 			totemList = db.GetTotems ();
 
-			totemAdapter = new TotemAdapter (this, totemList, this);
+			totemAdapter = new TotemAdapter (this, totemList);
 			allTotemListView = FindViewById<ListView> (Resource.Id.all_totem_list);
 			allTotemListView.Adapter = totemAdapter;
 
 			query = FindViewById<EditText>(Resource.Id.totemQuery);
-			Typeface Din = Typeface.CreateFromAsset(Assets,"fonts/DINPro-Regular.ttf");
-			query.SetTypeface (Din, 0);
+
 			LiveSearch ();
 
 			allTotemListView.ItemClick += TotemClick;
@@ -67,7 +66,7 @@ namespace Totem {
 		private void Search() {
 			fullList = false;
 			totemList = db.FindTotemOpNaam (query.Text);
-			totemAdapter = new TotemAdapter (this, totemList, this);
+			totemAdapter = new TotemAdapter (this, totemList);
 			allTotemListView.Adapter = totemAdapter;
 		}
 
@@ -90,7 +89,7 @@ namespace Totem {
 			} else {
 				query.Text = "";
 				fullList = true;
-				totemAdapter = new TotemAdapter (this, db.GetTotems(), this);
+				totemAdapter = new TotemAdapter (this, db.GetTotems());
 				allTotemListView.Adapter = totemAdapter;
 			}
 		}

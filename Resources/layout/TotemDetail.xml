@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/scroll"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
@@ -16,33 +17,38 @@
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-            <TextView
+            <Totem.CustomFontTextView
                 android:id="@+id/number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="34sp"
-                android:textColor="#432918" />
-            <TextView
+                android:textColor="#432918"
+                app:font="@string/Verveine" />
+            <Totem.CustomFontTextView
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="34sp"
-                android:textColor="#0061A1" />
+                android:textColor="#0061A1"
+                app:font="@string/Verveine" />
         </LinearLayout>
-        <TextView
+        <Totem.CustomFontTextView
             android:id="@+id/synonyms"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="17sp"
-            android:textColor="#0061A1" />
-        <TextView
+            android:textColor="#0061A1"
+            android:textStyle="italic"
+            app:font="@string/DIN_light" />
+        <Totem.CustomFontTextView
             android:id="@+id/body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:layout_marginTop="5sp"
             android:paddingBottom="30sp"
-            android:gravity="fill_horizontal" />
+            android:gravity="fill_horizontal"
+            app:font="@string/DIN_light" />
         <Button
             android:id="@+id/voegtoe"
             android:layout_width="fill_parent"

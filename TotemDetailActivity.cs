@@ -18,10 +18,10 @@ using Android.Views.InputMethods;
 namespace Totem {
 	[Activity (Label = "Totem detail")]			
 	public class TotemDetailActivity : Activity	{
-		TextView number;
-		TextView title;
-		TextView synonyms;
-		TextView body;
+		CustomFontTextView number;
+		CustomFontTextView title;
+		CustomFontTextView synonyms;
+		CustomFontTextView body;
 
 		Database db;
 		Toast mToast;
@@ -35,7 +35,6 @@ namespace Totem {
 
 			db = DatabaseHelper.GetInstance (this);
 
-			Typeface Vervein = Typeface.CreateFromAsset(Assets,"fonts/Verveine W01 Regular.ttf");
 			Typeface Din = Typeface.CreateFromAsset(Assets,"fonts/DINPro-Light.ttf");
 
 			//single toast for entire activity
@@ -44,15 +43,10 @@ namespace Totem {
 			Button voegtoe = FindViewById<Button> (Resource.Id.voegtoe);
 			voegtoe.SetTypeface(Din, 0);
 
-			number = FindViewById<TextView> (Resource.Id.number);
-			title = FindViewById<TextView> (Resource.Id.title);
-			synonyms = FindViewById<TextView> (Resource.Id.synonyms);
-			body = FindViewById<TextView> (Resource.Id.body);
-
-			number.SetTypeface (Vervein, 0);
-			title.SetTypeface (Vervein, 0);
-			synonyms.SetTypeface (Din, TypefaceStyle.Italic);
-			body.SetTypeface (Din, 0);
+			number = FindViewById<CustomFontTextView> (Resource.Id.number);
+			title = FindViewById<CustomFontTextView> (Resource.Id.title);
+			synonyms = FindViewById<CustomFontTextView> (Resource.Id.synonyms);
+			body = FindViewById<CustomFontTextView> (Resource.Id.body);
 
 			var nid = Intent.GetStringExtra ("totemID");
 			var hideButton = Intent.GetStringExtra ("hideButton");

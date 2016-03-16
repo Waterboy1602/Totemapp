@@ -12,12 +12,9 @@ namespace Totem {
 		Activity _activity;
 		List<Profiel> profielList;
 
-		Typeface Din;
-
-		public ProfielAdapter (Activity activity, List<Profiel> list, Context context) {	
+		public ProfielAdapter (Activity activity, List<Profiel> list) {	
 			this._activity = activity;
 			this.profielList = list;
-			Din = Typeface.CreateFromAsset(context.Assets,"fonts/DINPro-Regular.ttf");
 		}
 
 		public override Profiel this[int index] {
@@ -33,7 +30,6 @@ namespace Totem {
 		public override View GetView (int position, View convertView, ViewGroup parent) {
 			var view = convertView ?? _activity.LayoutInflater.Inflate (Resource.Layout.TotemListItem, parent, false);
 			var totem = view.FindViewById<TextView> (Resource.Id.totem);
-			totem.SetTypeface (Din, 0);
 			totem.Text = profielList[position].name;
 
 			return view;

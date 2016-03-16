@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
@@ -16,7 +17,7 @@
                 android:layout_height="wrap_content"
                 android:descendantFocusability="beforeDescendants"
                 android:focusableInTouchMode="true">
-                <EditText
+                <Totem.CustomFontEditText
                     android:id="@+id/eigenschapQuery"
                     android:layout_width="fill_parent"
                     android:singleLine="true"
@@ -24,7 +25,8 @@
                     android:layout_weight="1"
                     android:imeOptions="actionDone"
                     android:inputType="text"
-                    android:hint="Zoek eigenschap" />
+                    android:hint="Zoek eigenschap"
+                    app:font="@string/DIN_regular" />
             </LinearLayout>
             <ListView
                 android:id="@+id/all_eigenschappen_list"
@@ -32,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:text="" />
         </LinearLayout>
-        <Button
+        <Totem.CustomFontButton
             android:id="@+id/vind_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,6 +44,7 @@
             android:layout_margin="8dip"
             android:layout_marginRight="30dip"
             android:layout_gravity="right|bottom"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            app:font="@string/DIN_regular" />
     </FrameLayout>
 </LinearLayout>

@@ -55,17 +55,14 @@ namespace Totem {
 			//listener to pass to EigenschapAdapter containing context
 			mListener = new MyOnCheckBoxClickListener (this);
 
-			eigenschapAdapter = new EigenschapAdapter (this, eigenschappenList, checkList, mListener, this);
+			eigenschapAdapter = new EigenschapAdapter (this, eigenschappenList, checkList, mListener);
 			allEigenschappenListView = FindViewById<ListView> (Resource.Id.all_eigenschappen_list);
 			allEigenschappenListView.Adapter = eigenschapAdapter;
 
-			Typeface Din = Typeface.CreateFromAsset(Assets,"fonts/DINPro-Regular.ttf");
 			vindButton = FindViewById<Button> (Resource.Id.vind_button);
-			vindButton.SetTypeface (Din, 0);
 
 			query = FindViewById<EditText>(Resource.Id.eigenschapQuery);
 
-			query.SetTypeface (Din, 0);
 			LiveSearch ();
 
 			vindButton.Click += (sender, eventArgs) => VindTotem();
@@ -91,7 +88,7 @@ namespace Totem {
 			fullList = false;
 			vindButton.Visibility = ViewStates.Gone;
 			eigenschappenList = db.FindEigenschapOpNaam (query.Text);
-			eigenschapAdapter = new EigenschapAdapter (this, eigenschappenList, checkList, mListener, this);
+			eigenschapAdapter = new EigenschapAdapter (this, eigenschappenList, checkList, mListener);
 			allEigenschappenListView.Adapter = eigenschapAdapter;
 		}
 
@@ -140,7 +137,7 @@ namespace Totem {
 				foreach (Eigenschap e in eigenschappenList) {
 					checkList.Add (e.tid, false);
 				}
-				eigenschapAdapter = new EigenschapAdapter (this, db.GetEigenschappen (), checkList, mListener, this);
+				eigenschapAdapter = new EigenschapAdapter (this, db.GetEigenschappen (), checkList, mListener);
 				allEigenschappenListView.Adapter = eigenschapAdapter;
 				vindButton.Visibility = ViewStates.Visible;
 				return true;
@@ -152,7 +149,7 @@ namespace Totem {
 					mToast.Show ();
 				} else {
 					fullList = false;
-					eigenschapAdapter = new EigenschapAdapter (this, list, checkList, mListener, this);
+					eigenschapAdapter = new EigenschapAdapter (this, list, checkList, mListener);
 					allEigenschappenListView.Adapter = eigenschapAdapter;
 					vindButton.Visibility = ViewStates.Visible;
 				}
@@ -180,7 +177,7 @@ namespace Totem {
 			} else {
 				query.Text = "";
 				fullList = true;
-				eigenschapAdapter = new EigenschapAdapter (this, db.GetEigenschappen(), checkList, mListener, this);
+				eigenschapAdapter = new EigenschapAdapter (this, db.GetEigenschappen(), checkList, mListener);
 				allEigenschappenListView.Adapter = eigenschapAdapter;
 			}
 			vindButton.Visibility = ViewStates.Visible;

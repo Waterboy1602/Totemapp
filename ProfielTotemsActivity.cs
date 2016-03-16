@@ -43,7 +43,7 @@ namespace Totem {
 
 			totemList = ConvertIDArrayToTotemList (totemIDs);
 
-			totemAdapter = new TotemAdapter (this, totemList, this);
+			totemAdapter = new TotemAdapter (this, totemList);
 			allTotemListView = FindViewById<ListView> (Resource.Id.all_totem_list);
 			allTotemListView.Adapter = totemAdapter;
 

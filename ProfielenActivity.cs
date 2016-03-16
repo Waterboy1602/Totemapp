@@ -35,7 +35,7 @@ namespace Totem {
 			var profielen = db.GetProfielen ();
 			if (profielen.Count == 0)
 				FindViewById<TextView> (Resource.Id.empty_profiel).Visibility = ViewStates.Visible;
-			profielAdapter = new ProfielAdapter (this, profielen, this);
+			profielAdapter = new ProfielAdapter (this, profielen);
 			profielenListView = FindViewById<ListView> (Resource.Id.profielen_list);
 			profielenListView.Adapter = profielAdapter;
 

@@ -25,16 +25,11 @@ namespace Totem {
 
 			SetContentView (Resource.Layout.Main);
 
-			Typeface Din = Typeface.CreateFromAsset(Assets,"fonts/DINPro-Regular.ttf");
-
 			Button totems = FindViewById<Button> (Resource.Id.totems);
 			Button eigenschappen = FindViewById<Button> (Resource.Id.eigenschappen);
 			Button profielen = FindViewById<Button> (Resource.Id.profielen);
 			Button checklist = FindViewById<Button> (Resource.Id.goede_totemisatie);
 			checklist.Visibility = ViewStates.Gone;
-			totems.SetTypeface (Din, 0);
-			eigenschappen.SetTypeface (Din, 0);
-			profielen.SetTypeface (Din, 0);
 
 			if(db.GetPreference("tips").value.Equals("true")) {
 				ShowTipDialog ();

@@ -18,14 +18,11 @@ namespace Totem {
 
 		OnCheckBoxClickListener mListener;
 
-		Typeface Din;
-
-		public EigenschapAdapter (Activity activity, List<Eigenschap> list, Dictionary<string, bool> checkList, OnCheckBoxClickListener listener, Context context) {	
+		public EigenschapAdapter (Activity activity, List<Eigenschap> list, Dictionary<string, bool> checkList, OnCheckBoxClickListener listener) {	
 			this._activity = activity;
 			this.eigenschapList = list;
 			this.checkList = checkList;
 			this.mListener = listener;
-			Din = Typeface.CreateFromAsset(context.Assets,"fonts/DINPro-Regular.ttf");
 		}
 
 		public override Eigenschap this[int index] {
@@ -41,7 +38,6 @@ namespace Totem {
 		public override View GetView (int position, View convertView, ViewGroup parent) {
 			var view = _activity.LayoutInflater.Inflate (Resource.Layout.EigenschapListItem, parent, false);
 			var eigenschap = view.FindViewById<TextView> (Resource.Id.eigenschap);
-			eigenschap.SetTypeface (Din, 0);
 			var checkbox = view.FindViewById<CheckBox> (Resource.Id.checkbox);
 			eigenschap.Text = eigenschapList [position].name;
 			checkbox.Checked = checkList [eigenschapList [position].tid];
