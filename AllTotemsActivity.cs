@@ -46,6 +46,14 @@ namespace Totem {
 			LiveSearch ();
 
 			allTotemListView.ItemClick += TotemClick;
+
+			//hide keybaord when enter is pressed
+			query.EditorAction += (sender, e) => {
+				if (e.ActionId == ImeAction.Search) 
+					KeyboardHelper.HideKeyboard(this);
+				else
+					e.Handled = false;
+			};
 		}
 
 		//removes focus from search bar on resume

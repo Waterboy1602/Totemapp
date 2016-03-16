@@ -97,7 +97,7 @@ namespace Totem {
 				alert.SetView (input);
 				alert.SetPositiveButton ("Ok", (sender, args) => {
 					string value = input.Text;
-					if(value.Replace("'", "").Equals("")) {
+					if(value.Replace("'", "").Replace(" ", "").Equals("")) {
 						mToast.SetText("Ongeldige naam");
 						mToast.Show();
 						KeyboardHelper.HideKeyboardDialog(this);				
@@ -116,8 +116,22 @@ namespace Totem {
 					}
 				});
 
+				AlertDialog d1 = alert.Create();
+
+				//add profile when enter is clicked
+				input.EditorAction += (sender, e) => {
+					if (e.ActionId == ImeAction.Done) 
+					{
+						d1.GetButton(-1).PerformClick();
+					}
+					else
+					{
+						e.Handled = false;
+					}
+				};
+
 				RunOnUiThread (() => {
-					alert.Show();
+					d1.Show();
 				} );
 
 				return true;
@@ -137,8 +151,11 @@ namespace Totem {
 
 				});
 
-				Dialog dialog = alert1.Create();
-				dialog.Show();
+				Dialog d2 = alert1.Create();
+
+				RunOnUiThread (() => {
+					d2.Show();
+				} );
 
 				return true;
 			}
