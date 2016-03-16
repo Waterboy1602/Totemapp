@@ -46,8 +46,8 @@ namespace Totem {
 		}
 
 		private void HandlePositiveButtonClick(object sender, DialogClickEventArgs e) {
-			var dialog = TipDialog.NewInstance(context);
-			dialog.Show(FragmentManager, "dialog");
+			//var dialog = TipDialog.NewInstance(context);
+			//dialog.Show(FragmentManager, "dialog");
 		}
 
 		private void HandleNegativeButtonClick(object sender, DialogClickEventArgs e) {
