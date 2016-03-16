@@ -13,15 +13,11 @@ namespace Totem {
 		Activity _activity;
 		List<Eigenschap> eigenschapList;
 
-		//keeps track of which eigenschappen are checked
-		Dictionary<string, bool> checkList;
-
 		OnCheckBoxClickListener mListener;
 
-		public EigenschapAdapter (Activity activity, List<Eigenschap> list, Dictionary<string, bool> checkList, OnCheckBoxClickListener listener) {	
+		public EigenschapAdapter (Activity activity, List<Eigenschap> list, OnCheckBoxClickListener listener) {	
 			this._activity = activity;
 			this.eigenschapList = list;
-			this.checkList = checkList;
 			this.mListener = listener;
 		}
 
@@ -36,35 +32,56 @@ namespace Totem {
 		}
 
 		public override View GetView (int position, View convertView, ViewGroup parent) {
-			var view = _activity.LayoutInflater.Inflate (Resource.Layout.EigenschapListItem, parent, false);
-			var eigenschap = view.FindViewById<TextView> (Resource.Id.eigenschap);
-			var checkbox = view.FindViewById<CheckBox> (Resource.Id.checkbox);
-			eigenschap.Text = eigenschapList [position].name;
-			checkbox.Checked = checkList [eigenschapList [position].tid];
+			ViewHolder viewHolder;
 
-			//notifies CheckBoxListener and updates checklist
-			checkbox.Click += (o, e) => {
+			if (convertView == null) {
+				convertView = _activity.LayoutInflater.Inflate (Resource.Layout.EigenschapListItem, parent, false);
+
+				viewHolder = new ViewHolder ();
+				viewHolder.eigenschap = convertView.FindViewById<TextView> (Resource.Id.eigenschap);
+				viewHolder.checkbox = convertView.FindViewById<CheckBox> (Resource.Id.checkbox);
+
+				convertView.Tag = viewHolder;
+			} else {
+				viewHolder = (ViewHolder)convertView.Tag;
+			}
+
+			//IMPORTANT: keeps track of which checkboxes are checked
+			//and which aren't during scrolling
+			viewHolder.checkbox.Tag = position;
+
+			viewHolder.eigenschap.Text = eigenschapList [position].name;
+			viewHolder.checkbox.Checked = eigenschapList [(int)viewHolder.checkbox.Tag].selected;
+
+			//notifies CheckBoxListener
+			viewHolder.checkbox.Click += (o, e) => {
 				mListener.OnCheckboxClicked ();
-				if (checkbox.Checked) {
-					checkList [eigenschapList [position].tid] = true;
+				if (viewHolder.checkbox.Checked) {
+					eigenschapList [(int)viewHolder.checkbox.Tag].selected = true;
 				} else {
-					checkList [eigenschapList [position].tid] = false;
+					eigenschapList [(int)viewHolder.checkbox.Tag].selected = false;
 				}
 			};
 
 			//when the row item is clicked, it also checks or unchecks the box
 			//notifies CheckBoxListener and updates checklist
-			view.Click += (o, e) => {
-				checkbox.Checked = !(checkbox.Checked);
+			convertView.Click += (o, e) => {
+				viewHolder.checkbox.Checked = !(viewHolder.checkbox.Checked);
 				mListener.OnCheckboxClicked ();
-				if (checkbox.Checked) {
-					checkList [eigenschapList [position].tid] = true;
+				if (viewHolder.checkbox.Checked) {
+					eigenschapList [(int)viewHolder.checkbox.Tag].selected = true;
 				} else {
-					checkList [eigenschapList [position].tid] = false;
+					eigenschapList [(int)viewHolder.checkbox.Tag].selected = false;
 				}
 			};
 
-			return view;
+			return convertView;
+		}
+
+		//ViewHolder for better performance
+		class ViewHolder : Java.Lang.Object {
+			public TextView eigenschap;
+			public CheckBox checkbox;
 		}
 
 		public override int Count {
