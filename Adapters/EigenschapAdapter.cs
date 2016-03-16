@@ -51,7 +51,8 @@ namespace Totem {
 			viewHolder.checkbox.Tag = position;
 
 			viewHolder.eigenschap.Text = eigenschapList [position].name;
-			viewHolder.checkbox.Checked = eigenschapList [(int)viewHolder.checkbox.Tag].selected;
+			bool itemChecked = eigenschapList [(int)viewHolder.checkbox.Tag].selected;
+			viewHolder.checkbox.Checked = itemChecked;
 
 			//notifies CheckBoxListener
 			viewHolder.checkbox.Click += (o, e) => {
@@ -66,7 +67,7 @@ namespace Totem {
 			//when the row item is clicked, it also checks or unchecks the box
 			//notifies CheckBoxListener and updates checklist
 			convertView.Click += (o, e) => {
-				viewHolder.checkbox.Checked = !(viewHolder.checkbox.Checked);
+				viewHolder.checkbox.Checked = !itemChecked;
 				mListener.OnCheckboxClicked ();
 				if (viewHolder.checkbox.Checked) {
 					eigenschapList [(int)viewHolder.checkbox.Tag].selected = true;

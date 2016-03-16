@@ -23,7 +23,6 @@ namespace Totem {
 		ListView allEigenschappenListView;
 
 		List<Eigenschap> eigenschappenList;
-		Dictionary<string, bool> checkList;
 
 		Database db;
 		EditText query;
@@ -46,16 +45,15 @@ namespace Totem {
 
 			eigenschappenList = db.GetEigenschappen ();
 
-			//initialize checkList with default values (false) for each eigenschap
-			checkList = new Dictionary<string, bool> ();
+			//initialize with default values (false) for each eigenschap
 			foreach (Eigenschap e in eigenschappenList) {
-				checkList.Add (e.tid, false);
+				e.selected = false;
 			}
 
 			//listener to pass to EigenschapAdapter containing context
 			mListener = new MyOnCheckBoxClickListener (this);
 
-			eigenschapAdapter = new EigenschapAdapter (this, eigenschappenList, checkList, mListener);
+			eigenschapAdapter = new EigenschapAdapter (this, eigenschappenList, mListener);
 			allEigenschappenListView = FindViewById<ListView> (Resource.Id.all_eigenschappen_list);
 			allEigenschappenListView.Adapter = eigenschapAdapter;
 
@@ -88,6 +86,10 @@ namespace Totem {
 		private void LiveSearch() {
 			query.AfterTextChanged += (sender, args) => {
 				Search();
+				if(query.Text.Equals("")) {
+					fullList = true;
+					vindButton.Visibility = ViewStates.Visible;
+				}
 			};
 		}
 
@@ -96,7 +98,7 @@ namespace Totem {
 			fullList = false;
 			vindButton.Visibility = ViewStates.Gone;
 			eigenschappenList = db.FindEigenschapOpNaam (query.Text);
-			eigenschapAdapter = new EigenschapAdapter (this, eigenschappenList, checkList, mListener);
+			eigenschapAdapter = new EigenschapAdapter (this, eigenschappenList, mListener);
 			allEigenschappenListView.Adapter = eigenschapAdapter;
 		}
 
@@ -105,7 +107,7 @@ namespace Totem {
 		private void VindTotem() {
 			Dictionary<int, int> freqs = new Dictionary<int, int> ();
 			foreach (Eigenschap e in eigenschappenList) {
-				if(checkList[e.tid]) {
+				if(e.selected) {
 					List<Totem_eigenschap> toevoegen = db.GetTotemsVanEigenschapsID (e.tid);
 					foreach(Totem_eigenschap totem in toevoegen) {
 						int idx = Convert.ToInt32 (totem.nid);
@@ -141,11 +143,10 @@ namespace Totem {
 			case Resource.Id.reset:
 				query.Text = "";
 				fullList = true;
-				checkList = new Dictionary<string, bool> ();
 				foreach (Eigenschap e in eigenschappenList) {
-					checkList.Add (e.tid, false);
+					e.selected = false;
 				}
-				eigenschapAdapter = new EigenschapAdapter (this, db.GetEigenschappen (), checkList, mListener);
+				eigenschapAdapter = new EigenschapAdapter (this, db.GetEigenschappen (), mListener);
 				allEigenschappenListView.Adapter = eigenschapAdapter;
 				vindButton.Visibility = ViewStates.Visible;
 				return true;
@@ -157,7 +158,7 @@ namespace Totem {
 					mToast.Show ();
 				} else {
 					fullList = false;
-					eigenschapAdapter = new EigenschapAdapter (this, list, checkList, mListener);
+					eigenschapAdapter = new EigenschapAdapter (this, list, mListener);
 					allEigenschappenListView.Adapter = eigenschapAdapter;
 					vindButton.Visibility = ViewStates.Visible;
 				}
@@ -170,7 +171,7 @@ namespace Totem {
 		private List<Eigenschap> GetSelectedEigenschappen() {
 			List<Eigenschap> result = new List<Eigenschap> ();
 			foreach(Eigenschap e in eigenschappenList) {
-				if (checkList [e.tid]) {
+				if (e.selected) {
 					result.Add (e);
 				}
 			}
@@ -185,7 +186,7 @@ namespace Totem {
 			} else {
 				query.Text = "";
 				fullList = true;
-				eigenschapAdapter = new EigenschapAdapter (this, db.GetEigenschappen(), checkList, mListener);
+				eigenschapAdapter = new EigenschapAdapter (this, db.GetEigenschappen(), mListener);
 				allEigenschappenListView.Adapter = eigenschapAdapter;
 			}
 			vindButton.Visibility = ViewStates.Visible;
