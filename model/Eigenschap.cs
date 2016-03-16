@@ -7,5 +7,6 @@ namespace Totem {
 		[PrimaryKey, AutoIncrement]
 		public string tid { get; set; }
 		public string name { get; set; }
+		public bool selected { get; set; }
 	}
 }
