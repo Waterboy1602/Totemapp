@@ -3,19 +3,19 @@
 		<item name="android:textColorPrimary">#000</item>
 		<item name="android:textColorSecondary">#000</item>
 	    <item name="android:textColorTertiary">#000</item>
-	    <item name="android:colorButtonNormal">#0061A1</item>
-	    <item name="android:colorControlNormal">#0061A1</item>
-	    <item name="android:colorAccent">#0061A1</item>
-	    <item name="android:statusBarColor">#0061A1</item>
+	    <item name="android:colorButtonNormal">#005C9D</item>
+	    <item name="android:colorControlNormal">#005C9D</item>
+	    <item name="android:colorAccent">#005C9D</item>
+	    <item name="android:statusBarColor">#005C9D</item>
 	</style>
 
 	<style name="AppThemeNoAction" parent="@android:style/Theme.Material.Light.NoActionBar">
 		<item name="android:textColorPrimary">#000</item>
 		<item name="android:textColorSecondary">#000</item>
 	    <item name="android:textColorTertiary">#000</item>
-	    <item name="android:colorButtonNormal">#0061A1</item>
-	    <item name="android:colorControlNormal">#0061A1</item>
-	    <item name="android:colorAccent">#0061A1</item>
-	    <item name="android:statusBarColor">#0061A1</item>
+	    <item name="android:colorButtonNormal">#005C9D</item>
+	    <item name="android:colorControlNormal">#005C9D</item>
+	    <item name="android:colorAccent">#005C9D</item>
+	    <item name="android:statusBarColor">#005C9D</item>
 	</style>
 </resources>

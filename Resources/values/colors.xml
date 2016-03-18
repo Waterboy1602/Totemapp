@@ -1,2 +1,5 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="totemblue" type="color">#005C9D</item>
+    <item name="totembrown" type="color">#432918</item>    
+</resources>
