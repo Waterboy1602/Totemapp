@@ -19,6 +19,6 @@
         android:layout_height="50dp"
         android:layout_marginRight="10sp"
         android:gravity="center"
-        android:buttonTint="#0061A1"
+        android:buttonTint="@color/totemblue"
         android:layout_alignParentRight="true" />
 </RelativeLayout>

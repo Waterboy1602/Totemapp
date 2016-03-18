@@ -13,14 +13,14 @@ using Android.Widget;
 using Android.Graphics;
 using Android.Text.Method;
 using Android.Views.InputMethods;
+using Android.Text;
 
 
 namespace Totem {
 	[Activity (Label = "Totem detail")]			
 	public class TotemDetailActivity : Activity	{
 		CustomFontTextView number;
-		CustomFontTextView title;
-		CustomFontTextView synonyms;
+		TextView title_synonyms;
 		CustomFontTextView body;
 
 		Database db;
@@ -44,8 +44,7 @@ namespace Totem {
 			voegtoe.SetTypeface(Din, 0);
 
 			number = FindViewById<CustomFontTextView> (Resource.Id.number);
-			title = FindViewById<CustomFontTextView> (Resource.Id.title);
-			synonyms = FindViewById<CustomFontTextView> (Resource.Id.synonyms);
+			title_synonyms = FindViewById<TextView> (Resource.Id.title_synonyms);
 			body = FindViewById<CustomFontTextView> (Resource.Id.body);
 
 			var nid = Intent.GetStringExtra ("totemID");
@@ -124,13 +123,37 @@ namespace Totem {
 			};
 		}
 
+		private int ConvertDPToPixels(float dp) {
+			float scale = Resources.DisplayMetrics.Density;
+			int result =  (int)(dp * scale + 0.5f);
+			return result;
+		}
+
 		//displays totem info
 		private void GetInfo(string idx) {
 			Totem t = db.GetTotemOnID (idx);
 			number.Text = t.number + ". ";
-			title.Text = t.title;
-			if(t.synonyms != null) {
-				synonyms.Text = t.synonyms;
+			Typeface Verveine = Typeface.CreateFromAsset (Assets, "fonts/Verveine W01 Regular.ttf");
+
+			//code to get formatting right
+			//title and synonyms are in the same textview
+			//font, size,... are given using spans
+			if (t.synonyms != null) {
+				string titlestring = t.title;
+				string synonymsstring = " - " + t.synonyms;
+
+				Typeface Din = Typeface.CreateFromAsset (Assets, "fonts/DINPro-Light.ttf");
+
+				ISpannable sp = new SpannableString (titlestring + synonymsstring);
+
+				sp.SetSpan (new CustomTypefaceSpan ("sans-serif", Verveine, 0, 0), 0, titlestring.Length, SpanTypes.ExclusiveExclusive);
+
+				sp.SetSpan (new CustomTypefaceSpan ("sans-serif", Din, TypefaceStyle.Italic, ConvertDPToPixels(17)), titlestring.Length, titlestring.Length + synonymsstring.Length, SpanTypes.ExclusiveExclusive);
+
+				title_synonyms.TextFormatted = sp;
+			} else {
+				title_synonyms.Text = t.title;
+				title_synonyms.SetTypeface (Verveine, 0);
 			}
 			body.Text = t.body;
 		}

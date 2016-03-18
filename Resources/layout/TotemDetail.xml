@@ -16,30 +16,35 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="fill_parent">
             <Totem.CustomFontTextView
                 android:id="@+id/number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="34sp"
-                android:textColor="#432918"
+                android:textColor="@color/totembrown"
                 app:font="@string/Verveine" />
             <Totem.CustomFontTextView
-                android:id="@+id/title"
+                android:id="@+id/title_synonyms"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="34sp"
-                android:textColor="#0061A1"
+                android:textColor="@color/totemblue"
                 app:font="@string/Verveine" />
+            <Totem.CustomFontTextView
+                android:id="@+id/synonyms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:textColor="@color/totemblue"
+                android:textStyle="italic"
+                app:font="@string/DIN_light" />
         </LinearLayout>
-        <Totem.CustomFontTextView
-            android:id="@+id/synonyms"
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/lijn"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textSize="17sp"
-            android:textColor="#0061A1"
-            android:textStyle="italic"
-            app:font="@string/DIN_light" />
+            android:src="@drawable/Lijn" />
         <Totem.CustomFontTextView
             android:id="@+id/body"
             android:layout_width="match_parent"
