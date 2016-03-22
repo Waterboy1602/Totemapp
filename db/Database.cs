@@ -53,7 +53,7 @@ namespace Totem {
 		private void SetEigenschappen() {
 			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
 				var cmd = new SQLite.SQLiteCommand (conn);
-				cmd.CommandText = "select * from eigenschap_nieuw";
+				cmd.CommandText = "select * from eigenschap_nieuw order by name";
 				eigenschappen = cmd.ExecuteQuery<Eigenschap> ();
 			}
 		}
@@ -62,7 +62,7 @@ namespace Totem {
 		private void SetTotems() {
 			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
 				var cmd = new SQLite.SQLiteCommand (conn);
-				cmd.CommandText = "select * from totem_nieuw";
+				cmd.CommandText = "select * from totem_nieuw order by title";
 				totems = cmd.ExecuteQuery<Totem> ();
 			}
 		}

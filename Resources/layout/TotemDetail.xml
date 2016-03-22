@@ -41,10 +41,9 @@
                 app:font="@string/DIN_light" />
         </LinearLayout>
         <ImageView
-            android:id="@+id/lijn"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/Lijn" />
+            android:src="@drawable/Lijn_bold" />
         <Totem.CustomFontTextView
             android:id="@+id/body"
             android:layout_width="match_parent"

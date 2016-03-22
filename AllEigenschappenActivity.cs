@@ -93,7 +93,7 @@ namespace Totem {
 			};
 		}
 
-		//shows only totems that are searched
+		//shows only totems that are match the query
 		private void Search() {
 			fullList = false;
 			vindButton.Visibility = ViewStates.Gone;

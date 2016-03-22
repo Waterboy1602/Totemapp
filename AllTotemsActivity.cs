@@ -92,7 +92,7 @@ namespace Totem {
 		//return to full list and empty search field when 'back' is pressed
 		//this happens only when a search query is currently entered
 		public override void OnBackPressed() { 
-			if (fullList) {
+			if (fullList || query.Text == "") {
 				base.OnBackPressed ();
 			} else {
 				query.Text = "";
