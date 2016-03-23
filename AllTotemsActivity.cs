@@ -24,14 +24,23 @@ namespace Totem {
 		List<Totem> totemList;
 
 		Database db;
-		EditText query;
 
-		bool fullList = true;
+		EditText query;
+		CustomFontTextView title;
+		ImageButton back;
+		ImageButton search;
 
 		protected override void OnCreate (Bundle bundle) {
 			base.OnCreate (bundle);
 
 			SetContentView (Resource.Layout.AllTotems);
+
+			ActionBar mActionBar = ActionBar;
+			mActionBar.SetDisplayShowTitleEnabled(true);
+			mActionBar.SetDisplayShowHomeEnabled(false);
+
+			LayoutInflater mInflater = LayoutInflater.From (this);
+			View mCustomView = mInflater.Inflate (Resource.Layout.ActionBar, null);
 
 			db = DatabaseHelper.GetInstance (this);
 
@@ -41,11 +50,26 @@ namespace Totem {
 			allTotemListView = FindViewById<ListView> (Resource.Id.all_totem_list);
 			allTotemListView.Adapter = totemAdapter;
 
-			query = FindViewById<EditText>(Resource.Id.totemQuery);
+			query = mCustomView.FindViewById<EditText>(Resource.Id.query);
+			query.Hint = "Zoek totem";
 
 			LiveSearch ();
 
 			allTotemListView.ItemClick += TotemClick;
+
+			title = mCustomView.FindViewById<CustomFontTextView> (Resource.Id.title);
+			title.Text = "Totems";
+
+			back = mCustomView.FindViewById<ImageButton> (Resource.Id.backButton);
+			back.Click += (object sender, EventArgs e) => OnBackPressed();
+
+			search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
+			search.Click += (object sender, EventArgs e) => ToggleSearch();
+
+			ActionBar.LayoutParams layout = new ActionBar.LayoutParams (WindowManagerLayoutParams.MatchParent, WindowManagerLayoutParams.MatchParent);
+
+			mActionBar.SetCustomView (mCustomView, layout);
+			mActionBar.SetDisplayShowCustomEnabled (true);
 
 			//hide keybaord when enter is pressed
 			query.EditorAction += (sender, e) => {
@@ -56,11 +80,21 @@ namespace Totem {
 			};
 		}
 
-		//removes focus from search bar on resume
-		protected override void OnResume () {
-			base.OnResume ();
-			query.ClearFocus ();
-			query.SetCursorVisible(false);
+		private void ToggleSearch() {
+			if (query.Visibility == ViewStates.Visible) {
+				HideSearch();
+			} else {
+				back.Visibility = ViewStates.Gone;
+				title.Visibility = ViewStates.Gone;
+				query.Visibility = ViewStates.Visible;
+				query.RequestFocus ();
+			}
+		}
+
+		private void HideSearch() {
+			back.Visibility = ViewStates.Visible;
+			title.Visibility = ViewStates.Visible;
+			query.Visibility = ViewStates.Gone;
 		}
 
 		//update list after every keystroke
@@ -72,7 +106,6 @@ namespace Totem {
 
 		//shows only totems that are searched
 		private void Search() {
-			fullList = false;
 			totemList = db.FindTotemOpNaam (query.Text);
 			totemAdapter = new TotemAdapter (this, totemList);
 			allTotemListView.Adapter = totemAdapter;
@@ -91,14 +124,14 @@ namespace Totem {
 			
 		//return to full list and empty search field when 'back' is pressed
 		//this happens only when a search query is currently entered
-		public override void OnBackPressed() { 
-			if (fullList || query.Text == "") {
-				base.OnBackPressed ();
-			} else {
+		public override void OnBackPressed() {
+			if (query.Visibility == ViewStates.Visible) {
+				HideSearch ();
 				query.Text = "";
-				fullList = true;
 				totemAdapter = new TotemAdapter (this, db.GetTotems());
 				allTotemListView.Adapter = totemAdapter;
+			} else {
+				base.OnBackPressed ();
 			}
 		}
 	}

@@ -25,12 +25,23 @@ namespace Totem {
 		Database db;
 		Toast mToast;
 
+		CustomFontTextView title;
+		ImageButton back;
+		ImageButton search;
+
+		String nid;
+
 		protected override void OnCreate (Bundle bundle) {
 			base.OnCreate (bundle);
 
-			RequestWindowFeature(WindowFeatures.NoTitle);
-
 			SetContentView (Resource.Layout.TotemDetail);
+
+			ActionBar mActionBar = ActionBar;
+			mActionBar.SetDisplayShowTitleEnabled(false);
+			mActionBar.SetDisplayShowHomeEnabled(false);
+
+			LayoutInflater mInflater = LayoutInflater.From (this);
+			View mCustomView = mInflater.Inflate (Resource.Layout.ActionBar, null);
 
 			db = DatabaseHelper.GetInstance (this);
 
@@ -46,7 +57,7 @@ namespace Totem {
 			title_synonyms = FindViewById<TextView> (Resource.Id.title_synonyms);
 			body = FindViewById<CustomFontTextView> (Resource.Id.body);
 
-			var nid = Intent.GetStringExtra ("totemID");
+			nid = Intent.GetStringExtra ("totemID");
 			var hideButton = Intent.GetStringExtra ("hideButton");
 			if (hideButton != null)
 				voegtoe.Visibility = ViewStates.Gone;
@@ -54,8 +65,23 @@ namespace Totem {
 			GetInfo (nid);
 
 			//add to profiles
-			voegtoe.Click += (sender, eventArgs) => {
-				PopupMenu menu = new PopupMenu (this, voegtoe);
+			voegtoe.Click += (sender, eventArgs) => ProfilePopup();
+
+			back = mCustomView.FindViewById<ImageButton> (Resource.Id.backButton);
+			back.Click += (object sender, EventArgs e) => OnBackPressed();
+
+			search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
+			search.SetImageResource (Resource.Drawable.ic_add_white_48dp);
+			search.Click += (object sender, EventArgs e) => ProfilePopup();
+
+			ActionBar.LayoutParams layout = new ActionBar.LayoutParams (WindowManagerLayoutParams.MatchParent, WindowManagerLayoutParams.MatchParent);
+
+			mActionBar.SetCustomView (mCustomView, layout);
+			mActionBar.SetDisplayShowCustomEnabled (true);
+		}
+
+		private void ProfilePopup() {
+				PopupMenu menu = new PopupMenu (this, search);
 				menu.Inflate (Resource.Menu.Popup);
 				int count = 0;
 				foreach(Profiel p in db.GetProfielen()) {
@@ -69,7 +95,7 @@ namespace Totem {
 					if(arg1.Item.TitleFormatted.ToString().Equals("Nieuw profiel")) {
 						AlertDialog.Builder alert = new AlertDialog.Builder (this);
 						alert.SetTitle ("Naam");
-						EditText input = new EditText (this); 
+						EditText input = new EditText (this);
 						input.InputType = Android.Text.InputTypes.TextFlagCapWords;
 						KeyboardHelper.ShowKeyboardDialog(this, input);
 						alert.SetView (input);
@@ -119,7 +145,6 @@ namespace Totem {
 				};
 
 				menu.Show ();
-			};
 		}
 
 		private int ConvertDPToPixels(float dp) {

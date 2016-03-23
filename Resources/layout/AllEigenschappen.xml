@@ -7,33 +7,19 @@
     <FrameLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
-        <LinearLayout
-            android:orientation="vertical"
+        <ListView
+            android:id="@+id/all_eigenschappen_list"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:descendantFocusability="beforeDescendants"
-                android:focusableInTouchMode="true">
-                <Totem.CustomFontEditText
-                    android:id="@+id/eigenschapQuery"
-                    android:layout_width="fill_parent"
-                    android:singleLine="true"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:imeOptions="actionSearch"
-                    android:inputType="text"
-                    android:hint="Zoek eigenschap"
-                    app:font="@string/DIN_regular" />
-            </LinearLayout>
-            <ListView
-                android:id="@+id/all_eigenschappen_list"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="" />
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:text="" />
+        <TextView
+            android:id="@+id/test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|bottom"
+            android:background="@android:color/white"
+            android:textSize="30dip"
+            android:text="" />
         <Totem.CustomFontButton
             android:id="@+id/vind_button"
             android:layout_width="wrap_content"

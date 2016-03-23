@@ -13,12 +13,13 @@ namespace Totem {
 		Activity _activity;
 		List<Eigenschap> eigenschapList;
 
-		OnCheckBoxClickListener mListener;
+		MyOnCheckBoxClickListener mListener;
 
-		public EigenschapAdapter (Activity activity, List<Eigenschap> list, OnCheckBoxClickListener listener) {	
+		public EigenschapAdapter (Activity activity, List<Eigenschap> list, MyOnCheckBoxClickListener listener) {	
 			this._activity = activity;
 			this.eigenschapList = list;
 			this.mListener = listener;
+			mListener.UpdateCounter(eigenschapList);
 		}
 
 		public override Eigenschap this[int index] {
@@ -50,9 +51,8 @@ namespace Totem {
 			//and which aren't during scrolling
 			viewHolder.checkbox.Tag = position;
 
-			viewHolder.eigenschap.Text = eigenschapList [position].name;
-			bool itemChecked = eigenschapList [(int)viewHolder.checkbox.Tag].selected;
-			viewHolder.checkbox.Checked = itemChecked;
+			viewHolder.eigenschap.Text = eigenschapList [position].name; 
+			viewHolder.checkbox.Checked = eigenschapList [(int)viewHolder.checkbox.Tag].selected;
 
 			//notifies CheckBoxListener and stores selection
 			viewHolder.checkbox.Click += (o, e) => {
@@ -62,22 +62,21 @@ namespace Totem {
 				} else {
 					eigenschapList [(int)viewHolder.checkbox.Tag].selected = false;
 				}
+				mListener.UpdateCounter(eigenschapList);
 			};
 
 			//when the row item is clicked, it also checks or unchecks the box
 			//notifies CheckBoxListener and stores selection
-			/*convertView.Click += (o, e) => {
-				var temp = viewHolder.checkbox.Checked;
-				viewHolder.checkbox.Checked = !(temp);
+			convertView.Click += (o, e) => {
+				viewHolder.checkbox.Checked = !(viewHolder.checkbox.Checked);
 				mListener.OnCheckboxClicked ();
 				if (viewHolder.checkbox.Checked) {
 					eigenschapList [(int)viewHolder.checkbox.Tag].selected = true;
 				} else {
 					eigenschapList [(int)viewHolder.checkbox.Tag].selected = false;
 				}
-
-				//viewHolder.checkbox.PerformClick();
-			};*/
+				mListener.UpdateCounter(eigenschapList);
+			};
 
 			return convertView;
 		}

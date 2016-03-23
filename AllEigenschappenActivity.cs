@@ -15,6 +15,8 @@ using Android.Widget;
 using Android.Views.InputMethods;
 using Android.Content.PM;
 using Android.Graphics;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace Totem {
 	[Activity (Label = "Eigenschappen", WindowSoftInputMode = Android.Views.SoftInput.AdjustPan, ScreenOrientation = ScreenOrientation.Portrait)]			
@@ -25,12 +27,18 @@ namespace Totem {
 		List<Eigenschap> eigenschappenList;
 
 		Database db;
-		EditText query;
 		Button vindButton;
+
+		EditText query;
+		CustomFontTextView title;
+		ImageButton back;
+		ImageButton search;
+
+		IMenu menu;
 
 		Toast mToast;
 
-		OnCheckBoxClickListener mListener;
+		MyOnCheckBoxClickListener mListener;
 
 		bool fullList = true;
 
@@ -38,6 +46,13 @@ namespace Totem {
 			base.OnCreate (bundle);
 
 			SetContentView (Resource.Layout.AllEigenschappen);
+
+			ActionBar mActionBar = ActionBar;
+			mActionBar.SetDisplayShowTitleEnabled(false);
+			mActionBar.SetDisplayShowHomeEnabled(false);
+
+			LayoutInflater mInflater = LayoutInflater.From (this);
+			View mCustomView = mInflater.Inflate (Resource.Layout.ActionBar, null);
 
 			db = DatabaseHelper.GetInstance (this);
 
@@ -59,11 +74,26 @@ namespace Totem {
 
 			vindButton = FindViewById<Button> (Resource.Id.vind_button);
 
-			query = FindViewById<EditText>(Resource.Id.eigenschapQuery);
+			query = mCustomView.FindViewById<EditText>(Resource.Id.query);
+			query.Hint = "Zoek eigenschap";
 
 			LiveSearch ();
 
 			vindButton.Click += (sender, eventArgs) => VindTotem();
+
+			title = mCustomView.FindViewById<CustomFontTextView> (Resource.Id.title);
+			title.Text = "Eigenschappen";
+
+			back = mCustomView.FindViewById<ImageButton> (Resource.Id.backButton);
+			back.Click += (object sender, EventArgs e) => OnBackPressed();
+
+			search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
+			search.Click += (object sender, EventArgs e) => ToggleSearch();
+
+			ActionBar.LayoutParams layout = new ActionBar.LayoutParams (WindowManagerLayoutParams.MatchParent, WindowManagerLayoutParams.MatchParent);
+
+			mActionBar.SetCustomView (mCustomView, layout);
+			mActionBar.SetDisplayShowCustomEnabled (true);
 
 			//hide keybaord when enter is pressed
 			query.EditorAction += (sender, e) => {
@@ -74,12 +104,21 @@ namespace Totem {
 			};
 		}
 
-		//removes focus from search bar on resume
-		protected override void OnResume ()	{
-			base.OnResume ();
-			query.ClearFocus ();
-			query.SetCursorVisible(false);
-			vindButton.Visibility = ViewStates.Visible;
+		private void ToggleSearch() {
+			if (query.Visibility == ViewStates.Visible) {
+				HideSearch();
+			} else {
+				back.Visibility = ViewStates.Gone;
+				title.Visibility = ViewStates.Gone;
+				query.Visibility = ViewStates.Visible;
+				query.RequestFocus ();
+			}
+		}
+
+		private void HideSearch() {
+			back.Visibility = ViewStates.Visible;
+			title.Visibility = ViewStates.Visible;
+			query.Visibility = ViewStates.Gone;
 		}
 
 		//update list after every keystroke
@@ -132,8 +171,11 @@ namespace Totem {
 		}
 
 		//create options menu
-		public override bool OnCreateOptionsMenu(IMenu menu) {
+		public override bool OnCreateOptionsMenu(IMenu m) {
+			this.menu = m;
 			MenuInflater.Inflate(Resource.Menu.EigenschapSelectieMenu, menu);
+			IMenuItem item = menu.FindItem (Resource.Id.full);
+			item.SetVisible (false);
 			return base.OnCreateOptionsMenu(menu);
 		}
 
@@ -158,14 +200,44 @@ namespace Totem {
 					mToast.Show ();
 				} else {
 					fullList = false;
+
+					Task.Factory.StartNew(() => Thread.Sleep(500)).ContinueWith((t) => {
+						UpdateOptionsMenu ();
+					}, TaskScheduler.FromCurrentSynchronizationContext());
+
 					eigenschapAdapter = new EigenschapAdapter (this, list, mListener);
 					allEigenschappenListView.Adapter = eigenschapAdapter;
 					vindButton.Visibility = ViewStates.Visible;
 				}
 				return true;
+
+			case Resource.Id.full:
+				query.Text = "";
+				fullList = true;
+
+				Task.Factory.StartNew(() => Thread.Sleep(500)).ContinueWith((t) => {
+					UpdateOptionsMenu ();
+				}, TaskScheduler.FromCurrentSynchronizationContext());
+
+				eigenschapAdapter = new EigenschapAdapter (this, db.GetEigenschappen (), mListener);
+				allEigenschappenListView.Adapter = eigenschapAdapter;
+				vindButton.Visibility = ViewStates.Visible;
+				return true;
 			}
 
 			return base.OnOptionsItemSelected(item);
+		}
+
+		private void UpdateOptionsMenu() {
+			IMenuItem s = menu.FindItem (Resource.Id.select);
+			IMenuItem f = menu.FindItem (Resource.Id.full);
+			if(fullList) {
+				s.SetVisible (true);
+				f.SetVisible (false);
+			} else {
+				s.SetVisible (false);
+				f.SetVisible (true);
+			}
 		}
 
 		private List<Eigenschap> GetSelectedEigenschappen() {
@@ -180,14 +252,22 @@ namespace Totem {
 
 		//return to full list and empty search field when 'back' is pressed
 		//this happens only when a search query is currently entered
-		public override void OnBackPressed() { 
-			if (fullList) {
-				base.OnBackPressed ();
-			} else {
+		public override void OnBackPressed() {
+			if (query.Visibility == ViewStates.Visible) {
+				HideSearch ();
 				query.Text = "";
 				fullList = true;
+				UpdateOptionsMenu ();
+				eigenschapAdapter = new EigenschapAdapter (this, db.GetEigenschappen (), mListener);
+				allEigenschappenListView.Adapter = eigenschapAdapter;
+			} else if (!fullList) {
+				query.Text = "";
+				fullList = true;
+				UpdateOptionsMenu ();
 				eigenschapAdapter = new EigenschapAdapter (this, db.GetEigenschappen(), mListener);
 				allEigenschappenListView.Adapter = eigenschapAdapter;
+			} else {
+				base.OnBackPressed ();
 			}
 			vindButton.Visibility = ViewStates.Visible;
 		}

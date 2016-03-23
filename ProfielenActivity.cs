@@ -13,7 +13,7 @@ using Android.Widget;
 using Android.Views.InputMethods;
 
 namespace Totem {
-	[Activity (Label = "Profielen")]			
+	[Activity (Label = "Profielen", Theme = "@style/AppThemeNoAction")]			
 	public class ProfielenActivity : Activity {
 		ProfielAdapter profielAdapter;
 		ListView profielenListView;
@@ -38,6 +38,9 @@ namespace Totem {
 			profielAdapter = new ProfielAdapter (this, profielen);
 			profielenListView = FindViewById<ListView> (Resource.Id.profielen_list);
 			profielenListView.Adapter = profielAdapter;
+
+			ImageButton back = FindViewById<ImageButton> (Resource.Id.backButton);
+			back.Click += (object sender, EventArgs e) => OnBackPressed();
 
 			profielenListView.ItemClick += ProfielClick;
 			profielenListView.ItemLongClick += ProfielLongClick;
@@ -161,6 +164,10 @@ namespace Totem {
 			}
 
 			return base.OnOptionsItemSelected(item);
+		}
+
+		public override void OnBackPressed () {
+			base.OnBackPressed ();
 		}
 	}
 }

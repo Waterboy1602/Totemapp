@@ -73,19 +73,34 @@ namespace Totem
 			public const int grass = 2130837505;
 			
 			// aapt resource value: 0x7f020002
-			public const int Icon = 2130837506;
+			public const int ic_add_white_24dp = 2130837506;
 			
 			// aapt resource value: 0x7f020003
-			public const int Lamp = 2130837507;
+			public const int ic_add_white_48dp = 2130837507;
 			
 			// aapt resource value: 0x7f020004
-			public const int Lijn = 2130837508;
+			public const int ic_arrow_back_white_24dp = 2130837508;
 			
 			// aapt resource value: 0x7f020005
-			public const int Lijn_bold = 2130837509;
+			public const int ic_more_vert_white_48dp = 2130837509;
 			
 			// aapt resource value: 0x7f020006
-			public const int Totem = 2130837510;
+			public const int ic_search_white_24dp = 2130837510;
+			
+			// aapt resource value: 0x7f020007
+			public const int Icon = 2130837511;
+			
+			// aapt resource value: 0x7f020008
+			public const int Lamp = 2130837512;
+			
+			// aapt resource value: 0x7f020009
+			public const int Lijn = 2130837513;
+			
+			// aapt resource value: 0x7f02000a
+			public const int Lijn_bold = 2130837514;
+			
+			// aapt resource value: 0x7f02000b
+			public const int Totem = 2130837515;
 			
 			static Drawable()
 			{
@@ -100,107 +115,119 @@ namespace Totem
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f080021
-			public const int Verwijder = 2131230753;
-			
-			// aapt resource value: 0x7f080001
-			public const int all_eigenschappen_list = 2131230721;
+			// aapt resource value: 0x7f080025
+			public const int Verwijder = 2131230757;
 			
 			// aapt resource value: 0x7f080004
-			public const int all_totem_list = 2131230724;
-			
-			// aapt resource value: 0x7f080018
-			public const int body = 2131230744;
-			
-			// aapt resource value: 0x7f080006
-			public const int checkbox = 2131230726;
-			
-			// aapt resource value: 0x7f080012
-			public const int checkboxWeergeven = 2131230738;
-			
-			// aapt resource value: 0x7f080014
-			public const int detail = 2131230740;
-			
-			// aapt resource value: 0x7f080005
-			public const int eigenschap = 2131230725;
-			
-			// aapt resource value: 0x7f080000
-			public const int eigenschapQuery = 2131230720;
-			
-			// aapt resource value: 0x7f08000a
-			public const int eigenschappen = 2131230730;
-			
-			// aapt resource value: 0x7f08000e
-			public const int empty_profiel = 2131230734;
-			
-			// aapt resource value: 0x7f08001b
-			public const int freq = 2131230747;
-			
-			// aapt resource value: 0x7f08000c
-			public const int goede_totemisatie = 2131230732;
-			
-			// aapt resource value: 0x7f08001d
-			public const int grass = 2131230749;
+			public const int all_eigenschappen_list = 2131230724;
 			
 			// aapt resource value: 0x7f080007
-			public const int jaKnop = 2131230727;
+			public const int all_totem_list = 2131230727;
 			
-			// aapt resource value: 0x7f080008
-			public const int neeKnop = 2131230728;
+			// aapt resource value: 0x7f080000
+			public const int backButton = 2131230720;
 			
-			// aapt resource value: 0x7f080015
-			public const int number = 2131230741;
-			
-			// aapt resource value: 0x7f08000b
-			public const int profielen = 2131230731;
-			
-			// aapt resource value: 0x7f08000f
-			public const int profielen_list = 2131230735;
-			
-			// aapt resource value: 0x7f08001e
-			public const int reset = 2131230750;
-			
-			// aapt resource value: 0x7f080013
-			public const int scroll = 2131230739;
-			
-			// aapt resource value: 0x7f08001f
-			public const int select = 2131230751;
-			
-			// aapt resource value: 0x7f080017
-			public const int synonyms = 2131230743;
-			
-			// aapt resource value: 0x7f080011
-			public const int tip = 2131230737;
-			
-			// aapt resource value: 0x7f080010
-			public const int titel = 2131230736;
-			
-			// aapt resource value: 0x7f080016
-			public const int title_synonyms = 2131230742;
-			
-			// aapt resource value: 0x7f08001a
-			public const int totem = 2131230746;
-			
-			// aapt resource value: 0x7f080003
-			public const int totemQuery = 2131230723;
-			
-			// aapt resource value: 0x7f08001c
-			public const int totem_list = 2131230748;
-			
-			// aapt resource value: 0x7f08000d
-			public const int totempaal = 2131230733;
+			// aapt resource value: 0x7f08001b
+			public const int body = 2131230747;
 			
 			// aapt resource value: 0x7f080009
-			public const int totems = 2131230729;
+			public const int checkbox = 2131230729;
 			
-			// aapt resource value: 0x7f080002
-			public const int vind_button = 2131230722;
+			// aapt resource value: 0x7f080015
+			public const int checkboxWeergeven = 2131230741;
+			
+			// aapt resource value: 0x7f080017
+			public const int detail = 2131230743;
+			
+			// aapt resource value: 0x7f080008
+			public const int eigenschap = 2131230728;
+			
+			// aapt resource value: 0x7f08000d
+			public const int eigenschappen = 2131230733;
+			
+			// aapt resource value: 0x7f080011
+			public const int empty_profiel = 2131230737;
+			
+			// aapt resource value: 0x7f08001e
+			public const int freq = 2131230750;
+			
+			// aapt resource value: 0x7f080023
+			public const int full = 2131230755;
+			
+			// aapt resource value: 0x7f08000f
+			public const int goede_totemisatie = 2131230735;
 			
 			// aapt resource value: 0x7f080020
-			public const int voegProfielToe = 2131230752;
+			public const int grass = 2131230752;
+			
+			// aapt resource value: 0x7f08000a
+			public const int jaKnop = 2131230730;
+			
+			// aapt resource value: 0x7f08000b
+			public const int neeKnop = 2131230731;
+			
+			// aapt resource value: 0x7f080018
+			public const int number = 2131230744;
+			
+			// aapt resource value: 0x7f08000e
+			public const int profielen = 2131230734;
+			
+			// aapt resource value: 0x7f080012
+			public const int profielen_list = 2131230738;
+			
+			// aapt resource value: 0x7f080002
+			public const int query = 2131230722;
+			
+			// aapt resource value: 0x7f080021
+			public const int reset = 2131230753;
+			
+			// aapt resource value: 0x7f080016
+			public const int scroll = 2131230742;
+			
+			// aapt resource value: 0x7f080003
+			public const int searchButton = 2131230723;
+			
+			// aapt resource value: 0x7f080022
+			public const int select = 2131230754;
+			
+			// aapt resource value: 0x7f08001a
+			public const int synonyms = 2131230746;
+			
+			// aapt resource value: 0x7f080005
+			public const int test = 2131230725;
+			
+			// aapt resource value: 0x7f080014
+			public const int tip = 2131230740;
+			
+			// aapt resource value: 0x7f080013
+			public const int titel = 2131230739;
+			
+			// aapt resource value: 0x7f080001
+			public const int title = 2131230721;
 			
 			// aapt resource value: 0x7f080019
-			public const int voegtoe = 2131230745;
+			public const int title_synonyms = 2131230745;
+			
+			// aapt resource value: 0x7f08001d
+			public const int totem = 2131230749;
+			
+			// aapt resource value: 0x7f08001f
+			public const int totem_list = 2131230751;
+			
+			// aapt resource value: 0x7f080010
+			public const int totempaal = 2131230736;
+			
+			// aapt resource value: 0x7f08000c
+			public const int totems = 2131230732;
+			
+			// aapt resource value: 0x7f080006
+			public const int vind_button = 2131230726;
+			
+			// aapt resource value: 0x7f080024
+			public const int voegProfielToe = 2131230756;
+			
+			// aapt resource value: 0x7f08001c
+			public const int voegtoe = 2131230748;
 			
 			static Id()
 			{
@@ -216,37 +243,40 @@ namespace Totem
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int AllEigenschappen = 2130903040;
+			public const int ActionBar = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int AllTotems = 2130903041;
+			public const int AllEigenschappen = 2130903041;
 			
 			// aapt resource value: 0x7f030002
-			public const int EigenschapListItem = 2130903042;
+			public const int AllTotems = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int Eigenschappen = 2130903043;
+			public const int EigenschapListItem = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int Main = 2130903044;
+			public const int Eigenschappen = 2130903044;
 			
 			// aapt resource value: 0x7f030005
-			public const int Profielen = 2130903045;
+			public const int Main = 2130903045;
 			
 			// aapt resource value: 0x7f030006
-			public const int SplashScreen = 2130903046;
+			public const int Profielen = 2130903046;
 			
 			// aapt resource value: 0x7f030007
-			public const int TipPopUp = 2130903047;
+			public const int SplashScreen = 2130903047;
 			
 			// aapt resource value: 0x7f030008
-			public const int TotemDetail = 2130903048;
+			public const int TipPopUp = 2130903048;
 			
 			// aapt resource value: 0x7f030009
-			public const int TotemListItem = 2130903049;
+			public const int TotemDetail = 2130903049;
 			
 			// aapt resource value: 0x7f03000a
-			public const int Totems = 2130903050;
+			public const int TotemListItem = 2130903050;
+			
+			// aapt resource value: 0x7f03000b
+			public const int Totems = 2130903051;
 			
 			static Layout()
 			{
@@ -316,6 +346,12 @@ namespace Totem
 			
 			// aapt resource value: 0x7f060001
 			public const int AppThemeNoAction = 2131099649;
+			
+			// aapt resource value: 0x7f060002
+			public const int MyActionBar = 2131099650;
+			
+			// aapt resource value: 0x7f060003
+			public const int MyCustomTheme_OverFlow = 2131099651;
 			
 			static Style()
 			{
