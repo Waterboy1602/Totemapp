@@ -1,36 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-    <FrameLayout
+    <ListView
+        android:id="@+id/all_eigenschappen_list"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-        <ListView
-            android:id="@+id/all_eigenschappen_list"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="" />
-        <TextView
-            android:id="@+id/test"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/bottomBar" />
+    <RelativeLayout
+        android:id="@+id/bottomBar"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:background="@color/totemblue">
+        <Totem.CustomFontTextView
+            android:id="@+id/selected"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left|bottom"
-            android:background="@android:color/white"
-            android:textSize="30dip"
-            android:text="" />
-        <Totem.CustomFontButton
-            android:id="@+id/vind_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Vind totem"
-            android:padding="15dip"
-            android:textSize="17dip"
-            android:layout_margin="8dip"
-            android:layout_marginRight="30dip"
-            android:layout_gravity="right|bottom"
-            android:textColor="@android:color/white"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10sp"
+            android:layout_alignParentLeft="true"
+            android:textSize="20sp"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:layout_centerVertical="true"
             app:font="@string/DIN_regular" />
-    </FrameLayout>
-</LinearLayout>
+        <LinearLayout
+            android:id="@+id/vind"
+            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_marginRight="10sp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:clickable="true">
+            <Totem.CustomFontTextView
+                android:id="@+id/vindText"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:textSize="15sp"
+                android:textColor="#fff"
+                android:layout_marginRight="5sp"
+                android:layout_centerVertical="true"
+                android:text="VIND TOTEM"
+                android:gravity="center"
+                app:font="@string/DIN_regular" />
+            <ImageButton
+                android:id="@+id/vindButton"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:src="@drawable/ic_arrow_forward_white_48dp" />
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

@@ -25,7 +25,7 @@ namespace Totem {
 		Database db;
 		Toast mToast;
 
-		CustomFontTextView title;
+		//CustomFontTextView title;
 		ImageButton back;
 		ImageButton search;
 
@@ -50,22 +50,15 @@ namespace Totem {
 			//single toast for entire activity
 			mToast = Toast.MakeText (this, "", ToastLength.Short);
 
-			Button voegtoe = FindViewById<Button> (Resource.Id.voegtoe);
-			voegtoe.SetTypeface(Din, 0);
+			//Button voegtoe = FindViewById<Button> (Resource.Id.voegtoe);
+			//voegtoe.SetTypeface(Din, 0);
 
 			number = FindViewById<CustomFontTextView> (Resource.Id.number);
 			title_synonyms = FindViewById<TextView> (Resource.Id.title_synonyms);
 			body = FindViewById<CustomFontTextView> (Resource.Id.body);
 
-			nid = Intent.GetStringExtra ("totemID");
-			var hideButton = Intent.GetStringExtra ("hideButton");
-			if (hideButton != null)
-				voegtoe.Visibility = ViewStates.Gone;
-			
-			GetInfo (nid);
-
 			//add to profiles
-			voegtoe.Click += (sender, eventArgs) => ProfilePopup();
+			//voegtoe.Click += (sender, eventArgs) => ProfilePopup();
 
 			back = mCustomView.FindViewById<ImageButton> (Resource.Id.backButton);
 			back.Click += (object sender, EventArgs e) => OnBackPressed();
@@ -73,6 +66,13 @@ namespace Totem {
 			search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
 			search.SetImageResource (Resource.Drawable.ic_add_white_48dp);
 			search.Click += (object sender, EventArgs e) => ProfilePopup();
+
+			nid = Intent.GetStringExtra ("totemID");
+			var hideButton = Intent.GetStringExtra ("hideButton");
+			if (hideButton != null)
+				search.Visibility = ViewStates.Gone;
+
+			GetInfo (nid);
 
 			ActionBar.LayoutParams layout = new ActionBar.LayoutParams (WindowManagerLayoutParams.MatchParent, WindowManagerLayoutParams.MatchParent);
 

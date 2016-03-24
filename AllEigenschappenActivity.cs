@@ -27,7 +27,10 @@ namespace Totem {
 		List<Eigenschap> eigenschappenList;
 
 		Database db;
-		Button vindButton;
+
+		RelativeLayout bottomBar;
+		CustomFontTextView vindText;
+		ImageButton vindButton;
 
 		EditText query;
 		CustomFontTextView title;
@@ -72,14 +75,18 @@ namespace Totem {
 			allEigenschappenListView = FindViewById<ListView> (Resource.Id.all_eigenschappen_list);
 			allEigenschappenListView.Adapter = eigenschapAdapter;
 
-			vindButton = FindViewById<Button> (Resource.Id.vind_button);
+			vindText = FindViewById<CustomFontTextView> (Resource.Id.vindText);
+			vindButton = FindViewById<ImageButton> (Resource.Id.vindButton);
 
 			query = mCustomView.FindViewById<EditText>(Resource.Id.query);
 			query.Hint = "Zoek eigenschap";
 
 			LiveSearch ();
 
+			vindText.Click += (sender, eventArgs) => VindTotem();
 			vindButton.Click += (sender, eventArgs) => VindTotem();
+
+			bottomBar = FindViewById<RelativeLayout> (Resource.Id.bottomBar);
 
 			title = mCustomView.FindViewById<CustomFontTextView> (Resource.Id.title);
 			title.Text = "Eigenschappen";
@@ -127,7 +134,7 @@ namespace Totem {
 				Search();
 				if(query.Text.Equals("")) {
 					fullList = true;
-					vindButton.Visibility = ViewStates.Visible;
+					bottomBar.Visibility = ViewStates.Visible;
 				}
 			};
 		}
@@ -135,7 +142,7 @@ namespace Totem {
 		//shows only totems that are match the query
 		private void Search() {
 			fullList = false;
-			vindButton.Visibility = ViewStates.Gone;
+			bottomBar.Visibility = ViewStates.Gone;
 			eigenschappenList = db.FindEigenschapOpNaam (query.Text);
 			eigenschapAdapter = new EigenschapAdapter (this, eigenschappenList, mListener);
 			allEigenschappenListView.Adapter = eigenschapAdapter;
@@ -190,7 +197,6 @@ namespace Totem {
 				}
 				eigenschapAdapter = new EigenschapAdapter (this, db.GetEigenschappen (), mListener);
 				allEigenschappenListView.Adapter = eigenschapAdapter;
-				vindButton.Visibility = ViewStates.Visible;
 				return true;
 
 			case Resource.Id.select:
@@ -207,7 +213,7 @@ namespace Totem {
 
 					eigenschapAdapter = new EigenschapAdapter (this, list, mListener);
 					allEigenschappenListView.Adapter = eigenschapAdapter;
-					vindButton.Visibility = ViewStates.Visible;
+					bottomBar.Visibility = ViewStates.Visible;
 				}
 				return true;
 
@@ -221,7 +227,7 @@ namespace Totem {
 
 				eigenschapAdapter = new EigenschapAdapter (this, db.GetEigenschappen (), mListener);
 				allEigenschappenListView.Adapter = eigenschapAdapter;
-				vindButton.Visibility = ViewStates.Visible;
+				bottomBar.Visibility = ViewStates.Visible;
 				return true;
 			}
 
@@ -269,7 +275,7 @@ namespace Totem {
 			} else {
 				base.OnBackPressed ();
 			}
-			vindButton.Visibility = ViewStates.Visible;
+			bottomBar.Visibility = ViewStates.Visible;
 		}
 	}
 }
