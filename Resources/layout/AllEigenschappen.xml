@@ -12,10 +12,11 @@
         android:layout_above="@+id/bottomBar" />
     <RelativeLayout
         android:id="@+id/bottomBar"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_width="fill_parent"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
+        android:visibility="gone"
         android:background="@color/totemblue">
         <Totem.CustomFontTextView
             android:id="@+id/selected"
@@ -27,7 +28,7 @@
             android:textColor="#fff"
             android:gravity="center"
             android:layout_centerVertical="true"
-            app:font="@string/DIN_regular" />
+            app:font="@string/DIN_light" />
         <LinearLayout
             android:id="@+id/vind"
             android:layout_height="50dp"
@@ -39,18 +40,18 @@
             <Totem.CustomFontTextView
                 android:id="@+id/vindText"
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
+                android:layout_height="50dp"
                 android:textSize="15sp"
                 android:textColor="#fff"
                 android:layout_marginRight="5sp"
                 android:layout_centerVertical="true"
                 android:text="VIND TOTEM"
                 android:gravity="center"
-                app:font="@string/DIN_regular" />
+                app:font="@string/DIN_light" />
             <ImageButton
                 android:id="@+id/vindButton"
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
+                android:layout_height="50dp"
                 android:layout_centerVertical="true"
                 android:background="@null"
                 android:src="@drawable/ic_arrow_forward_white_48dp" />

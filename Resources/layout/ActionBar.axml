@@ -33,6 +33,7 @@
         android:imeOptions="actionSearch"
         android:inputType="text"
         android:textColor="#fff"
+        android:textCursorDrawable="@null"
         android:textColorHint="#fff"
         android:visibility="gone"
         android:layout_marginRight="15dp"

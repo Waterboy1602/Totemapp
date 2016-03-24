@@ -12,7 +12,7 @@ namespace Totem {
 		//hides soft keyboard
 		public static void HideKeyboard(Context context) {
 			InputMethodManager inputManager = (InputMethodManager)context.GetSystemService (Context.InputMethodService);
-			inputManager.HideSoftInputFromWindow (((Activity)context).CurrentFocus.WindowToken, HideSoftInputFlags.NotAlways);
+			inputManager.HideSoftInputFromWindow (((Activity)context).CurrentFocus.WindowToken, HideSoftInputFlags.None);
 		}
 
 		//hides soft keyboard of dialog
@@ -22,7 +22,7 @@ namespace Totem {
 		}
 
 		//shows soft keyboard of dialog
-		public static void ShowKeyboardDialog(Context context, View pView) {
+		public static void ShowKeyboard(Context context, View pView) {
 			pView.RequestFocus();
 
 			InputMethodManager inputMethodManager = (InputMethodManager)context.GetSystemService (Context.InputMethodService);

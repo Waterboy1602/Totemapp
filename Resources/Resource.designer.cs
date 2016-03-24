@@ -85,25 +85,37 @@ namespace Totem
 			public const int ic_arrow_forward_white_48dp = 2130837509;
 			
 			// aapt resource value: 0x7f020006
-			public const int ic_more_vert_white_48dp = 2130837510;
+			public const int ic_delete_white_18dp = 2130837510;
 			
 			// aapt resource value: 0x7f020007
-			public const int ic_search_white_24dp = 2130837511;
+			public const int ic_delete_white_24dp = 2130837511;
 			
 			// aapt resource value: 0x7f020008
-			public const int Icon = 2130837512;
+			public const int ic_delete_white_36dp = 2130837512;
 			
 			// aapt resource value: 0x7f020009
-			public const int Lamp = 2130837513;
+			public const int ic_delete_white_48dp = 2130837513;
 			
 			// aapt resource value: 0x7f02000a
-			public const int Lijn = 2130837514;
+			public const int ic_more_vert_white_48dp = 2130837514;
 			
 			// aapt resource value: 0x7f02000b
-			public const int Lijn_bold = 2130837515;
+			public const int ic_search_white_24dp = 2130837515;
 			
 			// aapt resource value: 0x7f02000c
-			public const int Totem = 2130837516;
+			public const int Icon = 2130837516;
+			
+			// aapt resource value: 0x7f02000d
+			public const int Lamp = 2130837517;
+			
+			// aapt resource value: 0x7f02000e
+			public const int Lijn = 2130837518;
+			
+			// aapt resource value: 0x7f02000f
+			public const int Lijn_bold = 2130837519;
+			
+			// aapt resource value: 0x7f020010
+			public const int Totem = 2130837520;
 			
 			static Drawable()
 			{

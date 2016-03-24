@@ -87,6 +87,8 @@ namespace Totem {
 				back.Visibility = ViewStates.Gone;
 				title.Visibility = ViewStates.Gone;
 				query.Visibility = ViewStates.Visible;
+				KeyboardHelper.ShowKeyboard (this, query);
+				query.Text = "";
 				query.RequestFocus ();
 			}
 		}
@@ -95,6 +97,9 @@ namespace Totem {
 			back.Visibility = ViewStates.Visible;
 			title.Visibility = ViewStates.Visible;
 			query.Visibility = ViewStates.Gone;
+			KeyboardHelper.HideKeyboard (this);
+			totemAdapter = new TotemAdapter (this, db.GetTotems());
+			allTotemListView.Adapter = totemAdapter;
 		}
 
 		//update list after every keystroke
@@ -116,6 +121,7 @@ namespace Totem {
 		private void TotemClick(object sender, AdapterView.ItemClickEventArgs e) {
 			int pos = e.Position;
 			var item = totemAdapter.GetItemAtPosition(pos);
+			KeyboardHelper.HideKeyboard (this);
 
 			var detailActivity = new Intent(this, typeof(TotemDetailActivity));
 			detailActivity.PutExtra ("totemID", item.nid);
@@ -127,9 +133,6 @@ namespace Totem {
 		public override void OnBackPressed() {
 			if (query.Visibility == ViewStates.Visible) {
 				HideSearch ();
-				query.Text = "";
-				totemAdapter = new TotemAdapter (this, db.GetTotems());
-				allTotemListView.Adapter = totemAdapter;
 			} else {
 				base.OnBackPressed ();
 			}

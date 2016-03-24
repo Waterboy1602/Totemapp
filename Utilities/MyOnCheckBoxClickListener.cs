@@ -31,7 +31,7 @@ namespace Totem {
 			TextView count = ((Activity)context).FindViewById<TextView> (Resource.Id.selected);
 			RelativeLayout bottomBar = ((Activity)context).FindViewById<RelativeLayout> (Resource.Id.bottomBar);
 			int counter = CountCheckedItems(eigenschapList);
-			if (counter > 0) {
+			if (counter > 0 && eigenschapList.Count == 324) {
 				bottomBar.Visibility = ViewStates.Visible;
 				/*
 				//bottomBar.Visibility = ViewStates.Visible;

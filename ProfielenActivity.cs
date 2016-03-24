@@ -13,7 +13,7 @@ using Android.Widget;
 using Android.Views.InputMethods;
 
 namespace Totem {
-	[Activity (Label = "Profielen", Theme = "@style/AppThemeNoAction")]			
+	[Activity (Label = "Profielen")]			
 	public class ProfielenActivity : Activity {
 		ProfielAdapter profielAdapter;
 		ListView profielenListView;
@@ -25,6 +25,13 @@ namespace Totem {
 			base.OnCreate (savedInstanceState);
 
 			SetContentView (Resource.Layout.Profielen);
+
+			ActionBar mActionBar = ActionBar;
+			mActionBar.SetDisplayShowTitleEnabled(false);
+			mActionBar.SetDisplayShowHomeEnabled(false);
+
+			LayoutInflater mInflater = LayoutInflater.From (this);
+			View mCustomView = mInflater.Inflate (Resource.Layout.ActionBar, null);
 
 			db = DatabaseHelper.GetInstance (this);
 
@@ -39,11 +46,22 @@ namespace Totem {
 			profielenListView = FindViewById<ListView> (Resource.Id.profielen_list);
 			profielenListView.Adapter = profielAdapter;
 
-			ImageButton back = FindViewById<ImageButton> (Resource.Id.backButton);
-			back.Click += (object sender, EventArgs e) => OnBackPressed();
-
 			profielenListView.ItemClick += ProfielClick;
 			profielenListView.ItemLongClick += ProfielLongClick;
+
+			CustomFontTextView title = mCustomView.FindViewById<CustomFontTextView> (Resource.Id.title);
+			title.Text = "Profielen";
+
+			ImageButton back = mCustomView.FindViewById<ImageButton> (Resource.Id.backButton);
+			back.Click += (object sender, EventArgs e) => OnBackPressed();
+
+			ImageButton search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
+			search.Visibility = ViewStates.Gone;
+
+			ActionBar.LayoutParams layout = new ActionBar.LayoutParams (WindowManagerLayoutParams.MatchParent, WindowManagerLayoutParams.MatchParent);
+
+			mActionBar.SetCustomView (mCustomView, layout);
+			mActionBar.SetDisplayShowCustomEnabled (true);
 		}
 
 		private void ProfielClick(object sender, AdapterView.ItemClickEventArgs e) {
@@ -96,7 +114,7 @@ namespace Totem {
 				alert.SetTitle ("Naam");
 				EditText input = new EditText (this); 
 				input.InputType = Android.Text.InputTypes.TextFlagCapWords;
-				KeyboardHelper.ShowKeyboardDialog (this, input);
+				KeyboardHelper.ShowKeyboard (this, input);
 				alert.SetView (input);
 				alert.SetPositiveButton ("Ok", (sender, args) => {
 					string value = input.Text;
@@ -166,8 +184,11 @@ namespace Totem {
 			return base.OnOptionsItemSelected(item);
 		}
 
-		public override void OnBackPressed () {
+		/*public override void OnBackPressed () {
 			base.OnBackPressed ();
-		}
+			var act = new Intent (this, typeof(MainActivity));
+			Finish ();
+			StartActivity (act);
+		}*/
 	}
 }

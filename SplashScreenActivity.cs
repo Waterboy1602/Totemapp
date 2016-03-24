@@ -11,7 +11,7 @@ using Android.Views;
 using Android.Widget;
 
 namespace Totem {
-	[Activity (Label = "Totem", MainLauncher = false, NoHistory = true, Theme = "@style/AppThemeNoAction")]			
+	[Activity (Label = "Totem", MainLauncher = false, NoHistory = true)]			
 	public class SplashScreenActivity : Activity {
 		private static int SPLASH_TIME = 2000;
 		private Handler mHandler;

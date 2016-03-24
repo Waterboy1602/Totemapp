@@ -118,6 +118,8 @@ namespace Totem {
 				back.Visibility = ViewStates.Gone;
 				title.Visibility = ViewStates.Gone;
 				query.Visibility = ViewStates.Visible;
+				KeyboardHelper.ShowKeyboard (this, query);
+				query.Text = "";
 				query.RequestFocus ();
 			}
 		}
@@ -126,6 +128,12 @@ namespace Totem {
 			back.Visibility = ViewStates.Visible;
 			title.Visibility = ViewStates.Visible;
 			query.Visibility = ViewStates.Gone;
+			KeyboardHelper.HideKeyboard (this);
+			eigenschapAdapter = new EigenschapAdapter (this, db.GetEigenschappen (), mListener);
+			allEigenschappenListView.Adapter = eigenschapAdapter;
+			query.Text = "";
+			fullList = true;
+			UpdateOptionsMenu ();
 		}
 
 		//update list after every keystroke
@@ -261,11 +269,6 @@ namespace Totem {
 		public override void OnBackPressed() {
 			if (query.Visibility == ViewStates.Visible) {
 				HideSearch ();
-				query.Text = "";
-				fullList = true;
-				UpdateOptionsMenu ();
-				eigenschapAdapter = new EigenschapAdapter (this, db.GetEigenschappen (), mListener);
-				allEigenschappenListView.Adapter = eigenschapAdapter;
 			} else if (!fullList) {
 				query.Text = "";
 				fullList = true;

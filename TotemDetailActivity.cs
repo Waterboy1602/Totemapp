@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 using Android.App;
@@ -25,11 +24,12 @@ namespace Totem {
 		Database db;
 		Toast mToast;
 
-		//CustomFontTextView title;
+		CustomFontTextView title;
 		ImageButton back;
 		ImageButton search;
 
 		String nid;
+		Totem t;
 
 		protected override void OnCreate (Bundle bundle) {
 			base.OnCreate (bundle);
@@ -45,32 +45,34 @@ namespace Totem {
 
 			db = DatabaseHelper.GetInstance (this);
 
-			Typeface Din = Typeface.CreateFromAsset(Assets,"fonts/DINPro-Light.ttf");
-
 			//single toast for entire activity
 			mToast = Toast.MakeText (this, "", ToastLength.Short);
-
-			//Button voegtoe = FindViewById<Button> (Resource.Id.voegtoe);
-			//voegtoe.SetTypeface(Din, 0);
 
 			number = FindViewById<CustomFontTextView> (Resource.Id.number);
 			title_synonyms = FindViewById<TextView> (Resource.Id.title_synonyms);
 			body = FindViewById<CustomFontTextView> (Resource.Id.body);
 
 			//add to profiles
-			//voegtoe.Click += (sender, eventArgs) => ProfilePopup();
 
 			back = mCustomView.FindViewById<ImageButton> (Resource.Id.backButton);
 			back.Click += (object sender, EventArgs e) => OnBackPressed();
 
+			title = mCustomView.FindViewById<CustomFontTextView> (Resource.Id.title);
+
 			search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
-			search.SetImageResource (Resource.Drawable.ic_add_white_48dp);
-			search.Click += (object sender, EventArgs e) => ProfilePopup();
+
 
 			nid = Intent.GetStringExtra ("totemID");
-			var hideButton = Intent.GetStringExtra ("hideButton");
-			if (hideButton != null)
-				search.Visibility = ViewStates.Gone;
+			t = db.GetTotemOnID (nid);
+
+			var profileName = Intent.GetStringExtra ("profileName");
+			if (profileName != null) {
+				search.SetImageResource (Resource.Drawable.ic_delete_white_24dp);
+				search.Click += (object sender, EventArgs e) => RemoveFromProfile (profileName);
+			} else {
+				search.SetImageResource (Resource.Drawable.ic_add_white_48dp);
+				search.Click += (object sender, EventArgs e) => ProfilePopup();
+			}
 
 			GetInfo (nid);
 
@@ -78,6 +80,25 @@ namespace Totem {
 
 			mActionBar.SetCustomView (mCustomView, layout);
 			mActionBar.SetDisplayShowCustomEnabled (true);
+		}
+
+		private void RemoveFromProfile(string profileName) {
+
+			AlertDialog.Builder alert = new AlertDialog.Builder (this);
+			alert.SetMessage (t.title + " verwijderen uit profiel " + profileName + "?");
+			alert.SetPositiveButton ("Ja", (senderAlert, args) => {
+				db.DeleteTotemFromProfile(t.nid, profileName);
+				mToast.SetText(t.title + " verwijderd");
+				mToast.Show();
+				base.OnBackPressed();
+			});
+
+			alert.SetNegativeButton ("Nee", (senderAlert, args) => {
+
+			});
+
+			Dialog dialog = alert.Create();
+			dialog.Show();
 		}
 
 		private void ProfilePopup() {
@@ -97,7 +118,7 @@ namespace Totem {
 						alert.SetTitle ("Naam");
 						EditText input = new EditText (this);
 						input.InputType = Android.Text.InputTypes.TextFlagCapWords;
-						KeyboardHelper.ShowKeyboardDialog(this, input);
+						KeyboardHelper.ShowKeyboard(this, input);
 						alert.SetView (input);
 						alert.SetPositiveButton ("Ok", (s, args) => {
 							string value = input.Text;
@@ -155,8 +176,8 @@ namespace Totem {
 
 		//displays totem info
 		private void GetInfo(string idx) {
-			Totem t = db.GetTotemOnID (idx);
 			number.Text = t.number + ". ";
+			title.Text = t.title;
 			Typeface Verveine = Typeface.CreateFromAsset (Assets, "fonts/Verveine W01 Regular.ttf");
 
 			//code to get formatting right
@@ -164,7 +185,7 @@ namespace Totem {
 			//font, size,... are given using spans
 			if (t.synonyms != null) {
 				string titlestring = t.title;
-				string synonymsstring = " - " + t.synonyms;
+				string synonymsstring = " - " + t.synonyms + " ";
 
 				Typeface Din = Typeface.CreateFromAsset (Assets, "fonts/DINPro-Light.ttf");
 
@@ -175,6 +196,7 @@ namespace Totem {
 				sp.SetSpan (new CustomTypefaceSpan ("sans-serif", Din, TypefaceStyle.Italic, ConvertDPToPixels(17)), titlestring.Length, titlestring.Length + synonymsstring.Length, SpanTypes.ExclusiveExclusive);
 
 				title_synonyms.TextFormatted = sp;
+				//title_synonyms.LayoutParameters = new LinearLayout.LayoutParams (title_synonyms.MeasuredWidth + 1, ViewGroup.LayoutParams.WrapContent);
 			} else {
 				title_synonyms.Text = t.title;
 				title_synonyms.SetTypeface (Verveine, 0);
