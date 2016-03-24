@@ -129,8 +129,8 @@ namespace Totem {
 			title.Visibility = ViewStates.Visible;
 			query.Visibility = ViewStates.Gone;
 			KeyboardHelper.HideKeyboard (this);
-			eigenschapAdapter = new EigenschapAdapter (this, db.GetEigenschappen (), mListener);
-			allEigenschappenListView.Adapter = eigenschapAdapter;
+			eigenschapAdapter.UpdateData (db.GetEigenschappen ());
+			eigenschapAdapter.NotifyDataSetChanged ();
 			query.Text = "";
 			fullList = true;
 			UpdateOptionsMenu ();
@@ -152,16 +152,18 @@ namespace Totem {
 			fullList = false;
 			bottomBar.Visibility = ViewStates.Gone;
 			eigenschappenList = db.FindEigenschapOpNaam (query.Text);
-			eigenschapAdapter = new EigenschapAdapter (this, eigenschappenList, mListener);
-			allEigenschappenListView.Adapter = eigenschapAdapter;
+			eigenschapAdapter.UpdateData (eigenschappenList);
+			eigenschapAdapter.NotifyDataSetChanged ();
 		}
 
 		//renders list of totems with frequencies based on selected eigenschappen
 		//and redirects to TotemsActivity to view them
 		private void VindTotem() {
 			Dictionary<int, int> freqs = new Dictionary<int, int> ();
+			int selected = 0;
 			foreach (Eigenschap e in eigenschappenList) {
 				if(e.selected) {
+					selected++;
 					List<Totem_eigenschap> toevoegen = db.GetTotemsVanEigenschapsID (e.tid);
 					foreach(Totem_eigenschap totem in toevoegen) {
 						int idx = Convert.ToInt32 (totem.nid);
@@ -180,6 +182,7 @@ namespace Totem {
 				int[] sortedFreqs = CollectionHelper.GetSortedList (freqs, false);
 				totemsActivity.PutExtra ("totemIDs", sortedTotems);
 				totemsActivity.PutExtra ("freqs", sortedFreqs);
+				totemsActivity.PutExtra ("selected", selected);
 
 				StartActivity (totemsActivity);
 			}
@@ -203,8 +206,8 @@ namespace Totem {
 				foreach (Eigenschap e in eigenschappenList) {
 					e.selected = false;
 				}
-				eigenschapAdapter = new EigenschapAdapter (this, db.GetEigenschappen (), mListener);
-				allEigenschappenListView.Adapter = eigenschapAdapter;
+				eigenschapAdapter.UpdateData (db.GetEigenschappen ());
+				eigenschapAdapter.NotifyDataSetChanged ();
 				return true;
 
 			case Resource.Id.select:
@@ -218,9 +221,9 @@ namespace Totem {
 					Task.Factory.StartNew(() => Thread.Sleep(500)).ContinueWith((t) => {
 						UpdateOptionsMenu ();
 					}, TaskScheduler.FromCurrentSynchronizationContext());
-
-					eigenschapAdapter = new EigenschapAdapter (this, list, mListener);
-					allEigenschappenListView.Adapter = eigenschapAdapter;
+						
+					eigenschapAdapter.UpdateData (list);
+					eigenschapAdapter.NotifyDataSetChanged ();
 					bottomBar.Visibility = ViewStates.Visible;
 				}
 				return true;
@@ -233,8 +236,8 @@ namespace Totem {
 					UpdateOptionsMenu ();
 				}, TaskScheduler.FromCurrentSynchronizationContext());
 
-				eigenschapAdapter = new EigenschapAdapter (this, db.GetEigenschappen (), mListener);
-				allEigenschappenListView.Adapter = eigenschapAdapter;
+				eigenschapAdapter.UpdateData (db.GetEigenschappen ());
+				eigenschapAdapter.NotifyDataSetChanged ();
 				bottomBar.Visibility = ViewStates.Visible;
 				return true;
 			}
@@ -273,8 +276,8 @@ namespace Totem {
 				query.Text = "";
 				fullList = true;
 				UpdateOptionsMenu ();
-				eigenschapAdapter = new EigenschapAdapter (this, db.GetEigenschappen(), mListener);
-				allEigenschappenListView.Adapter = eigenschapAdapter;
+				eigenschapAdapter.UpdateData (db.GetEigenschappen ());
+				eigenschapAdapter.NotifyDataSetChanged ();
 			} else {
 				base.OnBackPressed ();
 			}

@@ -83,11 +83,12 @@ namespace Totem {
 			return totemList;
 		}
 
-		protected override void OnResume() {
-			totemAdapter = new TotemAdapter (this, totemList);
-			allTotemListView = FindViewById<ListView> (Resource.Id.all_totem_list);
-			allTotemListView.Adapter = totemAdapter;
-			base.OnResume ();
+		protected override void OnRestart() {
+			base.OnRestart ();
+			int[] totemIDs = db.GetTotemIDsFromProfiel(profileName).OrderByDescending (i => i).ToArray();
+			totemList = ConvertIDArrayToTotemList (totemIDs);
+			totemAdapter.UpdateData (totemList);
+			totemAdapter.NotifyDataSetChanged ();
 		}
 
 		//get DetailActivity of the totem that is clicked
@@ -115,8 +116,10 @@ namespace Totem {
 				if(totemList.Count == 1) {
 					base.OnBackPressed();
 				} else {
-					Finish();
-					StartActivity(Intent);
+					int[] totemIDs = db.GetTotemIDsFromProfiel(profileName).OrderByDescending (i => i).ToArray();
+					totemList = ConvertIDArrayToTotemList (totemIDs);
+					totemAdapter.UpdateData (totemList);
+					totemAdapter.NotifyDataSetChanged ();
 				}
 			});
 

@@ -22,6 +22,10 @@ namespace Totem {
 			mListener.UpdateCounter(eigenschapList);
 		}
 
+		public void UpdateData(List<Eigenschap> list) {
+			this.eigenschapList = list;
+		}
+
 		public override Eigenschap this[int index] {
 			get {
 				return eigenschapList [index];

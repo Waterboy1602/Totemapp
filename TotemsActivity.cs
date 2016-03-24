@@ -41,10 +41,11 @@ namespace Totem {
 	
 			int[] totemIDs = Intent.GetIntArrayExtra ("totemIDs");
 			int[] freqs = Intent.GetIntArrayExtra ("freqs");
+			int selected = Intent.GetIntExtra ("selected", 0);
 
 			totemList = ConvertIDArrayToTotemList (totemIDs);
 
-			totemAdapter = new TotemAdapter (this, totemList, freqs);
+			totemAdapter = new TotemAdapter (this, totemList, freqs, selected);
 			totemListView = FindViewById<ListView> (Resource.Id.totem_list);
 			totemListView.Adapter = totemAdapter;
 

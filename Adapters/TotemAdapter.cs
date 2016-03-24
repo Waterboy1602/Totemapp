@@ -13,14 +13,20 @@ namespace Totem {
 		Activity _activity;
 		List<Totem> totemList;
 		int[] freqs;
+		int selected;
 
 		public TotemAdapter (Activity activity, List<Totem> list) {	
 			this._activity = activity;
 			this.totemList = list;
 		}
 
-		public TotemAdapter (Activity activity, List<Totem> list, int[] freqs): this(activity, list) {	
+		public TotemAdapter (Activity activity, List<Totem> list, int[] freqs, int selected): this(activity, list) {	
 			this.freqs = freqs;
+			this.selected = selected;
+		}
+
+		public void UpdateData(List<Totem> list) {
+			this.totemList = list;
 		}
 
 		public override Totem this[int index] {
@@ -39,7 +45,7 @@ namespace Totem {
 			totem.Text = totemList[position].title;
 			if (freqs != null) {
 				var freq = view.FindViewById<TextView> (Resource.Id.freq);
-				freq.Text = freqs [position].ToString ();
+				freq.Text = freqs [position].ToString () /*+ "/" + selected*/;
 			}
 
 			return view;

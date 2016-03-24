@@ -52,15 +52,12 @@ namespace Totem {
 			title_synonyms = FindViewById<TextView> (Resource.Id.title_synonyms);
 			body = FindViewById<CustomFontTextView> (Resource.Id.body);
 
-			//add to profiles
-
 			back = mCustomView.FindViewById<ImageButton> (Resource.Id.backButton);
 			back.Click += (object sender, EventArgs e) => OnBackPressed();
 
 			title = mCustomView.FindViewById<CustomFontTextView> (Resource.Id.title);
 
 			search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
-
 
 			nid = Intent.GetStringExtra ("totemID");
 			t = db.GetTotemOnID (nid);
@@ -144,12 +141,9 @@ namespace Totem {
 
 						//add profile when enter is clicked
 						input.EditorAction += (s2, e) => {
-							if (e.ActionId == ImeAction.Done) 
-							{
+							if (e.ActionId == ImeAction.Done) {
 								d1.GetButton(-1).PerformClick();
-							}
-							else
-							{
+							} else {
 								e.Handled = false;
 							}
 						};

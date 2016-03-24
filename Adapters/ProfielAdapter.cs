@@ -17,6 +17,10 @@ namespace Totem {
 			this.profielList = list;
 		}
 
+		public void UpdateData(List<Profiel> list) {
+			this.profielList = list;
+		}
+
 		public override Profiel this[int index] {
 			get {
 				return profielList [index];

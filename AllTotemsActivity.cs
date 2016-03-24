@@ -98,8 +98,8 @@ namespace Totem {
 			title.Visibility = ViewStates.Visible;
 			query.Visibility = ViewStates.Gone;
 			KeyboardHelper.HideKeyboard (this);
-			totemAdapter = new TotemAdapter (this, db.GetTotems());
-			allTotemListView.Adapter = totemAdapter;
+			totemAdapter.UpdateData (db.GetTotems ()); 
+			totemAdapter.NotifyDataSetChanged ();
 		}
 
 		//update list after every keystroke
@@ -112,8 +112,8 @@ namespace Totem {
 		//shows only totems that are searched
 		private void Search() {
 			totemList = db.FindTotemOpNaam (query.Text);
-			totemAdapter = new TotemAdapter (this, totemList);
-			allTotemListView.Adapter = totemAdapter;
+			totemAdapter.UpdateData (totemList); 
+			totemAdapter.NotifyDataSetChanged ();
 		}
 
 		//get DetailActivity of the totem that is clicked

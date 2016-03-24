@@ -42,6 +42,7 @@ namespace Totem {
 			var profielen = db.GetProfielen ();
 			if (profielen.Count == 0)
 				FindViewById<TextView> (Resource.Id.empty_profiel).Visibility = ViewStates.Visible;
+			
 			profielAdapter = new ProfielAdapter (this, profielen);
 			profielenListView = FindViewById<ListView> (Resource.Id.profielen_list);
 			profielenListView.Adapter = profielAdapter;
@@ -88,8 +89,8 @@ namespace Totem {
 				db.DeleteProfile(item.name);
 				mToast.SetText("Profiel " + item.name + " verwijderd");
 				mToast.Show();
-				Finish();
-				StartActivity(Intent);
+				profielAdapter.UpdateData(db.GetProfielen());
+				profielAdapter.NotifyDataSetChanged();
 			});
 
 			alert.SetNegativeButton ("Nee", (senderAlert, args) => {
@@ -132,8 +133,8 @@ namespace Totem {
 						KeyboardHelper.HideKeyboardDialog(this); 
 
 						//refresh list
-						Finish();
-						StartActivity (Intent);
+						profielAdapter.UpdateData(db.GetProfielen());
+						profielAdapter.NotifyDataSetChanged();
 					}
 				});
 
@@ -141,12 +142,9 @@ namespace Totem {
 
 				//add profile when enter is clicked
 				input.EditorAction += (sender, e) => {
-					if (e.ActionId == ImeAction.Done) 
-					{
+					if (e.ActionId == ImeAction.Done) {
 						d1.GetButton(-1).PerformClick();
-					}
-					else
-					{
+					} else {
 						e.Handled = false;
 					}
 				};
@@ -183,12 +181,5 @@ namespace Totem {
 
 			return base.OnOptionsItemSelected(item);
 		}
-
-		/*public override void OnBackPressed () {
-			base.OnBackPressed ();
-			var act = new Intent (this, typeof(MainActivity));
-			Finish ();
-			StartActivity (act);
-		}*/
 	}
 }
