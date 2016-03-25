@@ -24,6 +24,7 @@ namespace Totem {
 
 		public void UpdateData(List<Eigenschap> list) {
 			this.eigenschapList = list;
+			mListener.UpdateCounter(eigenschapList);
 		}
 
 		public override Eigenschap this[int index] {
@@ -60,19 +61,6 @@ namespace Totem {
 
 			//notifies CheckBoxListener and stores selection
 			viewHolder.checkbox.Click += (o, e) => {
-				mListener.OnCheckboxClicked ();
-				if (viewHolder.checkbox.Checked) {
-					eigenschapList [(int)viewHolder.checkbox.Tag].selected = true;
-				} else {
-					eigenschapList [(int)viewHolder.checkbox.Tag].selected = false;
-				}
-				mListener.UpdateCounter(eigenschapList);
-			};
-
-			//when the row item is clicked, it also checks or unchecks the box
-			//notifies CheckBoxListener and stores selection
-			convertView.Click += (o, e) => {
-				viewHolder.checkbox.Checked = !(viewHolder.checkbox.Checked);
 				mListener.OnCheckboxClicked ();
 				if (viewHolder.checkbox.Checked) {
 					eigenschapList [(int)viewHolder.checkbox.Tag].selected = true;

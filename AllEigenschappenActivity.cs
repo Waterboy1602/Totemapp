@@ -34,7 +34,6 @@ namespace Totem {
 		EditText query;
 		CustomFontTextView title;
 		ImageButton back;
-		ImageButton search;
 
 		IMenu menu;
 
@@ -50,8 +49,6 @@ namespace Totem {
 			SetContentView (Resource.Layout.AllEigenschappen);
 
 			ActionBar mActionBar = ActionBar;
-			mActionBar.SetDisplayShowTitleEnabled(false);
-			mActionBar.SetDisplayShowHomeEnabled(false);
 
 			LayoutInflater mInflater = LayoutInflater.From (this);
 			View mCustomView = mInflater.Inflate (Resource.Layout.ActionBar, null);
@@ -90,7 +87,7 @@ namespace Totem {
 			back = mCustomView.FindViewById<ImageButton> (Resource.Id.backButton);
 			back.Click += (object sender, EventArgs e) => OnBackPressed();
 
-			search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
+			var search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
 			search.Click += (object sender, EventArgs e) => ToggleSearch();
 
 			ActionBar.LayoutParams layout = new ActionBar.LayoutParams (WindowManagerLayoutParams.MatchParent, WindowManagerLayoutParams.MatchParent);
@@ -98,7 +95,7 @@ namespace Totem {
 			mActionBar.SetCustomView (mCustomView, layout);
 			mActionBar.SetDisplayShowCustomEnabled (true);
 
-			//hide keybaord when enter is pressed
+			//hide keyboard when enter is pressed
 			query.EditorAction += (sender, e) => {
 				if (e.ActionId == ImeAction.Search)
 					KeyboardHelper.HideKeyboard(this);
@@ -107,6 +104,7 @@ namespace Totem {
 			};
 		}
 
+		//toggles the search bar
 		private void ToggleSearch() {
 			if (query.Visibility == ViewStates.Visible) {
 				HideSearch();
@@ -120,6 +118,7 @@ namespace Totem {
 			}
 		}
 
+		//hides the search bar
 		private void HideSearch() {
 			back.Visibility = ViewStates.Visible;
 			title.Visibility = ViewStates.Visible;
@@ -195,6 +194,8 @@ namespace Totem {
 		//options menu: add profile or delete all
 		public override bool OnOptionsItemSelected(IMenuItem item) {
 			switch (item.ItemId) {
+
+			//reset selection
 			case Resource.Id.reset:
 				query.Text = "";
 				fullList = true;
@@ -204,7 +205,8 @@ namespace Totem {
 				eigenschapAdapter.UpdateData (db.GetEigenschappen ());
 				eigenschapAdapter.NotifyDataSetChanged ();
 				return true;
-
+			
+			//show selected only
 			case Resource.Id.select:
 				List<Eigenschap> list = GetSelectedEigenschappen ();
 				if (list.Count == 0) {
@@ -213,6 +215,7 @@ namespace Totem {
 				} else {
 					fullList = false;
 
+					//delays update for 0.5 seconds so it's updated after the animation is completed
 					Task.Factory.StartNew(() => Thread.Sleep(500)).ContinueWith((t) => {
 						UpdateOptionsMenu ();
 					}, TaskScheduler.FromCurrentSynchronizationContext());
@@ -223,10 +226,12 @@ namespace Totem {
 				}
 				return true;
 
+			//show full list
 			case Resource.Id.full:
 				query.Text = "";
 				fullList = true;
 
+				//delays update for 0.5 seconds so it's updated after the animation is completed
 				Task.Factory.StartNew(() => Thread.Sleep(500)).ContinueWith((t) => {
 					UpdateOptionsMenu ();
 				}, TaskScheduler.FromCurrentSynchronizationContext());
@@ -240,6 +245,7 @@ namespace Totem {
 			return base.OnOptionsItemSelected(item);
 		}
 
+		//changes the options menu items according to list
 		private void UpdateOptionsMenu() {
 			IMenuItem s = menu.FindItem (Resource.Id.select);
 			IMenuItem f = menu.FindItem (Resource.Id.full);

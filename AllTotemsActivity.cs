@@ -28,7 +28,6 @@ namespace Totem {
 		EditText query;
 		CustomFontTextView title;
 		ImageButton back;
-		ImageButton search;
 
 		protected override void OnCreate (Bundle bundle) {
 			base.OnCreate (bundle);
@@ -36,8 +35,6 @@ namespace Totem {
 			SetContentView (Resource.Layout.AllTotems);
 
 			ActionBar mActionBar = ActionBar;
-			mActionBar.SetDisplayShowTitleEnabled(true);
-			mActionBar.SetDisplayShowHomeEnabled(false);
 
 			LayoutInflater mInflater = LayoutInflater.From (this);
 			View mCustomView = mInflater.Inflate (Resource.Layout.ActionBar, null);
@@ -63,7 +60,7 @@ namespace Totem {
 			back = mCustomView.FindViewById<ImageButton> (Resource.Id.backButton);
 			back.Click += (object sender, EventArgs e) => OnBackPressed();
 
-			search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
+			var search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
 			search.Click += (object sender, EventArgs e) => ToggleSearch();
 
 			ActionBar.LayoutParams layout = new ActionBar.LayoutParams (WindowManagerLayoutParams.MatchParent, WindowManagerLayoutParams.MatchParent);
@@ -80,6 +77,7 @@ namespace Totem {
 			};
 		}
 
+		//toggles the search bar
 		private void ToggleSearch() {
 			if (query.Visibility == ViewStates.Visible) {
 				HideSearch();
@@ -93,6 +91,7 @@ namespace Totem {
 			}
 		}
 
+		//hides the search bar
 		private void HideSearch() {
 			back.Visibility = ViewStates.Visible;
 			title.Visibility = ViewStates.Visible;

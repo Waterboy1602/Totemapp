@@ -13,6 +13,7 @@
 	</style>
 
 	<style name="AppThemeNoAction" parent="@android:style/Theme.Material.Light.NoActionBar">
+		<item name="android:colorPrimary">#005C9D</item>
 		<item name="android:textColorPrimary">#000</item>
 		<item name="android:textColorSecondary">#000</item>
 	    <item name="android:textColorTertiary">#000</item>

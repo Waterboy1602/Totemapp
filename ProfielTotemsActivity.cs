@@ -34,8 +34,6 @@ namespace Totem {
 			SetContentView (Resource.Layout.AllTotems);
 
 			ActionBar mActionBar = ActionBar;
-			mActionBar.SetDisplayShowTitleEnabled(true);
-			mActionBar.SetDisplayShowHomeEnabled(false);
 
 			LayoutInflater mInflater = LayoutInflater.From (this);
 			View mCustomView = mInflater.Inflate (Resource.Layout.ActionBar, null);
@@ -70,10 +68,10 @@ namespace Totem {
 			mActionBar.SetDisplayShowCustomEnabled (true);
 		}
 
+		//update data from adapter on restart
 		protected override void OnRestart() {
 			base.OnRestart ();
-			totemList = db.GetTotemsFromProfiel (profileName);
-			totemAdapter.UpdateData (totemList);
+			totemAdapter.UpdateData (db.GetTotemsFromProfiel (profileName));
 			totemAdapter.NotifyDataSetChanged ();
 		}
 
@@ -108,12 +106,12 @@ namespace Totem {
 				}
 			});
 
-			alert.SetNegativeButton ("Nee", (senderAlert, args) => {
-
-			});
+			alert.SetNegativeButton ("Nee", (senderAlert, args) => {});
 
 			Dialog dialog = alert.Create();
-			dialog.Show();
+			RunOnUiThread (() => {
+				dialog.Show();
+			} );
 		}
 	}
 }

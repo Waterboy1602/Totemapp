@@ -27,8 +27,6 @@ namespace Totem {
 			SetContentView (Resource.Layout.Profielen);
 
 			ActionBar mActionBar = ActionBar;
-			mActionBar.SetDisplayShowTitleEnabled(false);
-			mActionBar.SetDisplayShowHomeEnabled(false);
 
 			LayoutInflater mInflater = LayoutInflater.From (this);
 			View mCustomView = mInflater.Inflate (Resource.Layout.ActionBar, null);
@@ -64,6 +62,7 @@ namespace Totem {
 			mActionBar.SetDisplayShowCustomEnabled (true);
 		}
 
+		//updates data of the adapter and shows/hides the "empty"-message when needed
 		private void UpdateList(List<Profiel> profielen) {
 			var empty = FindViewById<TextView> (Resource.Id.empty_profiel);
 			if (profielen.Count == 0) {
@@ -102,12 +101,12 @@ namespace Totem {
 				UpdateList(db.GetProfielen());
 			});
 
-			alert.SetNegativeButton ("Nee", (senderAlert, args) => {
-
-			});
+			alert.SetNegativeButton ("Nee", (senderAlert, args) => {});
 
 			Dialog dialog = alert.Create();
-			dialog.Show();
+			RunOnUiThread (() => {
+				dialog.Show();
+			} );
 		}
 
 		//create options menu
@@ -119,6 +118,8 @@ namespace Totem {
 		//options menu: add profile or delete all
 		public override bool OnOptionsItemSelected(IMenuItem item) {
 			switch (item.ItemId) {
+
+			//add profile
 			case Resource.Id.voegProfielToe:
 				AlertDialog.Builder alert = new AlertDialog.Builder (this);
 				alert.SetTitle ("Naam");
@@ -158,10 +159,11 @@ namespace Totem {
 
 				RunOnUiThread (() => {
 					d1.Show();
-				} );
+				});
 
 				return true;
 
+			//delete all profiles
 			case Resource.Id.Verwijder:
 				AlertDialog.Builder alert1 = new AlertDialog.Builder (this);
 				alert1.SetMessage ("Alle profielen verwijderen?");
@@ -172,9 +174,7 @@ namespace Totem {
 					UpdateList(db.GetProfielen());
 				});
 
-				alert1.SetNegativeButton ("Nee", (senderAlert, args) => {
-
-				});
+				alert1.SetNegativeButton ("Nee", (senderAlert, args) => {});
 
 				Dialog d2 = alert1.Create();
 

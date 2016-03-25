@@ -31,8 +31,6 @@ namespace Totem {
 			SetContentView (Resource.Layout.Totems);
 
 			ActionBar mActionBar = ActionBar;
-			mActionBar.SetDisplayShowTitleEnabled(true);
-			mActionBar.SetDisplayShowHomeEnabled(false);
 
 			LayoutInflater mInflater = LayoutInflater.From (this);
 			View mCustomView = mInflater.Inflate (Resource.Layout.ActionBar, null);

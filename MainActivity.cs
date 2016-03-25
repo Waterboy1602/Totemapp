@@ -29,7 +29,6 @@ namespace Totem {
 			Button eigenschappen = FindViewById<Button> (Resource.Id.eigenschappen);
 			Button profielen = FindViewById<Button> (Resource.Id.profielen);
 			Button checklist = FindViewById<Button> (Resource.Id.goede_totemisatie);
-			//checklist.Visibility = ViewStates.Gone;
 
 			if(db.GetPreference("tips").value.Equals("true")) {
 				ShowTipDialog ();
@@ -54,7 +53,9 @@ namespace Totem {
 
 		public void ShowTipDialog() {
 			var dialog = TipDialog.NewInstance(this);
-			dialog.Show(FragmentManager, "dialog");
+			RunOnUiThread (() => {
+				dialog.Show(FragmentManager, "dialog");
+			} );
 		}
 
 		public override void OnBackPressed() {

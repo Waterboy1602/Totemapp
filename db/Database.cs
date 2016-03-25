@@ -142,8 +142,8 @@ namespace Totem {
 			}
 		}
 
-		//returns an array of ints with all totemIDs related to a profile
-		public int [] GetTotemIDsFromProfiel(string name) {
+		//returns a list of totems related to a profile
+		public List<Totem> GetTotemsFromProfiel(string name) {
 			List<Profiel> list = new List<Profiel>();
 			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
 				var cmd = new SQLite.SQLiteCommand (conn);
@@ -151,16 +151,11 @@ namespace Totem {
 				cmd.CommandText = "select nid from profiel where name='" + cleanName + "'";
 				list = cmd.ExecuteQuery<Profiel> ();
 			}
-			list.Reverse ();
-			int[] result = new int[395];
-			int index = 0;
+			List<Totem> result = new List<Totem> ();
 			foreach (Profiel p in list) {
 				if(p.nid != null) 
-					result.SetValue (Int32.Parse (p.nid), index);
-				index++;
+					result.Add (GetTotemOnID (p.nid));
 			}
-			result.Where(x => x != 0).ToArray();
-
 			return result;
 		}
 

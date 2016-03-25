@@ -15,7 +15,7 @@ using Android.Text;
 
 
 namespace Totem {
-	[Activity (Label = "Totem detail")]			
+	[Activity (Label = "Totem info")]			
 	public class TotemDetailActivity : Activity	{
 		CustomFontTextView number;
 		TextView title_synonyms;
@@ -37,8 +37,6 @@ namespace Totem {
 			SetContentView (Resource.Layout.TotemDetail);
 
 			ActionBar mActionBar = ActionBar;
-			mActionBar.SetDisplayShowTitleEnabled(false);
-			mActionBar.SetDisplayShowHomeEnabled(false);
 
 			LayoutInflater mInflater = LayoutInflater.From (this);
 			View mCustomView = mInflater.Inflate (Resource.Layout.ActionBar, null);
@@ -56,6 +54,7 @@ namespace Totem {
 			back.Click += (object sender, EventArgs e) => OnBackPressed();
 
 			title = mCustomView.FindViewById<CustomFontTextView> (Resource.Id.title);
+			title.Text = "Totem info";
 
 			search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
 
@@ -80,7 +79,6 @@ namespace Totem {
 		}
 
 		private void RemoveFromProfile(string profileName) {
-
 			AlertDialog.Builder alert = new AlertDialog.Builder (this);
 			alert.SetMessage (t.title + " verwijderen uit profiel " + profileName + "?");
 			alert.SetPositiveButton ("Ja", (senderAlert, args) => {
@@ -96,12 +94,12 @@ namespace Totem {
 				}
 			});
 
-			alert.SetNegativeButton ("Nee", (senderAlert, args) => {
-
-			});
+			alert.SetNegativeButton ("Nee", (senderAlert, args) => {});
 
 			Dialog dialog = alert.Create();
-			dialog.Show();
+			RunOnUiThread (() => {
+				dialog.Show();
+			} );
 		}
 
 		private void ProfilePopup() {
@@ -177,7 +175,6 @@ namespace Totem {
 		//displays totem info
 		private void GetInfo(string idx) {
 			number.Text = t.number + ". ";
-			title.Text = t.title;
 			Typeface Verveine = Typeface.CreateFromAsset (Assets, "fonts/Verveine W01 Regular.ttf");
 
 			//code to get formatting right
@@ -190,13 +187,10 @@ namespace Totem {
 				Typeface Din = Typeface.CreateFromAsset (Assets, "fonts/DINPro-Light.ttf");
 
 				ISpannable sp = new SpannableString (titlestring + synonymsstring);
-
 				sp.SetSpan (new CustomTypefaceSpan ("sans-serif", Verveine, 0, 0), 0, titlestring.Length, SpanTypes.ExclusiveExclusive);
-
 				sp.SetSpan (new CustomTypefaceSpan ("sans-serif", Din, TypefaceStyle.Italic, ConvertDPToPixels(17)), titlestring.Length, titlestring.Length + synonymsstring.Length, SpanTypes.ExclusiveExclusive);
 
 				title_synonyms.TextFormatted = sp;
-				//title_synonyms.LayoutParameters = new LinearLayout.LayoutParams (title_synonyms.MeasuredWidth + 1, ViewGroup.LayoutParams.WrapContent);
 			} else {
 				title_synonyms.Text = t.title;
 				title_synonyms.SetTypeface (Verveine, 0);
