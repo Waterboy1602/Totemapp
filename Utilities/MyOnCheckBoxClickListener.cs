@@ -7,6 +7,8 @@ using Android.Views;
 using Android.Animation;
 using System.Collections.Generic;
 using Android.Views.Animations;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace Totem {
 	public class MyOnCheckBoxClickListener {
@@ -33,30 +35,25 @@ namespace Totem {
 			int counter = CountCheckedItems(eigenschapList);
 			if (counter > 0 && eigenschapList.Count == 324) {
 				bottomBar.Visibility = ViewStates.Visible;
-				/*
-				//bottomBar.Visibility = ViewStates.Visible;
-				//bottomBar.Animate().TranslationY(0);
-				if(bottomBar.Visibility == ViewStates.Gone) {
-					TranslateAnimation animate = new TranslateAnimation (0, 0, bottomBar.Height, 0);
-					animate.Duration = 500;
-					animate.FillAfter = true;
-					bottomBar.StartAnimation (animate);
-					bottomBar.Visibility = ViewStates.Visible;
-				}
-				*/
 
+				//animation
+				/*if(bottomBar.Visibility == ViewStates.Gone) {
+					TranslateAnimation animate = new TranslateAnimation (0, 0, bottomBar.Height, 0);
+					animate.Duration = 250;
+					bottomBar.StartAnimation (animate);
+					Task.Factory.StartNew(() => Thread.Sleep(250)).ContinueWith((t) => {
+						bottomBar.Visibility = ViewStates.Visible;
+					}, TaskScheduler.FromCurrentSynchronizationContext());
+
+				}*/
 			} else {
 				bottomBar.Visibility = ViewStates.Gone;
-				/*
-				TranslateAnimation animate = new TranslateAnimation (0, 0, 0, bottomBar.Height);
-				animate.Duration = 500;
-				animate.FillAfter = true;
-				bottomBar.StartAnimation (animate);
-				bottomBar.Visibility = ViewStates.Gone;
 
-				//RelativeLayout temp = bottomBar;
-				//temp.Animate ().TranslationY (bottomBar.Height).SetDuration(1000).SetListener (new BottomBarAnimationListener(temp));
-				*/
+				//animation
+				/*TranslateAnimation animate = new TranslateAnimation (0, 0, 0, bottomBar.Height);
+				animate.Duration = 250;
+				bottomBar.StartAnimation (animate);
+				bottomBar.Visibility = ViewStates.Gone;*/
 			}
 			count.Text = counter + " geselecteerd";
 		}

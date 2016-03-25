@@ -38,7 +38,6 @@ namespace Totem {
 			//single toast for entire activity
 			mToast = Toast.MakeText (this, "", ToastLength.Short);
 
-
 			var profielen = db.GetProfielen ();
 			if (profielen.Count == 0)
 				FindViewById<TextView> (Resource.Id.empty_profiel).Visibility = ViewStates.Visible;
@@ -65,11 +64,22 @@ namespace Totem {
 			mActionBar.SetDisplayShowCustomEnabled (true);
 		}
 
+		private void UpdateList(List<Profiel> profielen) {
+			var empty = FindViewById<TextView> (Resource.Id.empty_profiel);
+			if (profielen.Count == 0) {
+				empty.Visibility = ViewStates.Visible;
+			} else {
+				empty.Visibility = ViewStates.Gone;
+			}
+			profielAdapter.UpdateData(profielen);
+			profielAdapter.NotifyDataSetChanged();
+		}
+
 		private void ProfielClick(object sender, AdapterView.ItemClickEventArgs e) {
 			int pos = e.Position;
 			var item = profielAdapter.GetItemAtPosition(pos);
 
-			if (db.GetTotemIDsFromProfiel (item.name).Max () == 0) {
+			if (db.GetTotemsFromProfiel (item.name).Count == 0) {
 				mToast.SetText("Profiel " + item.name + " bevat geen totems");
 				mToast.Show();
 			} else {
@@ -89,8 +99,7 @@ namespace Totem {
 				db.DeleteProfile(item.name);
 				mToast.SetText("Profiel " + item.name + " verwijderd");
 				mToast.Show();
-				profielAdapter.UpdateData(db.GetProfielen());
-				profielAdapter.NotifyDataSetChanged();
+				UpdateList(db.GetProfielen());
 			});
 
 			alert.SetNegativeButton ("Nee", (senderAlert, args) => {
@@ -132,9 +141,7 @@ namespace Totem {
 						db.AddProfile(value);
 						KeyboardHelper.HideKeyboardDialog(this); 
 
-						//refresh list
-						profielAdapter.UpdateData(db.GetProfielen());
-						profielAdapter.NotifyDataSetChanged();
+						UpdateList(db.GetProfielen());
 					}
 				});
 
@@ -162,8 +169,7 @@ namespace Totem {
 					db.ClearProfiles ();
 					mToast.SetText("Alle profielen verwijderd");
 					mToast.Show();
-					var main = new Intent (this, typeof(MainActivity));
-					StartActivity (main);
+					UpdateList(db.GetProfielen());
 				});
 
 				alert1.SetNegativeButton ("Nee", (senderAlert, args) => {

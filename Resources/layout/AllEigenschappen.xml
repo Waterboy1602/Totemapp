@@ -16,7 +16,6 @@
         android:layout_width="fill_parent"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
-        android:visibility="gone"
         android:background="@color/totemblue">
         <Totem.CustomFontTextView
             android:id="@+id/selected"

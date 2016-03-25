@@ -46,9 +46,7 @@ namespace Totem {
 			mToast = Toast.MakeText (this, "", ToastLength.Short);
 
 			profileName = Intent.GetStringExtra ("profileName");
-			int[] totemIDs = db.GetTotemIDsFromProfiel(profileName).OrderByDescending (i => i).ToArray();
-
-			totemList = ConvertIDArrayToTotemList (totemIDs);
+			totemList = db.GetTotemsFromProfiel (profileName);
 
 			totemAdapter = new TotemAdapter (this, totemList);
 			allTotemListView = FindViewById<ListView> (Resource.Id.all_totem_list);
@@ -58,7 +56,7 @@ namespace Totem {
 			allTotemListView.ItemLongClick += TotemLongClick;
 
 			CustomFontTextView title = mCustomView.FindViewById<CustomFontTextView> (Resource.Id.title);
-			title.Text = "Totems van " + profileName;
+			title.Text = "Totems voor " + profileName;
 
 			ImageButton back = mCustomView.FindViewById<ImageButton> (Resource.Id.backButton);
 			back.Click += (object sender, EventArgs e) => OnBackPressed();
@@ -72,21 +70,9 @@ namespace Totem {
 			mActionBar.SetDisplayShowCustomEnabled (true);
 		}
 
-		//fill totemList with Totem-objects whose ID is in totemIDs
-		private List<Totem> ConvertIDArrayToTotemList(int[] totemIDs) {
-			List<Totem> totemList = new List<Totem> ();
-			foreach(int idx in totemIDs) {
-				totemList.Add (db.GetTotemOnID (idx));
-			}
-			totemList.RemoveAll(item => item == null);
-
-			return totemList;
-		}
-
 		protected override void OnRestart() {
 			base.OnRestart ();
-			int[] totemIDs = db.GetTotemIDsFromProfiel(profileName).OrderByDescending (i => i).ToArray();
-			totemList = ConvertIDArrayToTotemList (totemIDs);
+			totemList = db.GetTotemsFromProfiel (profileName);
 			totemAdapter.UpdateData (totemList);
 			totemAdapter.NotifyDataSetChanged ();
 		}
@@ -116,8 +102,7 @@ namespace Totem {
 				if(totemList.Count == 1) {
 					base.OnBackPressed();
 				} else {
-					int[] totemIDs = db.GetTotemIDsFromProfiel(profileName).OrderByDescending (i => i).ToArray();
-					totemList = ConvertIDArrayToTotemList (totemIDs);
+					totemList = db.GetTotemsFromProfiel(profileName);
 					totemAdapter.UpdateData (totemList);
 					totemAdapter.NotifyDataSetChanged ();
 				}

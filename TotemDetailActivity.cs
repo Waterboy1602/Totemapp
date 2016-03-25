@@ -87,7 +87,13 @@ namespace Totem {
 				db.DeleteTotemFromProfile(t.nid, profileName);
 				mToast.SetText(t.title + " verwijderd");
 				mToast.Show();
-				base.OnBackPressed();
+				if(db.GetTotemsFromProfiel(profileName).Count == 0) {
+					Intent i = new Intent(this, typeof(ProfielenActivity));
+					i.SetFlags(ActivityFlags.ClearTop);
+					StartActivity(i);
+				} else {
+					base.OnBackPressed();
+				}
 			});
 
 			alert.SetNegativeButton ("Nee", (senderAlert, args) => {

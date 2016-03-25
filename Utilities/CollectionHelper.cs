@@ -12,8 +12,7 @@ namespace Totem {
 
 			tempList.Sort(delegate(KeyValuePair<int, int> firstPair, KeyValuePair<int, int> secondPair) {
 				return firstPair.Value.CompareTo(secondPair.Value);
-			}
-			);
+			});
 
 			Dictionary<int, int> mySortedDictionary = new Dictionary<int, int>();
 			foreach(KeyValuePair<int, int> pair in tempList) {

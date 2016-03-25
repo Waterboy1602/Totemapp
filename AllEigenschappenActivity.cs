@@ -17,6 +17,7 @@ using Android.Content.PM;
 using Android.Graphics;
 using System.Threading.Tasks;
 using System.Threading;
+using Android.Graphics.Drawables;
 
 namespace Totem {
 	[Activity (Label = "Eigenschappen", WindowSoftInputMode = Android.Views.SoftInput.AdjustPan, ScreenOrientation = ScreenOrientation.Portrait)]			
@@ -281,7 +282,6 @@ namespace Totem {
 			} else {
 				base.OnBackPressed ();
 			}
-			bottomBar.Visibility = ViewStates.Visible;
 		}
 	}
 }
