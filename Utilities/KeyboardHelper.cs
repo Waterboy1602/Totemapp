@@ -1,4 +1,5 @@
 ﻿using System;
+
 using Android.Content;
 using Android.Views.InputMethods;
 using Android.App;

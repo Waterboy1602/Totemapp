@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Threading.Tasks;
+using System.Threading;
 
 using SQLite;
 
@@ -15,8 +17,6 @@ using Android.Widget;
 using Android.Views.InputMethods;
 using Android.Content.PM;
 using Android.Graphics;
-using System.Threading.Tasks;
-using System.Threading;
 using Android.Graphics.Drawables;
 
 namespace Totem {

@@ -13,7 +13,6 @@ using Android.Text.Method;
 using Android.Views.InputMethods;
 using Android.Text;
 
-
 namespace Totem {
 	[Activity (Label = "Beschrijving")]			
 	public class TotemDetailActivity : Activity	{

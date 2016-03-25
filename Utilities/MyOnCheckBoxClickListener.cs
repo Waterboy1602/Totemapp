@@ -1,14 +1,15 @@
 ﻿using System;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Collections.Generic;
+
 using Android.Views.InputMethods;
 using Android.Content;
 using Android.App;
 using Android.Widget;
 using Android.Views;
 using Android.Animation;
-using System.Collections.Generic;
 using Android.Views.Animations;
-using System.Threading.Tasks;
-using System.Threading;
 
 namespace Totem {
 	public class MyOnCheckBoxClickListener {

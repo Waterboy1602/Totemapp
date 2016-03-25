@@ -1,12 +1,12 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
 
 using SQLite;
 
 using Android.Content;
-using System.Collections;
-using System.Linq;
 using Android.Database;
 
 namespace Totem {
