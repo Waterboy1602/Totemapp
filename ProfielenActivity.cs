@@ -131,22 +131,20 @@ namespace Totem {
 					string value = input.Text;
 					if(value.Replace("'", "").Replace(" ", "").Equals("")) {
 						mToast.SetText("Ongeldige naam");
-						mToast.Show();
-						KeyboardHelper.HideKeyboardDialog(this);				
+						mToast.Show();				
 					} else if(db.GetProfielNamen().Contains(value)) {
 						input.Text = "";
 						mToast.SetText("Profiel " + value + " bestaat al");
 						mToast.Show();
-						KeyboardHelper.HideKeyboardDialog(this);
 					} else {
 						db.AddProfile(value);
-						KeyboardHelper.HideKeyboardDialog(this); 
-
 						UpdateList(db.GetProfielen());
 					}
 				});
 
 				AlertDialog d1 = alert.Create();
+
+				d1.SetOnDismissListener(new MyOnDismissListener(this));
 
 				//add profile when enter is clicked
 				input.EditorAction += (sender, e) => {

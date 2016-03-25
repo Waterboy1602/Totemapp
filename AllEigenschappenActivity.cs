@@ -144,7 +144,6 @@ namespace Totem {
 		//shows only totems that are match the query
 		private void Search() {
 			fullList = false;
-			bottomBar.Visibility = ViewStates.Gone;
 			eigenschappenList = db.FindEigenschapOpNaam (query.Text);
 			eigenschapAdapter.UpdateData (eigenschappenList);
 			eigenschapAdapter.NotifyDataSetChanged ();
@@ -204,6 +203,7 @@ namespace Totem {
 				}
 				eigenschapAdapter.UpdateData (db.GetEigenschappen ());
 				eigenschapAdapter.NotifyDataSetChanged ();
+				UpdateOptionsMenu ();
 				return true;
 			
 			//show selected only
@@ -215,10 +215,7 @@ namespace Totem {
 				} else {
 					fullList = false;
 
-					//delays update for 0.5 seconds so it's updated after the animation is completed
-					Task.Factory.StartNew(() => Thread.Sleep(500)).ContinueWith((t) => {
-						UpdateOptionsMenu ();
-					}, TaskScheduler.FromCurrentSynchronizationContext());
+					UpdateOptionsMenu ();
 						
 					eigenschapAdapter.UpdateData (list);
 					eigenschapAdapter.NotifyDataSetChanged ();
@@ -231,14 +228,10 @@ namespace Totem {
 				query.Text = "";
 				fullList = true;
 
-				//delays update for 0.5 seconds so it's updated after the animation is completed
-				Task.Factory.StartNew(() => Thread.Sleep(500)).ContinueWith((t) => {
-					UpdateOptionsMenu ();
-				}, TaskScheduler.FromCurrentSynchronizationContext());
+				UpdateOptionsMenu ();
 
 				eigenschapAdapter.UpdateData (db.GetEigenschappen ());
 				eigenschapAdapter.NotifyDataSetChanged ();
-				bottomBar.Visibility = ViewStates.Visible;
 				return true;
 			}
 
@@ -246,18 +239,23 @@ namespace Totem {
 		}
 
 		//changes the options menu items according to list
+		//delay of 0.5 seconds to take animation into account
 		private void UpdateOptionsMenu() {
 			IMenuItem s = menu.FindItem (Resource.Id.select);
 			IMenuItem f = menu.FindItem (Resource.Id.full);
-			if(fullList) {
-				s.SetVisible (true);
-				f.SetVisible (false);
-			} else {
-				s.SetVisible (false);
-				f.SetVisible (true);
-			}
+
+			Task.Factory.StartNew(() => Thread.Sleep(500)).ContinueWith((t) => {
+				if(fullList) {
+					s.SetVisible (true);
+					f.SetVisible (false);
+				} else {
+					s.SetVisible (false);
+					f.SetVisible (true);
+				}
+			}, TaskScheduler.FromCurrentSynchronizationContext());
 		}
 
+		//returns list of eigenschappen that have been checked
 		private List<Eigenschap> GetSelectedEigenschappen() {
 			List<Eigenschap> result = new List<Eigenschap> ();
 			foreach(Eigenschap e in eigenschappenList) {

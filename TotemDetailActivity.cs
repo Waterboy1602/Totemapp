@@ -15,7 +15,7 @@ using Android.Text;
 
 
 namespace Totem {
-	[Activity (Label = "Totem info")]			
+	[Activity (Label = "Beschrijving")]			
 	public class TotemDetailActivity : Activity	{
 		CustomFontTextView number;
 		TextView title_synonyms;
@@ -54,7 +54,7 @@ namespace Totem {
 			back.Click += (object sender, EventArgs e) => OnBackPressed();
 
 			title = mCustomView.FindViewById<CustomFontTextView> (Resource.Id.title);
-			title.Text = "Totem info";
+			title.Text = "Beschrijving";
 
 			search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
 
@@ -66,7 +66,7 @@ namespace Totem {
 				search.SetImageResource (Resource.Drawable.ic_delete_white_24dp);
 				search.Click += (object sender, EventArgs e) => RemoveFromProfile (profileName);
 			} else {
-				search.SetImageResource (Resource.Drawable.ic_add_white_48dp);
+				search.SetImageResource (Resource.Drawable.ic_add_white_24dp);
 				search.Click += (object sender, EventArgs e) => ProfilePopup();
 			}
 
@@ -126,15 +126,12 @@ namespace Totem {
 							if(value.Replace("'", "").Replace(" ", "").Equals("")) {
 								mToast.SetText("Ongeldige naam");
 								mToast.Show();
-								KeyboardHelper.HideKeyboardDialog(this);
 							} else if(db.GetProfielNamen().Contains(value)) {
 								input.Text = "";
 								mToast.SetText("Profiel " + value + " bestaat al");
 								mToast.Show();
-								KeyboardHelper.HideKeyboardDialog(this);
 							} else {
 								db.AddProfile(value);
-								KeyboardHelper.HideKeyboardDialog(this);
 								db.AddTotemToProfiel(nid, value);
 								mToast.SetText(db.GetTotemOnID(nid).title + " toegevoegd aan profiel " + value.Replace("'", ""));
 								mToast.Show();
@@ -151,6 +148,8 @@ namespace Totem {
 								e.Handled = false;
 							}
 						};
+
+					d1.SetOnDismissListener(new MyOnDismissListener(this));
 
 						RunOnUiThread (() => {
 							d1.Show();

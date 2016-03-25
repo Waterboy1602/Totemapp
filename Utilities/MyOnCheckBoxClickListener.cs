@@ -27,6 +27,7 @@ namespace Totem {
 			KeyboardHelper.HideKeyboard (context);
 		}
 
+		//updates counter
 		public void UpdateCounter(List<Eigenschap> eigenschapList)  {
 			Context context = null;
 			mContext.TryGetTarget(out context);
@@ -37,7 +38,7 @@ namespace Totem {
 				bottomBar.Visibility = ViewStates.Visible;
 
 				//animation
-				/*if(bottomBar.Visibility == ViewStates.Gone) {
+				/*if(bottomBar.Visibility == ViewStates.Gone && counter == 1) {
 					TranslateAnimation animate = new TranslateAnimation (0, 0, bottomBar.Height, 0);
 					animate.Duration = 250;
 					bottomBar.StartAnimation (animate);
@@ -50,14 +51,17 @@ namespace Totem {
 				bottomBar.Visibility = ViewStates.Gone;
 
 				//animation
-				/*TranslateAnimation animate = new TranslateAnimation (0, 0, 0, bottomBar.Height);
-				animate.Duration = 250;
-				bottomBar.StartAnimation (animate);
-				bottomBar.Visibility = ViewStates.Gone;*/
+				/*if (bottomBar.Visibility == ViewStates.Visible) {
+					TranslateAnimation animate = new TranslateAnimation (0, 0, 0, bottomBar.Height);
+					animate.Duration = 250;
+					bottomBar.StartAnimation (animate);
+					bottomBar.Visibility = ViewStates.Gone;
+				}*/
 			}
 			count.Text = counter + " geselecteerd";
 		}
 
+		//returns number of checked eigenschappen in eigenschapList
 		private int CountCheckedItems(List<Eigenschap> eigenschapList) {
 			int result = 0;
 			foreach (Eigenschap e in eigenschapList) {
