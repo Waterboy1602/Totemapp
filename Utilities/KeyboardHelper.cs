@@ -12,7 +12,8 @@ namespace Totem {
 		//hides soft keyboard
 		public static void HideKeyboard(Context context) {
 			InputMethodManager inputManager = (InputMethodManager)context.GetSystemService (Context.InputMethodService);
-			inputManager.HideSoftInputFromWindow (((Activity)context).CurrentFocus.WindowToken, HideSoftInputFlags.None);
+			if(((Activity)context).CurrentFocus != null)
+				inputManager.HideSoftInputFromWindow (((Activity)context).CurrentFocus.WindowToken, HideSoftInputFlags.None);
 		}
 
 		//hides soft keyboard of dialog

@@ -66,18 +66,5 @@ namespace Totem {
 			}
 			return result;
 		}
-		
-		private class BottomBarAnimationListener : AnimatorListenerAdapter {
-			private View view;
-
-			public BottomBarAnimationListener(View view) {
-				this.view = view;
-			}
-
-			public override void OnAnimationEnd(Animator animation) {
-				base.OnAnimationEnd (animation);
-				view.Visibility = ViewStates.Gone;
-			}
-		}
 	}
 }

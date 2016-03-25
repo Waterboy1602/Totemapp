@@ -30,8 +30,6 @@ namespace Totem {
 		Database db;
 
 		RelativeLayout bottomBar;
-		CustomFontTextView vindText;
-		ImageButton vindButton;
 
 		EditText query;
 		CustomFontTextView title;
@@ -76,16 +74,13 @@ namespace Totem {
 			allEigenschappenListView = FindViewById<ListView> (Resource.Id.all_eigenschappen_list);
 			allEigenschappenListView.Adapter = eigenschapAdapter;
 
-			vindText = FindViewById<CustomFontTextView> (Resource.Id.vindText);
-			vindButton = FindViewById<ImageButton> (Resource.Id.vindButton);
-
 			query = mCustomView.FindViewById<EditText>(Resource.Id.query);
 			query.Hint = "Zoek eigenschap";
 
 			LiveSearch ();
 
-			vindText.Click += (sender, eventArgs) => VindTotem();
-			vindButton.Click += (sender, eventArgs) => VindTotem();
+			var vind = FindViewById<LinearLayout> (Resource.Id.vind);
+			vind.Click += (sender, eventArgs) => VindTotem();
 
 			bottomBar = FindViewById<RelativeLayout> (Resource.Id.bottomBar);
 
@@ -143,7 +138,6 @@ namespace Totem {
 				Search();
 				if(query.Text.Equals("")) {
 					fullList = true;
-					bottomBar.Visibility = ViewStates.Visible;
 				}
 			};
 		}
