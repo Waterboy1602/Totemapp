@@ -48,8 +48,8 @@ namespace Totem {
 			profielenListView = FindViewById<ListView> (Resource.Id.profielen_list);
 			profielenListView.Adapter = profielAdapter;
 
-			profielenListView.ItemClick += ProfielClick;
-			profielenListView.ItemLongClick += ProfielLongClick;
+			profielenListView.ItemClick += ShowTotems;
+			profielenListView.ItemLongClick += DeleteProfile;
 
 			title = mCustomView.FindViewById<TextView> (Resource.Id.title);
 			title.Text = "Profielen";
@@ -97,7 +97,7 @@ namespace Totem {
 			profielAdapter.NotifyDataSetChanged();
 		}
 
-		private void ProfielClick(object sender, AdapterView.ItemClickEventArgs e) {
+		private void ShowTotems(object sender, AdapterView.ItemClickEventArgs e) {
 			int pos = e.Position;
 			var item = profielAdapter.GetItemAtPosition(pos);
 
@@ -111,7 +111,7 @@ namespace Totem {
 			}
 		}
 
-		private void ProfielLongClick(object sender, AdapterView.ItemLongClickEventArgs e) {
+		private void DeleteProfile(object sender, AdapterView.ItemLongClickEventArgs e) {
 			int pos = e.Position;
 			var item = profielAdapter.GetItemAtPosition(pos);
 

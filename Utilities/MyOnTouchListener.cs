@@ -7,6 +7,8 @@ using Android.Widget;
 
 namespace Totem {
 	public class MyOnTouchListener : Java.Lang.Object, View.IOnTouchListener {
+
+		//WeakReference to context to avoid memory leak
 		private WeakReference<Context> mContext;
 		private EditText edittext;
 
@@ -15,7 +17,8 @@ namespace Totem {
 			this.edittext = edittext;
 		}
 
-		public Boolean OnTouch(View v, MotionEvent e) {
+		//hides keyboard when ListView scrolled
+		public bool OnTouch(View v, MotionEvent e) {
 			Context context = null;
 			mContext.TryGetTarget(out context);
 			InputMethodManager imm = (InputMethodManager)context.GetSystemService (Context.InputMethodService);

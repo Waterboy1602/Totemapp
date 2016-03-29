@@ -81,6 +81,8 @@
     <Compile Include="Utilities\CustomTypefaceSpan.cs" />
     <Compile Include="Utilities\MyOnDismissListener.cs" />
     <Compile Include="Utilities\MyOnTouchListener.cs" />
+    <Compile Include="ChecklistActivity.cs" />
+    <Compile Include="Adapters\ExpendListAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -101,7 +103,6 @@
     <AndroidResource Include="Resources\layout\Eigenschappen.xml" />
     <AndroidResource Include="Resources\layout\AllTotems.xml" />
     <AndroidResource Include="Resources\layout\Profielen.xml" />
-    <AndroidResource Include="Resources\Menu\Popup.xml" />
     <AndroidResource Include="Resources\layout\AllEigenschappen.xml" />
     <AndroidResource Include="Resources\layout\EigenschapListItem.xml" />
     <AndroidResource Include="Resources\layout\TipPopUp.xml" />
@@ -113,7 +114,6 @@
     <AndroidResource Include="Resources\drawable\grass.xml" />
     <AndroidResource Include="Resources\drawable\Berg.png" />
     <AndroidResource Include="Resources\values\colors.xml" />
-    <AndroidResource Include="Resources\drawable\Lijn.png" />
     <AndroidResource Include="Resources\drawable\Lijn_bold.png" />
     <AndroidResource Include="Resources\drawable\Lamp.png" />
     <AndroidResource Include="Resources\layout\ActionBar.axml" />
@@ -152,12 +152,17 @@
     <AndroidResource Include="Resources\drawable-xhdpi\ic_close_white_24dp.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_close_white_24dp.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_close_white_24dp.png" />
+    <AndroidResource Include="Resources\Menu\Popup.xml" />
+    <AndroidResource Include="Resources\layout\Checklist.axml" />
+    <AndroidResource Include="Resources\layout\ExpandParent.axml" />
+    <AndroidResource Include="Resources\layout\ExpandChild.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\totems.sqlite" />
     <AndroidAsset Include="Assets\fonts\DINPro-Light.ttf" />
     <AndroidAsset Include="Assets\fonts\Verveine W01 Regular.ttf" />
     <AndroidAsset Include="Assets\fonts\DINPro-Regular.ttf" />
+    <AndroidAsset Include="Assets\fonts\sketch_block_light.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\fonts\" />

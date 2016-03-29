@@ -47,7 +47,7 @@ namespace Totem {
 			totemListView = FindViewById<ListView> (Resource.Id.totem_list);
 			totemListView.Adapter = totemAdapter;
 
-			totemListView.ItemClick += TotemClick;
+			totemListView.ItemClick += ShowDetail;
 
 			title = mCustomView.FindViewById<CustomFontTextView> (Resource.Id.title);
 			title.Text = "Totems";
@@ -74,7 +74,7 @@ namespace Totem {
 			return totemList;
 		}
 
-		void TotemClick(object sender, AdapterView.ItemClickEventArgs e) {
+		void ShowDetail(object sender, AdapterView.ItemClickEventArgs e) {
 			int pos = e.Position;
 			var item = totemAdapter.GetItemAtPosition(pos);
 

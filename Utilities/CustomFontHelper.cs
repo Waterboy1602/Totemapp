@@ -47,6 +47,8 @@ namespace Totem {
 				return Typeface.CreateFromAsset (context.Assets, "fonts/DINPro-Light.ttf");
 			} else if (fontName.Equals (context.GetString (Resource.String.DIN_regular))) {
 				return Typeface.CreateFromAsset (context.Assets, "fonts/DINPro-Regular.ttf");
+			} else if (fontName.Equals (context.GetString (Resource.String.Sketchblock))) {
+				return Typeface.CreateFromAsset (context.Assets, "fonts/sketch_block_light.ttf");
 			} else {
 				return null;
 			}

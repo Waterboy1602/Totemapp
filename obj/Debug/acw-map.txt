@@ -86,3 +86,11 @@ Totem.MyOnTouchListener, Totem;md5b1d67ac94551c8753fec80729d65095f.MyOnTouchList
 Totem.MyOnTouchListener, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.MyOnTouchListener
 Totem.MyOnTouchListener;md5b1d67ac94551c8753fec80729d65095f.MyOnTouchListener
 totem.MyOnTouchListener;md5b1d67ac94551c8753fec80729d65095f.MyOnTouchListener
+Totem.ChecklistActivity, Totem;md5b1d67ac94551c8753fec80729d65095f.ChecklistActivity
+Totem.ChecklistActivity, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.ChecklistActivity
+Totem.ChecklistActivity;md5b1d67ac94551c8753fec80729d65095f.ChecklistActivity
+totem.ChecklistActivity;md5b1d67ac94551c8753fec80729d65095f.ChecklistActivity
+Totem.ExpendListAdapter, Totem;md5b1d67ac94551c8753fec80729d65095f.ExpendListAdapter
+Totem.ExpendListAdapter, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.ExpendListAdapter
+Totem.ExpendListAdapter;md5b1d67ac94551c8753fec80729d65095f.ExpendListAdapter
+totem.ExpendListAdapter;md5b1d67ac94551c8753fec80729d65095f.ExpendListAdapter

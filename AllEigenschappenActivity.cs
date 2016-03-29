@@ -81,7 +81,7 @@ namespace Totem {
 			LiveSearch ();
 
 			var vind = FindViewById<LinearLayout> (Resource.Id.vind);
-			vind.Click += (sender, eventArgs) => VindTotem();
+			vind.Click += VindTotem;
 
 			bottomBar = FindViewById<RelativeLayout> (Resource.Id.bottomBar);
 
@@ -169,13 +169,13 @@ namespace Totem {
 
 		//renders list of totems with frequencies based on selected eigenschappen
 		//and redirects to TotemsActivity to view them
-		private void VindTotem() {
+		private void VindTotem(object sender, EventArgs e) {
 			Dictionary<int, int> freqs = new Dictionary<int, int> ();
 			int selected = 0;
-			foreach (Eigenschap e in eigenschappenList) {
-				if(e.selected) {
+			foreach (Eigenschap eig in eigenschappenList) {
+				if(eig.selected) {
 					selected++;
-					List<Totem_eigenschap> toevoegen = db.GetTotemsVanEigenschapsID (e.tid);
+					List<Totem_eigenschap> toevoegen = db.GetTotemsVanEigenschapsID (eig.tid);
 					foreach(Totem_eigenschap totem in toevoegen) {
 						int idx = Convert.ToInt32 (totem.nid);
 						CollectionHelper.AddOrUpdateDictionaryEntry (freqs, idx) ;

@@ -5,4 +5,5 @@
 	<string name="Verveine">Verveine W01 Regular</string>
     <string name="DIN_light">DINPro-Light</string>
     <string name="DIN_regular">DINPro-Regular</string>
+    <string name="Sketchblock">sketch_block_light</string>
 </resources>

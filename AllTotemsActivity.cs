@@ -56,7 +56,7 @@ namespace Totem {
 
 			LiveSearch ();
 
-			allTotemListView.ItemClick += TotemClick;
+			allTotemListView.ItemClick += ShowDetail;
 
 			title = mCustomView.FindViewById<TextView> (Resource.Id.title);
 			title.Text = "Totems";
@@ -125,7 +125,7 @@ namespace Totem {
 
 		//get DetailActivity of the totem that is clicked
 		//ID is passed as parameter
-		private void TotemClick(object sender, AdapterView.ItemClickEventArgs e) {
+		private void ShowDetail(object sender, AdapterView.ItemClickEventArgs e) {
 			int pos = e.Position;
 			var item = totemAdapter.GetItemAtPosition(pos);
 			KeyboardHelper.HideKeyboard (this);

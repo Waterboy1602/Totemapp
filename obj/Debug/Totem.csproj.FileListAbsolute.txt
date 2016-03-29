@@ -51,7 +51,6 @@ C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\res\values\attrs.xml
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\res\drawable\grass.xml
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\res\drawable\berg.png
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\res\values\colors.xml
-C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\res\drawable\lijn.png
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\res\drawable\lijn_bold.png
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\res\drawable\lamp.png
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\res\layout\actionbar.xml
@@ -92,3 +91,6 @@ C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\res\drawable-xxhdpi\ic
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\res\drawable-xxxhdpi\ic_close_white_24dp.png
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\R.cs.flag
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\uploadflags.txt
+C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\res\layout\checklist.xml
+C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\res\layout\expandparent.xml
+C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\res\layout\expandchild.xml

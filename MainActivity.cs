@@ -28,7 +28,9 @@ namespace Totem {
 			Button totems = FindViewById<Button> (Resource.Id.totems);
 			Button eigenschappen = FindViewById<Button> (Resource.Id.eigenschappen);
 			Button profielen = FindViewById<Button> (Resource.Id.profielen);
-			Button checklist = FindViewById<Button> (Resource.Id.goede_totemisatie);
+			Button checklist = FindViewById<Button> (Resource.Id.checklist);
+
+			ImageView berg = FindViewById<ImageView> (Resource.Id.berg);
 
 			if(db.GetPreference("tips").value.Equals("true")) {
 				ShowTipDialog ();
@@ -37,6 +39,11 @@ namespace Totem {
 			totems.Click += (sender, eventArgs) => GoToActivity("totems");
 			eigenschappen.Click += (sender, eventArgs) => GoToActivity("eigenschappen");
 			profielen.Click += (sender, eventArgs) => GoToActivity("profielen");
+			checklist.Click += (sender, eventArgs) => GoToActivity("checklist");
+
+			berg.LongClick += (object sender, View.LongClickEventArgs e) => {
+				Toast.MakeText (this, "Easter egg", ToastLength.Short).Show();
+			};
 		}
 
 		private void GoToActivity(string activity) {
@@ -47,6 +54,8 @@ namespace Totem {
 				intent = new Intent(this, typeof(AllEigenschappenActivity));
 			} else if(activity.Equals("profielen")) {
 				intent = new Intent(this, typeof(ProfielenActivity));
+			} else if(activity.Equals("checklist")) {
+				intent = new Intent(this, typeof(ChecklistActivity));
 			}
 			StartActivity (intent);
 		}

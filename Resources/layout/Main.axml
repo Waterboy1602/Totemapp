@@ -49,7 +49,7 @@
             android:textColor="@android:color/white"
             app:font="@string/DIN_regular" />
         <Totem.CustomFontButton
-            android:id="@+id/goede_totemisatie"
+            android:id="@+id/checklist"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:padding="20dp"
@@ -75,7 +75,8 @@
         android:layout_marginRight="-133dp"
         android:src="@drawable/Totem" />
     <ImageView
-        android:id="@+id/totempaal"
+        android:id="@+id/berg"
+        android:clickable="true"
         android:layout_width="150dp"
         android:layout_height="250dp"
         android:layout_alignParentBottom="true"
