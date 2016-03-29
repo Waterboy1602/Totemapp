@@ -26,8 +26,9 @@ namespace Totem {
 		Database db;
 
 		EditText query;
-		CustomFontTextView title;
+		TextView title;
 		ImageButton back;
+		ImageButton search;
 
 		protected override void OnCreate (Bundle bundle) {
 			base.OnCreate (bundle);
@@ -50,17 +51,20 @@ namespace Totem {
 			query = mCustomView.FindViewById<EditText>(Resource.Id.query);
 			query.Hint = "Zoek totem";
 
+			//hide keybaord when scrolling through list
+			allTotemListView.SetOnTouchListener(new MyOnTouchListener(this, query));
+
 			LiveSearch ();
 
 			allTotemListView.ItemClick += TotemClick;
 
-			title = mCustomView.FindViewById<CustomFontTextView> (Resource.Id.title);
+			title = mCustomView.FindViewById<TextView> (Resource.Id.title);
 			title.Text = "Totems";
 
 			back = mCustomView.FindViewById<ImageButton> (Resource.Id.backButton);
 			back.Click += (object sender, EventArgs e) => OnBackPressed();
 
-			var search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
+			search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
 			search.Click += (object sender, EventArgs e) => ToggleSearch();
 
 			ActionBar.LayoutParams layout = new ActionBar.LayoutParams (WindowManagerLayoutParams.MatchParent, WindowManagerLayoutParams.MatchParent);
@@ -81,6 +85,7 @@ namespace Totem {
 		private void ToggleSearch() {
 			if (query.Visibility == ViewStates.Visible) {
 				HideSearch();
+				search.SetImageResource (Resource.Drawable.ic_search_white_24dp);
 			} else {
 				back.Visibility = ViewStates.Gone;
 				title.Visibility = ViewStates.Gone;
@@ -88,6 +93,7 @@ namespace Totem {
 				KeyboardHelper.ShowKeyboard (this, query);
 				query.Text = "";
 				query.RequestFocus ();
+				search.SetImageResource (Resource.Drawable.ic_close_white_24dp);
 			}
 		}
 
@@ -113,6 +119,8 @@ namespace Totem {
 			totemList = db.FindTotemOpNaam (query.Text);
 			totemAdapter.UpdateData (totemList); 
 			totemAdapter.NotifyDataSetChanged ();
+			if(query.Length() > 0)
+				allTotemListView.SetSelection (0);
 		}
 
 		//get DetailActivity of the totem that is clicked

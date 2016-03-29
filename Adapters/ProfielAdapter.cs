@@ -12,14 +12,24 @@ namespace Totem {
 	public class ProfielAdapter: BaseAdapter<Profiel> {
 		Activity _activity;
 		List<Profiel> profielList;
+		bool showDelete;
 
 		public ProfielAdapter (Activity activity, List<Profiel> list) {	
 			this._activity = activity;
 			this.profielList = list;
+			this.showDelete = false;
 		}
 
 		public void UpdateData(List<Profiel> list) {
 			this.profielList = list;
+		}
+
+		public void ShowDelete() {
+			this.showDelete = true;
+		}
+
+		public void HideDelete() {
+			this.showDelete = false;
 		}
 
 		public override Profiel this[int index] {
@@ -33,11 +43,46 @@ namespace Totem {
 		}
 
 		public override View GetView (int position, View convertView, ViewGroup parent) {
-			var view = convertView ?? _activity.LayoutInflater.Inflate (Resource.Layout.TotemListItem, parent, false);
-			var totem = view.FindViewById<TextView> (Resource.Id.totem);
-			totem.Text = profielList[position].name;
+			ViewHolder viewHolder;
 
-			return view;
+			if (convertView == null) {
+				convertView = _activity.LayoutInflater.Inflate (Resource.Layout.TotemListItem, parent, false);
+
+				viewHolder = new ViewHolder ();
+				viewHolder.profiel = convertView.FindViewById<TextView> (Resource.Id.totem);
+				viewHolder.checkbox = convertView.FindViewById<CheckBox> (Resource.Id.deleteItem);
+
+				convertView.Tag = viewHolder;
+			} else {
+				viewHolder = (ViewHolder)convertView.Tag;
+			}
+
+			if (showDelete) {
+				viewHolder.checkbox.Visibility = ViewStates.Visible;
+			} else {
+				viewHolder.checkbox.Visibility = ViewStates.Gone;
+			}
+
+			viewHolder.checkbox.Tag = position;
+
+			viewHolder.profiel.Text = profielList [position].name;
+			viewHolder.checkbox.Checked = profielList [(int)viewHolder.checkbox.Tag].selected;
+
+			viewHolder.checkbox.Click += (o, e) => {
+				if (viewHolder.checkbox.Checked) {
+					profielList [(int)viewHolder.checkbox.Tag].selected = true;
+				} else {
+					profielList [(int)viewHolder.checkbox.Tag].selected = false;
+				}
+			};
+
+			return convertView;
+		}
+
+		//ViewHolder for better performance
+		class ViewHolder : Java.Lang.Object {
+			public TextView profiel;
+			public CheckBox checkbox;
 		}
 
 		public override int Count {

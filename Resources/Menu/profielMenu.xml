@@ -3,5 +3,5 @@
     <item android:id="@+id/voegProfielToe"
           android:title="Voeg profiel toe" />
     <item android:id="@+id/Verwijder"
-          android:title="Verwijder alle profielen" />
+          android:title="Verwijder profielen" />
 </menu>

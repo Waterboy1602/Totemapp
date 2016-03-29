@@ -16,6 +16,13 @@ namespace Totem {
 	public class ProfielenActivity : Activity {
 		ProfielAdapter profielAdapter;
 		ListView profielenListView;
+		List<Profiel> profielen;
+
+		TextView title;
+		ImageButton back;
+		ImageButton close;
+		ImageButton add;
+		ImageButton delete;
 
 		Database db;
 		Toast mToast;
@@ -35,9 +42,7 @@ namespace Totem {
 			//single toast for entire activity
 			mToast = Toast.MakeText (this, "", ToastLength.Short);
 
-			var profielen = db.GetProfielen ();
-			if (profielen.Count == 0)
-				FindViewById<TextView> (Resource.Id.empty_profiel).Visibility = ViewStates.Visible;
+			profielen = db.GetProfielen ();
 			
 			profielAdapter = new ProfielAdapter (this, profielen);
 			profielenListView = FindViewById<ListView> (Resource.Id.profielen_list);
@@ -46,14 +51,30 @@ namespace Totem {
 			profielenListView.ItemClick += ProfielClick;
 			profielenListView.ItemLongClick += ProfielLongClick;
 
-			CustomFontTextView title = mCustomView.FindViewById<CustomFontTextView> (Resource.Id.title);
+			title = mCustomView.FindViewById<TextView> (Resource.Id.title);
 			title.Text = "Profielen";
 
-			ImageButton back = mCustomView.FindViewById<ImageButton> (Resource.Id.backButton);
+			back = mCustomView.FindViewById<ImageButton> (Resource.Id.backButton);
 			back.Click += (object sender, EventArgs e) => OnBackPressed();
 
-			ImageButton search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
+			add = mCustomView.FindViewById<ImageButton> (Resource.Id.addButton);
+			add.Visibility = ViewStates.Visible;
+			add.Click += (object sender, EventArgs e) => AddProfile();
+
+			close = mCustomView.FindViewById<ImageButton> (Resource.Id.closeButton);
+
+			var search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
 			search.Visibility = ViewStates.Gone;
+
+			delete = mCustomView.FindViewById<ImageButton> (Resource.Id.deleteButton);
+			delete.Click += ShowDeleteProfiles;
+
+			if (profielen.Count == 0) {
+				FindViewById<TextView> (Resource.Id.empty_profiel).Visibility = ViewStates.Visible;
+				delete.Visibility = ViewStates.Gone;
+			} else {
+				delete.Visibility = ViewStates.Visible;
+			}
 
 			ActionBar.LayoutParams layout = new ActionBar.LayoutParams (WindowManagerLayoutParams.MatchParent, WindowManagerLayoutParams.MatchParent);
 
@@ -63,11 +84,14 @@ namespace Totem {
 
 		//updates data of the adapter and shows/hides the "empty"-message when needed
 		private void UpdateList(List<Profiel> profielen) {
+			this.profielen = profielen;
 			var empty = FindViewById<TextView> (Resource.Id.empty_profiel);
 			if (profielen.Count == 0) {
 				empty.Visibility = ViewStates.Visible;
+				delete.Visibility = ViewStates.Gone;
 			} else {
 				empty.Visibility = ViewStates.Gone;
+				delete.Visibility = ViewStates.Visible;
 			}
 			profielAdapter.UpdateData(profielen);
 			profielAdapter.NotifyDataSetChanged();
@@ -108,81 +132,92 @@ namespace Totem {
 			} );
 		}
 
-		//create options menu
-		public override bool OnCreateOptionsMenu(IMenu menu) {
-			MenuInflater.Inflate(Resource.Menu.profielMenu, menu);
-			return base.OnCreateOptionsMenu(menu);
+		private void AddProfile() {
+			AlertDialog.Builder alert = new AlertDialog.Builder (this);
+			alert.SetTitle ("Naam");
+			EditText input = new EditText (this); 
+			input.InputType = Android.Text.InputTypes.TextFlagCapWords;
+			KeyboardHelper.ShowKeyboard (this, input);
+			alert.SetView (input);
+			alert.SetPositiveButton ("Ok", (sender, args) => {
+				string value = input.Text;
+				if(value.Replace("'", "").Replace(" ", "").Equals("")) {
+					mToast.SetText("Ongeldige naam");
+					mToast.Show();				
+				} else if(db.GetProfielNamen().Contains(value)) {
+					input.Text = "";
+					mToast.SetText("Profiel " + value + " bestaat al");
+					mToast.Show();
+				} else {
+					db.AddProfile(value);
+					UpdateList(db.GetProfielen());
+				}
+			});
+
+			AlertDialog d1 = alert.Create();
+
+			d1.SetOnDismissListener(new MyOnDismissListener(this));
+
+			//add profile when enter is clicked
+			input.EditorAction += (sender, e) => {
+				if (e.ActionId == ImeAction.Done) {
+					d1.GetButton(-1).PerformClick();
+				} else {
+					e.Handled = false;
+				}
+			};
+
+			RunOnUiThread (() => {
+				d1.Show();
+			});
 		}
 
-		//options menu: add profile or delete all
-		public override bool OnOptionsItemSelected(IMenuItem item) {
-			switch (item.ItemId) {
+		private void ShowDeleteProfiles(object sender, EventArgs e) {
+			profielAdapter.ShowDelete ();
+			profielAdapter.NotifyDataSetChanged ();
+			back.Visibility = ViewStates.Gone;
+			close.Visibility = ViewStates.Visible;
+			title.Visibility = ViewStates.Gone;
+			add.Visibility = ViewStates.Gone;
 
-			//add profile
-			case Resource.Id.voegProfielToe:
-				AlertDialog.Builder alert = new AlertDialog.Builder (this);
-				alert.SetTitle ("Naam");
-				EditText input = new EditText (this); 
-				input.InputType = Android.Text.InputTypes.TextFlagCapWords;
-				KeyboardHelper.ShowKeyboard (this, input);
-				alert.SetView (input);
-				alert.SetPositiveButton ("Ok", (sender, args) => {
-					string value = input.Text;
-					if(value.Replace("'", "").Replace(" ", "").Equals("")) {
-						mToast.SetText("Ongeldige naam");
-						mToast.Show();				
-					} else if(db.GetProfielNamen().Contains(value)) {
-						input.Text = "";
-						mToast.SetText("Profiel " + value + " bestaat al");
-						mToast.Show();
-					} else {
-						db.AddProfile(value);
-						UpdateList(db.GetProfielen());
+			close.Click += HideDeleteProfiles;
+
+			delete.Click -= ShowDeleteProfiles;
+			delete.Click += RemoveSelectedProfiles;
+		}
+
+		private void HideDeleteProfiles(object sender, EventArgs e) {
+			profielAdapter.HideDelete ();
+			profielAdapter.NotifyDataSetChanged ();
+			back.Visibility = ViewStates.Visible;
+			close.Visibility = ViewStates.Gone;
+			title.Visibility = ViewStates.Visible;
+			add.Visibility = ViewStates.Visible;
+
+			delete.Click -= RemoveSelectedProfiles;
+			delete.Click += ShowDeleteProfiles;
+		}
+
+		private void RemoveSelectedProfiles(object sender, EventArgs e) {
+			AlertDialog.Builder alert1 = new AlertDialog.Builder (this);
+			alert1.SetMessage ("Geselecteerde profielen verwijderen?");
+			alert1.SetPositiveButton ("Ja", (senderAlert, args) => {
+				foreach(Profiel p in profielen) {
+					if (p.selected) {
+						db.DeleteProfile (p.name);
 					}
-				});
+				}
+				UpdateList (db.GetProfielen());
+				HideDeleteProfiles (sender, e);
+			});
 
-				AlertDialog d1 = alert.Create();
+			alert1.SetNegativeButton ("Nee", (senderAlert, args) => {});
 
-				d1.SetOnDismissListener(new MyOnDismissListener(this));
+			Dialog d2 = alert1.Create();
 
-				//add profile when enter is clicked
-				input.EditorAction += (sender, e) => {
-					if (e.ActionId == ImeAction.Done) {
-						d1.GetButton(-1).PerformClick();
-					} else {
-						e.Handled = false;
-					}
-				};
-
-				RunOnUiThread (() => {
-					d1.Show();
-				});
-
-				return true;
-
-			//delete all profiles
-			case Resource.Id.Verwijder:
-				AlertDialog.Builder alert1 = new AlertDialog.Builder (this);
-				alert1.SetMessage ("Alle profielen verwijderen?");
-				alert1.SetPositiveButton ("Ja", (senderAlert, args) => {
-					db.ClearProfiles ();
-					mToast.SetText("Alle profielen verwijderd");
-					mToast.Show();
-					UpdateList(db.GetProfielen());
-				});
-
-				alert1.SetNegativeButton ("Nee", (senderAlert, args) => {});
-
-				Dialog d2 = alert1.Create();
-
-				RunOnUiThread (() => {
-					d2.Show();
-				} );
-
-				return true;
-			}
-
-			return base.OnOptionsItemSelected(item);
+			RunOnUiThread (() => {
+				d2.Show();
+			} );
 		}
 	}
 }

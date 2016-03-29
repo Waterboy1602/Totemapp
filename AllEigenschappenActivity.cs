@@ -32,8 +32,9 @@ namespace Totem {
 		RelativeLayout bottomBar;
 
 		EditText query;
-		CustomFontTextView title;
+		TextView title;
 		ImageButton back;
+		ImageButton search;
 
 		IMenu menu;
 
@@ -74,6 +75,9 @@ namespace Totem {
 			query = mCustomView.FindViewById<EditText>(Resource.Id.query);
 			query.Hint = "Zoek eigenschap";
 
+			//hide keybaord when scrolling through list
+			allEigenschappenListView.SetOnTouchListener(new MyOnTouchListener(this, query));
+
 			LiveSearch ();
 
 			var vind = FindViewById<LinearLayout> (Resource.Id.vind);
@@ -81,13 +85,13 @@ namespace Totem {
 
 			bottomBar = FindViewById<RelativeLayout> (Resource.Id.bottomBar);
 
-			title = mCustomView.FindViewById<CustomFontTextView> (Resource.Id.title);
+			title = mCustomView.FindViewById<TextView> (Resource.Id.title);
 			title.Text = "Eigenschappen";
 
 			back = mCustomView.FindViewById<ImageButton> (Resource.Id.backButton);
 			back.Click += (object sender, EventArgs e) => OnBackPressed();
 
-			var search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
+			search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
 			search.Click += (object sender, EventArgs e) => ToggleSearch();
 
 			ActionBar.LayoutParams layout = new ActionBar.LayoutParams (WindowManagerLayoutParams.MatchParent, WindowManagerLayoutParams.MatchParent);
@@ -102,12 +106,23 @@ namespace Totem {
 				else
 					e.Handled = false;
 			};
+
+			allEigenschappenListView.ItemLongClick += EigenschapLongClick;
+		}
+
+		private void EigenschapLongClick(object sender, AdapterView.ItemLongClickEventArgs e) {
+			int pos = e.Position;
+			var item = eigenschapAdapter.GetItemAtPosition(pos);
+
+			mToast.SetText("Meer uitleg over " + item.name.ToLower());
+			mToast.Show();
 		}
 
 		//toggles the search bar
 		private void ToggleSearch() {
 			if (query.Visibility == ViewStates.Visible) {
 				HideSearch();
+				search.SetImageResource (Resource.Drawable.ic_search_white_24dp);
 			} else {
 				back.Visibility = ViewStates.Gone;
 				title.Visibility = ViewStates.Gone;
@@ -115,6 +130,7 @@ namespace Totem {
 				KeyboardHelper.ShowKeyboard (this, query);
 				query.Text = "";
 				query.RequestFocus ();
+				search.SetImageResource (Resource.Drawable.ic_close_white_24dp);
 			}
 		}
 
@@ -147,6 +163,8 @@ namespace Totem {
 			eigenschappenList = db.FindEigenschapOpNaam (query.Text);
 			eigenschapAdapter.UpdateData (eigenschappenList);
 			eigenschapAdapter.NotifyDataSetChanged ();
+			if(query.Length() > 0)
+				allEigenschappenListView.SetSelection (0);
 		}
 
 		//renders list of totems with frequencies based on selected eigenschappen
@@ -214,9 +232,7 @@ namespace Totem {
 					mToast.Show ();
 				} else {
 					fullList = false;
-
 					UpdateOptionsMenu ();
-						
 					eigenschapAdapter.UpdateData (list);
 					eigenschapAdapter.NotifyDataSetChanged ();
 					bottomBar.Visibility = ViewStates.Visible;
@@ -227,9 +243,7 @@ namespace Totem {
 			case Resource.Id.full:
 				query.Text = "";
 				fullList = true;
-
 				UpdateOptionsMenu ();
-
 				eigenschapAdapter.UpdateData (db.GetEigenschappen ());
 				eigenschapAdapter.NotifyDataSetChanged ();
 				return true;

@@ -71,6 +71,7 @@ namespace Totem {
 				mListener.UpdateCounter(eigenschapList);
 			};
 
+			convertView.LongClickable = true;
 			return convertView;
 		}
 

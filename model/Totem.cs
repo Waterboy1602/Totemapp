@@ -10,5 +10,6 @@ namespace Totem {
 		public string title { get; set; }
 		public string body { get; set; }
 		public string synonyms { get; set; }
+		public bool selected { get; set; }
 	}
 }

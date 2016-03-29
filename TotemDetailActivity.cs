@@ -25,7 +25,7 @@ namespace Totem {
 
 		CustomFontTextView title;
 		ImageButton back;
-		ImageButton search;
+		ImageButton action;
 
 		String nid;
 		Totem t;
@@ -55,19 +55,21 @@ namespace Totem {
 			title = mCustomView.FindViewById<CustomFontTextView> (Resource.Id.title);
 			title.Text = "Beschrijving";
 
-			search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
+			var search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
+			search.Visibility = ViewStates.Gone;
 
 			nid = Intent.GetStringExtra ("totemID");
 			t = db.GetTotemOnID (nid);
 
 			var profileName = Intent.GetStringExtra ("profileName");
 			if (profileName != null) {
-				search.SetImageResource (Resource.Drawable.ic_delete_white_24dp);
-				search.Click += (object sender, EventArgs e) => RemoveFromProfile (profileName);
+				action =  mCustomView.FindViewById<ImageButton> (Resource.Id.deleteButton);
+				action.Click += (object sender, EventArgs e) => RemoveFromProfile (profileName);
 			} else {
-				search.SetImageResource (Resource.Drawable.ic_add_white_24dp);
-				search.Click += (object sender, EventArgs e) => ProfilePopup();
+				action =  mCustomView.FindViewById<ImageButton> (Resource.Id.addButton);
+				action.Click += (object sender, EventArgs e) => ProfilePopup();
 			}
+			action.Visibility = ViewStates.Visible;
 
 			GetInfo (nid);
 
@@ -102,7 +104,7 @@ namespace Totem {
 		}
 
 		private void ProfilePopup() {
-				PopupMenu menu = new PopupMenu (this, search);
+				PopupMenu menu = new PopupMenu (this, action);
 				menu.Inflate (Resource.Menu.Popup);
 				int count = 0;
 				foreach(Profiel p in db.GetProfielen()) {
