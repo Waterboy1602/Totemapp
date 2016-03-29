@@ -21,11 +21,8 @@ C:\Users\frede\Documents\Projects\Totem\Totem\obj\Release\R.cs.flag
 C:\Users\frede\Documents\Projects\Totem\Totem\obj\Release\uploadflags.txt
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\bin\Release\Totem.dll
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\bin\Release\Totem.pdb
-C:\Users\fe\Totem App\FrederickEskens\Totem.git\bin\Release\com.companyname.totem.apk
-C:\Users\fe\Totem App\FrederickEskens\Totem.git\bin\Release\com.companyname.totem-Signed.apk
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Release\Totem.dll
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Release\Totem.pdb
-C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Release\android\bin\com.companyname.totem.apk
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Release\res\layout\main.xml
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Release\res\values\strings.xml
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Release\res\drawable-hdpi\icon.png
@@ -48,3 +45,11 @@ C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Release\res\layout\tippopup.
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Release\res\menu\profielmenu.xml
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Release\res\menu\eigenschapselectiemenu.xml
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Release\res\layout\splashscreen.xml
+C:\Users\fe\Totem App\FrederickEskens\Totem.git\bin\Release\be.scoutsengidsenvlaanderen.totem.apk
+C:\Users\fe\Totem App\FrederickEskens\Totem.git\bin\Release\be.scoutsengidsenvlaanderen.totem-Signed.apk
+C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Release\android\bin\be.scoutsengidsenvlaanderen.totem.apk
+C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Release\res\values\styles.xml
+C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Release\res\drawable\totem.png
+C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Release\res\values\attrs.xml
+C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Release\res\drawable\grass.xml
+C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Release\res\drawable\berg.png

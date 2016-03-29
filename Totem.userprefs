@@ -1,36 +1,45 @@
 ﻿<Properties StartupItem="Totem.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.0bb3642e43e4b26c" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Utilities\MyOnTouchListener.cs">
     <Files>
-      <File FileName="AllEigenschappenActivity.cs" Line="48" Column="48" />
-      <File FileName="ProfielenActivity.cs" Line="1" Column="1" />
-      <File FileName="Resources\Menu\profielMenu.xml" Line="1" Column="1" />
-      <File FileName="Resources\Menu\EigenschapSelectieMenu.xml" Line="1" Column="1" />
-      <File FileName="Adapters\EigenschapAdapter.cs" Line="1" Column="1" />
-      <File FileName="AllTotemsActivity.cs" Line="1" Column="1" />
-      <File FileName="CheckListActivity.cs" Line="1" Column="1" />
-      <File FileName="EigenschappenActivity.cs" Line="1" Column="1" />
-      <File FileName="MainActivity.cs" Line="27" Column="43" />
-      <File FileName="ProfielTotemsActivity.cs" Line="1" Column="1" />
+      <File FileName="c:\Users\fe\Totem App\FrederickEskens\Totem.git\AllEigenschappenActivity.cs" Line="1" Column="1" />
+      <File FileName="Utilities\MyOnCheckBoxClickListener.cs" Line="1" Column="1" />
       <File FileName="TipDialog.cs" Line="1" Column="1" />
-      <File FileName="TotemDetailActivity.cs" Line="33" Column="49" />
+      <File FileName="MainActivity.cs" Line="1" Column="1" />
+      <File FileName="Adapters\EigenschapAdapter.cs" Line="1" Column="1" />
+      <File FileName="AllTotemsActivity.cs" Line="51" Column="47" />
+      <File FileName="ProfielenActivity.cs" Line="1" Column="1" />
+      <File FileName="Utilities\KeyboardHelper.cs" Line="1" Column="1" />
+      <File FileName="ProfielTotemsActivity.cs" Line="1" Column="1" />
       <File FileName="TotemsActivity.cs" Line="1" Column="1" />
+      <File FileName="Resources\Menu\EigenschapSelectieMenu.xml" Line="1" Column="1" />
+      <File FileName="TotemDetailActivity.cs" Line="1" Column="1" />
+      <File FileName="Adapters\TotemAdapter.cs" Line="1" Column="1" />
+      <File FileName="Adapters\ProfielAdapter.cs" Line="1" Column="1" />
+      <File FileName="EigenschappenActivity.cs" Line="1" Column="1" />
+      <File FileName="Resources\values\styles.xml" Line="1" Column="1" />
+      <File FileName="Utilities\MyOnDismissListener.cs" Line="1" Column="1" />
+      <File FileName="Utilities\CollectionHelper.cs" Line="1" Column="1" />
+      <File FileName="Utilities\CustomFontButton.cs" Line="1" Column="1" />
+      <File FileName="Utilities\CustomFontEditText.cs" Line="1" Column="1" />
+      <File FileName="Utilities\CustomFontHelper.cs" Line="1" Column="1" />
+      <File FileName="Utilities\CustomFontTextView.cs" Line="1" Column="1" />
+      <File FileName="Utilities\CustomTypefaceSpan.cs" Line="1" Column="1" />
+      <File FileName="Utilities\DynamicImageView.cs" Line="1" Column="1" />
       <File FileName="db\Database.cs" Line="1" Column="1" />
-      <File FileName="SplashScreenActivity.cs" Line="15" Column="127" />
-      <File FileName="Properties\AndroidManifest.xml" Line="1" Column="1" />
-      <File FileName="Resources\values\styles.xml" Line="12" Column="88" />
-      <File FileName="Resources\values\Strings.xml" Line="1" Column="1" />
-      <File FileName="Utilities\DynamicImageView.cs" Line="26" Column="2" />
+      <File FileName="db\DatabaseHelper.cs" Line="1" Column="1" />
+      <File FileName="db\SQLite.cs" Line="1" Column="1" />
+      <File FileName="Utilities\MyOnTouchListener.cs" Line="11" Column="21" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Totem" expanded="True" selected="True">
             <Node name="Totem" expanded="True">
-              <Node name="Properties" expanded="True" />
+              <Node name="Adapters" expanded="True" />
+              <Node name="db" expanded="True" />
               <Node name="Resources" expanded="True">
                 <Node name="layout" expanded="True" />
-                <Node name="values" expanded="True" />
               </Node>
               <Node name="Utilities" expanded="True" />
             </Node>

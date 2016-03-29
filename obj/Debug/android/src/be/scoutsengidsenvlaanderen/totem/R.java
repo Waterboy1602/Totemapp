@@ -9,68 +9,138 @@ package be.scoutsengidsenvlaanderen.totem;
 
 public final class R {
     public static final class attr {
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int font=0x7f010000;
+    }
+    public static final class color {
+        public static final int totemblue=0x7f040000;
+        public static final int totembrown=0x7f040001;
+        public static final int totemdarkblue=0x7f040002;
     }
     public static final class drawable {
-        public static final int icon=0x7f020000;
-        public static final int titel_scaled=0x7f020001;
-        public static final int totem_scaled=0x7f020002;
+        public static final int berg=0x7f020000;
+        public static final int grass=0x7f020001;
+        public static final int ic_add_white_24dp=0x7f020002;
+        public static final int ic_arrow_back_white_24dp=0x7f020003;
+        public static final int ic_arrow_forward_white_24dp=0x7f020004;
+        public static final int ic_close_white_24dp=0x7f020005;
+        public static final int ic_delete_white_24dp=0x7f020006;
+        public static final int ic_more_vert_white_24dp=0x7f020007;
+        public static final int ic_search_white_24dp=0x7f020008;
+        public static final int icon=0x7f020009;
+        public static final int lamp=0x7f02000a;
+        public static final int lijn=0x7f02000b;
+        public static final int lijn_bold=0x7f02000c;
+        public static final int totem=0x7f02000d;
     }
     public static final class id {
-        public static final int Verwijder=0x7f07001d;
-        public static final int all_eigenschappen_list=0x7f070001;
-        public static final int all_totem_list=0x7f070004;
-        public static final int body=0x7f070015;
-        public static final int checkbox=0x7f070006;
-        public static final int checkboxWeergeven=0x7f070010;
-        public static final int detail=0x7f070012;
-        public static final int eigenschap=0x7f070005;
-        public static final int eigenschapQuery=0x7f070000;
-        public static final int eigenschappen=0x7f07000a;
-        public static final int empty_profiel=0x7f07000c;
-        public static final int freq=0x7f070018;
-        public static final int jaKnop=0x7f070007;
-        public static final int neeKnop=0x7f070008;
-        public static final int profielen=0x7f07000b;
-        public static final int profielen_list=0x7f07000d;
-        public static final int reset=0x7f07001a;
-        public static final int scroll=0x7f070011;
-        public static final int select=0x7f07001b;
-        public static final int synonyms=0x7f070014;
-        public static final int tip=0x7f07000f;
-        public static final int titel=0x7f07000e;
-        public static final int title=0x7f070013;
-        public static final int totem=0x7f070017;
-        public static final int totemQuery=0x7f070003;
-        public static final int totem_list=0x7f070019;
-        public static final int totems=0x7f070009;
-        public static final int vind_button=0x7f070002;
-        public static final int voegProfielToe=0x7f07001c;
-        public static final int voegtoe=0x7f070016;
+        public static final int addButton=0x7f080005;
+        public static final int all_eigenschappen_list=0x7f080007;
+        public static final int all_totem_list=0x7f08000d;
+        public static final int backButton=0x7f080000;
+        public static final int body=0x7f080021;
+        public static final int bottomBar=0x7f080008;
+        public static final int checkbox=0x7f08000f;
+        public static final int checkboxWeergeven=0x7f08001b;
+        public static final int closeButton=0x7f080001;
+        public static final int deleteButton=0x7f080006;
+        public static final int deleteItem=0x7f080024;
+        public static final int detail=0x7f08001d;
+        public static final int eigenschap=0x7f08000e;
+        public static final int eigenschappen=0x7f080013;
+        public static final int empty_profiel=0x7f080017;
+        public static final int freq=0x7f080023;
+        public static final int full=0x7f080029;
+        public static final int goede_totemisatie=0x7f080015;
+        public static final int grass=0x7f080026;
+        public static final int jaKnop=0x7f080010;
+        public static final int neeKnop=0x7f080011;
+        public static final int number=0x7f08001e;
+        public static final int profielen=0x7f080014;
+        public static final int profielen_list=0x7f080018;
+        public static final int query=0x7f080003;
+        public static final int reset=0x7f080027;
+        public static final int scroll=0x7f08001c;
+        public static final int searchButton=0x7f080004;
+        public static final int select=0x7f080028;
+        public static final int selected=0x7f080009;
+        public static final int synonyms=0x7f080020;
+        public static final int tip=0x7f08001a;
+        public static final int titel=0x7f080019;
+        public static final int title=0x7f080002;
+        public static final int title_synonyms=0x7f08001f;
+        public static final int totem=0x7f080022;
+        public static final int totem_list=0x7f080025;
+        public static final int totempaal=0x7f080016;
+        public static final int totems=0x7f080012;
+        public static final int vind=0x7f08000a;
+        public static final int vindButton=0x7f08000c;
+        public static final int vindText=0x7f08000b;
     }
     public static final class layout {
-        public static final int alleigenschappen=0x7f030000;
-        public static final int alltotems=0x7f030001;
-        public static final int eigenschaplistitem=0x7f030002;
-        public static final int eigenschappen=0x7f030003;
-        public static final int main=0x7f030004;
-        public static final int profielen=0x7f030005;
-        public static final int splashscreen=0x7f030006;
-        public static final int tippopup=0x7f030007;
-        public static final int totemdetail=0x7f030008;
-        public static final int totemlistitem=0x7f030009;
-        public static final int totems=0x7f03000a;
+        public static final int actionbar=0x7f030000;
+        public static final int alleigenschappen=0x7f030001;
+        public static final int alltotems=0x7f030002;
+        public static final int eigenschaplistitem=0x7f030003;
+        public static final int eigenschappen=0x7f030004;
+        public static final int main=0x7f030005;
+        public static final int profielen=0x7f030006;
+        public static final int splashscreen=0x7f030007;
+        public static final int tippopup=0x7f030008;
+        public static final int totemdetail=0x7f030009;
+        public static final int totemlistitem=0x7f03000a;
+        public static final int totems=0x7f03000b;
     }
     public static final class menu {
-        public static final int eigenschapselectiemenu=0x7f060000;
-        public static final int popup=0x7f060001;
-        public static final int profielmenu=0x7f060002;
+        public static final int eigenschapselectiemenu=0x7f070000;
+        public static final int popup=0x7f070001;
     }
     public static final class string {
-        public static final int app_name=0x7f040001;
-        public static final int hello=0x7f040000;
+        public static final int DIN_light=0x7f050003;
+        public static final int DIN_regular=0x7f050004;
+        public static final int Verveine=0x7f050002;
+        public static final int app_name=0x7f050001;
+        public static final int hello=0x7f050000;
     }
     public static final class style {
-        public static final int AppBaseTheme=0x7f050000;
-        public static final int AppThemeNoAction=0x7f050001;
+        public static final int AppBaseTheme=0x7f060000;
+        public static final int AppThemeNoAction=0x7f060001;
+        public static final int MyActionBar=0x7f060002;
+        public static final int MyCustomTheme_OverFlow=0x7f060003;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a CustomFont.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #CustomFont_font be.scoutsengidsenvlaanderen.totem:font}</code></td><td></td></tr>
+           </table>
+           @see #CustomFont_font
+         */
+        public static final int[] CustomFont = {
+            0x7f010000
+        };
+        /**
+          <p>This symbol is the offset where the {@link be.scoutsengidsenvlaanderen.totem.R.attr#font}
+          attribute's value can be found in the {@link #CustomFont} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name be.scoutsengidsenvlaanderen.totem:font
+        */
+        public static final int CustomFont_font = 0;
+    };
 }

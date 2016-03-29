@@ -70,12 +70,17 @@
     <Compile Include="TipDialog.cs" />
     <Compile Include="model\Tip.cs" />
     <Compile Include="ProfielTotemsActivity.cs" />
-    <Compile Include="SplashScreenActivity.cs" />
     <Compile Include="Utilities\DynamicImageView.cs" />
-    <Compile Include="Utilities\OnCheckBoxClickListener.cs" />
     <Compile Include="Utilities\MyOnCheckBoxClickListener.cs" />
     <Compile Include="Utilities\KeyboardHelper.cs" />
+    <Compile Include="Utilities\CustomFontTextView.cs" />
+    <Compile Include="Utilities\CustomFontButton.cs" />
+    <Compile Include="Utilities\CustomFontEditText.cs" />
     <Compile Include="Utilities\CollectionHelper.cs" />
+    <Compile Include="Utilities\CustomFontHelper.cs" />
+    <Compile Include="Utilities\CustomTypefaceSpan.cs" />
+    <Compile Include="Utilities\MyOnDismissListener.cs" />
+    <Compile Include="Utilities\MyOnTouchListener.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -100,16 +105,59 @@
     <AndroidResource Include="Resources\layout\AllEigenschappen.xml" />
     <AndroidResource Include="Resources\layout\EigenschapListItem.xml" />
     <AndroidResource Include="Resources\layout\TipPopUp.xml" />
-    <AndroidResource Include="Resources\Menu\profielMenu.xml" />
     <AndroidResource Include="Resources\Menu\EigenschapSelectieMenu.xml" />
     <AndroidResource Include="Resources\layout\SplashScreen.axml" />
-    <AndroidResource Include="Resources\drawable\Totem_scaled.jpg" />
     <AndroidResource Include="Resources\values\styles.xml" />
-    <AndroidResource Include="Resources\drawable\Titel_scaled.png" />
+    <AndroidResource Include="Resources\drawable\Totem.png" />
+    <AndroidResource Include="Resources\values\attrs.xml" />
+    <AndroidResource Include="Resources\drawable\grass.xml" />
+    <AndroidResource Include="Resources\drawable\Berg.png" />
+    <AndroidResource Include="Resources\values\colors.xml" />
+    <AndroidResource Include="Resources\drawable\Lijn.png" />
+    <AndroidResource Include="Resources\drawable\Lijn_bold.png" />
+    <AndroidResource Include="Resources\drawable\Lamp.png" />
+    <AndroidResource Include="Resources\layout\ActionBar.axml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_arrow_back_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_search_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_arrow_back_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_search_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_arrow_back_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_search_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_arrow_back_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_search_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_arrow_back_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_search_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_delete_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_delete_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_delete_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_delete_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_delete_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_more_vert_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_more_vert_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_more_vert_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_more_vert_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_more_vert_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_add_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_arrow_forward_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_add_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_arrow_forward_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_add_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_arrow_forward_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_add_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_arrow_forward_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_add_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_arrow_forward_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_close_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_close_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_close_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_close_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_close_white_24dp.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\totems.sqlite" />
-    <AndroidAsset Include="Assets\fonts\DCC - Ash.otf" />
+    <AndroidAsset Include="Assets\fonts\DINPro-Light.ttf" />
+    <AndroidAsset Include="Assets\fonts\Verveine W01 Regular.ttf" />
+    <AndroidAsset Include="Assets\fonts\DINPro-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\fonts\" />

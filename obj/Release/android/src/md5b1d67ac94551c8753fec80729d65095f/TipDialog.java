@@ -22,6 +22,13 @@ public class TipDialog
 			mono.android.TypeManager.Activate ("Totem.TipDialog, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
 	}
 
+	public TipDialog (android.content.Context p0) throws java.lang.Throwable
+	{
+		super ();
+		if (getClass () == TipDialog.class)
+			mono.android.TypeManager.Activate ("Totem.TipDialog, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "Android.Content.Context, Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=84e04ff9cfb79065", this, new java.lang.Object[] { p0 });
+	}
+
 
 	public android.app.Dialog onCreateDialog (android.os.Bundle p0)
 	{

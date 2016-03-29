@@ -101,15 +101,6 @@ namespace Totem {
 			}
 		}
 
-		//remove all profiles
-		public void ClearProfiles() {
-			using (var conn = new SQLite.SQLiteConnection (dbPath)) {
-				var cmd = new SQLite.SQLiteCommand (conn);
-				cmd.CommandText = "DELETE FROM profiel";
-				cmd.ExecuteQuery<Profiel> ();
-			}
-		}
-
 		//add a profile
 		public void AddProfile(string name) {
 			using (var conn = new SQLite.SQLiteConnection (dbPath)) {

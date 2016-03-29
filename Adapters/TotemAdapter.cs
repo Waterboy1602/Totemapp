@@ -15,15 +15,25 @@ namespace Totem {
 		List<Totem> totemList;
 		int[] freqs;
 		int selected;
+		bool showDelete;
 
 		public TotemAdapter (Activity activity, List<Totem> list) {	
 			this._activity = activity;
 			this.totemList = list;
+			this.showDelete = false;
 		}
 
 		public TotemAdapter (Activity activity, List<Totem> list, int[] freqs, int selected): this(activity, list) {	
 			this.freqs = freqs;
 			this.selected = selected;
+		}
+
+		public void ShowDelete() {
+			this.showDelete = true;
+		}
+
+		public void HideDelete() {
+			this.showDelete = false;
 		}
 
 		public void UpdateData(List<Totem> list) {
@@ -41,15 +51,51 @@ namespace Totem {
 		}
 
 		public override View GetView (int position, View convertView, ViewGroup parent) {
-			var view = convertView ?? _activity.LayoutInflater.Inflate (Resource.Layout.TotemListItem, parent, false);
-			var totem = view.FindViewById<TextView> (Resource.Id.totem);
-			totem.Text = totemList[position].title;
-			if (freqs != null) {
-				var freq = view.FindViewById<TextView> (Resource.Id.freq);
-				freq.Text = freqs [position].ToString () /*+ "/" + selected*/;
+			ViewHolder viewHolder;
+
+			if (convertView == null) {
+				convertView = _activity.LayoutInflater.Inflate (Resource.Layout.TotemListItem, parent, false);
+
+				viewHolder = new ViewHolder ();
+				viewHolder.totem = convertView.FindViewById<TextView> (Resource.Id.totem);
+				viewHolder.checkbox = convertView.FindViewById<CheckBox> (Resource.Id.deleteItem);
+				viewHolder.freq = convertView.FindViewById<TextView> (Resource.Id.freq);
+
+				convertView.Tag = viewHolder;
+			} else {
+				viewHolder = (ViewHolder)convertView.Tag;
 			}
 
-			return view;
+			if (showDelete) {
+				viewHolder.checkbox.Visibility = ViewStates.Visible;
+			} else {
+				viewHolder.checkbox.Visibility = ViewStates.Gone;
+			}
+
+			viewHolder.checkbox.Tag = position;
+
+			viewHolder.totem.Text = totemList [position].title;
+			viewHolder.checkbox.Checked = totemList [(int)viewHolder.checkbox.Tag].selected;
+			if (freqs != null) {
+				viewHolder.freq.Text = freqs [position].ToString () /*+ "/" + selected*/;
+			}
+
+			viewHolder.checkbox.Click += (o, e) => {
+				if (viewHolder.checkbox.Checked) {
+					totemList [(int)viewHolder.checkbox.Tag].selected = true;
+				} else {
+					totemList [(int)viewHolder.checkbox.Tag].selected = false;
+				}
+			};
+
+			return convertView;
+		}
+
+		//ViewHolder for better performance
+		class ViewHolder : Java.Lang.Object {
+			public TextView totem;
+			public CheckBox checkbox;
+			public TextView freq;
 		}
 
 		public override int Count {

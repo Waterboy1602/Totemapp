@@ -25,6 +25,11 @@ namespace Totem {
 		//list of Totem objects
 		List<Totem> totemList;
 
+		TextView title;
+		ImageButton back;
+		ImageButton delete;
+		ImageButton close;
+
 		Database db;
 		Toast mToast;
 		string profileName;
@@ -51,17 +56,23 @@ namespace Totem {
 			allTotemListView = FindViewById<ListView> (Resource.Id.all_totem_list);
 			allTotemListView.Adapter = totemAdapter;
 
-			allTotemListView.ItemClick += TotemClick;
-			allTotemListView.ItemLongClick += TotemLongClick;
+			allTotemListView.ItemClick += ShowDetail;
+			allTotemListView.ItemLongClick += DeleteTotem;
 
-			CustomFontTextView title = mCustomView.FindViewById<CustomFontTextView> (Resource.Id.title);
+			title = mCustomView.FindViewById<TextView> (Resource.Id.title);
 			title.Text = "Totems voor " + profileName;
 
-			ImageButton back = mCustomView.FindViewById<ImageButton> (Resource.Id.backButton);
+			back = mCustomView.FindViewById<ImageButton> (Resource.Id.backButton);
 			back.Click += (object sender, EventArgs e) => OnBackPressed();
+
+			close = mCustomView.FindViewById<ImageButton> (Resource.Id.closeButton);
 
 			ImageButton search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
 			search.Visibility = ViewStates.Gone;
+
+			delete = mCustomView.FindViewById<ImageButton> (Resource.Id.deleteButton);
+			delete.Visibility = ViewStates.Visible;
+			delete.Click += ShowDeleteTotems;
 
 			ActionBar.LayoutParams layout = new ActionBar.LayoutParams (WindowManagerLayoutParams.MatchParent, WindowManagerLayoutParams.MatchParent);
 
@@ -78,7 +89,7 @@ namespace Totem {
 
 		//get DetailActivity of the totem that is clicked
 		//ID is passed as parameter
-		private void TotemClick(object sender, AdapterView.ItemClickEventArgs e) {
+		private void ShowDetail(object sender, AdapterView.ItemClickEventArgs e) {
 			int pos = e.Position;
 			var item = totemAdapter.GetItemAtPosition(pos);
 
@@ -88,7 +99,7 @@ namespace Totem {
 			StartActivity (detailActivity);
 		}
 
-		private void TotemLongClick(object sender, AdapterView.ItemLongClickEventArgs e) {
+		private void DeleteTotem(object sender, AdapterView.ItemLongClickEventArgs e) {
 			int pos = e.Position;
 			var item = totemAdapter.GetItemAtPosition(pos);
 
@@ -98,10 +109,10 @@ namespace Totem {
 				db.DeleteTotemFromProfile(item.nid, profileName);
 				mToast.SetText(item.title + " verwijderd");
 				mToast.Show();
-				if(totemList.Count == 1) {
+				totemList = db.GetTotemsFromProfiel(profileName);
+				if(totemList.Count == 0) {
 					base.OnBackPressed();
 				} else {
-					totemList = db.GetTotemsFromProfiel(profileName);
 					totemAdapter.UpdateData (totemList);
 					totemAdapter.NotifyDataSetChanged ();
 				}
@@ -112,6 +123,58 @@ namespace Totem {
 			Dialog dialog = alert.Create();
 			RunOnUiThread (() => {
 				dialog.Show();
+			} );
+		}
+
+		private void ShowDeleteTotems(object sender, EventArgs e) {
+			totemAdapter.ShowDelete ();
+			totemAdapter.NotifyDataSetChanged ();
+			back.Visibility = ViewStates.Gone;
+			close.Visibility = ViewStates.Visible;
+			title.Visibility = ViewStates.Gone;
+
+			close.Click += HideDeleteTotems;
+
+			delete.Click -= ShowDeleteTotems;
+			delete.Click += RemoveSelectedTotems;
+		}
+
+		private void HideDeleteTotems(object sender, EventArgs e) {
+			totemAdapter.HideDelete ();
+			totemAdapter.NotifyDataSetChanged ();
+			back.Visibility = ViewStates.Visible;
+			close.Visibility = ViewStates.Gone;
+			title.Visibility = ViewStates.Visible;
+
+			delete.Click -= RemoveSelectedTotems;
+			delete.Click += ShowDeleteTotems;
+		}
+
+		private void RemoveSelectedTotems(object sender, EventArgs e) {
+			AlertDialog.Builder alert1 = new AlertDialog.Builder (this);
+			alert1.SetMessage ("Geselecteerde totems verwijderen?");
+			alert1.SetPositiveButton ("Ja", (senderAlert, args) => {
+				foreach(Totem t in totemList) {
+					if (t.selected) {
+						db.DeleteTotemFromProfile(t.nid, profileName);
+					}
+				}
+				totemList = db.GetTotemsFromProfiel (profileName);
+				if(totemList.Count == 0) {
+					base.OnBackPressed();
+				} else {
+					totemAdapter.UpdateData(totemList);
+					totemAdapter.NotifyDataSetChanged();
+					HideDeleteTotems (sender, e);
+				}
+			});
+
+			alert1.SetNegativeButton ("Nee", (senderAlert, args) => {});
+
+			Dialog d2 = alert1.Create();
+
+			RunOnUiThread (() => {
+				d2.Show();
 			} );
 		}
 	}
