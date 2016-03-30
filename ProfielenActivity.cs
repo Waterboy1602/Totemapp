@@ -23,6 +23,7 @@ namespace Totem {
 		ImageButton close;
 		ImageButton add;
 		ImageButton delete;
+		TextView noProfiles;
 
 		Database db;
 		Toast mToast;
@@ -51,6 +52,8 @@ namespace Totem {
 			profielenListView.ItemClick += ShowTotems;
 			profielenListView.ItemLongClick += DeleteProfile;
 
+			noProfiles = FindViewById<TextView> (Resource.Id.empty_profiel);
+
 			title = mCustomView.FindViewById<TextView> (Resource.Id.title);
 			title.Text = "Profielen";
 
@@ -62,6 +65,7 @@ namespace Totem {
 			add.Click += (object sender, EventArgs e) => AddProfile();
 
 			close = mCustomView.FindViewById<ImageButton> (Resource.Id.closeButton);
+			close.Click += HideDeleteProfiles;
 
 			var search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
 			search.Visibility = ViewStates.Gone;
@@ -70,7 +74,7 @@ namespace Totem {
 			delete.Click += ShowDeleteProfiles;
 
 			if (profielen.Count == 0) {
-				FindViewById<TextView> (Resource.Id.empty_profiel).Visibility = ViewStates.Visible;
+				noProfiles.Visibility = ViewStates.Visible;
 				delete.Visibility = ViewStates.Gone;
 			} else {
 				delete.Visibility = ViewStates.Visible;
@@ -85,12 +89,11 @@ namespace Totem {
 		//updates data of the adapter and shows/hides the "empty"-message when needed
 		private void UpdateList(List<Profiel> profielen) {
 			this.profielen = profielen;
-			var empty = FindViewById<TextView> (Resource.Id.empty_profiel);
 			if (profielen.Count == 0) {
-				empty.Visibility = ViewStates.Visible;
+				noProfiles.Visibility = ViewStates.Visible;
 				delete.Visibility = ViewStates.Gone;
 			} else {
-				empty.Visibility = ViewStates.Gone;
+				noProfiles.Visibility = ViewStates.Gone;
 				delete.Visibility = ViewStates.Visible;
 			}
 			profielAdapter.UpdateData(profielen);
@@ -173,12 +176,11 @@ namespace Totem {
 		private void ShowDeleteProfiles(object sender, EventArgs e) {
 			profielAdapter.ShowDelete ();
 			profielAdapter.NotifyDataSetChanged ();
+
 			back.Visibility = ViewStates.Gone;
 			close.Visibility = ViewStates.Visible;
 			title.Visibility = ViewStates.Gone;
 			add.Visibility = ViewStates.Gone;
-
-			close.Click += HideDeleteProfiles;
 
 			delete.Click -= ShowDeleteProfiles;
 			delete.Click += RemoveSelectedProfiles;
@@ -187,6 +189,7 @@ namespace Totem {
 		private void HideDeleteProfiles(object sender, EventArgs e) {
 			profielAdapter.HideDelete ();
 			profielAdapter.NotifyDataSetChanged ();
+
 			back.Visibility = ViewStates.Visible;
 			close.Visibility = ViewStates.Gone;
 			title.Visibility = ViewStates.Visible;
@@ -217,8 +220,7 @@ namespace Totem {
 					HideDeleteProfiles (sender, e);
 				});
 
-				alert1.SetNegativeButton ("Nee", (senderAlert, args) => {
-				});
+				alert1.SetNegativeButton ("Nee", (senderAlert, args) => {});
 
 				Dialog d2 = alert1.Create ();
 

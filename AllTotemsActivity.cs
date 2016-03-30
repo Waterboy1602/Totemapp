@@ -20,7 +20,6 @@ namespace Totem {
 	public class AllTotemsActivity : Activity {
 		TotemAdapter totemAdapter;
 		ListView allTotemListView;
-
 		List<Totem> totemList;
 
 		Database db;
@@ -51,7 +50,7 @@ namespace Totem {
 			query = mCustomView.FindViewById<EditText>(Resource.Id.query);
 			query.Hint = "Zoek totem";
 
-			//hide keybaord when scrolling through list
+			//hide keyboard when scrolling through list
 			allTotemListView.SetOnTouchListener(new MyOnTouchListener(this, query));
 
 			LiveSearch ();

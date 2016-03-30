@@ -31,7 +31,7 @@ containing a value of this type.
     }
     public static final class drawable {
         public static final int berg=0x7f020000;
-        public static final int grass=0x7f020001;
+        public static final int grass_green=0x7f020001;
         public static final int ic_add_white_24dp=0x7f020002;
         public static final int ic_arrow_back_white_24dp=0x7f020003;
         public static final int ic_arrow_forward_white_24dp=0x7f020004;
@@ -68,7 +68,7 @@ containing a value of this type.
         public static final int expand=0x7f09000e;
         public static final int freq=0x7f09002a;
         public static final int full=0x7f090030;
-        public static final int grass=0x7f09002d;
+        public static final int grass_green=0x7f09002d;
         public static final int head=0x7f090016;
         public static final int intro=0x7f090017;
         public static final int jaKnop=0x7f090011;

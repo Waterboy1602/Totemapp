@@ -12,6 +12,12 @@ namespace Totem {
 		private TypefaceStyle style;
 		private int size;
 
+		public CustomTypefaceSpan (string family, Typeface type, TypefaceStyle style) : base(family) {
+			newType = type;
+			this.style = style;
+			this.size = 0;
+		}
+
 		public CustomTypefaceSpan (string family, Typeface type, TypefaceStyle style, int size) : base(family) {
 			newType = type;
 			this.style = style;
@@ -30,9 +36,8 @@ namespace Totem {
 			if (style == TypefaceStyle.Italic)
 				paint.TextSkewX = -0.25f;
 			
-			if(size > 0) {
+			if(size > 0)
 				paint.TextSize = size;
-			}
 
 			paint.SetTypeface (tf);
 		}

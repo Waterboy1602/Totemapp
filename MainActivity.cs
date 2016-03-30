@@ -68,7 +68,7 @@ namespace Totem {
 			var dialog = TipDialog.NewInstance(this);
 			RunOnUiThread (() => {
 				dialog.Show(FragmentManager, "dialog");
-			} );
+			});
 		}
 
 		public override void OnBackPressed() {

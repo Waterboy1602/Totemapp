@@ -39,15 +39,17 @@ namespace Totem {
 				bottomBar.Visibility = ViewStates.Visible;
 
 				//animation
-				/*if(bottomBar.Visibility == ViewStates.Gone && counter == 1) {
+				/*if (bottomBar.Visibility == ViewStates.Gone && counter == 1) {
 					TranslateAnimation animate = new TranslateAnimation (0, 0, bottomBar.Height, 0);
 					animate.Duration = 250;
 					bottomBar.StartAnimation (animate);
-					Task.Factory.StartNew(() => Thread.Sleep(250)).ContinueWith((t) => {
+					Task.Factory.StartNew (() => Thread.Sleep (250)).ContinueWith ((t) => {
 						bottomBar.Visibility = ViewStates.Visible;
-					}, TaskScheduler.FromCurrentSynchronizationContext());
-
+					}, TaskScheduler.FromCurrentSynchronizationContext ());
+				} else {
+					bottomBar.Visibility = ViewStates.Visible;
 				}*/
+
 			} else {
 				bottomBar.Visibility = ViewStates.Gone;
 

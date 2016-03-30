@@ -10,8 +10,11 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:textSize="18sp"
-        android:padding="10sp"
+        android:textSize="20sp"
+        android:paddingLeft="5sp"
+        android:paddingRight="5sp"
+        android:paddingTop="10sp"
+        android:paddingBottom="10sp"
         android:textColor="#6E804C"
         app:font="@string/Verveine" />
 </LinearLayout>

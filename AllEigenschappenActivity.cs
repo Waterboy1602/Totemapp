@@ -24,10 +24,10 @@ namespace Totem {
 	public class AllEigenschappenActivity : Activity {
 		EigenschapAdapter eigenschapAdapter;
 		ListView allEigenschappenListView;
-
 		List<Eigenschap> eigenschappenList;
 
 		Database db;
+		Toast mToast;
 
 		RelativeLayout bottomBar;
 
@@ -37,8 +37,6 @@ namespace Totem {
 		ImageButton search;
 
 		IMenu menu;
-
-		Toast mToast;
 
 		MyOnCheckBoxClickListener mListener;
 
@@ -106,10 +104,12 @@ namespace Totem {
 					e.Handled = false;
 			};
 
-			allEigenschappenListView.ItemLongClick += EigenschapLongClick;
+			allEigenschappenListView.ItemLongClick += ShowExplanation;
 		}
 
-		private void EigenschapLongClick(object sender, AdapterView.ItemLongClickEventArgs e) {
+		//IDEA
+		//shows short explanation of eigenschap
+		private void ShowExplanation(object sender, AdapterView.ItemLongClickEventArgs e) {
 			int pos = e.Position;
 			var item = eigenschapAdapter.GetItemAtPosition(pos);
 
@@ -155,7 +155,7 @@ namespace Totem {
 			};
 		}
 
-		//shows only totems that are match the query
+		//shows only totems that match the query
 		private void Search() {
 			fullList = false;
 			eigenschappenList = db.FindEigenschapOpNaam (query.Text);
@@ -206,7 +206,7 @@ namespace Totem {
 			return base.OnCreateOptionsMenu(menu);
 		}
 
-		//options menu: add profile or delete all
+		//options menu: add profile, view selection of view full list
 		public override bool OnOptionsItemSelected(IMenuItem item) {
 			switch (item.ItemId) {
 

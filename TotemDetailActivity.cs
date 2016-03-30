@@ -152,7 +152,7 @@ namespace Totem {
 
 						RunOnUiThread (() => {
 							d1.Show();
-						} );
+						});
 
 					} else {
 						db.AddTotemToProfiel(nid, arg1.Item.TitleFormatted.ToString());
@@ -176,7 +176,7 @@ namespace Totem {
 			Typeface Verveine = Typeface.CreateFromAsset (Assets, "fonts/Verveine W01 Regular.ttf");
 
 			//code to get formatting right
-			//title and synonyms are in the same textview
+			//title and synonyms are in the same TextView
 			//font, size,... are given using spans
 			if (t.synonyms != null) {
 				string titlestring = t.title;
@@ -185,7 +185,7 @@ namespace Totem {
 				Typeface Din = Typeface.CreateFromAsset (Assets, "fonts/DINPro-Light.ttf");
 
 				ISpannable sp = new SpannableString (titlestring + synonymsstring);
-				sp.SetSpan (new CustomTypefaceSpan ("sans-serif", Verveine, 0, 0), 0, titlestring.Length, SpanTypes.ExclusiveExclusive);
+				sp.SetSpan (new CustomTypefaceSpan ("sans-serif", Verveine, 0), 0, titlestring.Length, SpanTypes.ExclusiveExclusive);
 				sp.SetSpan (new CustomTypefaceSpan ("sans-serif", Din, TypefaceStyle.Italic, ConvertDPToPixels(17)), titlestring.Length, titlestring.Length + synonymsstring.Length, SpanTypes.ExclusiveExclusive);
 
 				title_synonyms.TextFormatted = sp;

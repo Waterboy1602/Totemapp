@@ -109,11 +109,8 @@
     <AndroidResource Include="Resources\values\styles.xml" />
     <AndroidResource Include="Resources\drawable\Totem.png" />
     <AndroidResource Include="Resources\values\attrs.xml" />
-    <AndroidResource Include="Resources\drawable\grass.xml" />
     <AndroidResource Include="Resources\drawable\Berg.png" />
     <AndroidResource Include="Resources\values\colors.xml" />
-    <AndroidResource Include="Resources\drawable\Lijn_bold.png" />
-    <AndroidResource Include="Resources\drawable\Lamp.png" />
     <AndroidResource Include="Resources\layout\ActionBar.axml" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_arrow_back_white_24dp.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_search_white_24dp.png" />
@@ -158,6 +155,9 @@
     <AndroidResource Include="Resources\layout\ExpandChildHead.axml" />
     <AndroidResource Include="Resources\layout\ExpandChildIndent.axml" />
     <AndroidResource Include="Resources\values\arrays.xml" />
+    <AndroidResource Include="Resources\drawable\grass_green.xml" />
+    <AndroidResource Include="Resources\drawable\Lamp.png" />
+    <AndroidResource Include="Resources\drawable\Lijn_bold.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\totems.sqlite" />

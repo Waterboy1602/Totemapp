@@ -14,7 +14,6 @@ using Android.Widget;
 namespace Totem {
 	[Activity (Label = "Checklist")]			
 	public class ChecklistActivity : Activity {
-
 		Dictionary<string, List<string>> dictGroup;
 
 		protected override void OnCreate (Bundle savedInstanceState) {

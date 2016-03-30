@@ -21,8 +21,6 @@ namespace Totem {
 	public class ProfielTotemsActivity : Activity {
 		TotemAdapter totemAdapter;
 		ListView allTotemListView;
-
-		//list of Totem objects
 		List<Totem> totemList;
 
 		TextView title;
@@ -32,6 +30,7 @@ namespace Totem {
 
 		Database db;
 		Toast mToast;
+
 		string profileName;
 
 		protected override void OnCreate (Bundle bundle) {
@@ -66,6 +65,7 @@ namespace Totem {
 			back.Click += (object sender, EventArgs e) => OnBackPressed();
 
 			close = mCustomView.FindViewById<ImageButton> (Resource.Id.closeButton);
+			close.Click += HideDeleteTotems;
 
 			ImageButton search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
 			search.Visibility = ViewStates.Gone;
@@ -129,11 +129,10 @@ namespace Totem {
 		private void ShowDeleteTotems(object sender, EventArgs e) {
 			totemAdapter.ShowDelete ();
 			totemAdapter.NotifyDataSetChanged ();
+
 			back.Visibility = ViewStates.Gone;
 			close.Visibility = ViewStates.Visible;
 			title.Visibility = ViewStates.Gone;
-
-			close.Click += HideDeleteTotems;
 
 			delete.Click -= ShowDeleteTotems;
 			delete.Click += RemoveSelectedTotems;
@@ -142,6 +141,7 @@ namespace Totem {
 		private void HideDeleteTotems(object sender, EventArgs e) {
 			totemAdapter.HideDelete ();
 			totemAdapter.NotifyDataSetChanged ();
+
 			back.Visibility = ViewStates.Visible;
 			close.Visibility = ViewStates.Gone;
 			title.Visibility = ViewStates.Visible;
