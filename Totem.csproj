@@ -78,7 +78,6 @@
     <Compile Include="Utilities\CollectionHelper.cs" />
     <Compile Include="Utilities\CustomFontHelper.cs" />
     <Compile Include="Utilities\CustomTypefaceSpan.cs" />
-    <Compile Include="Utilities\MyOnDismissListener.cs" />
     <Compile Include="Utilities\MyOnTouchListener.cs" />
     <Compile Include="ChecklistActivity.cs" />
     <Compile Include="Adapters\ExpendListAdapter.cs" />

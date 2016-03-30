@@ -14,7 +14,7 @@ using Android.Views.InputMethods;
 using Android.Text;
 
 namespace Totem {
-	[Activity (Label = "Beschrijving")]			
+	[Activity (Label = "Beschrijving", WindowSoftInputMode=SoftInput.StateAlwaysHidden)]			
 	public class TotemDetailActivity : Activity	{
 		CustomFontTextView number;
 		TextView title_synonyms;
@@ -117,9 +117,10 @@ namespace Totem {
 				menu.MenuItemClick += (s1, arg1) => {
 					if(arg1.Item.TitleFormatted.ToString().Equals("Nieuw profiel")) {
 						AlertDialog.Builder alert = new AlertDialog.Builder (this);
-						alert.SetTitle ("Naam");
+						alert.SetTitle ("Nieuw profiel");
 						EditText input = new EditText (this);
 						input.InputType = Android.Text.InputTypes.TextFlagCapWords;
+						input.Hint = "Naam";
 						KeyboardHelper.ShowKeyboard(this, input);
 						alert.SetView (input);
 						alert.SetPositiveButton ("Ok", (s, args) => {
@@ -148,8 +149,6 @@ namespace Totem {
 							else
 								e.Handled = false;
 						};
-
-					d1.SetOnDismissListener(new MyOnDismissListener(this));
 
 						RunOnUiThread (() => {
 							d1.Show();

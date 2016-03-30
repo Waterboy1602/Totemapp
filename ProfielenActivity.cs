@@ -12,7 +12,7 @@ using Android.Widget;
 using Android.Views.InputMethods;
 
 namespace Totem {
-	[Activity (Label = "Profielen")]			
+	[Activity (Label = "Profielen", WindowSoftInputMode=SoftInput.StateAlwaysHidden)]			
 	public class ProfielenActivity : Activity {
 		ProfielAdapter profielAdapter;
 		ListView profielenListView;
@@ -134,9 +134,10 @@ namespace Totem {
 
 		private void AddProfile() {
 			AlertDialog.Builder alert = new AlertDialog.Builder (this);
-			alert.SetTitle ("Naam");
+			alert.SetTitle ("Nieuw profiel");
 			EditText input = new EditText (this); 
 			input.InputType = Android.Text.InputTypes.TextFlagCapWords;
+			input.Hint = "Naam";
 			KeyboardHelper.ShowKeyboard (this, input);
 			alert.SetView (input);
 			alert.SetPositiveButton ("Ok", (sender, args) => {
@@ -155,8 +156,6 @@ namespace Totem {
 			});
 
 			AlertDialog d1 = alert.Create();
-
-			d1.SetOnDismissListener(new MyOnDismissListener(this));
 
 			//add profile when enter is clicked
 			input.EditorAction += (sender, e) => {
@@ -198,24 +197,38 @@ namespace Totem {
 		}
 
 		private void RemoveSelectedProfiles(object sender, EventArgs e) {
-			AlertDialog.Builder alert1 = new AlertDialog.Builder (this);
-			alert1.SetMessage ("Geselecteerde profielen verwijderen?");
-			alert1.SetPositiveButton ("Ja", (senderAlert, args) => {
-				foreach(Profiel p in profielen)
-					if (p.selected)
-						db.DeleteProfile (p.name);
+			bool selected = false;
+			foreach(Profiel p in profielen) {
+				if (p.selected) {
+					selected = true;
+					break;
+				}
+			}
+
+			if (selected) {		
+				AlertDialog.Builder alert1 = new AlertDialog.Builder (this);
+				alert1.SetMessage ("Geselecteerde profielen verwijderen?");
+				alert1.SetPositiveButton ("Ja", (senderAlert, args) => {
+					foreach (Profiel p in profielen)
+						if (p.selected)
+							db.DeleteProfile (p.name);
 				
-				UpdateList (db.GetProfielen());
-				HideDeleteProfiles (sender, e);
-			});
+					UpdateList (db.GetProfielen ());
+					HideDeleteProfiles (sender, e);
+				});
 
-			alert1.SetNegativeButton ("Nee", (senderAlert, args) => {});
+				alert1.SetNegativeButton ("Nee", (senderAlert, args) => {
+				});
 
-			Dialog d2 = alert1.Create();
+				Dialog d2 = alert1.Create ();
 
-			RunOnUiThread (() => {
-				d2.Show();
-			} );
+				RunOnUiThread (() => {
+					d2.Show ();
+				});
+			} else {
+				mToast.SetText("Geen profielen geselecteerd om te verwijderen");
+				mToast.Show();
+			}
 		}
 	}
 }

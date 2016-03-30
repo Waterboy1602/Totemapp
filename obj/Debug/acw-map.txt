@@ -74,10 +74,6 @@ Totem.CustomTypefaceSpan, Totem;md5b1d67ac94551c8753fec80729d65095f.CustomTypefa
 Totem.CustomTypefaceSpan, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.CustomTypefaceSpan
 Totem.CustomTypefaceSpan;md5b1d67ac94551c8753fec80729d65095f.CustomTypefaceSpan
 totem.CustomTypefaceSpan;md5b1d67ac94551c8753fec80729d65095f.CustomTypefaceSpan
-Totem.MyOnDismissListener, Totem;md5b1d67ac94551c8753fec80729d65095f.MyOnDismissListener
-Totem.MyOnDismissListener, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.MyOnDismissListener
-Totem.MyOnDismissListener;md5b1d67ac94551c8753fec80729d65095f.MyOnDismissListener
-totem.MyOnDismissListener;md5b1d67ac94551c8753fec80729d65095f.MyOnDismissListener
 Totem.MyOnTouchListener, Totem;md5b1d67ac94551c8753fec80729d65095f.MyOnTouchListener
 Totem.MyOnTouchListener, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.MyOnTouchListener
 Totem.MyOnTouchListener;md5b1d67ac94551c8753fec80729d65095f.MyOnTouchListener
