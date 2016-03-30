@@ -15,9 +15,8 @@ using Android.Graphics.Drawables;
 
 namespace Totem {
 	public class ExpendListAdapter: BaseExpandableListAdapter {
-
-		Dictionary<string, List<string>> _dictGroup =null;
-		List<string> _lstGroupID = null;
+		Dictionary<string, List<string>> _dictGroup;
+		List<string> _lstGroupID;
 		Activity _activity;
 
 		public ExpendListAdapter (Activity activity, Dictionary<string, List<string>> dictGroup)	{
@@ -38,12 +37,16 @@ namespace Totem {
 			return _dictGroup [_lstGroupID [groupPosition]].Count;
 		}
 
+		//returns matching view for the type of data
+		//i -> indented
+		//h -> head
+		//n -> normal
 		public override View GetChildView (int groupPosition, int childPosition, bool isLastChild, View convertView, ViewGroup parent) {
 			var item = _dictGroup [_lstGroupID [groupPosition]] [childPosition];
 			string[] data = item.Split ('_');
 			var type = data [0];
 			var content = data [1];
-			TextView tv;
+			TextView tv = null;
 			if (type.Equals ("i")) {
 				if(convertView == null || convertView.FindViewById<TextView> (Resource.Id.childindent) == null) 
 					convertView = _activity.LayoutInflater.Inflate (Resource.Layout.ExpandChildIndent, parent, false);
@@ -52,7 +55,7 @@ namespace Totem {
 				if(convertView == null || convertView.FindViewById<TextView> (Resource.Id.childhead) == null)
 					convertView = _activity.LayoutInflater.Inflate (Resource.Layout.ExpandChildHead, parent, false);
 				tv = convertView.FindViewById<TextView> (Resource.Id.childhead);
-			} else {
+			} else if (type.Equals ("n")) {
 				if(convertView == null || convertView.FindViewById<TextView> (Resource.Id.child) == null)
 					convertView = _activity.LayoutInflater.Inflate (Resource.Layout.ExpandChild, parent, false);
 				tv = convertView.FindViewById<TextView> (Resource.Id.child);

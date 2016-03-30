@@ -63,11 +63,11 @@ namespace Totem {
 			//notifies CheckBoxListener and stores selection
 			viewHolder.checkbox.Click += (o, e) => {
 				mListener.OnCheckboxClicked ();
-				if (viewHolder.checkbox.Checked) {
+				if (viewHolder.checkbox.Checked)
 					eigenschapList [(int)viewHolder.checkbox.Tag].selected = true;
-				} else {
+				else
 					eigenschapList [(int)viewHolder.checkbox.Tag].selected = false;
-				}
+
 				mListener.UpdateCounter(eigenschapList);
 			};
 

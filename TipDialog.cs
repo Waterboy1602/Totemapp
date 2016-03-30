@@ -53,9 +53,9 @@ namespace Totem {
 
 		private void HandleNegativeButtonClick(object sender, DialogClickEventArgs e) {
 			var dialog = (AlertDialog) sender;
-			if (weergeven_checkbox.Checked) {
+			if (weergeven_checkbox.Checked)
 				db.ChangePreference ("tips", "false");
-			}
+
 			dialog.Dismiss ();
 		}
 	}

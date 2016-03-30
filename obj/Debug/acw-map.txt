@@ -58,10 +58,6 @@ Totem.ProfielTotemsActivity, Totem;md5b1d67ac94551c8753fec80729d65095f.ProfielTo
 Totem.ProfielTotemsActivity, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.ProfielTotemsActivity
 Totem.ProfielTotemsActivity;md5b1d67ac94551c8753fec80729d65095f.ProfielTotemsActivity
 totem.ProfielTotemsActivity;md5b1d67ac94551c8753fec80729d65095f.ProfielTotemsActivity
-Totem.DynamicImageView, Totem;md5b1d67ac94551c8753fec80729d65095f.DynamicImageView
-Totem.DynamicImageView, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.DynamicImageView
-Totem.DynamicImageView;md5b1d67ac94551c8753fec80729d65095f.DynamicImageView
-totem.DynamicImageView;md5b1d67ac94551c8753fec80729d65095f.DynamicImageView
 Totem.CustomFontTextView, Totem;md5b1d67ac94551c8753fec80729d65095f.CustomFontTextView
 Totem.CustomFontTextView, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.CustomFontTextView
 Totem.CustomFontTextView;md5b1d67ac94551c8753fec80729d65095f.CustomFontTextView

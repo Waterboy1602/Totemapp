@@ -73,7 +73,7 @@ namespace Totem {
 
 			GetInfo (nid);
 
-			ActionBar.LayoutParams layout = new ActionBar.LayoutParams (WindowManagerLayoutParams.MatchParent, WindowManagerLayoutParams.MatchParent);
+			var layout = new ActionBar.LayoutParams (WindowManagerLayoutParams.MatchParent, WindowManagerLayoutParams.MatchParent);
 
 			mActionBar.SetCustomView (mCustomView, layout);
 			mActionBar.SetDisplayShowCustomEnabled (true);
@@ -143,11 +143,10 @@ namespace Totem {
 
 						//add profile when enter is clicked
 						input.EditorAction += (s2, e) => {
-							if (e.ActionId == ImeAction.Done) {
+							if (e.ActionId == ImeAction.Done)
 								d1.GetButton(-1).PerformClick();
-							} else {
+							else
 								e.Handled = false;
-							}
 						};
 
 					d1.SetOnDismissListener(new MyOnDismissListener(this));

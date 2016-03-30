@@ -32,9 +32,8 @@ namespace Totem {
 
 			ImageView berg = FindViewById<ImageView> (Resource.Id.berg);
 
-			if(db.GetPreference("tips").value.Equals("true")) {
+			if(db.GetPreference("tips").value.Equals("true"))
 				ShowTipDialog ();
-			}
 
 			totems.Click += (sender, eventArgs) => GoToActivity("totems");
 			eigenschappen.Click += (sender, eventArgs) => GoToActivity("eigenschappen");
@@ -48,14 +47,19 @@ namespace Totem {
 
 		private void GoToActivity(string activity) {
 			Intent intent = null;
-			if(activity.Equals("totems")) {
-				intent = new Intent(this, typeof(AllTotemsActivity));
-			} else if(activity.Equals("eigenschappen")) {
-				intent = new Intent(this, typeof(AllEigenschappenActivity));
-			} else if(activity.Equals("profielen")) {
-				intent = new Intent(this, typeof(ProfielenActivity));
-			} else if(activity.Equals("checklist")) {
-				intent = new Intent(this, typeof(ChecklistActivity));
+			switch (activity) {
+			case "totems":
+				intent = new Intent (this, typeof(AllTotemsActivity));
+				break;
+			case "eigenschappen":
+				intent = new Intent (this, typeof(AllEigenschappenActivity));
+				break;
+			case "profielen":
+				intent = new Intent (this, typeof(ProfielenActivity));
+				break;
+			case "checklist":
+				intent = new Intent (this, typeof(ChecklistActivity));
+				break;
 			}
 			StartActivity (intent);
 		}

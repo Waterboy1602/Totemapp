@@ -76,7 +76,7 @@ namespace Totem {
 				delete.Visibility = ViewStates.Visible;
 			}
 
-			ActionBar.LayoutParams layout = new ActionBar.LayoutParams (WindowManagerLayoutParams.MatchParent, WindowManagerLayoutParams.MatchParent);
+			var layout = new ActionBar.LayoutParams (WindowManagerLayoutParams.MatchParent, WindowManagerLayoutParams.MatchParent);
 
 			mActionBar.SetCustomView (mCustomView, layout);
 			mActionBar.SetDisplayShowCustomEnabled (true);
@@ -160,11 +160,10 @@ namespace Totem {
 
 			//add profile when enter is clicked
 			input.EditorAction += (sender, e) => {
-				if (e.ActionId == ImeAction.Done) {
+				if (e.ActionId == ImeAction.Done)
 					d1.GetButton(-1).PerformClick();
-				} else {
+				else
 					e.Handled = false;
-				}
 			};
 
 			RunOnUiThread (() => {
@@ -202,11 +201,10 @@ namespace Totem {
 			AlertDialog.Builder alert1 = new AlertDialog.Builder (this);
 			alert1.SetMessage ("Geselecteerde profielen verwijderen?");
 			alert1.SetPositiveButton ("Ja", (senderAlert, args) => {
-				foreach(Profiel p in profielen) {
-					if (p.selected) {
+				foreach(Profiel p in profielen)
+					if (p.selected)
 						db.DeleteProfile (p.name);
-					}
-				}
+				
 				UpdateList (db.GetProfielen());
 				HideDeleteProfiles (sender, e);
 			});

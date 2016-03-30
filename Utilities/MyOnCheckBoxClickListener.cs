@@ -65,10 +65,9 @@ namespace Totem {
 		//returns number of checked eigenschappen in eigenschapList
 		private int CountCheckedItems(List<Eigenschap> eigenschapList) {
 			int result = 0;
-			foreach (Eigenschap e in eigenschapList) {
+			foreach (Eigenschap e in eigenschapList)
 				if (e.selected)
 					result++;
-			}
 			return result;
 		}
 	}

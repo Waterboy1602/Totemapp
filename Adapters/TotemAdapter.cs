@@ -66,26 +66,23 @@ namespace Totem {
 				viewHolder = (ViewHolder)convertView.Tag;
 			}
 
-			if (showDelete) {
+			if (showDelete)
 				viewHolder.checkbox.Visibility = ViewStates.Visible;
-			} else {
+			else
 				viewHolder.checkbox.Visibility = ViewStates.Gone;
-			}
 
 			viewHolder.checkbox.Tag = position;
 
 			viewHolder.totem.Text = totemList [position].title;
 			viewHolder.checkbox.Checked = totemList [(int)viewHolder.checkbox.Tag].selected;
-			if (freqs != null) {
+			if (freqs != null)
 				viewHolder.freq.Text = freqs [position].ToString () /*+ "/" + selected*/;
-			}
 
 			viewHolder.checkbox.Click += (o, e) => {
-				if (viewHolder.checkbox.Checked) {
+				if (viewHolder.checkbox.Checked)
 					totemList [(int)viewHolder.checkbox.Tag].selected = true;
-				} else {
+				else
 					totemList [(int)viewHolder.checkbox.Tag].selected = false;
-				}
 			};
 
 			return convertView;

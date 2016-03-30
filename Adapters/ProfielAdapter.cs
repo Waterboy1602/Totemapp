@@ -57,11 +57,10 @@ namespace Totem {
 				viewHolder = (ViewHolder)convertView.Tag;
 			}
 
-			if (showDelete) {
+			if (showDelete)
 				viewHolder.checkbox.Visibility = ViewStates.Visible;
-			} else {
+			else
 				viewHolder.checkbox.Visibility = ViewStates.Gone;
-			}
 
 			viewHolder.checkbox.Tag = position;
 
@@ -69,11 +68,10 @@ namespace Totem {
 			viewHolder.checkbox.Checked = profielList [(int)viewHolder.checkbox.Tag].selected;
 
 			viewHolder.checkbox.Click += (o, e) => {
-				if (viewHolder.checkbox.Checked) {
+				if (viewHolder.checkbox.Checked)
 					profielList [(int)viewHolder.checkbox.Tag].selected = true;
-				} else {
+				else
 					profielList [(int)viewHolder.checkbox.Tag].selected = false;
-				}
 			};
 
 			return convertView;

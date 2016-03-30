@@ -32,18 +32,13 @@ namespace Totem {
 
 
 		public void ExtractDB() {
-			if (!File.Exists(dbPath))
-			{
-				using (BinaryReader br = new BinaryReader(context.Assets.Open(dbName)))
-				{
-					using (BinaryWriter bw = new BinaryWriter(new FileStream(dbPath, FileMode.Create)))
-					{
+			if (!File.Exists(dbPath)) {
+				using (BinaryReader br = new BinaryReader(context.Assets.Open(dbName))) {
+					using (BinaryWriter bw = new BinaryWriter(new FileStream(dbPath, FileMode.Create))) {
 						byte[] buffer = new byte[2048];
 						int len = 0;
 						while ((len = br.Read(buffer, 0, buffer.Length)) > 0)
-						{
 							bw.Write (buffer, 0, len);
-						}
 					}
 				}
 			}
@@ -83,9 +78,8 @@ namespace Totem {
 		//get list of profile names
 		public List<string> GetProfielNamen() {
 			List<string> namen = new List<string> ();
-			foreach (Profiel p in this.GetProfielen()) {
+			foreach (Profiel p in this.GetProfielen())
 				namen.Add (p.name);
-			}
 			return namen;
 		}
 
@@ -143,10 +137,10 @@ namespace Totem {
 				list = cmd.ExecuteQuery<Profiel> ();
 			}
 			List<Totem> result = new List<Totem> ();
-			foreach (Profiel p in list) {
+			foreach (Profiel p in list)
 				if(p.nid != null) 
 					result.Add (GetTotemOnID (p.nid));
-			}
+			
 			return result;
 		}
 
@@ -176,11 +170,10 @@ namespace Totem {
 
 		//returns totem-object with given id
 		public Totem GetTotemOnID(int idx) {
-			foreach(Totem t in totems) {
-				if(t.nid.Equals(idx.ToString())) {
+			foreach(Totem t in totems)
+				if(t.nid.Equals(idx.ToString()))
 					return t;
-				} 
-			}
+
 			return null;
 		}
 
@@ -192,22 +185,20 @@ namespace Totem {
 		//returns totem-object with given name
 		public List<Totem> FindTotemOpNaam(string name) {
 			List<Totem> result = new List<Totem> ();
-			foreach(Totem t in totems) {
-				if(t.title.ToLower().Contains(name.ToLower())) {
+			foreach(Totem t in totems)
+				if(t.title.ToLower().Contains(name.ToLower()))
 					result.Add (t);
-				}
-			}
+			
 			return result;
 		}
 
 		//returns eigenschap-object with given name
 		public List<Eigenschap> FindEigenschapOpNaam(string name) {
 			List<Eigenschap> result = new List<Eigenschap> ();
-			foreach(Eigenschap e in eigenschappen) {
-				if(e.name.ToLower().Contains(name.ToLower())) {
+			foreach(Eigenschap e in eigenschappen)
+				if(e.name.ToLower().Contains(name.ToLower()))
 					result.Add (e);
-				}
-			}
+			
 			return result;
 		}
 

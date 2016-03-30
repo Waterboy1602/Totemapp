@@ -138,11 +138,10 @@ namespace Totem {
 		//return to full list and empty search field when 'back' is pressed
 		//this happens only when a search query is currently entered
 		public override void OnBackPressed() {
-			if (query.Visibility == ViewStates.Visible) {
+			if (query.Visibility == ViewStates.Visible)
 				HideSearch ();
-			} else {
+			else
 				base.OnBackPressed ();
-			}
 		}
 	}
 }

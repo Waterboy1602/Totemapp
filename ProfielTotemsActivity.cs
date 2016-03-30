@@ -74,7 +74,7 @@ namespace Totem {
 			delete.Visibility = ViewStates.Visible;
 			delete.Click += ShowDeleteTotems;
 
-			ActionBar.LayoutParams layout = new ActionBar.LayoutParams (WindowManagerLayoutParams.MatchParent, WindowManagerLayoutParams.MatchParent);
+			var layout = new ActionBar.LayoutParams (WindowManagerLayoutParams.MatchParent, WindowManagerLayoutParams.MatchParent);
 
 			mActionBar.SetCustomView (mCustomView, layout);
 			mActionBar.SetDisplayShowCustomEnabled (true);
@@ -154,11 +154,10 @@ namespace Totem {
 			AlertDialog.Builder alert1 = new AlertDialog.Builder (this);
 			alert1.SetMessage ("Geselecteerde totems verwijderen?");
 			alert1.SetPositiveButton ("Ja", (senderAlert, args) => {
-				foreach(Totem t in totemList) {
-					if (t.selected) {
+				foreach(Totem t in totemList)
+					if (t.selected)
 						db.DeleteTotemFromProfile(t.nid, profileName);
-					}
-				}
+				
 				totemList = db.GetTotemsFromProfiel (profileName);
 				if(totemList.Count == 0) {
 					base.OnBackPressed();

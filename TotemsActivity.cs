@@ -58,7 +58,7 @@ namespace Totem {
 			ImageButton search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
 			search.Visibility = ViewStates.Gone;
 
-			ActionBar.LayoutParams layout = new ActionBar.LayoutParams (WindowManagerLayoutParams.MatchParent, WindowManagerLayoutParams.MatchParent);
+			var layout = new ActionBar.LayoutParams (WindowManagerLayoutParams.MatchParent, WindowManagerLayoutParams.MatchParent);
 
 			mActionBar.SetCustomView (mCustomView, layout);
 			mActionBar.SetDisplayShowCustomEnabled (true);
@@ -67,9 +67,8 @@ namespace Totem {
 		//fill totemList with Totem-objects whose ID is in totemIDs
 		private List<Totem> ConvertIDArrayToTotemList(int[] totemIDs) {
 			List<Totem> totemList = new List<Totem> ();
-			foreach(int idx in totemIDs) {
+			foreach(int idx in totemIDs)
 				totemList.Add (db.GetTotemOnID (idx));
-			}
 
 			return totemList;
 		}

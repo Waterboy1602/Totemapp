@@ -97,3 +97,4 @@ C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\res\layout\expandchild
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\res\layout\expandheadfoot.xml
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\res\layout\expandchildhead.xml
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\res\layout\expandchildindent.xml
+C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\res\values\arrays.xml

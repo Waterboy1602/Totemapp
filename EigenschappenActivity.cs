@@ -51,11 +51,10 @@ namespace Totem {
 
 		//show next eigenschap
 		public void UpdateScreen() {
-			if(eigenschapCount < 359) {
+			if(eigenschapCount < 324)
 				adjectief.Text = eigenschappen [eigenschapCount].name;
-			} else {
+			else
 				VindTotem ();
-			}
 		}
 
 		//redirect to the result activity

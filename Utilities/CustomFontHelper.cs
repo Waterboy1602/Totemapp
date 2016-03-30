@@ -41,17 +41,16 @@ namespace Totem {
 
 		//returns correct Typeface from fontName
 		public static Typeface SelectTypeface(Context context, String fontName) {
-			if (fontName.Equals (context.GetString (Resource.String.Verveine))) {
+			if (fontName.Equals (context.GetString (Resource.String.Verveine))) 
 				return Typeface.CreateFromAsset (context.Assets, "fonts/Verveine W01 Regular.ttf");
-			} else if (fontName.Equals (context.GetString (Resource.String.DIN_light))) {
+			else if (fontName.Equals (context.GetString (Resource.String.DIN_light)))
 				return Typeface.CreateFromAsset (context.Assets, "fonts/DINPro-Light.ttf");
-			} else if (fontName.Equals (context.GetString (Resource.String.DIN_regular))) {
+			else if (fontName.Equals (context.GetString (Resource.String.DIN_regular)))
 				return Typeface.CreateFromAsset (context.Assets, "fonts/DINPro-Regular.ttf");
-			} else if (fontName.Equals (context.GetString (Resource.String.Sketchblock))) {
+			else if (fontName.Equals (context.GetString (Resource.String.Sketchblock)))
 				return Typeface.CreateFromAsset (context.Assets, "fonts/sketch_block_light.ttf");
-			} else {
+			else 
 				return null;
-			}
 		}
 	}
 }

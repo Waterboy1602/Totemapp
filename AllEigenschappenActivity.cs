@@ -61,9 +61,8 @@ namespace Totem {
 			eigenschappenList = db.GetEigenschappen ();
 
 			//initialize with default values (false) for each eigenschap
-			foreach (Eigenschap e in eigenschappenList) {
+			foreach (Eigenschap e in eigenschappenList)
 				e.selected = false;
-			}
 
 			//listener to pass to EigenschapAdapter containing context
 			mListener = new MyOnCheckBoxClickListener (this);
@@ -94,7 +93,7 @@ namespace Totem {
 			search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
 			search.Click += (object sender, EventArgs e) => ToggleSearch();
 
-			ActionBar.LayoutParams layout = new ActionBar.LayoutParams (WindowManagerLayoutParams.MatchParent, WindowManagerLayoutParams.MatchParent);
+			var layout = new ActionBar.LayoutParams (WindowManagerLayoutParams.MatchParent, WindowManagerLayoutParams.MatchParent);
 
 			mActionBar.SetCustomView (mCustomView, layout);
 			mActionBar.SetDisplayShowCustomEnabled (true);
@@ -151,9 +150,8 @@ namespace Totem {
 		private void LiveSearch() {
 			query.AfterTextChanged += (sender, args) => {
 				Search();
-				if(query.Text.Equals("")) {
+				if(query.Text.Equals(""))
 					fullList = true;
-				}
 			};
 		}
 
@@ -216,9 +214,8 @@ namespace Totem {
 			case Resource.Id.reset:
 				query.Text = "";
 				fullList = true;
-				foreach (Eigenschap e in eigenschappenList) {
+				foreach (Eigenschap e in eigenschappenList)
 					e.selected = false;
-				}
 				eigenschapAdapter.UpdateData (db.GetEigenschappen ());
 				eigenschapAdapter.NotifyDataSetChanged ();
 				UpdateOptionsMenu ();
@@ -272,11 +269,10 @@ namespace Totem {
 		//returns list of eigenschappen that have been checked
 		private List<Eigenschap> GetSelectedEigenschappen() {
 			List<Eigenschap> result = new List<Eigenschap> ();
-			foreach(Eigenschap e in eigenschappenList) {
-				if (e.selected) {
+			foreach(Eigenschap e in eigenschappenList)
+				if (e.selected)
 					result.Add (e);
-				}
-			}
+
 			return result;
 		}
 
