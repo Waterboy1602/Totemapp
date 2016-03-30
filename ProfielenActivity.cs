@@ -172,7 +172,7 @@ namespace Totem {
 				d1.Show();
 			});
 		}
-
+			
 		private void ShowDeleteProfiles(object sender, EventArgs e) {
 			profielAdapter.ShowDelete ();
 			profielAdapter.NotifyDataSetChanged ();

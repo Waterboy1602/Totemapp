@@ -18,7 +18,7 @@ namespace Totem {
 	public class EigenschappenActivity : Activity {
 		TextView adjectief;
 		List<Eigenschap> eigenschappen;
-		int eigenschapCount;
+		int eigenschapCount = 1;
 
 		//dictionary with totem IDs as keys and frequencies as values
 		Dictionary<int, int> freqs;
@@ -30,23 +30,39 @@ namespace Totem {
 
 			SetContentView (Resource.Layout.Eigenschappen);
 
+			ActionBar mActionBar = ActionBar;
+
+			LayoutInflater mInflater = LayoutInflater.From (this);
+			View mCustomView = mInflater.Inflate (Resource.Layout.ActionBar, null);
+
+			var title = mCustomView.FindViewById<TextView> (Resource.Id.title);
+			title.Text = "Eigenschappen";
+
+			var back = mCustomView.FindViewById<ImageButton> (Resource.Id.backButton);
+			back.Click += (object sender, EventArgs e) => OnBackPressed();
+
+			var search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
+			search.Visibility = ViewStates.Gone;
+
 			db = DatabaseHelper.GetInstance (this);
 			eigenschappen = db.GetEigenschappen ();
 
-			eigenschapCount = 1;
 			freqs = new Dictionary<int, int> ();
 
 			Button jaKnop = FindViewById<Button> (Resource.Id.jaKnop);
 			Button neeKnop = FindViewById<Button> (Resource.Id.neeKnop);
 
 			adjectief = FindViewById<TextView> (Resource.Id.eigenschap);
-			Typeface face = Typeface.CreateFromAsset(Assets,"fonts/DCC - Ash.otf");
-			adjectief.SetTypeface (face, 0);
 
 			UpdateScreen ();
 
 			jaKnop.Click += (sender, eventArgs) => PushJa();
 			neeKnop.Click += (sender, eventArgs) => PushNee();
+
+			var layout = new ActionBar.LayoutParams (WindowManagerLayoutParams.MatchParent, WindowManagerLayoutParams.MatchParent);
+
+			mActionBar.SetCustomView (mCustomView, layout);
+			mActionBar.SetDisplayShowCustomEnabled (true);
 		}
 
 		//show next eigenschap

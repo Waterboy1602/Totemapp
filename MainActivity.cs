@@ -29,6 +29,7 @@ namespace Totem {
 			Button eigenschappen = FindViewById<Button> (Resource.Id.eigenschappen);
 			Button profielen = FindViewById<Button> (Resource.Id.profielen);
 			Button checklist = FindViewById<Button> (Resource.Id.checklist);
+			Button tinder = FindViewById<Button> (Resource.Id.tinder);
 
 			ImageView berg = FindViewById<ImageView> (Resource.Id.berg);
 
@@ -39,6 +40,7 @@ namespace Totem {
 			eigenschappen.Click += (sender, eventArgs) => GoToActivity("eigenschappen");
 			profielen.Click += (sender, eventArgs) => GoToActivity("profielen");
 			checklist.Click += (sender, eventArgs) => GoToActivity("checklist");
+			tinder.Click += (sender, eventArgs) => GoToActivity("tinder");
 
 			berg.LongClick += (object sender, View.LongClickEventArgs e) => {
 				Toast.MakeText (this, "Easter egg", ToastLength.Short).Show();
@@ -59,6 +61,9 @@ namespace Totem {
 				break;
 			case "checklist":
 				intent = new Intent (this, typeof(ChecklistActivity));
+				break;
+			case "tinder":
+				intent = new Intent (this, typeof(EigenschappenActivity));
 				break;
 			}
 			StartActivity (intent);

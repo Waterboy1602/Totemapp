@@ -126,8 +126,13 @@ namespace Totem {
 			} );
 		}
 
+		//also sets all the checkboxes unchecked
 		private void ShowDeleteTotems(object sender, EventArgs e) {
+			foreach (Totem t in totemList)
+				t.selected = false;
+
 			totemAdapter.ShowDelete ();
+			totemAdapter.UpdateData (totemList);
 			totemAdapter.NotifyDataSetChanged ();
 
 			back.Visibility = ViewStates.Gone;
@@ -151,30 +156,43 @@ namespace Totem {
 		}
 
 		private void RemoveSelectedTotems(object sender, EventArgs e) {
-			AlertDialog.Builder alert1 = new AlertDialog.Builder (this);
-			alert1.SetMessage ("Geselecteerde totems verwijderen?");
-			alert1.SetPositiveButton ("Ja", (senderAlert, args) => {
-				foreach(Totem t in totemList)
-					if (t.selected)
-						db.DeleteTotemFromProfile(t.nid, profileName);
-				
-				totemList = db.GetTotemsFromProfiel (profileName);
-				if(totemList.Count == 0) {
-					base.OnBackPressed();
-				} else {
-					totemAdapter.UpdateData(totemList);
-					totemAdapter.NotifyDataSetChanged();
-					HideDeleteTotems (sender, e);
+			bool selected = false;
+			foreach(Totem t in totemList) {
+				if (t.selected) {
+					selected = true;
+					break;
 				}
-			});
+			}
+			if (selected) {
+				AlertDialog.Builder alert1 = new AlertDialog.Builder (this);
+				alert1.SetMessage ("Geselecteerde totems verwijderen?");
+				alert1.SetPositiveButton ("Ja", (senderAlert, args) => {
+					foreach (Totem t in totemList)
+						if (t.selected)
+							db.DeleteTotemFromProfile (t.nid, profileName);
+				
+					totemList = db.GetTotemsFromProfiel (profileName);
+					if (totemList.Count == 0) {
+						base.OnBackPressed ();
+					} else {
+						totemAdapter.UpdateData (totemList);
+						totemAdapter.NotifyDataSetChanged ();
+						HideDeleteTotems (sender, e);
+					}
+				});
 
-			alert1.SetNegativeButton ("Nee", (senderAlert, args) => {});
+				alert1.SetNegativeButton ("Nee", (senderAlert, args) => {
+				});
 
-			Dialog d2 = alert1.Create();
+				Dialog d2 = alert1.Create ();
 
-			RunOnUiThread (() => {
-				d2.Show();
-			} );
+				RunOnUiThread (() => {
+					d2.Show ();
+				});
+			} else {
+				mToast.SetText("Geen totems geselecteerd om te verwijderen");
+				mToast.Show();
+			}
 		}
 	}
 }
