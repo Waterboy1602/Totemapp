@@ -4,16 +4,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <Totem.CustomFontTextView
-        android:id="@+id/intro"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:textSize="18sp"
-        android:padding="5sp"
-        android:textColor="#6E804C"
-        app:font="@string/Verveine"
-        android:layout_marginBottom="0.0dp" />
     <ExpandableListView
         android:id="@+id/expand"
         android:layout_width="fill_parent"

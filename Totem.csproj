@@ -156,6 +156,9 @@
     <AndroidResource Include="Resources\layout\Checklist.axml" />
     <AndroidResource Include="Resources\layout\ExpandParent.axml" />
     <AndroidResource Include="Resources\layout\ExpandChild.axml" />
+    <AndroidResource Include="Resources\layout\ExpandHeadFoot.axml" />
+    <AndroidResource Include="Resources\layout\ExpandChildHead.axml" />
+    <AndroidResource Include="Resources\layout\ExpandChildIndent.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\totems.sqlite" />

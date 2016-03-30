@@ -94,3 +94,6 @@ C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\uploadflags.txt
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\res\layout\checklist.xml
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\res\layout\expandparent.xml
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\res\layout\expandchild.xml
+C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\res\layout\expandheadfoot.xml
+C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\res\layout\expandchildhead.xml
+C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\res\layout\expandchildindent.xml
