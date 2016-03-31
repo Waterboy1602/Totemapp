@@ -64,7 +64,7 @@ namespace Totem {
 			count.Text = counter + " geselecteerd";
 		}
 
-		//returns number of checked eigenschappen in eigenschapList
+		//returns number of checked items in eigenschapList
 		private int CountCheckedItems(List<Eigenschap> eigenschapList) {
 			int result = 0;
 			foreach (Eigenschap e in eigenschapList)

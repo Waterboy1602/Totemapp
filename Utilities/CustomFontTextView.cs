@@ -10,7 +10,6 @@ namespace Totem {
 	
 	//allows to put custom font in XML
 	public class CustomFontTextView : TextView {
-		public static string ANDROID_SCHEMA = "http://schemas.android.com/apk/res/android";
 
 		public CustomFontTextView (Context context): base(context) {
 			CustomFontHelper.ApplyCustomFont (this, context, null);

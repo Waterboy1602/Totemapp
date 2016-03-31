@@ -1,11 +1,11 @@
-Totem.BaseActivity, Totem;md5b1d67ac94551c8753fec80729d65095f.BaseActivity
-Totem.BaseActivity, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.BaseActivity
-Totem.BaseActivity;md5b1d67ac94551c8753fec80729d65095f.BaseActivity
-totem.BaseActivity;md5b1d67ac94551c8753fec80729d65095f.BaseActivity
 Totem.MainActivity, Totem;md5b1d67ac94551c8753fec80729d65095f.MainActivity
 Totem.MainActivity, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.MainActivity
 Totem.MainActivity;md5b1d67ac94551c8753fec80729d65095f.MainActivity
 totem.MainActivity;md5b1d67ac94551c8753fec80729d65095f.MainActivity
+Totem.BaseActivity, Totem;md5b1d67ac94551c8753fec80729d65095f.BaseActivity
+Totem.BaseActivity, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.BaseActivity
+Totem.BaseActivity;md5b1d67ac94551c8753fec80729d65095f.BaseActivity
+totem.BaseActivity;md5b1d67ac94551c8753fec80729d65095f.BaseActivity
 Totem.TotemsActivity, Totem;md5b1d67ac94551c8753fec80729d65095f.TotemsActivity
 Totem.TotemsActivity, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5b1d67ac94551c8753fec80729d65095f.TotemsActivity
 Totem.TotemsActivity;md5b1d67ac94551c8753fec80729d65095f.TotemsActivity

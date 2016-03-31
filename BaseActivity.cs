@@ -12,22 +12,22 @@ using Android.Widget;
 
 namespace Totem {
 	[Activity (Label = "BaseActivity")]			
-	public class BaseActivity : Activity {
+	public abstract class BaseActivity : Activity {
 
-		public TextView ActionBarTitle { get; set; }
-		public ImageButton ActionBarBack { get; set; }
-		public ImageButton ActionBarAdd { get; set; }
-		public ImageButton ActionBarSearch { get; set; }
-		public ImageButton ActionBarClose { get; set; }
-		public ImageButton ActionBarDelete { get; set; }
-		public EditText ActionBarQuery { get; set; }
-		public ActionBar mActionBar { get; set; }
+		protected TextView ActionBarTitle { get; set; }
+		protected ImageButton ActionBarBack { get; set; }
+		protected ImageButton ActionBarAdd { get; set; }
+		protected ImageButton ActionBarSearch { get; set; }
+		protected ImageButton ActionBarClose { get; set; }
+		protected ImageButton ActionBarDelete { get; set; }
+		protected EditText ActionBarQuery { get; set; }
+		protected ActionBar mActionBar { get; set; }
 
 		protected override void OnCreate (Bundle savedInstanceState) {
 			base.OnCreate (savedInstanceState);
 		}
 
-		public void InitializeActionBar(ActionBar ab) {
+		protected void InitializeActionBar(ActionBar ab) {
 			mActionBar = ab;
 
 			LayoutInflater mInflater = LayoutInflater.From (this);

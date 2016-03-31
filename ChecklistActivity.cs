@@ -25,11 +25,11 @@ namespace Totem {
 
 			base.ActionBarTitle.Text = "Totemisatie checklist";
 
-			FillData ();
+			InitializeExpandableListView ();
 		}
 
-		//populates the ExpandableListView
-		private void FillData() {
+		//adds header, footer and data to the ExpandableListView
+		private void InitializeExpandableListView() {
 			dictGroup = new Dictionary<string, List<string>> ();
 			FillDictGroup ();
 			var expand = FindViewById<ExpandableListView> (Resource.Id.expand);
@@ -45,7 +45,7 @@ namespace Totem {
 			expand.SetAdapter (new ExpendListAdapter(this, dictGroup));
 		}
 
-		//stores the data from arrays.xml in dictgroup
+		//stores the data from arrays.xml in dictgroup per section
 		private void FillDictGroup() {
 			var voorbereiding = Resources.GetStringArray (Resource.Array.voorbereiding).ToList();
 			var totemopdrachten = Resources.GetStringArray (Resource.Array.totemopdrachten).ToList();

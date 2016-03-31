@@ -16,9 +16,9 @@ using Android.Text;
 namespace Totem {
 	[Activity (Label = "Beschrijving", WindowSoftInputMode=SoftInput.StateAlwaysHidden)]			
 	public class TotemDetailActivity : BaseActivity	{
-		CustomFontTextView number;
+		TextView number;
 		TextView title_synonyms;
-		CustomFontTextView body;
+		TextView body;
 
 		Database db;
 		Toast mToast;
@@ -45,9 +45,9 @@ namespace Totem {
 			//single toast for entire activity
 			mToast = Toast.MakeText (this, "", ToastLength.Short);
 
-			number = FindViewById<CustomFontTextView> (Resource.Id.number);
+			number = FindViewById<TextView> (Resource.Id.number);
 			title_synonyms = FindViewById<TextView> (Resource.Id.title_synonyms);
-			body = FindViewById<CustomFontTextView> (Resource.Id.body);
+			body = FindViewById<TextView> (Resource.Id.body);
 
 			title.Text = "Beschrijving";
 

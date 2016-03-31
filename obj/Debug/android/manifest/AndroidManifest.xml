@@ -3,8 +3,7 @@
   <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="23" />
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-  <application android:label="Totem" android:theme="@style/AppBaseTheme" android:name="mono.android.app.Application" android:allowBackup="true" android:debuggable="true">
-    <activity android:label="BaseActivity" android:name="md5b1d67ac94551c8753fec80729d65095f.BaseActivity" />
+  <application android:label="Totem" android:theme="@style/AppBaseTheme" android:name="mono.android.app.Application" android:allowBackup="true" android:icon="@drawable/icon" android:debuggable="true">
     <activity android:icon="@drawable/icon" android:label="Totem" android:theme="@style/AppThemeNoAction" android:name="md5b1d67ac94551c8753fec80729d65095f.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />

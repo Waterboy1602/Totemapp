@@ -1,7 +1,7 @@
 package md5b1d67ac94551c8753fec80729d65095f;
 
 
-public class BaseActivity
+public abstract class BaseActivity
 	extends android.app.Activity
 	implements
 		mono.android.IGCUserPeer

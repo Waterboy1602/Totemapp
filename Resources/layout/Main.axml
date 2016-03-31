@@ -87,7 +87,6 @@
         android:src="@drawable/Totem" />
     <ImageView
         android:id="@+id/berg"
-        android:clickable="true"
         android:layout_width="150dp"
         android:layout_height="250dp"
         android:layout_alignParentBottom="true"

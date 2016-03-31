@@ -31,8 +31,6 @@ namespace Totem {
 			Button checklist = FindViewById<Button> (Resource.Id.checklist);
 			Button tinder = FindViewById<Button> (Resource.Id.tinder);
 
-			ImageView berg = FindViewById<ImageView> (Resource.Id.berg);
-
 			if(db.GetPreference("tips").value.Equals("true"))
 				ShowTipDialog ();
 
@@ -41,10 +39,6 @@ namespace Totem {
 			profielen.Click += (sender, eventArgs) => GoToActivity("profielen");
 			checklist.Click += (sender, eventArgs) => GoToActivity("checklist");
 			tinder.Click += (sender, eventArgs) => GoToActivity("tinder");
-
-			berg.LongClick += (object sender, View.LongClickEventArgs e) => {
-				Toast.MakeText (this, "Easter egg", ToastLength.Short).Show();
-			};
 		}
 
 		private void GoToActivity(string activity) {
