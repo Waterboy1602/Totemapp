@@ -81,5 +81,17 @@ namespace Totem {
 			detailActivity.PutExtra ("totemID", item.nid);
 			StartActivity (detailActivity);
 		}
+
+		//goes back to main screen when GoToMain is set to true
+		//otherwise acts normal
+		public override void OnBackPressed() {
+			if (Intent.GetBooleanExtra ("GoToMain", false) == true) {
+				Intent i = new Intent (this, typeof(MainActivity));
+				i.SetFlags (ActivityFlags.ClearTop | ActivityFlags.SingleTop);
+				StartActivity (i);
+			} else {
+				base.OnBackPressed ();
+			}
+		}
 	}
 }

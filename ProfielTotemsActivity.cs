@@ -83,7 +83,8 @@ namespace Totem {
 		//update data from adapter on restart
 		protected override void OnRestart() {
 			base.OnRestart ();
-			totemAdapter.UpdateData (db.GetTotemsFromProfiel (profileName));
+			totemList = db.GetTotemsFromProfiel (profileName);
+			totemAdapter.UpdateData (totemList);
 			totemAdapter.NotifyDataSetChanged ();
 		}
 

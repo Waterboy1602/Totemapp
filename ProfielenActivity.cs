@@ -87,8 +87,8 @@ namespace Totem {
 		}
 
 		//updates data of the adapter and shows/hides the "empty"-message when needed
-		private void UpdateList(List<Profiel> profielen) {
-			this.profielen = profielen;
+		private void UpdateList() {
+			this.profielen = db.GetProfielen();
 			if (profielen.Count == 0) {
 				noProfiles.Visibility = ViewStates.Visible;
 				delete.Visibility = ViewStates.Gone;
@@ -124,7 +124,7 @@ namespace Totem {
 				db.DeleteProfile(item.name);
 				mToast.SetText("Profiel " + item.name + " verwijderd");
 				mToast.Show();
-				UpdateList(db.GetProfielen());
+				UpdateList();
 			});
 
 			alert.SetNegativeButton ("Nee", (senderAlert, args) => {});
@@ -154,7 +154,7 @@ namespace Totem {
 					mToast.Show();
 				} else {
 					db.AddProfile(value);
-					UpdateList(db.GetProfielen());
+					UpdateList();
 				}
 			});
 
@@ -216,7 +216,7 @@ namespace Totem {
 						if (p.selected)
 							db.DeleteProfile (p.name);
 				
-					UpdateList (db.GetProfielen ());
+					UpdateList ();
 					HideDeleteProfiles (sender, e);
 				});
 

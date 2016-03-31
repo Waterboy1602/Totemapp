@@ -82,6 +82,7 @@ namespace Totem {
 			int[] sortedFreqs = CollectionHelper.GetSortedList (freqs, false);
 			totemsActivity.PutExtra ("totemIDs", sortedTotems);
 			totemsActivity.PutExtra ("freqs", sortedFreqs);
+			totemsActivity.PutExtra ("GoToMain", true);
 
 			StartActivity(totemsActivity);
 		}

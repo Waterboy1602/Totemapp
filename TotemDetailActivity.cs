@@ -88,7 +88,7 @@ namespace Totem {
 				mToast.Show();
 				if(db.GetTotemsFromProfiel(profileName).Count == 0) {
 					Intent i = new Intent(this, typeof(ProfielenActivity));
-					i.SetFlags(ActivityFlags.ClearTop);
+					i.SetFlags(ActivityFlags.ClearTop | ActivityFlags.SingleTop);
 					StartActivity(i);
 				} else {
 					base.OnBackPressed();
@@ -115,7 +115,7 @@ namespace Totem {
 				menu.Menu.Add(0,count,count, "Nieuw profiel");
 
 				menu.MenuItemClick += (s1, arg1) => {
-					if(arg1.Item.TitleFormatted.ToString().Equals("Nieuw profiel")) {
+					if(arg1.Item.ItemId == count) {
 						AlertDialog.Builder alert = new AlertDialog.Builder (this);
 						alert.SetTitle ("Nieuw profiel");
 						EditText input = new EditText (this);
@@ -163,7 +163,7 @@ namespace Totem {
 
 				menu.Show ();
 		}
-
+			
 		private int ConvertDPToPixels(float dp) {
 			float scale = Resources.DisplayMetrics.Density;
 			int result =  (int)(dp * scale + 0.5f);

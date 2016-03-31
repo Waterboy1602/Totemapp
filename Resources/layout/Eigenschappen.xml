@@ -8,13 +8,14 @@
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:padding="10dp">
         <Totem.CustomFontTextView
             android:id="@+id/eigenschap"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:gravity="center"
-            android:textSize="40sp"
+            android:textSize="35sp"
             android:textStyle="bold"
             app:font="@string/DIN_regular" />
     </LinearLayout>
@@ -29,6 +30,7 @@
             android:layout_height="fill_parent"
             android:gravity="center"
             android:text="Ja"
+            android:textSize="20sp"
             android:layout_weight="1"
             android:textColor="@android:color/white"
             app:font="@string/DIN_regular" />
@@ -38,6 +40,7 @@
             android:layout_height="fill_parent"
             android:gravity="center"
             android:text="Nee"
+            android:textSize="20sp"
             android:layout_weight="1"
             android:textColor="@android:color/white"
             app:font="@string/DIN_regular" />

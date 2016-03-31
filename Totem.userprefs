@@ -1,10 +1,10 @@
 ﻿<Properties StartupItem="Totem.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.0bb3642e43e4b26c" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="EigenschappenActivity.cs">
+  <MonoDevelop.Ide.Workbench>
     <Files>
       <File FileName="Utilities\MyOnCheckBoxClickListener.cs" Line="1" Column="1" />
       <File FileName="TipDialog.cs" Line="1" Column="1" />
-      <File FileName="MainActivity.cs" Line="37" Column="22" />
+      <File FileName="MainActivity.cs" Line="1" Column="1" />
       <File FileName="Adapters\EigenschapAdapter.cs" Line="1" Column="1" />
       <File FileName="AllTotemsActivity.cs" Line="1" Column="1" />
       <File FileName="ProfielenActivity.cs" Line="1" Column="1" />
@@ -14,7 +14,7 @@
       <File FileName="TotemDetailActivity.cs" Line="1" Column="1" />
       <File FileName="Adapters\TotemAdapter.cs" Line="1" Column="1" />
       <File FileName="Adapters\ProfielAdapter.cs" Line="1" Column="1" />
-      <File FileName="EigenschappenActivity.cs" Line="54" Column="4" />
+      <File FileName="EigenschappenActivity.cs" Line="1" Column="1" />
       <File FileName="Utilities\MyOnDismissListener.cs" Line="1" Column="1" />
       <File FileName="Utilities\CollectionHelper.cs" Line="1" Column="1" />
       <File FileName="Utilities\CustomFontButton.cs" Line="1" Column="1" />
@@ -27,30 +27,14 @@
       <File FileName="db\DatabaseHelper.cs" Line="1" Column="1" />
       <File FileName="db\SQLite.cs" Line="1" Column="1" />
       <File FileName="Utilities\MyOnTouchListener.cs" Line="1" Column="1" />
-      <File FileName="Adapters\ExpendListAdapter.cs" Line="88" Column="3" />
+      <File FileName="Adapters\ExpendListAdapter.cs" Line="1" Column="1" />
       <File FileName="Resources\values\colors.xml" Line="1" Column="1" />
       <File FileName="Resources\drawable\grass_green.xml" Line="1" Column="1" />
       <File FileName="Resources\values\arrays.xml" Line="1" Column="1" />
-      <File FileName="ChecklistActivity.cs" Line="41" Column="50" />
+      <File FileName="ChecklistActivity.cs" Line="1" Column="1" />
       <File FileName="Resources\values\Strings.xml" Line="1" Column="1" />
-      <File FileName="AllEigenschappenActivity.cs" Line="26" Column="37" />
+      <File FileName="AllEigenschappenActivity.cs" Line="1" Column="1" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="Totem" expanded="True">
-            <Node name="Totem" expanded="True">
-              <Node name="Adapters" expanded="True" />
-              <Node name="db" expanded="True" />
-              <Node name="Resources" expanded="True">
-                <Node name="layout" expanded="True" />
-              </Node>
-              <Node name="EigenschappenActivity.cs" selected="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

@@ -173,8 +173,8 @@ namespace Totem {
 			foreach (Eigenschap eig in eigenschappenList) {
 				if(eig.selected) {
 					selected++;
-					List<Totem_eigenschap> toevoegen = db.GetTotemsVanEigenschapsID (eig.tid);
-					foreach(Totem_eigenschap totem in toevoegen) {
+					List<Totem_eigenschap> toAdd = db.GetTotemsVanEigenschapsID (eig.tid);
+					foreach(Totem_eigenschap totem in toAdd) {
 						int idx = Convert.ToInt32 (totem.nid);
 						CollectionHelper.AddOrUpdateDictionaryEntry (freqs, idx) ;
 					}
