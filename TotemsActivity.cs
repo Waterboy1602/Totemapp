@@ -15,12 +15,12 @@ using Android.Widget;
 
 namespace Totem {
 	[Activity (Label = "Totems")]			
-	public class TotemsActivity : Activity {
+	public class TotemsActivity : BaseActivity {
 		TotemAdapter totemAdapter;
 		ListView totemListView;
 		List<Totem> totemList;
 
-		CustomFontTextView title;
+		TextView title;
 		ImageButton back;
 
 		Database db;
@@ -30,10 +30,10 @@ namespace Totem {
 
 			SetContentView (Resource.Layout.Totems);
 
-			ActionBar mActionBar = ActionBar;
-
-			LayoutInflater mInflater = LayoutInflater.From (this);
-			View mCustomView = mInflater.Inflate (Resource.Layout.ActionBar, null);
+			//Action bar
+			base.InitializeActionBar (ActionBar);
+			title = base.ActionBarTitle;
+			back = base.ActionBarBack;
 
 			db = DatabaseHelper.GetInstance (this);
 	
@@ -49,19 +49,7 @@ namespace Totem {
 
 			totemListView.ItemClick += ShowDetail;
 
-			title = mCustomView.FindViewById<CustomFontTextView> (Resource.Id.title);
 			title.Text = "Totems";
-
-			back = mCustomView.FindViewById<ImageButton> (Resource.Id.backButton);
-			back.Click += (object sender, EventArgs e) => OnBackPressed();
-
-			ImageButton search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
-			search.Visibility = ViewStates.Gone;
-
-			var layout = new ActionBar.LayoutParams (WindowManagerLayoutParams.MatchParent, WindowManagerLayoutParams.MatchParent);
-
-			mActionBar.SetCustomView (mCustomView, layout);
-			mActionBar.SetDisplayShowCustomEnabled (true);
 		}
 
 		//fill totemList with Totem-objects whose ID is in totemIDs

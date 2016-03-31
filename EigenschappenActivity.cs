@@ -15,7 +15,7 @@ using Android.Content.PM;
 
 namespace Totem {
 	[Activity (Label = "Totem bepalen", Icon = "@drawable/icon", ScreenOrientation = ScreenOrientation.Portrait)]
-	public class EigenschappenActivity : Activity {
+	public class EigenschappenActivity : BaseActivity {
 		TextView adjectief;
 		List<Eigenschap> eigenschappen;
 		int eigenschapCount = 1;
@@ -30,19 +30,10 @@ namespace Totem {
 
 			SetContentView (Resource.Layout.Eigenschappen);
 
-			ActionBar mActionBar = ActionBar;
+			//Action bar
+			base.InitializeActionBar (ActionBar);
 
-			LayoutInflater mInflater = LayoutInflater.From (this);
-			View mCustomView = mInflater.Inflate (Resource.Layout.ActionBar, null);
-
-			var title = mCustomView.FindViewById<TextView> (Resource.Id.title);
-			title.Text = "Eigenschappen";
-
-			var back = mCustomView.FindViewById<ImageButton> (Resource.Id.backButton);
-			back.Click += (object sender, EventArgs e) => OnBackPressed();
-
-			var search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
-			search.Visibility = ViewStates.Gone;
+			base.ActionBarTitle.Text = "Eigenschappen";
 
 			db = DatabaseHelper.GetInstance (this);
 			eigenschappen = db.GetEigenschappen ();
@@ -58,11 +49,6 @@ namespace Totem {
 
 			jaKnop.Click += (sender, eventArgs) => PushJa();
 			neeKnop.Click += (sender, eventArgs) => PushNee();
-
-			var layout = new ActionBar.LayoutParams (WindowManagerLayoutParams.MatchParent, WindowManagerLayoutParams.MatchParent);
-
-			mActionBar.SetCustomView (mCustomView, layout);
-			mActionBar.SetDisplayShowCustomEnabled (true);
 		}
 
 		//show next eigenschap

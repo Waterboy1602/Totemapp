@@ -15,7 +15,7 @@ using Android.Content.PM;
 
 namespace Totem {
 	[Activity (Label = "Totem", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/AppThemeNoAction")]
-	public class MainActivity : Activity 	{
+	public class MainActivity : Activity {
 		Database db;
 
 		protected override void OnCreate (Bundle bundle) {

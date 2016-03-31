@@ -7,14 +7,14 @@
       <File FileName="MainActivity.cs" Line="1" Column="1" />
       <File FileName="Adapters\EigenschapAdapter.cs" Line="1" Column="1" />
       <File FileName="AllTotemsActivity.cs" Line="1" Column="1" />
-      <File FileName="ProfielenActivity.cs" Line="1" Column="1" />
+      <File FileName="ProfielenActivity.cs" Line="213" Column="64" />
       <File FileName="Utilities\KeyboardHelper.cs" Line="1" Column="1" />
-      <File FileName="ProfielTotemsActivity.cs" Line="1" Column="1" />
-      <File FileName="TotemsActivity.cs" Line="1" Column="1" />
-      <File FileName="TotemDetailActivity.cs" Line="1" Column="1" />
+      <File FileName="ProfielTotemsActivity.cs" Line="96" Column="4" />
+      <File FileName="TotemsActivity.cs" Line="22" Column="3" />
+      <File FileName="TotemDetailActivity.cs" Line="166" Column="4" />
       <File FileName="Adapters\TotemAdapter.cs" Line="1" Column="1" />
       <File FileName="Adapters\ProfielAdapter.cs" Line="1" Column="1" />
-      <File FileName="EigenschappenActivity.cs" Line="1" Column="1" />
+      <File FileName="EigenschappenActivity.cs" Line="85" Column="45" />
       <File FileName="Utilities\MyOnDismissListener.cs" Line="1" Column="1" />
       <File FileName="Utilities\CollectionHelper.cs" Line="1" Column="1" />
       <File FileName="Utilities\CustomFontButton.cs" Line="1" Column="1" />
@@ -33,8 +33,22 @@
       <File FileName="Resources\values\arrays.xml" Line="1" Column="1" />
       <File FileName="ChecklistActivity.cs" Line="1" Column="1" />
       <File FileName="Resources\values\Strings.xml" Line="1" Column="1" />
-      <File FileName="AllEigenschappenActivity.cs" Line="1" Column="1" />
+      <File FileName="AllEigenschappenActivity.cs" Line="182" Column="5" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Totem" expanded="True" selected="True">
+            <Node name="Totem" expanded="True">
+              <Node name="Resources" expanded="True">
+                <Node name="layout" expanded="True" />
+              </Node>
+              <Node name="Utilities" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

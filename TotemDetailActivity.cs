@@ -15,7 +15,7 @@ using Android.Text;
 
 namespace Totem {
 	[Activity (Label = "Beschrijving", WindowSoftInputMode=SoftInput.StateAlwaysHidden)]			
-	public class TotemDetailActivity : Activity	{
+	public class TotemDetailActivity : BaseActivity	{
 		CustomFontTextView number;
 		TextView title_synonyms;
 		CustomFontTextView body;
@@ -23,7 +23,7 @@ namespace Totem {
 		Database db;
 		Toast mToast;
 
-		CustomFontTextView title;
+		TextView title;
 		ImageButton back;
 		ImageButton action;
 
@@ -35,10 +35,10 @@ namespace Totem {
 
 			SetContentView (Resource.Layout.TotemDetail);
 
-			ActionBar mActionBar = ActionBar;
-
-			LayoutInflater mInflater = LayoutInflater.From (this);
-			View mCustomView = mInflater.Inflate (Resource.Layout.ActionBar, null);
+			//Action bar
+			base.InitializeActionBar (ActionBar);
+			title = base.ActionBarTitle;
+			back = base.ActionBarBack;
 
 			db = DatabaseHelper.GetInstance (this);
 
@@ -49,34 +49,22 @@ namespace Totem {
 			title_synonyms = FindViewById<TextView> (Resource.Id.title_synonyms);
 			body = FindViewById<CustomFontTextView> (Resource.Id.body);
 
-			back = mCustomView.FindViewById<ImageButton> (Resource.Id.backButton);
-			back.Click += (object sender, EventArgs e) => OnBackPressed();
-
-			title = mCustomView.FindViewById<CustomFontTextView> (Resource.Id.title);
 			title.Text = "Beschrijving";
-
-			var search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
-			search.Visibility = ViewStates.Gone;
 
 			nid = Intent.GetStringExtra ("totemID");
 			t = db.GetTotemOnID (nid);
 
 			var profileName = Intent.GetStringExtra ("profileName");
 			if (profileName != null) {
-				action =  mCustomView.FindViewById<ImageButton> (Resource.Id.deleteButton);
+				action = base.ActionBarDelete;
 				action.Click += (object sender, EventArgs e) => RemoveFromProfile (profileName);
 			} else {
-				action =  mCustomView.FindViewById<ImageButton> (Resource.Id.addButton);
+				action = base.ActionBarAdd;
 				action.Click += (object sender, EventArgs e) => ProfilePopup();
 			}
 			action.Visibility = ViewStates.Visible;
 
 			GetInfo (nid);
-
-			var layout = new ActionBar.LayoutParams (WindowManagerLayoutParams.MatchParent, WindowManagerLayoutParams.MatchParent);
-
-			mActionBar.SetCustomView (mCustomView, layout);
-			mActionBar.SetDisplayShowCustomEnabled (true);
 		}
 
 		private void RemoveFromProfile(string profileName) {

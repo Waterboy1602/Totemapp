@@ -2,7 +2,7 @@ package md5b1d67ac94551c8753fec80729d65095f;
 
 
 public class MainActivity
-	extends android.app.Activity
+	extends md5b1d67ac94551c8753fec80729d65095f.BaseActivity
 	implements
 		mono.android.IGCUserPeer
 {

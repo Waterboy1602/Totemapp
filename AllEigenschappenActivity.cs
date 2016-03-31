@@ -21,13 +21,14 @@ using Android.Graphics.Drawables;
 
 namespace Totem {
 	[Activity (Label = "Eigenschappen", WindowSoftInputMode = Android.Views.SoftInput.AdjustPan, ScreenOrientation = ScreenOrientation.Portrait)]			
-	public class AllEigenschappenActivity : Activity {
+	public class AllEigenschappenActivity : BaseActivity {
 		EigenschapAdapter eigenschapAdapter;
 		ListView allEigenschappenListView;
 		List<Eigenschap> eigenschappenList;
 
 		Database db;
-		Toast mToast;
+		Toast mToastShort;
+		Toast mToastLong;
 
 		RelativeLayout bottomBar;
 
@@ -47,14 +48,17 @@ namespace Totem {
 
 			SetContentView (Resource.Layout.AllEigenschappen);
 
-			ActionBar mActionBar = ActionBar;
-
-			LayoutInflater mInflater = LayoutInflater.From (this);
-			View mCustomView = mInflater.Inflate (Resource.Layout.ActionBar, null);
+			//Action bar
+			base.InitializeActionBar (ActionBar);
+			title = base.ActionBarTitle;
+			query = base.ActionBarQuery;
+			search = base.ActionBarSearch;
+			back = base.ActionBarBack;
 
 			db = DatabaseHelper.GetInstance (this);
 
-			mToast = Toast.MakeText (this, "", ToastLength.Short);
+			mToastShort = Toast.MakeText (this, "", ToastLength.Short);
+			mToastLong = Toast.MakeText (this, "", ToastLength.Long);
 
 			eigenschappenList = db.GetEigenschappen ();
 
@@ -69,7 +73,7 @@ namespace Totem {
 			allEigenschappenListView = FindViewById<ListView> (Resource.Id.all_eigenschappen_list);
 			allEigenschappenListView.Adapter = eigenschapAdapter;
 
-			query = mCustomView.FindViewById<EditText>(Resource.Id.query);
+			title.Text = "Eigenschappen";
 			query.Hint = "Zoek eigenschap";
 
 			//hide keybaord when scrolling through list
@@ -82,19 +86,8 @@ namespace Totem {
 
 			bottomBar = FindViewById<RelativeLayout> (Resource.Id.bottomBar);
 
-			title = mCustomView.FindViewById<TextView> (Resource.Id.title);
-			title.Text = "Eigenschappen";
-
-			back = mCustomView.FindViewById<ImageButton> (Resource.Id.backButton);
-			back.Click += (object sender, EventArgs e) => OnBackPressed();
-
-			search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
+			search.Visibility = ViewStates.Visible;
 			search.Click += (object sender, EventArgs e) => ToggleSearch();
-
-			var layout = new ActionBar.LayoutParams (WindowManagerLayoutParams.MatchParent, WindowManagerLayoutParams.MatchParent);
-
-			mActionBar.SetCustomView (mCustomView, layout);
-			mActionBar.SetDisplayShowCustomEnabled (true);
 
 			//hide keyboard when enter is pressed
 			query.EditorAction += (sender, e) => {
@@ -113,8 +106,8 @@ namespace Totem {
 			int pos = e.Position;
 			var item = eigenschapAdapter.GetItemAtPosition(pos);
 
-			mToast.SetText("Meer uitleg over " + item.name.ToLower());
-			mToast.Show();
+			mToastLong.SetText("Meer uitleg over " + item.name.ToLower());
+			mToastLong.Show();
 		}
 
 		//toggles the search bar
@@ -182,8 +175,8 @@ namespace Totem {
 			}
 
 			if (freqs.Count == 0) {
-				mToast.SetText ("Geen eigenschappen geselecteerd");
-				mToast.Show ();
+				mToastShort.SetText ("Geen eigenschappen geselecteerd");
+				mToastShort.Show ();
 			} else {
 				var totemsActivity = new Intent (this, typeof(TotemsActivity));
 
@@ -225,8 +218,8 @@ namespace Totem {
 			case Resource.Id.select:
 				List<Eigenschap> list = GetSelectedEigenschappen ();
 				if (list.Count == 0) {
-					mToast.SetText ("Geen eigenschappen geselecteerd");
-					mToast.Show ();
+					mToastShort.SetText ("Geen eigenschappen geselecteerd");
+					mToastShort.Show ();
 				} else {
 					fullList = false;
 					UpdateOptionsMenu ();

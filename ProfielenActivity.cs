@@ -13,7 +13,7 @@ using Android.Views.InputMethods;
 
 namespace Totem {
 	[Activity (Label = "Profielen", WindowSoftInputMode=SoftInput.StateAlwaysHidden)]			
-	public class ProfielenActivity : Activity {
+	public class ProfielenActivity : BaseActivity {
 		ProfielAdapter profielAdapter;
 		ListView profielenListView;
 		List<Profiel> profielen;
@@ -33,10 +33,13 @@ namespace Totem {
 
 			SetContentView (Resource.Layout.Profielen);
 
-			ActionBar mActionBar = ActionBar;
-
-			LayoutInflater mInflater = LayoutInflater.From (this);
-			View mCustomView = mInflater.Inflate (Resource.Layout.ActionBar, null);
+			//Action bar
+			base.InitializeActionBar (ActionBar);
+			title = base.ActionBarTitle;
+			close = base.ActionBarClose;
+			back = base.ActionBarBack;
+			add = base.ActionBarAdd;
+			delete = base.ActionBarDelete;
 
 			db = DatabaseHelper.GetInstance (this);
 
@@ -54,24 +57,13 @@ namespace Totem {
 
 			noProfiles = FindViewById<TextView> (Resource.Id.empty_profiel);
 
-			title = mCustomView.FindViewById<TextView> (Resource.Id.title);
 			title.Text = "Profielen";
 
-			back = mCustomView.FindViewById<ImageButton> (Resource.Id.backButton);
-			back.Click += (object sender, EventArgs e) => OnBackPressed();
-
-			add = mCustomView.FindViewById<ImageButton> (Resource.Id.addButton);
 			add.Visibility = ViewStates.Visible;
 			add.Click += (object sender, EventArgs e) => AddProfile();
 
-			close = mCustomView.FindViewById<ImageButton> (Resource.Id.closeButton);
-			close.Click += HideDeleteProfiles;
-
-			var search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
-			search.Visibility = ViewStates.Gone;
-
-			delete = mCustomView.FindViewById<ImageButton> (Resource.Id.deleteButton);
 			delete.Click += ShowDeleteProfiles;
+			close.Click += HideDeleteProfiles;
 
 			if (profielen.Count == 0) {
 				noProfiles.Visibility = ViewStates.Visible;
@@ -79,11 +71,6 @@ namespace Totem {
 			} else {
 				delete.Visibility = ViewStates.Visible;
 			}
-
-			var layout = new ActionBar.LayoutParams (WindowManagerLayoutParams.MatchParent, WindowManagerLayoutParams.MatchParent);
-
-			mActionBar.SetCustomView (mCustomView, layout);
-			mActionBar.SetDisplayShowCustomEnabled (true);
 		}
 
 		//updates data of the adapter and shows/hides the "empty"-message when needed

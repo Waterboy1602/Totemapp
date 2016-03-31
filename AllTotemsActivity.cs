@@ -17,7 +17,7 @@ using Android.Graphics;
 
 namespace Totem {
 	[Activity (Label = "Totems")]			
-	public class AllTotemsActivity : Activity {
+	public class AllTotemsActivity : BaseActivity {
 		TotemAdapter totemAdapter;
 		ListView allTotemListView;
 		List<Totem> totemList;
@@ -34,10 +34,12 @@ namespace Totem {
 
 			SetContentView (Resource.Layout.AllTotems);
 
-			ActionBar mActionBar = ActionBar;
-
-			LayoutInflater mInflater = LayoutInflater.From (this);
-			View mCustomView = mInflater.Inflate (Resource.Layout.ActionBar, null);
+			//Action bar
+			base.InitializeActionBar (ActionBar);
+			title = base.ActionBarTitle;
+			query = base.ActionBarQuery;
+			search = base.ActionBarSearch;
+			back = base.ActionBarBack;
 
 			db = DatabaseHelper.GetInstance (this);
 
@@ -47,7 +49,7 @@ namespace Totem {
 			allTotemListView = FindViewById<ListView> (Resource.Id.all_totem_list);
 			allTotemListView.Adapter = totemAdapter;
 
-			query = mCustomView.FindViewById<EditText>(Resource.Id.query);
+			title.Text = "Totems";
 			query.Hint = "Zoek totem";
 
 			//hide keyboard when scrolling through list
@@ -57,19 +59,8 @@ namespace Totem {
 
 			allTotemListView.ItemClick += ShowDetail;
 
-			title = mCustomView.FindViewById<TextView> (Resource.Id.title);
-			title.Text = "Totems";
-
-			back = mCustomView.FindViewById<ImageButton> (Resource.Id.backButton);
-			back.Click += (object sender, EventArgs e) => OnBackPressed();
-
-			search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
+			search.Visibility = ViewStates.Visible;
 			search.Click += (object sender, EventArgs e) => ToggleSearch();
-
-			ActionBar.LayoutParams layout = new ActionBar.LayoutParams (WindowManagerLayoutParams.MatchParent, WindowManagerLayoutParams.MatchParent);
-
-			mActionBar.SetCustomView (mCustomView, layout);
-			mActionBar.SetDisplayShowCustomEnabled (true);
 
 			//hide keybaord when enter is pressed
 			query.EditorAction += (sender, e) => {

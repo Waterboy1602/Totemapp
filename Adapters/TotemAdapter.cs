@@ -76,7 +76,7 @@ namespace Totem {
 			viewHolder.totem.Text = totemList [position].title;
 			viewHolder.checkbox.Checked = totemList [(int)viewHolder.checkbox.Tag].selected;
 			if (freqs != null)
-				viewHolder.freq.Text = freqs [position].ToString () /*+ "/" + selected*/;
+				viewHolder.freq.Text = freqs [position].ToString () /*+ "/" + totemList [position].numberOfEigenschappen*/;
 
 			viewHolder.checkbox.Click += (o, e) => {
 				if (viewHolder.checkbox.Checked)

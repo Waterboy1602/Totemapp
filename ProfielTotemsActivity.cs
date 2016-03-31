@@ -18,7 +18,7 @@ using Java.Lang;
 
 namespace Totem {
 	[Activity (Label = "Totems")]
-	public class ProfielTotemsActivity : Activity {
+	public class ProfielTotemsActivity : BaseActivity {
 		TotemAdapter totemAdapter;
 		ListView allTotemListView;
 		List<Totem> totemList;
@@ -38,10 +38,12 @@ namespace Totem {
 
 			SetContentView (Resource.Layout.AllTotems);
 
-			ActionBar mActionBar = ActionBar;
-
-			LayoutInflater mInflater = LayoutInflater.From (this);
-			View mCustomView = mInflater.Inflate (Resource.Layout.ActionBar, null);
+			//Action bar
+			base.InitializeActionBar (ActionBar);
+			title = base.ActionBarTitle;
+			close = base.ActionBarClose;
+			back = base.ActionBarBack;
+			delete = base.ActionBarDelete;
 
 			db = DatabaseHelper.GetInstance (this);
 
@@ -58,26 +60,12 @@ namespace Totem {
 			allTotemListView.ItemClick += ShowDetail;
 			allTotemListView.ItemLongClick += DeleteTotem;
 
-			title = mCustomView.FindViewById<TextView> (Resource.Id.title);
 			title.Text = "Totems voor " + profileName;
 
-			back = mCustomView.FindViewById<ImageButton> (Resource.Id.backButton);
-			back.Click += (object sender, EventArgs e) => OnBackPressed();
-
-			close = mCustomView.FindViewById<ImageButton> (Resource.Id.closeButton);
 			close.Click += HideDeleteTotems;
 
-			ImageButton search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
-			search.Visibility = ViewStates.Gone;
-
-			delete = mCustomView.FindViewById<ImageButton> (Resource.Id.deleteButton);
 			delete.Visibility = ViewStates.Visible;
 			delete.Click += ShowDeleteTotems;
-
-			var layout = new ActionBar.LayoutParams (WindowManagerLayoutParams.MatchParent, WindowManagerLayoutParams.MatchParent);
-
-			mActionBar.SetCustomView (mCustomView, layout);
-			mActionBar.SetDisplayShowCustomEnabled (true);
 		}
 
 		//update data from adapter on restart

@@ -13,7 +13,7 @@ using Android.Widget;
 
 namespace Totem {
 	[Activity (Label = "Checklist")]			
-	public class ChecklistActivity : Activity {
+	public class ChecklistActivity : BaseActivity {
 		Dictionary<string, List<string>> dictGroup;
 
 		protected override void OnCreate (Bundle savedInstanceState) {
@@ -21,24 +21,9 @@ namespace Totem {
 
 			SetContentView (Resource.Layout.Checklist);
 
-			ActionBar mActionBar = ActionBar;
+			base.InitializeActionBar (ActionBar);
 
-			LayoutInflater mInflater = LayoutInflater.From (this);
-			View mCustomView = mInflater.Inflate (Resource.Layout.ActionBar, null);
-
-			var title = mCustomView.FindViewById<TextView> (Resource.Id.title);
-			title.Text = "Totemisatie checklist";
-
-			var back = mCustomView.FindViewById<ImageButton> (Resource.Id.backButton);
-			back.Click += (object sender, EventArgs e) => OnBackPressed();
-
-			var search = mCustomView.FindViewById<ImageButton> (Resource.Id.searchButton);
-			search.Visibility = ViewStates.Gone;
-
-			var layout = new ActionBar.LayoutParams (WindowManagerLayoutParams.MatchParent, WindowManagerLayoutParams.MatchParent);
-
-			mActionBar.SetCustomView (mCustomView, layout);
-			mActionBar.SetDisplayShowCustomEnabled (true);
+			base.ActionBarTitle.Text = "Totemisatie checklist";
 
 			FillData ();
 		}

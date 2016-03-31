@@ -81,6 +81,7 @@
     <Compile Include="Utilities\MyOnTouchListener.cs" />
     <Compile Include="ChecklistActivity.cs" />
     <Compile Include="Adapters\ExpendListAdapter.cs" />
+    <Compile Include="BaseActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
