@@ -21,11 +21,8 @@ C:\Users\frede\Documents\Projects\Totem\Totem\obj\Debug\R.cs.flag
 C:\Users\frede\Documents\Projects\Totem\Totem\obj\Debug\uploadflags.txt
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\bin\Debug\Totem.dll
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\bin\Debug\Totem.pdb
-C:\Users\fe\Totem App\FrederickEskens\Totem.git\bin\Debug\be.scoutsengidsenvlaanderen.totem.apk
-C:\Users\fe\Totem App\FrederickEskens\Totem.git\bin\Debug\be.scoutsengidsenvlaanderen.totem-Signed.apk
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\Totem.dll
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\Totem.pdb
-C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\android\bin\be.scoutsengidsenvlaanderen.totem.apk
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\res\layout\main.xml
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\res\values\strings.xml
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\res\drawable-hdpi\icon.png
@@ -98,3 +95,7 @@ C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\res\layout\expandchild
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\res\layout\expandchildindent.xml
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\res\values\arrays.xml
 C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\res\drawable\grass_green.xml
+C:\Users\fe\Totem App\FrederickEskens\Totem.git\bin\Debug\be.scoutsengidsenvlaanderen.totemapp.apk
+C:\Users\fe\Totem App\FrederickEskens\Totem.git\bin\Debug\be.scoutsengidsenvlaanderen.totemapp-Signed.apk
+C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\android\bin\be.scoutsengidsenvlaanderen.totemapp.apk
+C:\Users\fe\Totem App\FrederickEskens\Totem.git\obj\Debug\Totem.csprojResolveAssemblyReference.cache

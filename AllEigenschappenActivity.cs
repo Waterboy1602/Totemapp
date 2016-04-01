@@ -76,7 +76,7 @@ namespace Totem {
 			title.Text = "Eigenschappen";
 			query.Hint = "Zoek eigenschap";
 
-			//hide keybaord when scrolling through list
+			//hide keyboard when scrolling through list
 			allEigenschappenListView.SetOnTouchListener(new MyOnTouchListener(this, query));
 
 			LiveSearch ();

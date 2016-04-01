@@ -14,7 +14,7 @@ using Android.Graphics;
 using Android.Content.PM;
 
 namespace Totem {
-	[Activity (Label = "Totem", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/AppThemeNoAction")]
+	[Activity (Label = "Totemapp", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/AppThemeNoAction")]
 	public class MainActivity : Activity {
 		Database db;
 
@@ -30,6 +30,9 @@ namespace Totem {
 			Button profielen = FindViewById<Button> (Resource.Id.profielen);
 			Button checklist = FindViewById<Button> (Resource.Id.checklist);
 			Button tinder = FindViewById<Button> (Resource.Id.tinder);
+
+			//TEMP
+			//tinder.Visibility = ViewStates.Gone;
 
 			if(db.GetPreference("tips").value.Equals("true"))
 				ShowTipDialog ();

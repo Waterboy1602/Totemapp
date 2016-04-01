@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">Totem</string>
+	<string name="app_name">Totemapp</string>
 	<string name="Verveine">Verveine W01 Regular</string>
     <string name="DIN_light">DINPro-Light</string>
     <string name="DIN_regular">DINPro-Regular</string>

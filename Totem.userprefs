@@ -1,51 +1,35 @@
 ﻿<Properties StartupItem="Totem.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.0bb3642e43e4b26c" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="MainActivity.cs">
     <Files>
-      <File FileName="Adapters\TotemAdapter.cs" Line="86" Column="6" />
+      <File FileName="Adapters\TotemAdapter.cs" Line="24" Column="4" />
       <File FileName="Adapters\ProfielAdapter.cs" Line="1" Column="1" />
-      <File FileName="Adapters\EigenschapAdapter.cs" Line="77" Column="3" />
-      <File FileName="db\Database.cs" Line="61" Column="41" />
-      <File FileName="model\Totem.cs" Line="12" Column="39" />
-      <File FileName="AllEigenschappenActivity.cs" Line="124" Column="23" />
-      <File FileName="TipDialog.cs" Line="51" Column="6" />
-      <File FileName="EigenschappenActivity.cs" Line="36" Column="47" />
-      <File FileName="BaseActivity.cs" Line="30" Column="12" />
-      <File FileName="MainActivity.cs" Line="41" Column="66" />
-      <File FileName="AllTotemsActivity.cs" Line="62" Column="43" />
-      <File FileName="model\Eigenschap.cs" Line="8" Column="21" />
-      <File FileName="ChecklistActivity.cs" Line="48" Column="61" />
-      <File FileName="ProfielenActivity.cs" Line="182" Column="9" />
-      <File FileName="ProfielTotemsActivity.cs" Line="65" Column="36" />
-      <File FileName="TotemDetailActivity.cs" Line="176" Column="27" />
-      <File FileName="TotemsActivity.cs" Line="32" Column="4" />
-      <File FileName="Utilities\CollectionHelper.cs" Line="33" Column="49" />
-      <File FileName="Utilities\CustomFontButton.cs" Line="13" Column="1" />
-      <File FileName="Utilities\CustomFontEditText.cs" Line="13" Column="1" />
-      <File FileName="Utilities\CustomFontHelper.cs" Line="32" Column="61" />
-      <File FileName="Utilities\CustomFontTextView.cs" Line="13" Column="1" />
+      <File FileName="Adapters\EigenschapAdapter.cs" Line="1" Column="1" />
+      <File FileName="db\Database.cs" Line="1" Column="1" />
+      <File FileName="model\Totem.cs" Line="1" Column="1" />
+      <File FileName="AllEigenschappenActivity.cs" Line="79" Column="17" />
+      <File FileName="TipDialog.cs" Line="1" Column="1" />
+      <File FileName="EigenschappenActivity.cs" Line="1" Column="1" />
+      <File FileName="BaseActivity.cs" Line="1" Column="1" />
+      <File FileName="MainActivity.cs" Line="28" Column="62" />
+      <File FileName="AllTotemsActivity.cs" Line="1" Column="1" />
+      <File FileName="model\Eigenschap.cs" Line="1" Column="1" />
+      <File FileName="ProfielenActivity.cs" Line="1" Column="1" />
+      <File FileName="ProfielTotemsActivity.cs" Line="1" Column="1" />
+      <File FileName="TotemDetailActivity.cs" Line="1" Column="1" />
+      <File FileName="TotemsActivity.cs" Line="1" Column="1" />
+      <File FileName="Utilities\CollectionHelper.cs" Line="1" Column="1" />
+      <File FileName="Utilities\CustomFontButton.cs" Line="1" Column="1" />
+      <File FileName="Utilities\CustomFontEditText.cs" Line="1" Column="1" />
+      <File FileName="Utilities\CustomFontHelper.cs" Line="1" Column="1" />
+      <File FileName="Utilities\CustomFontTextView.cs" Line="1" Column="1" />
       <File FileName="Utilities\CustomTypefaceSpan.cs" Line="1" Column="1" />
-      <File FileName="Utilities\KeyboardHelper.cs" Line="12" Column="3" />
-      <File FileName="Utilities\MyOnCheckBoxClickListener.cs" Line="26" Column="27" />
+      <File FileName="Utilities\KeyboardHelper.cs" Line="1" Column="1" />
+      <File FileName="Utilities\MyOnCheckBoxClickListener.cs" Line="1" Column="1" />
       <File FileName="Utilities\MyOnTouchListener.cs" Line="1" Column="1" />
+      <File FileName="Resources\values\Strings.xml" Line="3" Column="34" />
+      <File FileName="Properties\AndroidManifest.xml" Line="5" Column="12" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="Totem" expanded="True" selected="True">
-            <Node name="Totem" expanded="True">
-              <Node name="Adapters" expanded="True" />
-              <Node name="db" expanded="True" />
-              <Node name="model" expanded="True" />
-              <Node name="Resources" expanded="True">
-                <Node name="layout" expanded="True" />
-              </Node>
-              <Node name="Utilities" expanded="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

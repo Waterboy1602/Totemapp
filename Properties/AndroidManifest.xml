@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="be.scoutsengidsenvlaanderen.totem">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="be.scoutsengidsenvlaanderen.totemapp">
 	<uses-sdk android:minSdkVersion="16" android:targetSdkVersion="23" />
-	<application android:label="Totem" android:theme="@style/AppBaseTheme"></application>
+	<application android:label="Totemapp" android:theme="@style/AppBaseTheme"></application>
 </manifest>
