@@ -41,11 +41,11 @@ namespace Totem {
 			SetContentView (Resource.Layout.AllEigenschappen);
 
 			//Action bar
-			base.InitializeActionBar (ActionBar);
-			title = base.ActionBarTitle;
-			query = base.ActionBarQuery;
-			search = base.ActionBarSearch;
-			back = base.ActionBarBack;
+			InitializeActionBar (ActionBar);
+			title = ActionBarTitle;
+			query = ActionBarQuery;
+			search = ActionBarSearch;
+			back = ActionBarBack;
 
 			db = DatabaseHelper.GetInstance (this);
 
@@ -79,7 +79,7 @@ namespace Totem {
 			bottomBar = FindViewById<RelativeLayout> (Resource.Id.bottomBar);
 
 			search.Visibility = ViewStates.Visible;
-			search.Click += (object sender, EventArgs e) => ToggleSearch();
+			search.Click += (sender, e) => ToggleSearch ();
 
 			//hide keyboard when enter is pressed
 			query.EditorAction += (sender, e) => {
@@ -94,7 +94,7 @@ namespace Totem {
 
 		//IDEA
 		//shows short explanation of eigenschap
-		private void ShowExplanation(object sender, AdapterView.ItemLongClickEventArgs e) {
+		void ShowExplanation(object sender, AdapterView.ItemLongClickEventArgs e) {
 			int pos = e.Position;
 			var item = eigenschapAdapter.GetItemAtPosition(pos);
 
@@ -103,7 +103,7 @@ namespace Totem {
 		}
 
 		//toggles the search bar
-		private void ToggleSearch() {
+		void ToggleSearch() {
 			if (query.Visibility == ViewStates.Visible) {
 				HideSearch();
 				search.SetImageResource (Resource.Drawable.ic_search_white_24dp);
@@ -119,7 +119,7 @@ namespace Totem {
 		}
 
 		//hides the search bar
-		private void HideSearch() {
+		void HideSearch() {
 			back.Visibility = ViewStates.Visible;
 			title.Visibility = ViewStates.Visible;
 			query.Visibility = ViewStates.Gone;
@@ -132,7 +132,7 @@ namespace Totem {
 		}
 
 		//update list after every keystroke
-		private void LiveSearch() {
+		void LiveSearch() {
 			query.AfterTextChanged += (sender, args) => {
 				Search();
 				if(query.Text.Equals(""))
@@ -141,7 +141,7 @@ namespace Totem {
 		}
 
 		//shows only totems that match the query
-		private void Search() {
+		void Search() {
 			fullList = false;
 			eigenschappenList = db.FindEigenschapOpNaam (query.Text);
 			eigenschapAdapter.UpdateData (eigenschappenList);
@@ -152,8 +152,8 @@ namespace Totem {
 
 		//renders list of totems with frequencies based on selected eigenschappen
 		//and redirects to TotemsActivity to view them
-		private void VindTotem(object sender, EventArgs e) {
-			Dictionary<int, int> freqs = new Dictionary<int, int> ();
+		void VindTotem(object sender, EventArgs e) {
+			var freqs = new Dictionary<int, int> ();
 			int selected = 0;
 			foreach (Eigenschap eig in eigenschappenList) {
 				if(eig.selected) {
@@ -236,7 +236,7 @@ namespace Totem {
 
 		//changes the options menu items according to list
 		//delay of 0.5 seconds to take animation into account
-		private void UpdateOptionsMenu() {
+		void UpdateOptionsMenu() {
 			IMenuItem s = menu.FindItem (Resource.Id.select);
 			IMenuItem f = menu.FindItem (Resource.Id.full);
 
@@ -252,8 +252,8 @@ namespace Totem {
 		}
 
 		//returns list of eigenschappen that have been checked
-		private List<Eigenschap> GetSelectedEigenschappen() {
-			List<Eigenschap> result = new List<Eigenschap> ();
+		List<Eigenschap> GetSelectedEigenschappen() {
+			var result = new List<Eigenschap> ();
 			foreach(Eigenschap e in eigenschappenList)
 				if (e.selected)
 					result.Add (e);

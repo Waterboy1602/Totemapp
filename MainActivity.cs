@@ -35,7 +35,7 @@ namespace Totem {
 			tinder.Click += (sender, eventArgs) => GoToActivity("tinder");
 		}
 
-		private void GoToActivity(string activity) {
+		void GoToActivity(string activity) {
 			Intent intent = null;
 			switch (activity) {
 			case "totems":
@@ -59,13 +59,11 @@ namespace Totem {
 
 		public void ShowTipDialog() {
 			var dialog = TipDialog.NewInstance(this);
-			RunOnUiThread (() => {
-				dialog.Show(FragmentManager, "dialog");
-			});
+			RunOnUiThread (() => dialog.Show (FragmentManager, "dialog"));
 		}
 
 		public override void OnBackPressed() {
-			Intent StartMain = new Intent (Intent.ActionMain);
+			var StartMain = new Intent (Intent.ActionMain);
 			StartMain.AddCategory (Intent.CategoryHome);
 			StartMain.SetFlags (ActivityFlags.NewTask);
 			StartActivity (StartMain);

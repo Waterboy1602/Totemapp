@@ -38,9 +38,9 @@ namespace Totem {
 			ActionBarDelete = mCustomView.FindViewById<ImageButton> (Resource.Id.deleteButton);
 			ActionBarQuery = mCustomView.FindViewById<EditText>(Resource.Id.query);
 
-			ActionBarBack.Click += (object sender, EventArgs e) => OnBackPressed();
+			ActionBarBack.Click += (sender, e) => OnBackPressed ();
 
-			var layout = new ActionBar.LayoutParams (WindowManagerLayoutParams.MatchParent, WindowManagerLayoutParams.MatchParent);
+			var layout = new ActionBar.LayoutParams (ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent);
 
 			mActionBar.SetCustomView (mCustomView, layout);
 			mActionBar.SetDisplayShowCustomEnabled (true);
