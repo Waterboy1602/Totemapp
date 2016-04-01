@@ -1,17 +1,8 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-
-using SQLite;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content;
-using Android.Runtime;
+using Android.OS;
 using Android.Views;
 using Android.Widget;
-using Android.OS;
-using Android.Graphics;
-using Android.Content.PM;
 
 namespace Totem {
 	[Activity (Label = "Totemapp", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/AppThemeNoAction")]

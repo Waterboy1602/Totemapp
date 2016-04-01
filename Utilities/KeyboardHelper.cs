@@ -1,9 +1,7 @@
-﻿using System;
-
+﻿using Android.App;
 using Android.Content;
-using Android.Views.InputMethods;
-using Android.App;
 using Android.Views;
+using Android.Views.InputMethods;
 
 namespace Totem {
 
@@ -11,7 +9,7 @@ namespace Totem {
 	public static class KeyboardHelper	{
 		
 		public static void HideKeyboard(Context context) {
-			InputMethodManager inputManager = (InputMethodManager)context.GetSystemService (Context.InputMethodService);
+			var inputManager = (InputMethodManager)context.GetSystemService (Context.InputMethodService);
 			if(((Activity)context).CurrentFocus != null)
 				inputManager.HideSoftInputFromWindow (((Activity)context).CurrentFocus.WindowToken, HideSoftInputFlags.None);
 		}

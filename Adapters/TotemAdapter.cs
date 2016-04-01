@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 using Android.App;
-using Android.Content;
-using Android.Provider;
 using Android.Views;
 using Android.Widget;
-using Android.Graphics;
-using Android.Content.Res;
 
 namespace Totem {
 	public class TotemAdapter: BaseAdapter<Totem> {
@@ -18,9 +13,9 @@ namespace Totem {
 		bool showDelete;
 
 		public TotemAdapter (Activity activity, List<Totem> list) {	
-			this._activity = activity;
-			this.totemList = list;
-			this.showDelete = false;
+			_activity = activity;
+			totemList = list;
+			showDelete = false;
 		}
 
 		public TotemAdapter (Activity activity, List<Totem> list, int[] freqs, int selected): this(activity, list) {	
@@ -66,10 +61,7 @@ namespace Totem {
 				viewHolder = (ViewHolder)convertView.Tag;
 			}
 
-			if (showDelete)
-				viewHolder.checkbox.Visibility = ViewStates.Visible;
-			else
-				viewHolder.checkbox.Visibility = ViewStates.Gone;
+			viewHolder.checkbox.Visibility = showDelete ? ViewStates.Visible : ViewStates.Gone;
 
 			viewHolder.checkbox.Tag = position;
 
@@ -79,10 +71,7 @@ namespace Totem {
 				viewHolder.freq.Text = freqs [position].ToString () /*+ "/" + totemList [position].numberOfEigenschappen*/;
 
 			viewHolder.checkbox.Click += (o, e) => {
-				if (viewHolder.checkbox.Checked)
-					totemList [(int)viewHolder.checkbox.Tag].selected = true;
-				else
-					totemList [(int)viewHolder.checkbox.Tag].selected = false;
+				totemList [(int)viewHolder.checkbox.Tag].selected = viewHolder.checkbox.Checked;
 			};
 
 			return convertView;

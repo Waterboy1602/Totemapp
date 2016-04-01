@@ -1,19 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-
-using SQLite;
 
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
-using Android.Widget;
 using Android.Views.InputMethods;
-using Android.Graphics;
+using Android.Widget;
 
 namespace Totem {
 	[Activity (Label = "Totems")]			
@@ -35,11 +28,11 @@ namespace Totem {
 			SetContentView (Resource.Layout.AllTotems);
 
 			//Action bar
-			base.InitializeActionBar (ActionBar);
-			title = base.ActionBarTitle;
-			query = base.ActionBarQuery;
-			search = base.ActionBarSearch;
-			back = base.ActionBarBack;
+			InitializeActionBar (ActionBar);
+			title = ActionBarTitle;
+			query = ActionBarQuery;
+			search = ActionBarSearch;
+			back = ActionBarBack;
 
 			db = DatabaseHelper.GetInstance (this);
 
@@ -60,7 +53,7 @@ namespace Totem {
 			allTotemListView.ItemClick += ShowDetail;
 
 			search.Visibility = ViewStates.Visible;
-			search.Click += (object sender, EventArgs e) => ToggleSearch();
+			search.Click += (sender, e) => ToggleSearch ();
 
 			//hide keybaord when enter is pressed
 			query.EditorAction += (sender, e) => {
@@ -72,7 +65,7 @@ namespace Totem {
 		}
 
 		//toggles the search bar
-		private void ToggleSearch() {
+		void ToggleSearch() {
 			if (query.Visibility == ViewStates.Visible) {
 				HideSearch();
 				search.SetImageResource (Resource.Drawable.ic_search_white_24dp);
@@ -88,7 +81,7 @@ namespace Totem {
 		}
 
 		//hides the search bar
-		private void HideSearch() {
+		void HideSearch() {
 			back.Visibility = ViewStates.Visible;
 			title.Visibility = ViewStates.Visible;
 			query.Visibility = ViewStates.Gone;
@@ -98,14 +91,12 @@ namespace Totem {
 		}
 
 		//update list after every keystroke
-		private void LiveSearch() {
-			query.AfterTextChanged += (sender, args) => {
-				Search();
-			};
+		void LiveSearch() {
+			query.AfterTextChanged += (sender, args) => Search ();
 		}
 
 		//shows only totems that are searched
-		private void Search() {
+		void Search() {
 			totemList = db.FindTotemOpNaam (query.Text);
 			totemAdapter.UpdateData (totemList); 
 			totemAdapter.NotifyDataSetChanged ();
@@ -115,7 +106,7 @@ namespace Totem {
 
 		//get DetailActivity of the totem that is clicked
 		//ID is passed as parameter
-		private void ShowDetail(object sender, AdapterView.ItemClickEventArgs e) {
+		void ShowDetail(object sender, AdapterView.ItemClickEventArgs e) {
 			int pos = e.Position;
 			var item = totemAdapter.GetItemAtPosition(pos);
 			KeyboardHelper.HideKeyboard (this);

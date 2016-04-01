@@ -1,10 +1,6 @@
-﻿using System;
-
-using Android.Widget;
-using Android.Content;
+﻿using Android.Content;
 using Android.Util;
-using Android.Content.Res;
-using Android.Graphics;
+using Android.Widget;
 
 namespace Totem {
 

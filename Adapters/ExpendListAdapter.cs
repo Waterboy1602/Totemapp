@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Net;
-using Android;
-using Android.Widget;
+using System.Collections.Generic;
+
 using Android.App;
 using Android.Views;
-using Android.Content;
-using Android.Content.Res;
-using System.Collections.Generic;
-using System.Collections;
-using Android.Runtime;
-using Android.OS;
-using Android.Graphics;
-using Android.Graphics.Drawables;
+using Android.Widget;
 
 namespace Totem {
 	public class ExpendListAdapter: BaseExpandableListAdapter {
@@ -77,8 +69,7 @@ namespace Totem {
 		public override View GetGroupView (int groupPosition, bool isExpanded, View convertView, ViewGroup parent) {
 			var item = _lstGroupID [groupPosition];
 
-			if (convertView == null)
-				convertView = _activity.LayoutInflater.Inflate (Resource.Layout.ExpandParent, null);
+			convertView = convertView ?? _activity.LayoutInflater.Inflate (Resource.Layout.ExpandParent, null);
 
 			var head = convertView.FindViewById<TextView> (Resource.Id.head);
 			head.SetText (item, TextView.BufferType.Normal);

@@ -1,16 +1,11 @@
-﻿using System;
-
-using SQLite;
-
-using Android.Database.Sqlite;
-using Android.Content;
+﻿using Android.Content;
 
 namespace Totem {
 	
 	//Database singleton
 	public static class DatabaseHelper {
 		
-		private static Database dbInstance = null;
+		static Database dbInstance = null;
 
 		public static Database GetInstance(Context context) {
 			if (dbInstance == null) 

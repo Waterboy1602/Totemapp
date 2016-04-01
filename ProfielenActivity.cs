@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
-using Android.Widget;
 using Android.Views.InputMethods;
+using Android.Widget;
 
 namespace Totem {
 	[Activity (Label = "Profielen", WindowSoftInputMode=SoftInput.StateAlwaysHidden)]			
@@ -34,12 +31,12 @@ namespace Totem {
 			SetContentView (Resource.Layout.Profielen);
 
 			//Action bar
-			base.InitializeActionBar (ActionBar);
-			title = base.ActionBarTitle;
-			close = base.ActionBarClose;
-			back = base.ActionBarBack;
-			add = base.ActionBarAdd;
-			delete = base.ActionBarDelete;
+			InitializeActionBar (ActionBar);
+			title = ActionBarTitle;
+			close = ActionBarClose;
+			back = ActionBarBack;
+			add = ActionBarAdd;
+			delete = ActionBarDelete;
 
 			db = DatabaseHelper.GetInstance (this);
 
@@ -60,7 +57,7 @@ namespace Totem {
 			title.Text = "Profielen";
 
 			add.Visibility = ViewStates.Visible;
-			add.Click += (object sender, EventArgs e) => AddProfile();
+			add.Click += (sender, e) => AddProfile ();
 
 			delete.Click += ShowDeleteProfiles;
 			close.Click += HideDeleteProfiles;
@@ -74,7 +71,7 @@ namespace Totem {
 		}
 
 		//updates data of the adapter and shows/hides the "empty"-message when needed
-		private void UpdateList() {
+		void UpdateList() {
 			this.profielen = db.GetProfielen();
 			if (profielen.Count == 0) {
 				noProfiles.Visibility = ViewStates.Visible;
@@ -87,7 +84,7 @@ namespace Totem {
 			profielAdapter.NotifyDataSetChanged();
 		}
 
-		private void ShowTotems(object sender, AdapterView.ItemClickEventArgs e) {
+		void ShowTotems(object sender, AdapterView.ItemClickEventArgs e) {
 			int pos = e.Position;
 			var item = profielAdapter.GetItemAtPosition(pos);
 
@@ -101,11 +98,11 @@ namespace Totem {
 			}
 		}
 
-		private void DeleteProfile(object sender, AdapterView.ItemLongClickEventArgs e) {
+		void DeleteProfile(object sender, AdapterView.ItemLongClickEventArgs e) {
 			int pos = e.Position;
 			var item = profielAdapter.GetItemAtPosition(pos);
 
-			AlertDialog.Builder alert = new AlertDialog.Builder (this);
+			var alert = new AlertDialog.Builder (this);
 			alert.SetMessage ("Profiel " + item.name + " verwijderen?");
 			alert.SetPositiveButton ("Ja", (senderAlert, args) => {
 				db.DeleteProfile(item.name);
@@ -117,15 +114,13 @@ namespace Totem {
 			alert.SetNegativeButton ("Nee", (senderAlert, args) => {});
 
 			Dialog dialog = alert.Create();
-			RunOnUiThread (() => {
-				dialog.Show();
-			} );
+			RunOnUiThread (dialog.Show);
 		}
 
-		private void AddProfile() {
-			AlertDialog.Builder alert = new AlertDialog.Builder (this);
+		void AddProfile() {
+			var alert = new AlertDialog.Builder (this);
 			alert.SetTitle ("Nieuw profiel");
-			EditText input = new EditText (this); 
+			var input = new EditText (this); 
 			input.InputType = Android.Text.InputTypes.TextFlagCapWords;
 			input.Hint = "Naam";
 			KeyboardHelper.ShowKeyboard (this, input);
@@ -155,12 +150,10 @@ namespace Totem {
 					e.Handled = false;
 			};
 
-			RunOnUiThread (() => {
-				d1.Show();
-			});
+			RunOnUiThread (d1.Show);
 		}
 			
-		private void ShowDeleteProfiles(object sender, EventArgs e) {
+		void ShowDeleteProfiles(object sender, EventArgs e) {
 			profielAdapter.ShowDelete ();
 			profielAdapter.NotifyDataSetChanged ();
 
@@ -173,7 +166,7 @@ namespace Totem {
 			delete.Click += RemoveSelectedProfiles;
 		}
 
-		private void HideDeleteProfiles(object sender, EventArgs e) {
+		void HideDeleteProfiles(object sender, EventArgs e) {
 			profielAdapter.HideDelete ();
 			profielAdapter.NotifyDataSetChanged ();
 
@@ -186,7 +179,7 @@ namespace Totem {
 			delete.Click += ShowDeleteProfiles;
 		}
 
-		private void RemoveSelectedProfiles(object sender, EventArgs e) {
+		void RemoveSelectedProfiles(object sender, EventArgs e) {
 			bool selected = false;
 			foreach(Profiel p in profielen) {
 				if (p.selected) {
@@ -196,7 +189,7 @@ namespace Totem {
 			}
 
 			if (selected) {		
-				AlertDialog.Builder alert1 = new AlertDialog.Builder (this);
+				var alert1 = new AlertDialog.Builder (this);
 				alert1.SetMessage ("Geselecteerde profielen verwijderen?");
 				alert1.SetPositiveButton ("Ja", (senderAlert, args) => {
 					foreach (Profiel p in profielen)
@@ -211,9 +204,7 @@ namespace Totem {
 
 				Dialog d2 = alert1.Create ();
 
-				RunOnUiThread (() => {
-					d2.Show ();
-				});
+				RunOnUiThread (d2.Show);
 			} else {
 				mToast.SetText("Geen profielen geselecteerd om te verwijderen");
 				mToast.Show();

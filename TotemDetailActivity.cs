@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.Graphics;
-using Android.Text.Method;
-using Android.Views.InputMethods;
+using Android.OS;
 using Android.Text;
+using Android.Views;
+using Android.Views.InputMethods;
+using Android.Widget;
 
 namespace Totem {
 	[Activity (Label = "Beschrijving", WindowSoftInputMode=SoftInput.StateAlwaysHidden)]			
@@ -36,9 +32,9 @@ namespace Totem {
 			SetContentView (Resource.Layout.TotemDetail);
 
 			//Action bar
-			base.InitializeActionBar (ActionBar);
-			title = base.ActionBarTitle;
-			back = base.ActionBarBack;
+			InitializeActionBar (ActionBar);
+			title = ActionBarTitle;
+			back = ActionBarBack;
 
 			db = DatabaseHelper.GetInstance (this);
 
@@ -57,7 +53,7 @@ namespace Totem {
 			var profileName = Intent.GetStringExtra ("profileName");
 			if (profileName != null) {
 				action = base.ActionBarDelete;
-				action.Click += (object sender, EventArgs e) => RemoveFromProfile (profileName);
+				action.Click += (sender, e) => RemoveFromProfile (profileName);
 			} else {
 				action = base.ActionBarAdd;
 				action.Click += (object sender, EventArgs e) => ProfilePopup();
@@ -68,14 +64,14 @@ namespace Totem {
 		}
 
 		private void RemoveFromProfile(string profileName) {
-			AlertDialog.Builder alert = new AlertDialog.Builder (this);
+			var alert = new AlertDialog.Builder (this);
 			alert.SetMessage (t.title + " verwijderen uit profiel " + profileName + "?");
 			alert.SetPositiveButton ("Ja", (senderAlert, args) => {
 				db.DeleteTotemFromProfile(t.nid, profileName);
 				mToast.SetText(t.title + " verwijderd");
 				mToast.Show();
 				if(db.GetTotemsFromProfiel(profileName).Count == 0) {
-					Intent i = new Intent(this, typeof(ProfielenActivity));
+					var i = new Intent(this, typeof(ProfielenActivity));
 					i.SetFlags(ActivityFlags.ClearTop | ActivityFlags.SingleTop);
 					StartActivity(i);
 				} else {
@@ -86,13 +82,11 @@ namespace Totem {
 			alert.SetNegativeButton ("Nee", (senderAlert, args) => {});
 
 			Dialog dialog = alert.Create();
-			RunOnUiThread (() => {
-				dialog.Show();
-			} );
+			RunOnUiThread (dialog.Show);
 		}
 
 		private void ProfilePopup() {
-				PopupMenu menu = new PopupMenu (this, action);
+				var menu = new PopupMenu (this, action);
 				menu.Inflate (Resource.Menu.Popup);
 				int count = 0;
 				foreach(Profiel p in db.GetProfielen()) {
@@ -104,10 +98,10 @@ namespace Totem {
 
 				menu.MenuItemClick += (s1, arg1) => {
 					if(arg1.Item.ItemId == count) {
-						AlertDialog.Builder alert = new AlertDialog.Builder (this);
+						var alert = new AlertDialog.Builder (this);
 						alert.SetTitle ("Nieuw profiel");
-						EditText input = new EditText (this);
-						input.InputType = Android.Text.InputTypes.TextFlagCapWords;
+						var input = new EditText (this);
+						input.InputType = InputTypes.TextFlagCapWords;
 						input.Hint = "Naam";
 						KeyboardHelper.ShowKeyboard(this, input);
 						alert.SetView (input);
@@ -138,13 +132,11 @@ namespace Totem {
 								e.Handled = false;
 						};
 
-						RunOnUiThread (() => {
-							d1.Show();
-						});
+					RunOnUiThread (d1.Show);
 
 					} else {
 						db.AddTotemToProfiel(nid, arg1.Item.TitleFormatted.ToString());
-						mToast.SetText(db.GetTotemOnID(nid).title + " toegevoegd aan profiel " + arg1.Item.TitleFormatted.ToString());
+						mToast.SetText(db.GetTotemOnID (nid).title + " toegevoegd aan profiel " + arg1.Item.TitleFormatted);
 						mToast.Show();
 					}
 				};

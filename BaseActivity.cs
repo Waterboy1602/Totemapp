@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 using Android.App;
-using Android.Content;
+using Android.Content.PM;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Android.Content.PM;
 
 namespace Totem {
 	[Activity (Label = "BaseActivity")]			
@@ -24,8 +19,8 @@ namespace Totem {
 		protected EditText ActionBarQuery { get; set; }
 		protected ActionBar mActionBar { get; set; }
 
-		protected override void OnCreate (Bundle savedInstanceState) {
-			base.OnCreate (savedInstanceState);
+		protected override void OnCreate (Bundle bundle) {
+			base.OnCreate (bundle);
 			RequestedOrientation = ScreenOrientation.SensorPortrait;
 		}
 

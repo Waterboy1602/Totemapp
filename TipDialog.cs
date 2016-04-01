@@ -1,9 +1,7 @@
-﻿using System;
-
-using Android.App;
-using Android.Widget;
-using Android.OS;
+﻿using Android.App;
 using Android.Content;
+using Android.OS;
+using Android.Widget;
 
 namespace Totem {
 	public class TipDialog : DialogFragment	{
@@ -46,12 +44,12 @@ namespace Totem {
 			return dialog;
 		}
 
-		private void HandlePositiveButtonClick(object sender, DialogClickEventArgs e) {
+		void HandlePositiveButtonClick(object sender, DialogClickEventArgs e) {
 			//var dialog = TipDialog.NewInstance(context);
 			//dialog.Show(FragmentManager, "a");
 		}
 
-		private void HandleNegativeButtonClick(object sender, DialogClickEventArgs e) {
+		void HandleNegativeButtonClick(object sender, DialogClickEventArgs e) {
 			var dialog = (AlertDialog) sender;
 			if (weergeven_checkbox.Checked)
 				db.ChangePreference ("tips", "false");

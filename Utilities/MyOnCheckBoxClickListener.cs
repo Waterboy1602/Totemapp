@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Threading.Tasks;
-using System.Threading;
 using System.Collections.Generic;
 
-using Android.Views.InputMethods;
-using Android.Content;
 using Android.App;
-using Android.Widget;
+using Android.Content;
 using Android.Views;
-using Android.Animation;
-using Android.Views.Animations;
+using Android.Widget;
 
 namespace Totem {
 	public class MyOnCheckBoxClickListener {
@@ -23,7 +18,7 @@ namespace Totem {
 
 		//hides keyboard when checkbox is clicked
 		public void OnCheckboxClicked() {
-			Context context = null;
+			Context context;
 			mContext.TryGetTarget(out context);
 			KeyboardHelper.HideKeyboard (context);
 		}
@@ -65,7 +60,7 @@ namespace Totem {
 		}
 
 		//returns number of checked items in eigenschapList
-		private int CountCheckedItems(List<Eigenschap> eigenschapList) {
+		static int CountCheckedItems(List<Eigenschap> eigenschapList) {
 			int result = 0;
 			foreach (Eigenschap e in eigenschapList)
 				if (e.selected)

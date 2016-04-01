@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 using Android.App;
-using Android.Content;
-using Android.Provider;
 using Android.Views;
 using Android.Widget;
-using Android.Graphics;
 
 namespace Totem {
 	public class ProfielAdapter: BaseAdapter<Profiel> {
@@ -57,10 +53,7 @@ namespace Totem {
 				viewHolder = (ViewHolder)convertView.Tag;
 			}
 
-			if (showDelete)
-				viewHolder.checkbox.Visibility = ViewStates.Visible;
-			else
-				viewHolder.checkbox.Visibility = ViewStates.Gone;
+			viewHolder.checkbox.Visibility = showDelete ? ViewStates.Visible : ViewStates.Gone;
 
 			viewHolder.checkbox.Tag = position;
 
@@ -68,10 +61,7 @@ namespace Totem {
 			viewHolder.checkbox.Checked = profielList [(int)viewHolder.checkbox.Tag].selected;
 
 			viewHolder.checkbox.Click += (o, e) => {
-				if (viewHolder.checkbox.Checked)
-					profielList [(int)viewHolder.checkbox.Tag].selected = true;
-				else
-					profielList [(int)viewHolder.checkbox.Tag].selected = false;
+				profielList [(int)viewHolder.checkbox.Tag].selected = viewHolder.checkbox.Checked ? true : false;
 			};
 
 			return convertView;

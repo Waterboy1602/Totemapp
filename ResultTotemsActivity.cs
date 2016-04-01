@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-
-using SQLite;
+﻿using System.Collections.Generic;
 
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 
 namespace Totem {
@@ -31,9 +23,9 @@ namespace Totem {
 			SetContentView (Resource.Layout.Totems);
 
 			//Action bar
-			base.InitializeActionBar (ActionBar);
-			title = base.ActionBarTitle;
-			back = base.ActionBarBack;
+			InitializeActionBar (ActionBar);
+			title = ActionBarTitle;
+			back = ActionBarBack;
 
 			db = DatabaseHelper.GetInstance (this);
 	
@@ -53,12 +45,12 @@ namespace Totem {
 		}
 
 		//fill totemList with Totem-objects whose ID is in totemIDs
-		private List<Totem> ConvertIDArrayToTotemList(int[] totemIDs) {
-			List<Totem> totemList = new List<Totem> ();
+		List<Totem> ConvertIDArrayToTotemList(int[] totemIDs) {
+			var list = new List<Totem> ();
 			foreach(int idx in totemIDs)
-				totemList.Add (db.GetTotemOnID (idx));
+				list.Add (db.GetTotemOnID (idx));
 
-			return totemList;
+			return list;
 		}
 
 		void ShowDetail(object sender, AdapterView.ItemClickEventArgs e) {
@@ -74,7 +66,7 @@ namespace Totem {
 		//otherwise acts normal
 		public override void OnBackPressed() {
 			if (Intent.GetBooleanExtra ("GoToMain", false) == true) {
-				Intent i = new Intent (this, typeof(MainActivity));
+				var i = new Intent (this, typeof(MainActivity));
 				i.SetFlags (ActivityFlags.ClearTop | ActivityFlags.SingleTop);
 				StartActivity (i);
 			} else {

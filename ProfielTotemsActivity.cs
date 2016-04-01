@@ -1,20 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-
-using SQLite;
 
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Android.Views.InputMethods;
-
-using Java.Lang;
 
 namespace Totem {
 	[Activity (Label = "Totems")]
@@ -39,11 +30,11 @@ namespace Totem {
 			SetContentView (Resource.Layout.AllTotems);
 
 			//Action bar
-			base.InitializeActionBar (ActionBar);
-			title = base.ActionBarTitle;
-			close = base.ActionBarClose;
-			back = base.ActionBarBack;
-			delete = base.ActionBarDelete;
+			InitializeActionBar (ActionBar);
+			title = ActionBarTitle;
+			close = ActionBarClose;
+			back = ActionBarBack;
+			delete = ActionBarDelete;
 
 			db = DatabaseHelper.GetInstance (this);
 
@@ -78,7 +69,7 @@ namespace Totem {
 
 		//get DetailActivity of the totem that is clicked
 		//ID is passed as parameter
-		private void ShowDetail(object sender, AdapterView.ItemClickEventArgs e) {
+		void ShowDetail(object sender, AdapterView.ItemClickEventArgs e) {
 			int pos = e.Position;
 			var item = totemAdapter.GetItemAtPosition(pos);
 
@@ -88,11 +79,11 @@ namespace Totem {
 			StartActivity (detailActivity);
 		}
 
-		private void DeleteTotem(object sender, AdapterView.ItemLongClickEventArgs e) {
+		void DeleteTotem(object sender, AdapterView.ItemLongClickEventArgs e) {
 			int pos = e.Position;
 			var item = totemAdapter.GetItemAtPosition(pos);
 
-			AlertDialog.Builder alert = new AlertDialog.Builder (this);
+			var alert = new AlertDialog.Builder (this);
 			alert.SetMessage (item.title + " verwijderen uit profiel " + profileName + "?");
 			alert.SetPositiveButton ("Ja", (senderAlert, args) => {
 				db.DeleteTotemFromProfile(item.nid, profileName);
@@ -110,9 +101,7 @@ namespace Totem {
 			alert.SetNegativeButton ("Nee", (senderAlert, args) => {});
 
 			Dialog dialog = alert.Create();
-			RunOnUiThread (() => {
-				dialog.Show();
-			} );
+			RunOnUiThread (dialog.Show);
 		}
 
 		//also sets all the checkboxes unchecked
@@ -153,7 +142,7 @@ namespace Totem {
 				}
 			}
 			if (selected) {
-				AlertDialog.Builder alert1 = new AlertDialog.Builder (this);
+				var alert1 = new AlertDialog.Builder (this);
 				alert1.SetMessage ("Geselecteerde totems verwijderen?");
 				alert1.SetPositiveButton ("Ja", (senderAlert, args) => {
 					foreach (Totem t in totemList)
@@ -170,14 +159,11 @@ namespace Totem {
 					}
 				});
 
-				alert1.SetNegativeButton ("Nee", (senderAlert, args) => {
-				});
+				alert1.SetNegativeButton ("Nee", (senderAlert, args) => {});
 
 				Dialog d2 = alert1.Create ();
 
-				RunOnUiThread (() => {
-					d2.Show ();
-				});
+				RunOnUiThread (d2.Show);
 			} else {
 				mToast.SetText("Geen totems geselecteerd om te verwijderen");
 				mToast.Show();

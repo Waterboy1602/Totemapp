@@ -3,8 +3,8 @@
 using Android.Content;
 using Android.Content.Res;
 using Android.Graphics;
-using Android.Widget;
 using Android.Util;
+using Android.Widget;
 
 namespace Totem {
 	

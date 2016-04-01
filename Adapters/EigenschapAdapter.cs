@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 using Android.App;
-using Android.Content;
-using Android.Provider;
 using Android.Views;
 using Android.Widget;
-using Android.Views.InputMethods;
-using Android.Graphics;
 
 namespace Totem {
 	public class EigenschapAdapter: BaseAdapter<Eigenschap> {
@@ -17,9 +12,9 @@ namespace Totem {
 		MyOnCheckBoxClickListener mListener;
 
 		public EigenschapAdapter (Activity activity, List<Eigenschap> list, MyOnCheckBoxClickListener listener) {	
-			this._activity = activity;
-			this.eigenschapList = list;
-			this.mListener = listener;
+			_activity = activity;
+			eigenschapList = list;
+			mListener = listener;
 			mListener.UpdateCounter(eigenschapList);
 		}
 
