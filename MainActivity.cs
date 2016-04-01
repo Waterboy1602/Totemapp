@@ -54,7 +54,7 @@ namespace Totem {
 				intent = new Intent (this, typeof(ProfielenActivity));
 				break;
 			case "checklist":
-				intent = new Intent (this, typeof(ChecklistActivity));
+				intent = new Intent (this, typeof(TotemisatieChecklistActivity));
 				break;
 			case "tinder":
 				intent = new Intent (this, typeof(EigenschappenActivity));

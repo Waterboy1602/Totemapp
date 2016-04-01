@@ -1,8 +1,8 @@
 package md5b1d67ac94551c8753fec80729d65095f;
 
 
-public class CheckListActivity
-	extends android.app.Activity
+public class ChecklistActivity
+	extends md5b1d67ac94551c8753fec80729d65095f.BaseActivity
 	implements
 		mono.android.IGCUserPeer
 {
@@ -11,15 +11,15 @@ public class CheckListActivity
 		__md_methods = 
 			"n_onCreate:(Landroid/os/Bundle;)V:GetOnCreate_Landroid_os_Bundle_Handler\n" +
 			"";
-		mono.android.Runtime.register ("Totem.CheckListActivity, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", CheckListActivity.class, __md_methods);
+		mono.android.Runtime.register ("Totem.ChecklistActivity, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", ChecklistActivity.class, __md_methods);
 	}
 
 
-	public CheckListActivity () throws java.lang.Throwable
+	public ChecklistActivity () throws java.lang.Throwable
 	{
 		super ();
-		if (getClass () == CheckListActivity.class)
-			mono.android.TypeManager.Activate ("Totem.CheckListActivity, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
+		if (getClass () == ChecklistActivity.class)
+			mono.android.TypeManager.Activate ("Totem.ChecklistActivity, Totem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
 	}
 
 

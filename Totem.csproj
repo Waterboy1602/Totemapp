@@ -79,9 +79,9 @@
     <Compile Include="Utilities\CustomFontHelper.cs" />
     <Compile Include="Utilities\CustomTypefaceSpan.cs" />
     <Compile Include="Utilities\MyOnTouchListener.cs" />
-    <Compile Include="ChecklistActivity.cs" />
     <Compile Include="Adapters\ExpendListAdapter.cs" />
     <Compile Include="BaseActivity.cs" />
+    <Compile Include="TotemisatieChecklistActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

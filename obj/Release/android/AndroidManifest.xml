@@ -9,13 +9,13 @@
       </intent-filter>
     </activity>
     <activity android:label="Totems" android:name="md5b1d67ac94551c8753fec80729d65095f.TotemsActivity" />
-    <activity android:label="Totem detail" android:name="md5b1d67ac94551c8753fec80729d65095f.TotemDetailActivity" />
+    <activity android:label="Beschrijving" android:windowSoftInputMode="stateAlwaysHidden|adjustUnspecified" android:name="md5b1d67ac94551c8753fec80729d65095f.TotemDetailActivity" />
     <activity android:icon="@drawable/icon" android:label="Totem bepalen" android:screenOrientation="portrait" android:name="md5b1d67ac94551c8753fec80729d65095f.EigenschappenActivity" />
     <activity android:label="Totems" android:name="md5b1d67ac94551c8753fec80729d65095f.AllTotemsActivity" />
     <activity android:label="Eigenschappen" android:screenOrientation="portrait" android:windowSoftInputMode="stateUnspecified|adjustPan" android:name="md5b1d67ac94551c8753fec80729d65095f.AllEigenschappenActivity" />
-    <activity android:label="Profielen" android:name="md5b1d67ac94551c8753fec80729d65095f.ProfielenActivity" />
+    <activity android:label="Profielen" android:windowSoftInputMode="stateAlwaysHidden|adjustUnspecified" android:name="md5b1d67ac94551c8753fec80729d65095f.ProfielenActivity" />
     <activity android:label="Totems" android:name="md5b1d67ac94551c8753fec80729d65095f.ProfielTotemsActivity" />
-    <activity android:label="Totem" android:noHistory="true" android:theme="@style/AppThemeNoAction" android:name="md5b1d67ac94551c8753fec80729d65095f.SplashScreenActivity" />
+    <activity android:label="Checklist" android:name="md5b1d67ac94551c8753fec80729d65095f.TotemisatieChecklistActivity" />
     <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="be.scoutsengidsenvlaanderen.totem.mono.MonoRuntimeProvider.__mono_init__" />
   </application>
 </manifest>

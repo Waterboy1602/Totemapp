@@ -17,7 +17,7 @@
     <activity android:label="Eigenschappen" android:screenOrientation="portrait" android:windowSoftInputMode="stateUnspecified|adjustPan" android:name="md5b1d67ac94551c8753fec80729d65095f.AllEigenschappenActivity" />
     <activity android:label="Profielen" android:windowSoftInputMode="stateAlwaysHidden|adjustUnspecified" android:name="md5b1d67ac94551c8753fec80729d65095f.ProfielenActivity" />
     <activity android:label="Totems" android:name="md5b1d67ac94551c8753fec80729d65095f.ProfielTotemsActivity" />
-    <activity android:label="Checklist" android:name="md5b1d67ac94551c8753fec80729d65095f.ChecklistActivity" />
+    <activity android:label="Checklist" android:name="md5b1d67ac94551c8753fec80729d65095f.TotemisatieChecklistActivity" />
     <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="be.scoutsengidsenvlaanderen.totem.mono.MonoRuntimeProvider.__mono_init__" />
     <!--suppress ExportedReceiver-->
     <receiver android:name="mono.android.Seppuku">
