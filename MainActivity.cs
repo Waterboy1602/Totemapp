@@ -15,7 +15,7 @@ using Android.Content.PM;
 
 namespace Totem {
 	[Activity (Label = "Totemapp", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/AppThemeNoAction")]
-	public class MainActivity : Activity {
+	public class MainActivity : BaseActivity {
 		Database db;
 
 		protected override void OnCreate (Bundle bundle) {
@@ -32,7 +32,7 @@ namespace Totem {
 			Button tinder = FindViewById<Button> (Resource.Id.tinder);
 
 			//TEMP
-			//tinder.Visibility = ViewStates.Gone;
+			tinder.Visibility = ViewStates.Gone;
 
 			if(db.GetPreference("tips").value.Equals("true"))
 				ShowTipDialog ();

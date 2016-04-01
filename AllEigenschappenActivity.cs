@@ -20,7 +20,7 @@ using Android.Graphics;
 using Android.Graphics.Drawables;
 
 namespace Totem {
-	[Activity (Label = "Eigenschappen", WindowSoftInputMode = Android.Views.SoftInput.AdjustPan, ScreenOrientation = ScreenOrientation.Portrait)]			
+	[Activity (Label = "Eigenschappen", WindowSoftInputMode = Android.Views.SoftInput.AdjustPan)]			
 	public class AllEigenschappenActivity : BaseActivity {
 		EigenschapAdapter eigenschapAdapter;
 		ListView allEigenschappenListView;

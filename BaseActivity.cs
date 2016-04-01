@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Android.Content.PM;
 
 namespace Totem {
 	[Activity (Label = "BaseActivity")]			
@@ -25,6 +26,7 @@ namespace Totem {
 
 		protected override void OnCreate (Bundle savedInstanceState) {
 			base.OnCreate (savedInstanceState);
+			RequestedOrientation = ScreenOrientation.SensorPortrait;
 		}
 
 		protected void InitializeActionBar(ActionBar ab) {
