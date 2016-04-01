@@ -48,10 +48,10 @@ namespace Totem {
 			Intent intent = null;
 			switch (activity) {
 			case "totems":
-				intent = new Intent (this, typeof(AllTotemsActivity));
+				intent = new Intent (this, typeof(TotemsActivity));
 				break;
 			case "eigenschappen":
-				intent = new Intent (this, typeof(AllEigenschappenActivity));
+				intent = new Intent (this, typeof(EigenschappenActivity));
 				break;
 			case "profielen":
 				intent = new Intent (this, typeof(ProfielenActivity));
@@ -60,7 +60,7 @@ namespace Totem {
 				intent = new Intent (this, typeof(TotemisatieChecklistActivity));
 				break;
 			case "tinder":
-				intent = new Intent (this, typeof(EigenschappenActivity));
+				intent = new Intent (this, typeof(TinderEigenschappenActivity));
 				break;
 			}
 			StartActivity (intent);

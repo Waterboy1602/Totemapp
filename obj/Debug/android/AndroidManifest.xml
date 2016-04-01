@@ -10,14 +10,14 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity android:label="Totems" android:name="md5b1d67ac94551c8753fec80729d65095f.TotemsActivity" />
     <activity android:label="Beschrijving" android:windowSoftInputMode="stateAlwaysHidden|adjustUnspecified" android:name="md5b1d67ac94551c8753fec80729d65095f.TotemDetailActivity" />
-    <activity android:icon="@drawable/icon" android:label="Totem bepalen" android:screenOrientation="portrait" android:name="md5b1d67ac94551c8753fec80729d65095f.EigenschappenActivity" />
-    <activity android:label="Totems" android:name="md5b1d67ac94551c8753fec80729d65095f.AllTotemsActivity" />
-    <activity android:label="Eigenschappen" android:windowSoftInputMode="stateUnspecified|adjustPan" android:name="md5b1d67ac94551c8753fec80729d65095f.AllEigenschappenActivity" />
     <activity android:label="Profielen" android:windowSoftInputMode="stateAlwaysHidden|adjustUnspecified" android:name="md5b1d67ac94551c8753fec80729d65095f.ProfielenActivity" />
     <activity android:label="Totems" android:name="md5b1d67ac94551c8753fec80729d65095f.ProfielTotemsActivity" />
     <activity android:label="Checklist" android:name="md5b1d67ac94551c8753fec80729d65095f.TotemisatieChecklistActivity" />
+    <activity android:label="Totems" android:name="md5b1d67ac94551c8753fec80729d65095f.ResultTotemsActivity" />
+    <activity android:icon="@drawable/icon" android:label="Totem bepalen" android:screenOrientation="portrait" android:name="md5b1d67ac94551c8753fec80729d65095f.TinderEigenschappenActivity" />
+    <activity android:label="Eigenschappen" android:windowSoftInputMode="stateUnspecified|adjustPan" android:name="md5b1d67ac94551c8753fec80729d65095f.EigenschappenActivity" />
+    <activity android:label="Totems" android:name="md5b1d67ac94551c8753fec80729d65095f.TotemsActivity" />
     <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="be.scoutsengidsenvlaanderen.totemapp.mono.MonoRuntimeProvider.__mono_init__" />
     <!--suppress ExportedReceiver-->
     <receiver android:name="mono.android.Seppuku">

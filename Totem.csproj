@@ -52,12 +52,8 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TotemsActivity.cs" />
     <Compile Include="TotemDetailActivity.cs" />
-    <Compile Include="EigenschappenActivity.cs" />
     <Compile Include="db\Database.cs" />
-    <Compile Include="AllTotemsActivity.cs" />
-    <Compile Include="AllEigenschappenActivity.cs" />
     <Compile Include="ProfielenActivity.cs" />
     <Compile Include="Adapters\EigenschapAdapter.cs" />
     <Compile Include="Adapters\TotemAdapter.cs" />
@@ -84,6 +80,10 @@
     <Compile Include="Adapters\ExpendListAdapter.cs" />
     <Compile Include="BaseActivity.cs" />
     <Compile Include="TotemisatieChecklistActivity.cs" />
+    <Compile Include="ResultTotemsActivity.cs" />
+    <Compile Include="TinderEigenschappenActivity.cs" />
+    <Compile Include="EigenschappenActivity.cs" />
+    <Compile Include="TotemsActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
