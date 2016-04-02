@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TotemAndroid", "TotemAndroi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TotemAppIos", "TotemAppIos\TotemAppIos.csproj", "{47CD0A50-00AF-4DAB-BC4D-16E099B64A73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TotemAppShared", "TotemAppShared\TotemAppShared.csproj", "{0A49FFA1-83EA-4D64-B08E-50A4097C939D}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "TotemAppCore", "TotemAppCore\TotemAppCore.shproj", "{2CB05FEE-01CE-46E5-B8B5-A6D6AB2CDDE8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,28 +17,12 @@ Global
 		Debug|iPhone = Debug|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0A49FFA1-83EA-4D64-B08E-50A4097C939D}.Debug|iPhone.ActiveCfg = Debug|x86
-		{0A49FFA1-83EA-4D64-B08E-50A4097C939D}.Debug|iPhone.Build.0 = Debug|x86
-		{0A49FFA1-83EA-4D64-B08E-50A4097C939D}.Debug|iPhoneSimulator.ActiveCfg = Debug|x86
-		{0A49FFA1-83EA-4D64-B08E-50A4097C939D}.Debug|iPhoneSimulator.Build.0 = Debug|x86
-		{0A49FFA1-83EA-4D64-B08E-50A4097C939D}.Debug|x86.ActiveCfg = Debug|x86
-		{0A49FFA1-83EA-4D64-B08E-50A4097C939D}.Debug|x86.Build.0 = Debug|x86
-		{0A49FFA1-83EA-4D64-B08E-50A4097C939D}.Release|iPhone.ActiveCfg = Release|x86
-		{0A49FFA1-83EA-4D64-B08E-50A4097C939D}.Release|iPhone.Build.0 = Release|x86
-		{0A49FFA1-83EA-4D64-B08E-50A4097C939D}.Release|iPhoneSimulator.ActiveCfg = Release|x86
-		{0A49FFA1-83EA-4D64-B08E-50A4097C939D}.Release|iPhoneSimulator.Build.0 = Release|x86
-		{0A49FFA1-83EA-4D64-B08E-50A4097C939D}.Release|x86.ActiveCfg = Release|x86
-		{0A49FFA1-83EA-4D64-B08E-50A4097C939D}.Release|x86.Build.0 = Release|x86
 		{0A5E81FF-E6EF-40D2-89AE-6E969422EF41}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{0A5E81FF-E6EF-40D2-89AE-6E969422EF41}.Debug|iPhone.Build.0 = Debug|Any CPU
 		{0A5E81FF-E6EF-40D2-89AE-6E969422EF41}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{0A5E81FF-E6EF-40D2-89AE-6E969422EF41}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
 		{0A5E81FF-E6EF-40D2-89AE-6E969422EF41}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{0A5E81FF-E6EF-40D2-89AE-6E969422EF41}.Debug|x86.Build.0 = Debug|Any CPU
 		{0A5E81FF-E6EF-40D2-89AE-6E969422EF41}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{0A5E81FF-E6EF-40D2-89AE-6E969422EF41}.Release|iPhone.Build.0 = Release|Any CPU
 		{0A5E81FF-E6EF-40D2-89AE-6E969422EF41}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{0A5E81FF-E6EF-40D2-89AE-6E969422EF41}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{0A5E81FF-E6EF-40D2-89AE-6E969422EF41}.Release|x86.ActiveCfg = Release|Any CPU
 		{0A5E81FF-E6EF-40D2-89AE-6E969422EF41}.Release|x86.Build.0 = Release|Any CPU
 		{47CD0A50-00AF-4DAB-BC4D-16E099B64A73}.Debug|iPhone.ActiveCfg = Debug|iPhone
@@ -46,12 +30,10 @@ Global
 		{47CD0A50-00AF-4DAB-BC4D-16E099B64A73}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
 		{47CD0A50-00AF-4DAB-BC4D-16E099B64A73}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{47CD0A50-00AF-4DAB-BC4D-16E099B64A73}.Debug|x86.ActiveCfg = Debug|iPhoneSimulator
-		{47CD0A50-00AF-4DAB-BC4D-16E099B64A73}.Debug|x86.Build.0 = Debug|iPhoneSimulator
 		{47CD0A50-00AF-4DAB-BC4D-16E099B64A73}.Release|iPhone.ActiveCfg = Release|iPhone
 		{47CD0A50-00AF-4DAB-BC4D-16E099B64A73}.Release|iPhone.Build.0 = Release|iPhone
 		{47CD0A50-00AF-4DAB-BC4D-16E099B64A73}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{47CD0A50-00AF-4DAB-BC4D-16E099B64A73}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{47CD0A50-00AF-4DAB-BC4D-16E099B64A73}.Release|x86.ActiveCfg = Release|iPhone
-		{47CD0A50-00AF-4DAB-BC4D-16E099B64A73}.Release|x86.Build.0 = Release|iPhone
 	EndGlobalSection
 EndGlobal

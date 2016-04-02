@@ -23,6 +23,7 @@
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
     <MtouchProfiling>true</MtouchProfiling>
+    <CodesignKey>iPhone Distribution</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -50,7 +51,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\iPhone\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
+    <DefineConstants>DEBUG;__IOS__;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -59,6 +60,7 @@
     <MtouchProfiling>true</MtouchProfiling>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
+    <CodesignProvision>dd6abb85-95ed-41a7-811b-58fbce3d50fd</CodesignProvision>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -71,14 +73,42 @@
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
+    <InterfaceDefinition Include="SGV\TotemApp\Controllers\MainViewController.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
+    <None Include="..\TotemAppCore\SharedAssets\fonts\DINPro-Light.ttf">
+      <Link>SharedAssets\fonts\DINPro-Light.ttf</Link>
+    </None>
+    <None Include="..\TotemAppCore\SharedAssets\fonts\DINPro-Regular.ttf">
+      <Link>SharedAssets\fonts\DINPro-Regular.ttf</Link>
+    </None>
+    <None Include="..\TotemAppCore\SharedAssets\fonts\Verveine W01 Regular.ttf">
+      <Link>SharedAssets\fonts\Verveine W01 Regular.ttf</Link>
+    </None>
+    <None Include="..\TotemAppCore\SharedAssets\fonts\sketch_block_light.ttf">
+      <Link>SharedAssets\fonts\sketch_block_light.ttf</Link>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="SGV\TotemApp\Controllers\MainViewController.cs" />
+    <Compile Include="SGV\TotemApp\Controllers\MainViewController.designer.cs">
+      <DependentUpon>MainViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
+  <Import Project="..\TotemAppCore\TotemAppCore.projitems" Label="Shared" Condition="Exists('..\TotemAppCore\TotemAppCore.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="SGV\" />
+    <Folder Include="SGV\TotemApp\" />
+    <Folder Include="SGV\TotemApp\Controllers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\TotemAppCore\SharedAssets\totems.sqlite">
+      <Link>SharedAssets\totems.sqlite</Link>
+    </Content>
+  </ItemGroup>
 </Project>

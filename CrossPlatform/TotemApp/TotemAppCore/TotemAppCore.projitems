@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{2CB05FEE-01CE-46E5-B8B5-A6D6AB2CDDE8}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>TotemAppCore</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)SGV\BL\Controllers\AppController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SGV\DL\Database.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SGV\DL\DatabaseHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SGV\DL\SQLite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SGV\BL\VO\Eigenschap.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SGV\BL\VO\Profiel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SGV\BL\VO\Tip.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SGV\BL\VO\Totem_eigenschap.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SGV\BL\VO\Totem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SGV\BL\VO\Userpref.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SGV\BL\Controllers\NavigationController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SGV\BL\Controllers\TotemController.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)SGV\DL\" />
+    <Folder Include="$(MSBuildThisFileDirectory)SGV\BL\VO\" />
+  </ItemGroup>
+</Project>
