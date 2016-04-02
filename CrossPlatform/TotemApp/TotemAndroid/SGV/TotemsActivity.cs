@@ -95,7 +95,7 @@ namespace TotemAndroid {
 			title.Visibility = ViewStates.Visible;
 			query.Visibility = ViewStates.Gone;
 			KeyboardHelper.HideKeyboard (this);
-			totemAdapter.UpdateData (totemList); 
+			totemAdapter.UpdateData (_appController.Totems); 
 			totemAdapter.NotifyDataSetChanged ();
 		}
 
