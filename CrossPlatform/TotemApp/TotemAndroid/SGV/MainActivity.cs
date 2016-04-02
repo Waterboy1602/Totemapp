@@ -27,29 +27,36 @@ namespace TotemAndroid {
 			tinder = FindViewById<Button> (Resource.Id.tinder);
 
 			//TEMP
-			tinder.Visibility = ViewStates.Gone;
+			//tinder.Visibility = ViewStates.Gone;
 
 			//if(_appController. GetPreference("tips").value.Equals("true"))
 				//ShowTipDialog ();
 
 			totems.Click += (sender, eventArgs) => _appController.TotemMenuItemClicked ();
-			eigenschappen.Click += (sender, eventArgs) => GoToActivity("eigenschappen");
-			profielen.Click += (sender, eventArgs) => GoToActivity("profielen");
-			checklist.Click += (sender, eventArgs) => GoToActivity("checklist");
-			tinder.Click += (sender, eventArgs) => GoToActivity("tinder");
+			eigenschappen.Click += (sender, eventArgs) => _appController.EigenschappenMenuItemClicked ();
+			profielen.Click += (sender, eventArgs) => _appController.ProfileMenuItemClicked ();
+			checklist.Click += (sender, eventArgs) => _appController.ChecklistMenuItemClicked ();
+			tinder.Click += (sender, eventArgs) => _appController.TinderMenuItemClicked ();
 		}
-		protected override void OnResume ()
-		{
+
+		protected override void OnResume ()	{
 			base.OnResume ();
 
 			_appController.NavigationController.GotoTotemListEvent+= gotoTotemListHandler;
+			_appController.NavigationController.GotoEigenschapListEvent+= gotoEigenschappenListHandler;
+			_appController.NavigationController.GotoProfileListEvent+= gotoProfileListHandler;
+			_appController.NavigationController.GotoChecklistEvent+= gotoChecklistHandler;
+			_appController.NavigationController.GotoTinderEvent+= gotoTinderHandler;
 		}
 
 
-		protected override void OnPause ()
-		{
+		protected override void OnPause () {
 			base.OnPause ();
 			_appController.NavigationController.GotoTotemListEvent-= gotoTotemListHandler;
+			_appController.NavigationController.GotoEigenschapListEvent-= gotoEigenschappenListHandler;
+			_appController.NavigationController.GotoProfileListEvent-= gotoProfileListHandler;
+			_appController.NavigationController.GotoChecklistEvent-= gotoChecklistHandler;
+			_appController.NavigationController.GotoTinderEvent-= gotoTinderHandler;
 		}
 
 		void GoToActivity(string activity) {
@@ -85,9 +92,25 @@ namespace TotemAndroid {
 			StartMain.SetFlags (ActivityFlags.NewTask);
 			StartActivity (StartMain);
 		}
-		void gotoTotemListHandler ()
-		{
+
+		void gotoTotemListHandler () {
 			GoToActivity ("totems");
+		}
+
+		void gotoEigenschappenListHandler () {
+			GoToActivity ("eigenschappen");
+		}
+
+		void gotoProfileListHandler () {
+			GoToActivity ("profielen");
+		}
+
+		void gotoChecklistHandler () {
+			GoToActivity ("checklist");
+		}
+
+		void gotoTinderHandler () {
+			GoToActivity ("tinder");
 		}
 	}
 }

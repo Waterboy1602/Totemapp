@@ -61,6 +61,18 @@ namespace TotemAndroid {
 			};
 		}
 
+		protected override void OnResume ()	{
+			base.OnResume ();
+
+			_appController.NavigationController.GotoTotemDetailEvent+= StartDetailActivity;
+		}
+
+		protected override void OnPause ()	{
+			base.OnPause ();
+
+			_appController.NavigationController.GotoTotemDetailEvent-= StartDetailActivity;
+		}
+
 		//toggles the search bar
 		void ToggleSearch() {
 			if (query.Visibility == ViewStates.Visible) {
@@ -108,9 +120,12 @@ namespace TotemAndroid {
 			var item = totemAdapter.GetItemAtPosition(pos);
 			KeyboardHelper.HideKeyboard (this);
 
+			_appController.TotemSelected (item.nid);
+		}
+
+		void StartDetailActivity() {
 			var detailActivity = new Intent(this, typeof(TotemDetailActivity));
-			detailActivity.PutExtra ("totemID", item.nid);
-			StartActivity (detailActivity);
+			StartActivity (detailActivity); 
 		}
 			
 		//return to full list and empty search field when 'back' is pressed
