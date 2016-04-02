@@ -5,6 +5,7 @@ using Android.Content;
 using Android.OS;
 using Android.Widget;
 using TotemAppCore;
+using System.Linq;
 
 namespace TotemAndroid {
 	[Activity (Label = "Totems")]			
@@ -26,11 +27,10 @@ namespace TotemAndroid {
 			title = ActionBarTitle;
 			back = ActionBarBack;
 	
-			int[] totemIDs = Intent.GetIntArrayExtra ("totemIDs");
-			int[] freqs = Intent.GetIntArrayExtra ("freqs");
 			int selected = Intent.GetIntExtra ("selected", 0);
 
-			totemList = ConvertIDArrayToTotemList (totemIDs);
+			totemList = _appController.TotemEigenschapDict.Keys.ToList();
+			var freqs = _appController.TotemEigenschapDict.Values.ToArray ();
 
 			totemAdapter = new TotemAdapter (this, totemList, freqs, selected);
 			totemListView = FindViewById<ListView> (Resource.Id.totem_list);
@@ -39,6 +39,18 @@ namespace TotemAndroid {
 			totemListView.ItemClick += ShowDetail;
 
 			title.Text = "Totems";
+		}
+
+		protected override void OnResume ()	{
+			base.OnResume ();
+
+			_appController.NavigationController.GotoTotemDetailEvent+= StartDetailActivity;
+		}
+
+		protected override void OnPause ()	{
+			base.OnPause ();
+
+			_appController.NavigationController.GotoTotemDetailEvent-= StartDetailActivity;
 		}
 
 		//fill totemList with Totem-objects whose ID is in totemIDs
@@ -54,15 +66,18 @@ namespace TotemAndroid {
 			int pos = e.Position;
 			var item = totemAdapter.GetItemAtPosition(pos);
 
+			_appController.TotemSelected (item.nid);
+		}
+
+		void StartDetailActivity() {
 			var detailActivity = new Intent(this, typeof(TotemDetailActivity));
-			detailActivity.PutExtra ("totemID", item.nid);
-			StartActivity (detailActivity);
+			StartActivity (detailActivity); 
 		}
 
 		//goes back to main screen when GoToMain is set to true
 		//otherwise acts normal
 		public override void OnBackPressed() {
-			if (Intent.GetBooleanExtra ("GoToMain", false) == true) {
+			if (Intent.GetBooleanExtra ("GoToMain", false)) {
 				var i = new Intent (this, typeof(MainActivity));
 				i.SetFlags (ActivityFlags.ClearTop | ActivityFlags.SingleTop);
 				StartActivity (i);

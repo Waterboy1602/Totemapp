@@ -67,6 +67,23 @@ namespace TotemAndroid {
 			}
 		}
 
+		protected override void OnResume ()	{
+			base.OnResume ();
+
+			_appController.NavigationController.GotoProfileTotemListEvent+= StartTotemProfileActivity;
+		}
+
+		protected override void OnPause ()	{
+			base.OnPause ();
+
+			_appController.NavigationController.GotoProfileTotemListEvent-= StartTotemProfileActivity;
+		}
+
+		void StartTotemProfileActivity() {
+			var i = new Intent(this, typeof(ProfielTotemsActivity));
+			StartActivity (i);
+		}
+
 		//updates data of the adapter and shows/hides the "empty"-message when needed
 		void UpdateList() {
 			this.profielen = _appController.DistinctProfielen;
@@ -89,9 +106,7 @@ namespace TotemAndroid {
 				mToast.SetText("Profiel " + item.name + " bevat geen totems");
 				mToast.Show();
 			} else {
-				var totemsActivity = new Intent (this, typeof(ProfielTotemsActivity));
-				totemsActivity.PutExtra ("profileName", item.name);
-				StartActivity (totemsActivity);
+				_appController.ProfileSelected (item.name);
 			}
 		}
 

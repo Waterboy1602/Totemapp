@@ -227,6 +227,18 @@ namespace TotemAppCore {
 			return totemsVanEigenschap;
 		}
 
+		//returns List of Totem_eigenschapp related to eigenschap id
+		public Totem GetTotemsOnId(string id) {
+			List<Totem> list;
+			lock (database) {
+				var cmd = new SQLiteCommand (database);
+				var cleanId = id.Replace("'", "");
+				cmd.CommandText = "select * from totem_nieuw where nid = " + cleanId;
+				list = cmd.ExecuteQuery<Totem> ();
+			}
+			return list [0];
+		}
+
 
 
 
