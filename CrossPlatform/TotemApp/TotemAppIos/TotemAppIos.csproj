@@ -67,6 +67,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
+    <Reference Include="MaterialControls">
+      <HintPath>libs\MaterialControls.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
@@ -78,26 +81,17 @@
   <ItemGroup>
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
-    <None Include="..\TotemAppCore\SharedAssets\fonts\DINPro-Light.ttf">
-      <Link>SharedAssets\fonts\DINPro-Light.ttf</Link>
-    </None>
-    <None Include="..\TotemAppCore\SharedAssets\fonts\DINPro-Regular.ttf">
-      <Link>SharedAssets\fonts\DINPro-Regular.ttf</Link>
-    </None>
-    <None Include="..\TotemAppCore\SharedAssets\fonts\Verveine W01 Regular.ttf">
-      <Link>SharedAssets\fonts\Verveine W01 Regular.ttf</Link>
-    </None>
-    <None Include="..\TotemAppCore\SharedAssets\fonts\sketch_block_light.ttf">
-      <Link>SharedAssets\fonts\sketch_block_light.ttf</Link>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="SGV\TotemApp\Controllers\MainViewController.cs" />
+    <Compile Include="SGV\TotemApp\Controllers\MainViewController.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="SGV\TotemApp\Controllers\MainViewController.designer.cs">
       <DependentUpon>MainViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="SGV\TotemApp\IosUtils.cs" />
   </ItemGroup>
   <Import Project="..\TotemAppCore\TotemAppCore.projitems" Label="Shared" Condition="Exists('..\TotemAppCore\TotemAppCore.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -110,5 +104,31 @@
     <Content Include="..\TotemAppCore\SharedAssets\totems.sqlite">
       <Link>SharedAssets\totems.sqlite</Link>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="SharedAssets\add_white.png" />
+    <BundleResource Include="SharedAssets\arrow_back_white.png" />
+    <BundleResource Include="SharedAssets\arrow_forward_white.png" />
+    <BundleResource Include="SharedAssets\close_white.png" />
+    <BundleResource Include="SharedAssets\delete_white.png" />
+    <BundleResource Include="SharedAssets\more_vert_white.png" />
+    <BundleResource Include="SharedAssets\search_white.png" />
+    <BundleResource Include="..\TotemAppCore\SharedAssets\fonts\DINPro-Light.ttf">
+      <Link>Resources\DINPro-Light.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\TotemAppCore\SharedAssets\fonts\Verveine W01 Regular.ttf">
+      <Link>Resources\Verveine W01 Regular.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\TotemAppCore\SharedAssets\fonts\sketch_block_light.ttf">
+      <Link>Resources\sketch_block_light.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\TotemAppCore\SharedAssets\fonts\DINPro-Regular_13937.ttf">
+      <Link>Resources\DINPro-Regular_13937.ttf</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="SharedAssets\Berg.png" />
+    <BundleResource Include="SharedAssets\Lamp.png" />
+    <BundleResource Include="SharedAssets\Lijn_bold.png" />
+    <BundleResource Include="SharedAssets\Totem.png" />
   </ItemGroup>
 </Project>
