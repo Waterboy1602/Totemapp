@@ -43,35 +43,35 @@ namespace TotemAppIos
 
 		public override void ViewDidLoad ()
 		{
-
 			base.ViewDidLoad ();
-			foreach (var fontFamily in UIFont.FamilyNames) {
-				Console.WriteLine (fontFamily+":");
-				foreach (var fontName in UIFont.FontNamesForFamilyName (fontFamily)) {
-					Console.WriteLine ("     "+fontName);
-				}
-			}
-			lblTitle.Text = "TOTEMAPP";
-			imgMountain.Image = UIImage.FromBundle ("SharedAssets/Berg");
-			imgTotem.Image = UIImage.FromBundle ("SharedAssets/Totem");
-
-			lblTotemsButton.Text = "TOTEMS";
-			btnTotems.RippleColor = UIColor.FromRGB (0, 68, 116);
-			lblEigenschappenButton.Text = "EIGENSCHAPPEN";
-			btnEigenschappen.RippleColor = UIColor.FromRGB (0, 68, 116);
-			lblProfielenButton.Text = "PROFIELEN";
-			btnProfielen.RippleColor = UIColor.FromRGB (0, 68, 116);
-			lblChecklistButton.Text = "TOTEMISATIE CHECKLIST";
-			btnChecklist.RippleColor = UIColor.FromRGB (0, 68, 116);
-			//imgReturn.Image = UIImage.FromBundle ("SharedAssets/arrow_back_white");
-
-
-
-
-
-			// Perform any additional setup after loading the view, typically from a nib.
+			setData ();
+			NavigationController.NavigationBarHidden = true;
+			NavigationController.NavigationBar.BarStyle = UIBarStyle.Black;
 		}
-			
+
+		public override void ViewDidAppear (bool animated)
+		{
+			base.ViewDidAppear (animated);
+			btnTotems.TouchUpInside+= btnTotemsTouchUpInsideHandler;
+			btnEigenschappen.TouchUpInside+= btnEigenschappenTouchUpInside;
+
+			_appController.NavigationController.GotoTotemListEvent+= gotoTotemListHandler;
+			_appController.NavigationController.GotoEigenschapListEvent+= gotoEigenschapListHandler;
+		}
+
+
+
+
+
+		public override void ViewWillDisappear (bool animated)
+		{
+			base.ViewWillDisappear (animated);
+			btnTotems.TouchUpInside -= btnTotemsTouchUpInsideHandler;
+			btnEigenschappen.TouchUpInside-= btnEigenschappenTouchUpInside;
+
+			_appController.NavigationController.GotoTotemListEvent-= gotoTotemListHandler;
+			_appController.NavigationController.GotoEigenschapListEvent-= gotoEigenschapListHandler;
+		}
 		#endregion
 
 		#endregion
@@ -79,6 +79,38 @@ namespace TotemAppIos
 		#endregion
 
 		#region private methods
+		private void setData(){
+			lblTitle.Text = "TOTEMAPP";
+			lblTotemsButton.Text = "TOTEMS";
+			lblEigenschappenButton.Text = "EIGENSCHAPPEN";
+			lblProfielenButton.Text = "PROFIELEN";
+			lblChecklistButton.Text = "TOTEMISATIE CHECKLIST";
+
+			imgMountain.Image = UIImage.FromBundle ("SharedAssets/Berg");
+			imgTotem.Image = UIImage.FromBundle ("SharedAssets/Totem");
+
+			btnTotems.RippleColor = UIColor.FromRGB (0, 68, 116);
+			btnEigenschappen.RippleColor = UIColor.FromRGB (0, 68, 116);
+			btnProfielen.RippleColor = UIColor.FromRGB (0, 68, 116);
+			btnChecklist.RippleColor = UIColor.FromRGB (0, 68, 116);
+		}
+
+		void btnTotemsTouchUpInsideHandler (object sender, EventArgs e)
+		{
+			_appController.TotemMenuItemClicked ();
+		}
+		void btnEigenschappenTouchUpInside (object sender, EventArgs e)
+		{
+			_appController.EigenschappenMenuItemClicked ();
+		}
+		void gotoTotemListHandler ()
+		{
+			NavigationController.PushViewController (new TotemListViewController(),true);
+		}
+		void gotoEigenschapListHandler ()
+		{
+			NavigationController.PushViewController (new EigenschappenViewController(),true);
+		}
 
 		#endregion
 

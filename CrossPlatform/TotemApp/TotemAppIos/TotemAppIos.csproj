@@ -70,6 +70,9 @@
     <Reference Include="MaterialControls">
       <HintPath>libs\MaterialControls.dll</HintPath>
     </Reference>
+    <Reference Include="BemCheckBox">
+      <HintPath>libs\BemCheckBox.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
@@ -77,6 +80,10 @@
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
     <InterfaceDefinition Include="SGV\TotemApp\Controllers\MainViewController.xib" />
+    <InterfaceDefinition Include="SGV\TotemApp\Controllers\TotemListViewController.xib" />
+    <InterfaceDefinition Include="SGV\TotemApp\Components\TotemsTableViewCell.xib" />
+    <InterfaceDefinition Include="SGV\TotemApp\Controllers\EigenschappenViewController.xib" />
+    <InterfaceDefinition Include="SGV\TotemApp\Components\EigenschappenTableViewCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -92,6 +99,24 @@
       <DependentUpon>MainViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="SGV\TotemApp\IosUtils.cs" />
+    <Compile Include="SGV\TotemApp\Controllers\TotemListViewController.cs" />
+    <Compile Include="SGV\TotemApp\Controllers\TotemListViewController.designer.cs">
+      <DependentUpon>TotemListViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SGV\TotemApp\Components\TotemsTableViewSource.cs" />
+    <Compile Include="SGV\TotemApp\Components\TotemsTableViewCell.cs" />
+    <Compile Include="SGV\TotemApp\Components\TotemsTableViewCell.designer.cs">
+      <DependentUpon>TotemsTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SGV\TotemApp\Controllers\EigenschappenViewController.cs" />
+    <Compile Include="SGV\TotemApp\Controllers\EigenschappenViewController.designer.cs">
+      <DependentUpon>EigenschappenViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SGV\TotemApp\Components\EigenschappenTableViewSource.cs" />
+    <Compile Include="SGV\TotemApp\Components\EigenschappenTableViewCell.cs" />
+    <Compile Include="SGV\TotemApp\Components\EigenschappenTableViewCell.designer.cs">
+      <DependentUpon>EigenschappenTableViewCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="..\TotemAppCore\TotemAppCore.projitems" Label="Shared" Condition="Exists('..\TotemAppCore\TotemAppCore.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -99,6 +124,7 @@
     <Folder Include="SGV\" />
     <Folder Include="SGV\TotemApp\" />
     <Folder Include="SGV\TotemApp\Controllers\" />
+    <Folder Include="SGV\TotemApp\Components\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\TotemAppCore\SharedAssets\totems.sqlite">
