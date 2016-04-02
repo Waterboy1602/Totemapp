@@ -1,0 +1,2 @@
+/Users/informatica/Documents/TotemCrossPlatform/obj/Debug/MonoAndroid,Version=v4.4.AssemblyAttribute.cs
+/Users/informatica/Documents/TotemCrossPlatform/obj/Debug/Totem.dll

@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="?android:attr/selectableItemBackground">
-    <Totem.CustomFontTextView
+    <TotemAndroid.CustomFontTextView
         android:id="@+id/eigenschap"
         android:layout_width="wrap_content"
         android:layout_height="50dp"

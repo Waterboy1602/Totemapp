@@ -22,8 +22,6 @@ namespace TotemAndroid {
 		ImageButton add;
 		ImageButton delete;
 		TextView noProfiles;
-
-		Database db;
 		Toast mToast;
 
 		protected override void OnCreate (Bundle savedInstanceState) {
@@ -42,7 +40,7 @@ namespace TotemAndroid {
 			//single toast for entire activity
 			mToast = Toast.MakeText (this, "", ToastLength.Short);
 
-			profielen = db.GetProfielen ();
+			profielen = _appController.DistinctProfielen;
 			
 			profielAdapter = new ProfielAdapter (this, profielen);
 			profielenListView = FindViewById<ListView> (Resource.Id.profielen_list);
@@ -71,7 +69,7 @@ namespace TotemAndroid {
 
 		//updates data of the adapter and shows/hides the "empty"-message when needed
 		void UpdateList() {
-			this.profielen = db.GetProfielen();
+			this.profielen = _appController.DistinctProfielen;
 			if (profielen.Count == 0) {
 				noProfiles.Visibility = ViewStates.Visible;
 				delete.Visibility = ViewStates.Gone;
@@ -104,7 +102,7 @@ namespace TotemAndroid {
 			var alert = new AlertDialog.Builder (this);
 			alert.SetMessage ("Profiel " + item.name + " verwijderen?");
 			alert.SetPositiveButton ("Ja", (senderAlert, args) => {
-				db.DeleteProfile(item.name);
+				_appController.DeleteProfile(item.name);
 				mToast.SetText("Profiel " + item.name + " verwijderd");
 				mToast.Show();
 				UpdateList();
@@ -134,7 +132,7 @@ namespace TotemAndroid {
 					mToast.SetText("Profiel " + value + " bestaat al");
 					mToast.Show();
 				} else {
-					db.AddProfile(value);
+					_appController.AddProfile(value);
 					UpdateList();
 				}
 			});
@@ -193,7 +191,7 @@ namespace TotemAndroid {
 				alert1.SetPositiveButton ("Ja", (senderAlert, args) => {
 					foreach (Profiel p in profielen)
 						if (p.selected)
-							db.DeleteProfile (p.name);
+							_appController.DeleteProfile (p.name);
 				
 					UpdateList ();
 					HideDeleteProfiles (sender, e);

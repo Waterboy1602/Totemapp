@@ -87,7 +87,7 @@ namespace TotemAndroid {
 				var menu = new PopupMenu (this, action);
 				menu.Inflate (Resource.Menu.Popup);
 				int count = 0;
-				foreach(Profiel p in _appController.GetProfielen()) {
+				foreach(Profiel p in _appController.DistinctProfielen) {
 					menu.Menu.Add(0,count,count,p.name);
 					count++;
 				}

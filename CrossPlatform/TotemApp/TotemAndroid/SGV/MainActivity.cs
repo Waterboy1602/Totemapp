@@ -3,22 +3,28 @@ using Android.Content;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using System.Runtime.InteropServices;
 
 namespace TotemAndroid {
 	[Activity (Label = "Totemapp", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/AppThemeNoAction")]
 	public class MainActivity : BaseActivity {
 		//Database db;
+		Button totems;
+		Button eigenschappen;
+		Button profielen;
+		Button checklist;
+		Button tinder;
 
 		protected override void OnCreate (Bundle bundle) {
 			base.OnCreate (bundle);
 
 			SetContentView (Resource.Layout.Main);
 
-			Button totems = FindViewById<Button> (Resource.Id.totems);
-			Button eigenschappen = FindViewById<Button> (Resource.Id.eigenschappen);
-			Button profielen = FindViewById<Button> (Resource.Id.profielen);
-			Button checklist = FindViewById<Button> (Resource.Id.checklist);
-			Button tinder = FindViewById<Button> (Resource.Id.tinder);
+			totems = FindViewById<Button> (Resource.Id.totems);
+			eigenschappen = FindViewById<Button> (Resource.Id.eigenschappen);
+			profielen = FindViewById<Button> (Resource.Id.profielen);
+			checklist = FindViewById<Button> (Resource.Id.checklist);
+			tinder = FindViewById<Button> (Resource.Id.tinder);
 
 			//TEMP
 			tinder.Visibility = ViewStates.Gone;
@@ -26,11 +32,24 @@ namespace TotemAndroid {
 			//if(_appController. GetPreference("tips").value.Equals("true"))
 				//ShowTipDialog ();
 
-			totems.Click += (sender, eventArgs) => GoToActivity("totems");
+			totems.Click += (sender, eventArgs) => _appController.TotemMenuItemClicked ();
 			eigenschappen.Click += (sender, eventArgs) => GoToActivity("eigenschappen");
 			profielen.Click += (sender, eventArgs) => GoToActivity("profielen");
 			checklist.Click += (sender, eventArgs) => GoToActivity("checklist");
 			tinder.Click += (sender, eventArgs) => GoToActivity("tinder");
+		}
+		protected override void OnResume ()
+		{
+			base.OnResume ();
+
+			_appController.NavigationController.GotoTotemListEvent+= gotoTotemListHandler;
+		}
+
+
+		protected override void OnPause ()
+		{
+			base.OnPause ();
+			_appController.NavigationController.GotoTotemListEvent-= gotoTotemListHandler;
 		}
 
 		void GoToActivity(string activity) {
@@ -65,6 +84,10 @@ namespace TotemAndroid {
 			StartMain.AddCategory (Intent.CategoryHome);
 			StartMain.SetFlags (ActivityFlags.NewTask);
 			StartActivity (StartMain);
+		}
+		void gotoTotemListHandler ()
+		{
+			GoToActivity ("totems");
 		}
 	}
 }

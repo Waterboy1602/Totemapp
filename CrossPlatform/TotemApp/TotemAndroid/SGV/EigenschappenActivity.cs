@@ -159,7 +159,7 @@ namespace TotemAndroid {
 			foreach (Eigenschap eig in eigenschappenList) {
 				if(eig.selected) {
 					selected++;
-					List<Totem_eigenschap> toAdd = _appController.GetTotemsVanEigenschapsID (eig.tid);
+					List<Totem_eigenschap> toAdd = _appController.GetTotemsVanEigenschapsID (eig.eigenschapID);
 					foreach(Totem_eigenschap totem in toAdd) {
 						int idx = Convert.ToInt32 (totem.nid);
 						CollectionHelper.AddOrUpdateDictionaryEntry (freqs, idx) ;

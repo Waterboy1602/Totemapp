@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Android.Util;
 
 namespace TotemAppCore
 {
@@ -65,9 +67,16 @@ namespace TotemAppCore
 			}
 		}
 
-		public List<Profiel> Profielen {
+		public List<Profiel> AllProfielen {
 			get {
 				_profielen = database.GetProfielen ();
+				return this._profielen;
+			}
+		}
+
+		public List<Profiel> DistinctProfielen{
+			get {
+				_profielen = database.GetProfielen (true);
 				return this._profielen;
 			}
 		}
@@ -111,7 +120,7 @@ namespace TotemAppCore
 		}
 		//returns a list of totems related to a profile
 		public List<Totem> GetTotemsFromProfiel(string name) {
-			List<Profiel> list = Profielen.FindAll (x=>x.name == name);
+			List<Profiel> list = AllProfielen.FindAll (x=>x.name == name);
 			var profiles = list.FindAll (y =>y.nid!=null);
 			List<Totem> result = new List<Totem> ();
 			foreach (var profile in profiles) {
@@ -120,10 +129,41 @@ namespace TotemAppCore
 			return result;
 		}
 
+		public void AddTotemToProfiel(string totemID, string profielName) {
+			database.AddTotemToProfiel (totemID,profielName);
+		}
+
+		public void AddProfile(string name){
+			database.AddProfile (name);
+		}
+
+		public void DeleteProfile(string name) {
+			database.DeleteProfile (name);
+		}
+
+		public void DeleteTotemFromProfile(string totemID, string profielName) {
+			database.DeleteTotemFromProfile (totemID,profielName);
+		}
+
+		public List<Totem_eigenschap> GetTotemsVanEigenschapsID(string id) {
+			return database.GetTotemsVanEigenschapsID (id);
+		}
+
+		public Userpref GetPreference(string preference) {
+			return database.GetPreference (preference);
+		}
+
+		public void ChangePreference(string preference, string value) {
+			database.ChangePreference (preference,value);
+		}
+
+		public string GetRandomTip() {
+			return database.GetRandomTip ();
+		}
 		//get list of profile names
 		public List<string> GetProfielNamen() {
 			var namen = new List<string> ();
-			foreach (Profiel p in Profielen)
+			foreach (Profiel p in DistinctProfielen)
 				namen.Add (p.name);
 			return namen;
 		}
@@ -136,6 +176,8 @@ namespace TotemAppCore
 		public void TotemMenuItemClicked(){
 			_navigationController.GoToTotemList ();
 		}
+
+		public 
 
 		#region overrided methods
 

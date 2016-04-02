@@ -17,7 +17,7 @@
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
         android:background="@color/totemblue">
-        <Totem.CustomFontTextView
+        <TotemAndroid.CustomFontTextView
             android:id="@+id/selected"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
@@ -37,7 +37,7 @@
             android:layout_alignParentRight="true"
             android:background="?android:attr/selectableItemBackgroundBorderless"
             android:clickable="true">
-            <Totem.CustomFontTextView
+            <TotemAndroid.CustomFontTextView
                 android:id="@+id/vindText"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"

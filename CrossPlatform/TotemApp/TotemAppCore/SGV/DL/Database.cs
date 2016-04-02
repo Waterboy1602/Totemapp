@@ -153,10 +153,13 @@ namespace TotemAppCore {
 
 
 		//get list of profile-objects
-		public List<Profiel> GetProfielen() {
+		public List<Profiel> GetProfielen(bool distinct = false) {
 			lock (database) {
 				var cmd = new SQLiteCommand (database);
-				cmd.CommandText = "select distinct name from profiel";
+				if (distinct)
+					cmd.CommandText = "select distinct name from profiel";
+				else
+					cmd.CommandText = "select * from profiel";
 				return cmd.ExecuteQuery<Profiel> ();
 			}
 		}
