@@ -20,7 +20,6 @@ namespace TotemAndroid {
 		ImageButton delete;
 		ImageButton close;
 
-		Database db;
 		Toast mToast;
 
 		string profileName;
@@ -85,7 +84,7 @@ namespace TotemAndroid {
 			var alert = new AlertDialog.Builder (this);
 			alert.SetMessage (item.title + " verwijderen uit profiel " + profileName + "?");
 			alert.SetPositiveButton ("Ja", (senderAlert, args) => {
-				db.DeleteTotemFromProfile(item.nid, profileName);
+				_appController.DeleteTotemFromProfile(item.nid, profileName);
 				mToast.SetText(item.title + " verwijderd");
 				mToast.Show();
 				totemList = _appController.GetTotemsFromProfiel(profileName);
@@ -146,7 +145,7 @@ namespace TotemAndroid {
 				alert1.SetPositiveButton ("Ja", (senderAlert, args) => {
 					foreach (Totem t in totemList)
 						if (t.selected)
-							db.DeleteTotemFromProfile (t.nid, profileName);
+							_appController.DeleteTotemFromProfile (t.nid, profileName);
 				
 					totemList = _appController.GetTotemsFromProfiel (profileName);
 					if (totemList.Count == 0) {
