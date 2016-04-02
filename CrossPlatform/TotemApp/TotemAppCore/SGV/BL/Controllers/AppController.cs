@@ -168,16 +168,30 @@ namespace TotemAppCore
 			return namen;
 		}
 
-		public void totemSelected(string totemID){
-			setCurrentTotem (totemID);
-			_navigationController.GoToTotemDetail ();
-		}
-
 		public void TotemMenuItemClicked(){
 			_navigationController.GoToTotemList ();
 		}
 
-		public 
+		public void EigenschappenMenuItemClicked(){
+			_navigationController.GoToTotemList ();
+		}
+
+		public void ProfileMenuItemClicked(){
+			_navigationController.GoToTotemList ();
+		}
+
+		public void ChecklistMenuItemClicked(){
+			_navigationController.GoToTotemList ();
+		}
+
+		public void TinderMenuItemClicked(){
+			_navigationController.GoToTinder ();
+		}
+
+		public void TotemSelected(string totemID){
+			setCurrentTotem (totemID);
+			_navigationController.GoToTotemDetail ();
+		}
 
 		#region overrided methods
 
