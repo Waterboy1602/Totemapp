@@ -2,9 +2,9 @@
 // Main.cs
 //
 // Author:
-//       Jeroen Crevits <jeroen@bazookas.be>
+//       Scouts en Gidsen Vlaanderen <informatica@scoutsengidsenvlaanderen.be>
 //
-// Copyright (c) 2016 Bazookas
+// Copyright (c) 2016 SGV
 //
 using UIKit;
 

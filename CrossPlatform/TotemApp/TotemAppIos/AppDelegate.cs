@@ -22,13 +22,15 @@ namespace TotemAppIos
 			get;
 			set;
 		}
-
+		MainViewController _mainVC;
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
 			// create a new window instance based on the screen size
 			Window = new UIWindow (UIScreen.MainScreen.Bounds);
 
 			// If you have defined a root view controller, set it here:
+			_mainVC = new MainViewController();
+			Window.RootViewController = _mainVC;
 			// Window.RootViewController = myViewController;
 
 			// make the window visible
