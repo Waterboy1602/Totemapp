@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using Foundation;
-
 
 #if __ANDROID__
-using Android.Content;
+using Android.App;
 #endif
+
+#if __IOS__
+using Foundation;
+#endif
+
 using SQLite;
 
 namespace TotemAppCore {

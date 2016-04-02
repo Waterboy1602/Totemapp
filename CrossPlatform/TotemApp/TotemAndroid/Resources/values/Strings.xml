@@ -1,5 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="hello">Hello World, Click Me!</string>
-	<string name="app_name">TotemAndroid</string>
+	<string name="app_name">Totemapp</string>
+	<string name="Verveine">Verveine W01 Regular</string>
+    <string name="DIN_light">DINPro-Light</string>
+    <string name="DIN_regular">DINPro-Regular</string>
+    <string name="Sketchblock">sketch_block_light</string>
+    <string name="checklist_head">Een totemisatie vergt tijd en inspanning.\nDeze checklist leidt je doorheen de totemmap en helpt om niets te vergeten. Sta even stil bij jullie totemisatie en check of dit overeenstemt met onze lijst.</string>
+    <string name="checklist_foot">VEEL SUCCES!</string>
 </resources>

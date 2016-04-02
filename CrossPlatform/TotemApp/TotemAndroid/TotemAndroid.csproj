@@ -44,9 +44,34 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SGV\BaseActivity.cs" />
+    <Compile Include="SGV\EigenschappenActivity.cs" />
+    <Compile Include="SGV\MainActivity.cs" />
+    <Compile Include="SGV\ProfielenActivity.cs" />
+    <Compile Include="SGV\ProfielTotemsActivity.cs" />
+    <Compile Include="SGV\ResultTotemsActivity.cs" />
+    <Compile Include="SGV\TinderEigenschappenActivity.cs" />
+    <Compile Include="SGV\TipDialog.cs" />
+    <Compile Include="SGV\TotemDetailActivity.cs" />
+    <Compile Include="SGV\TotemisatieChecklistActivity.cs" />
+    <Compile Include="SGV\TotemsActivity.cs" />
+    <Compile Include="SGV\Utilities\CollectionHelper.cs" />
+    <Compile Include="SGV\Utilities\CustomFontButton.cs" />
+    <Compile Include="SGV\Utilities\CustomFontEditText.cs" />
+    <Compile Include="SGV\Utilities\CustomFontHelper.cs" />
+    <Compile Include="SGV\Utilities\CustomFontTextView.cs" />
+    <Compile Include="SGV\Utilities\CustomTypefaceSpan.cs" />
+    <Compile Include="SGV\Utilities\DynamicImageView.cs" />
+    <Compile Include="SGV\Utilities\KeyboardHelper.cs" />
+    <Compile Include="SGV\Utilities\MyOnCheckBoxClickListener.cs" />
+    <Compile Include="SGV\Utilities\MyOnDismissListener.cs" />
+    <Compile Include="SGV\Utilities\MyOnTouchListener.cs" />
+    <Compile Include="SGV\Adapters\EigenschapAdapter.cs" />
+    <Compile Include="SGV\Adapters\ExpendListAdapter.cs" />
+    <Compile Include="SGV\Adapters\ProfielAdapter.cs" />
+    <Compile Include="SGV\Adapters\TotemAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -54,14 +79,89 @@
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\Main.axml" />
-    <AndroidResource Include="Resources\values\Strings.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\Icon.png" />
     <AndroidResource Include="Resources\drawable-mdpi\Icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\Icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\Icon.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\Icon.png" />
+    <AndroidResource Include="Resources\drawable\Berg.png" />
+    <AndroidResource Include="Resources\drawable\grass_green.xml" />
+    <AndroidResource Include="Resources\drawable\Lamp.png" />
+    <AndroidResource Include="Resources\drawable\Lijn_bold.png" />
+    <AndroidResource Include="Resources\drawable\Totem.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_add_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_arrow_back_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_arrow_forward_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_close_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_delete_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_more_vert_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_search_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_add_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_arrow_back_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_arrow_forward_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_close_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_delete_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_more_vert_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_search_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_add_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_arrow_back_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_arrow_forward_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_close_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_delete_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_more_vert_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_search_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_add_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_arrow_back_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_arrow_forward_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_close_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_delete_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_more_vert_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_search_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_add_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_arrow_back_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_arrow_forward_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_close_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_delete_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_more_vert_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_search_white_24dp.png" />
+    <AndroidResource Include="Resources\layout\ActionBar.axml" />
+    <AndroidResource Include="Resources\layout\AllEigenschappen.xml" />
+    <AndroidResource Include="Resources\layout\AllTotems.xml" />
+    <AndroidResource Include="Resources\layout\Checklist.axml" />
+    <AndroidResource Include="Resources\layout\EigenschapListItem.xml" />
+    <AndroidResource Include="Resources\layout\Eigenschappen.xml" />
+    <AndroidResource Include="Resources\layout\ExpandChild.axml" />
+    <AndroidResource Include="Resources\layout\ExpandChildHead.axml" />
+    <AndroidResource Include="Resources\layout\ExpandChildIndent.axml" />
+    <AndroidResource Include="Resources\layout\ExpandHeadFoot.axml" />
+    <AndroidResource Include="Resources\layout\ExpandParent.axml" />
+    <AndroidResource Include="Resources\layout\Profielen.xml" />
+    <AndroidResource Include="Resources\layout\SplashScreen.axml" />
+    <AndroidResource Include="Resources\layout\TipPopUp.xml" />
+    <AndroidResource Include="Resources\layout\TotemDetail.xml" />
+    <AndroidResource Include="Resources\layout\TotemListItem.xml" />
+    <AndroidResource Include="Resources\layout\Totems.xml" />
+    <AndroidResource Include="Resources\layout\Main.axml" />
+    <AndroidResource Include="Resources\Menu\EigenschapSelectieMenu.xml" />
+    <AndroidResource Include="Resources\Menu\Popup.xml" />
+    <AndroidResource Include="Resources\values\arrays.xml" />
+    <AndroidResource Include="Resources\values\attrs.xml" />
+    <AndroidResource Include="Resources\values\colors.xml" />
+    <AndroidResource Include="Resources\values\Strings.xml" />
+    <AndroidResource Include="Resources\values\styles.xml" />
   </ItemGroup>
   <Import Project="..\TotemAppCore\TotemAppCore.projitems" Label="Shared" Condition="Exists('..\TotemAppCore\TotemAppCore.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="SGV\" />
+    <Folder Include="Assets\fonts\" />
+    <Folder Include="Resources\values\" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\fonts\DINPro-Light.ttf" />
+    <AndroidAsset Include="Assets\fonts\DINPro-Regular.ttf" />
+    <AndroidAsset Include="Assets\fonts\sketch_block_light.ttf" />
+    <AndroidAsset Include="Assets\fonts\Verveine W01 Regular.ttf" />
+    <AndroidAsset Include="Assets\totems.sqlite" />
+  </ItemGroup>
 </Project>
