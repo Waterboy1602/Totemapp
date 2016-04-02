@@ -23,7 +23,6 @@ namespace TotemAndroid {
 		ImageButton back;
 		ImageButton action;
 
-		String nid;
 		Totem t;
 
 		protected override void OnCreate (Bundle bundle) {
@@ -45,20 +44,30 @@ namespace TotemAndroid {
 
 			title.Text = "Beschrijving";
 
-			nid = Intent.GetStringExtra ("totemID");
-			t = _appController.GetTotemOnID (nid);
+			t = _appController.CurrentTotem;
 
-			var profileName = Intent.GetStringExtra ("profileName");
-			if (profileName != null) {
+			if (_appController.CurrentProfiel != null) {
 				action = base.ActionBarDelete;
-				action.Click += (sender, e) => RemoveFromProfile (profileName);
+				action.Click += (sender, e) => RemoveFromProfile (_appController.CurrentProfiel.name);
 			} else {
 				action = base.ActionBarAdd;
 				action.Click += (object sender, EventArgs e) => ProfilePopup();
 			}
 			action.Visibility = ViewStates.Visible;
 
-			GetInfo (nid);
+			SetInfo ();
+		}
+
+		protected override void OnResume ()	{
+			base.OnResume ();
+
+			_appController.NavigationController.GotoProfileListEvent+= StartProfielenActivity;
+		}
+
+		protected override void OnPause ()	{
+			base.OnPause ();
+
+			_appController.NavigationController.GotoProfileListEvent-= StartProfielenActivity;
 		}
 
 		private void RemoveFromProfile(string profileName) {
@@ -69,9 +78,7 @@ namespace TotemAndroid {
 				mToast.SetText(t.title + " verwijderd");
 				mToast.Show();
 				if(_appController.GetTotemsFromProfiel(profileName).Count == 0) {
-					var i = new Intent(this, typeof(ProfielenActivity));
-					i.SetFlags(ActivityFlags.ClearTop | ActivityFlags.SingleTop);
-					StartActivity(i);
+					_appController.ProfileMenuItemClicked ();
 				} else {
 					base.OnBackPressed();
 				}
@@ -81,6 +88,12 @@ namespace TotemAndroid {
 
 			Dialog dialog = alert.Create();
 			RunOnUiThread (dialog.Show);
+		}
+
+		void StartProfielenActivity() {
+			var i = new Intent(this, typeof(ProfielenActivity));
+			i.SetFlags(ActivityFlags.ClearTop | ActivityFlags.SingleTop);
+			StartActivity(i);
 		}
 
 		private void ProfilePopup() {
@@ -114,8 +127,8 @@ namespace TotemAndroid {
 								mToast.Show();
 							} else {
 								_appController.AddProfile(value);
-								_appController.AddTotemToProfiel(nid, value);
-								mToast.SetText(_appController.GetTotemOnID(nid).title + " toegevoegd aan profiel " + value.Replace("'", ""));
+								_appController.AddTotemToProfiel(t.nid, value);
+								mToast.SetText(_appController.GetTotemOnID(t.nid).title + " toegevoegd aan profiel " + value.Replace("'", ""));
 								mToast.Show();
 							}
 						});
@@ -133,8 +146,8 @@ namespace TotemAndroid {
 					RunOnUiThread (d1.Show);
 
 					} else {
-						_appController.AddTotemToProfiel(nid, arg1.Item.TitleFormatted.ToString());
-						mToast.SetText(_appController.GetTotemOnID (nid).title + " toegevoegd aan profiel " + arg1.Item.TitleFormatted);
+						_appController.AddTotemToProfiel(t.nid, arg1.Item.TitleFormatted.ToString());
+					mToast.SetText(_appController.GetTotemOnID (t.nid).title + " toegevoegd aan profiel " + arg1.Item.TitleFormatted);
 						mToast.Show();
 					}
 				};
@@ -149,7 +162,7 @@ namespace TotemAndroid {
 		}
 
 		//displays totem info
-		private void GetInfo(string idx) {
+		private void SetInfo() {
 			number.Text = t.number + ". ";
 			Typeface Verveine = Typeface.CreateFromAsset (Assets, "fonts/Verveine W01 Regular.ttf");
 

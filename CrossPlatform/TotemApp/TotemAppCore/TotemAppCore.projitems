@@ -21,9 +21,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)SGV\BL\VO\Userpref.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SGV\BL\Controllers\NavigationController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SGV\BL\Controllers\TotemController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SGV\Utilities\CollectionHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)SGV\DL\" />
     <Folder Include="$(MSBuildThisFileDirectory)SGV\BL\VO\" />
+    <Folder Include="$(MSBuildThisFileDirectory)SGV\Utilities\" />
   </ItemGroup>
 </Project>

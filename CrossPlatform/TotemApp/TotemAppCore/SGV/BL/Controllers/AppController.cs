@@ -8,20 +8,20 @@ namespace TotemAppCore
 	{
 
 		#region delegates
-		public delegate void updateLabelDelegate(int timesClicked);
-		public event updateLabelDelegate updateLabelEvent;
+
 		#endregion
 
 		#region variables
 		static readonly AppController _instance = new AppController();
-		Database database = DatabaseHelper.GetInstance ();
+		readonly Database database = DatabaseHelper.GetInstance ();
 
 		List<Totem> _totems;
 		List<Eigenschap> _eigenschappen;
 		List<Profiel> _profielen;
 
-		TotemController _totemController;
 		NavigationController _navigationController;
+
+
 		#endregion
 
 		#region constructor
@@ -29,8 +29,8 @@ namespace TotemAppCore
 		{
 			_totems = database.GetTotems ();
 			_eigenschappen = database.GetEigenschappen ();
-			_totemController = new TotemController ();
 			_navigationController = new NavigationController ();
+			TotemEigenschapDict = new Dictionary<Totem, int> ();
 		}
 
 		#endregion
@@ -42,43 +42,43 @@ namespace TotemAppCore
 			}
 		}
 
-		public TotemController TotemController {
-			get {
-				return this._totemController;
-			}
-		}
-
 		public NavigationController NavigationController {
 			get {
-				return this._navigationController;
+				return _navigationController;
 			}
 		}
 
 		public List<Totem> Totems {
 			get {
-				return this._totems;
+				return _totems;
 			}
 		}
 
 		public List<Eigenschap> Eigenschappen {
 			get {
-				return this._eigenschappen;
+				return _eigenschappen;
 			}
 		}
 
 		public List<Profiel> AllProfielen {
 			get {
 				_profielen = database.GetProfielen ();
-				return this._profielen;
+				return _profielen;
 			}
 		}
 
 		public List<Profiel> DistinctProfielen{
 			get {
 				_profielen = database.GetProfielen (true);
-				return this._profielen;
+				return _profielen;
 			}
 		}
+
+		public Totem CurrentTotem { get; set; }
+
+		public Profiel CurrentProfiel { get; set; }
+
+		public Dictionary<Totem, int> TotemEigenschapDict { get; set; }
 
 		#endregion
 
@@ -121,7 +121,7 @@ namespace TotemAppCore
 		public List<Totem> GetTotemsFromProfiel(string name) {
 			List<Profiel> list = AllProfielen.FindAll (x=>x.name == name);
 			var profiles = list.FindAll (y =>y.nid!=null);
-			List<Totem> result = new List<Totem> ();
+			var result = new List<Totem> ();
 			foreach (var profile in profiles) {
 				result.Add (GetTotemOnID (profile.nid));
 			}
@@ -172,15 +172,15 @@ namespace TotemAppCore
 		}
 
 		public void EigenschappenMenuItemClicked(){
-			_navigationController.GoToTotemList ();
+			_navigationController.GoToEigenschapList ();
 		}
 
 		public void ProfileMenuItemClicked(){
-			_navigationController.GoToTotemList ();
+			_navigationController.GoToProfileList ();
 		}
 
 		public void ChecklistMenuItemClicked(){
-			_navigationController.GoToTotemList ();
+			_navigationController.GoToChecklist ();
 		}
 
 		public void TinderMenuItemClicked(){
@@ -188,8 +188,25 @@ namespace TotemAppCore
 		}
 
 		public void TotemSelected(string totemID){
+			setCurrentProfile (null);
 			setCurrentTotem (totemID);
 			_navigationController.GoToTotemDetail ();
+		}
+
+		public void ProfileSelected(string profileName){
+			setCurrentProfile (profileName);
+			_navigationController.GoToProfileTotemList ();
+		}
+
+		public void ProfileTotemSelected(string profileName, string totemID){
+			setCurrentProfile (profileName);
+			setCurrentTotem (totemID);
+			_navigationController.GoToTotemDetail ();
+		}
+
+		public void CalculateResultlist(List<Eigenschap> checkboxList) {
+			FillAndSortDict (checkboxList);
+			_navigationController.GoToTotemResult ();
 		}
 
 		#region overrided methods
@@ -205,12 +222,29 @@ namespace TotemAppCore
 		#region private methods
 		void setCurrentTotem(string totemID){
 			var totem = _totems.Find (x => x.nid.Equals (totemID));
-			_totemController.CurrentTotem = totem;
+			CurrentTotem = totem;
+		}
+
+		void setCurrentProfile(string profileName){
+			if (profileName == null) {
+				CurrentProfiel = null;
+			} else {
+				var profiel = _profielen.Find (x => x.name.Equals (profileName));
+				CurrentProfiel = profiel;
+			}
+		}
+
+		void FillAndSortDict(List<Eigenschap> checkboxList) {
+			foreach (Eigenschap eig in checkboxList) {
+				if(eig.selected) {
+					List<Totem_eigenschap> toAdd = GetTotemsVanEigenschapsID (eig.eigenschapID);
+					foreach(Totem_eigenschap totem in toAdd) {
+						CollectionHelper.AddOrUpdateDictionaryEntry (TotemEigenschapDict, database.GetTotemsOnId(totem.nid));
+					}
+				}
+			}
+			TotemEigenschapDict = CollectionHelper.GetSortedList (TotemEigenschapDict);
 		}
 		#endregion
-
-
-
 	}
 }
-

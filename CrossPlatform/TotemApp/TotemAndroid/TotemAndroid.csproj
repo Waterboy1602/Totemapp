@@ -57,7 +57,6 @@
     <Compile Include="SGV\TotemDetailActivity.cs" />
     <Compile Include="SGV\TotemisatieChecklistActivity.cs" />
     <Compile Include="SGV\TotemsActivity.cs" />
-    <Compile Include="SGV\Utilities\CollectionHelper.cs" />
     <Compile Include="SGV\Utilities\CustomFontButton.cs" />
     <Compile Include="SGV\Utilities\CustomFontEditText.cs" />
     <Compile Include="SGV\Utilities\CustomFontHelper.cs" />

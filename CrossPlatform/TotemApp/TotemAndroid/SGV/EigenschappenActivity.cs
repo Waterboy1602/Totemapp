@@ -19,7 +19,6 @@ namespace TotemAndroid {
 		ListView allEigenschappenListView;
 		List<Eigenschap> eigenschappenList;
 
-		Database db;
 		Toast mToastShort;
 		Toast mToastLong;
 
@@ -48,12 +47,10 @@ namespace TotemAndroid {
 			search = ActionBarSearch;
 			back = ActionBarBack;
 
-			db = DatabaseHelper.GetInstance ();
-
 			mToastShort = Toast.MakeText (this, "", ToastLength.Short);
 			mToastLong = Toast.MakeText (this, "", ToastLength.Long);
 
-			eigenschappenList = db.GetEigenschappen ();
+			eigenschappenList = _appController.Eigenschappen;
 
 			//initialize with default values (false) for each eigenschap
 			foreach (Eigenschap e in eigenschappenList)
@@ -93,6 +90,18 @@ namespace TotemAndroid {
 			allEigenschappenListView.ItemLongClick += ShowExplanation;
 		}
 
+		protected override void OnResume ()	{
+			base.OnResume ();
+
+			_appController.NavigationController.GotoTotemResultEvent+= StartResultTotemsActivity;
+		}
+
+		protected override void OnPause ()	{
+			base.OnPause ();
+
+			_appController.NavigationController.GotoTotemResultEvent-= StartResultTotemsActivity;
+		}
+
 		//IDEA
 		//shows short explanation of eigenschap
 		void ShowExplanation(object sender, AdapterView.ItemLongClickEventArgs e) {
@@ -125,7 +134,7 @@ namespace TotemAndroid {
 			title.Visibility = ViewStates.Visible;
 			query.Visibility = ViewStates.Gone;
 			KeyboardHelper.HideKeyboard (this);
-			eigenschapAdapter.UpdateData (db.GetEigenschappen ());
+			eigenschapAdapter.UpdateData (_appController.Eigenschappen);
 			eigenschapAdapter.NotifyDataSetChanged ();
 			query.Text = "";
 			fullList = true;
@@ -154,33 +163,17 @@ namespace TotemAndroid {
 		//renders list of totems with frequencies based on selected eigenschappen
 		//and redirects to TotemsActivity to view them
 		void VindTotem(object sender, EventArgs e) {
-			var freqs = new Dictionary<int, int> ();
-			int selected = 0;
-			foreach (Eigenschap eig in eigenschappenList) {
-				if(eig.selected) {
-					selected++;
-					List<Totem_eigenschap> toAdd = _appController.GetTotemsVanEigenschapsID (eig.eigenschapID);
-					foreach(Totem_eigenschap totem in toAdd) {
-						int idx = Convert.ToInt32 (totem.nid);
-						CollectionHelper.AddOrUpdateDictionaryEntry (freqs, idx) ;
-					}
-				}
-			}
-
-			if (freqs.Count == 0) {
+			/*if (freqs.Count == 0) {
 				mToastShort.SetText ("Geen eigenschappen geselecteerd");
 				mToastShort.Show ();
-			} else {
-				var totemsActivity = new Intent (this, typeof(ResultTotemsActivity));
+			} else {*/
+				_appController.CalculateResultlist(eigenschappenList);
+			//}
+		}
 
-				int[] sortedTotems = CollectionHelper.GetSortedList (freqs, true);
-				int[] sortedFreqs = CollectionHelper.GetSortedList (freqs, false);
-				totemsActivity.PutExtra ("totemIDs", sortedTotems);
-				totemsActivity.PutExtra ("freqs", sortedFreqs);
-				totemsActivity.PutExtra ("selected", selected);
-
-				StartActivity (totemsActivity);
-			}
+		void StartResultTotemsActivity() {
+			var totemsActivity = new Intent (this, typeof(ResultTotemsActivity));
+			StartActivity (totemsActivity);
 		}
 
 		//create options menu
@@ -202,7 +195,7 @@ namespace TotemAndroid {
 				fullList = true;
 				foreach (Eigenschap e in eigenschappenList)
 					e.selected = false;
-				eigenschapAdapter.UpdateData (db.GetEigenschappen ());
+				eigenschapAdapter.UpdateData (_appController.Eigenschappen);
 				eigenschapAdapter.NotifyDataSetChanged ();
 				UpdateOptionsMenu ();
 				return true;
@@ -227,7 +220,7 @@ namespace TotemAndroid {
 				query.Text = "";
 				fullList = true;
 				UpdateOptionsMenu ();
-				eigenschapAdapter.UpdateData (db.GetEigenschappen ());
+				eigenschapAdapter.UpdateData (_appController.Eigenschappen);
 				eigenschapAdapter.NotifyDataSetChanged ();
 				return true;
 			}
@@ -271,7 +264,7 @@ namespace TotemAndroid {
 				query.Text = "";
 				fullList = true;
 				UpdateOptionsMenu ();
-				eigenschapAdapter.UpdateData (db.GetEigenschappen ());
+				eigenschapAdapter.UpdateData (_appController.Eigenschappen);
 				eigenschapAdapter.NotifyDataSetChanged ();
 			} else {
 				base.OnBackPressed ();
