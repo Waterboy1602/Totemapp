@@ -156,5 +156,6 @@
     <BundleResource Include="SharedAssets\Lamp.png" />
     <BundleResource Include="SharedAssets\Lijn_bold.png" />
     <BundleResource Include="SharedAssets\Totem.png" />
+    <BundleResource Include="SharedAssets\checklist.xml" />
   </ItemGroup>
 </Project>

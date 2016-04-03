@@ -2,6 +2,9 @@
 
 using UIKit;
 using TotemAppCore;
+using System.Xml;
+using Foundation;
+using System.Collections.Generic;
 
 namespace TotemAppIos
 {
@@ -54,13 +57,11 @@ namespace TotemAppIos
 			base.ViewDidAppear (animated);
 			btnTotems.TouchUpInside+= btnTotemsTouchUpInsideHandler;
 			btnEigenschappen.TouchUpInside+= btnEigenschappenTouchUpInside;
+			btnChecklist.TouchUpInside+= BtnChecklistTouchUpInside;
 
 			_appController.NavigationController.GotoTotemListEvent+= gotoTotemListHandler;
 			_appController.NavigationController.GotoEigenschapListEvent+= gotoEigenschapListHandler;
 		}
-
-
-
 
 
 		public override void ViewWillDisappear (bool animated)
@@ -103,6 +104,30 @@ namespace TotemAppIos
 		{
 			_appController.EigenschappenMenuItemClicked ();
 		}
+		void BtnChecklistTouchUpInside (object sender, EventArgs e)
+		{
+			Dictionary<string, List<string>> tableData = new Dictionary<string, List<string>>();
+
+			XmlDocument doc = new XmlDocument ();
+			doc.Load(NSBundle.MainBundle.PathForResource ("SharedAssets/checklist","xml"));
+			var childNodes = doc.FirstChild.ChildNodes;
+			foreach (var item in childNodes) {
+				var itemName=(item as XmlElement).GetAttribute ("name");
+				tableData.Add (itemName,new List<string>());
+				var children = (item as XmlElement).ChildNodes;
+				foreach (var child in children) {
+
+					tableData [itemName].Add ((child as XmlElement).InnerText);
+				}
+
+			}
+
+		}
+
+
+
+
+
 		void gotoTotemListHandler ()
 		{
 			NavigationController.PushViewController (new TotemListViewController(),true);
