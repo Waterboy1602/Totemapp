@@ -1,12 +1,11 @@
 ﻿using System;
 
 using UIKit;
+
 using TotemAppCore;
 
-namespace TotemAppIos
-{
-	public partial class EigenschappenViewController : UIViewController
-	{
+namespace TotemAppIos {
+	public partial class EigenschappenViewController : UIViewController	{
 		#region delegates
 
 		#endregion
@@ -18,9 +17,7 @@ namespace TotemAppIos
 		#endregion
 
 		#region constructor
-		public EigenschappenViewController () : base ("EigenschappenViewController", null)
-		{
-		}
+		public EigenschappenViewController () : base ("EigenschappenViewController", null) {}
 		#endregion
 
 		#region properties
@@ -30,18 +27,17 @@ namespace TotemAppIos
 		#region public methods
 
 		#region overrided methods
-		public override void DidReceiveMemoryWarning ()
-		{
+		public override void DidReceiveMemoryWarning () {
 			base.DidReceiveMemoryWarning ();
 			// Release any cached data, images, etc that aren't in use.
 		}
-		public override UIStatusBarStyle PreferredStatusBarStyle ()
-		{
+
+		public override UIStatusBarStyle PreferredStatusBarStyle () {
 			return UIStatusBarStyle.LightContent;
 		}
+
 		#region viewlifecycle
-		public override void ViewDidLoad ()
-		{
+		public override void ViewDidLoad () {
 			base.ViewDidLoad ();
 			setData ();
 			NavigationController.NavigationBarHidden = true;
@@ -49,8 +45,7 @@ namespace TotemAppIos
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
-		public override void ViewDidAppear (bool animated)
-		{
+		public override void ViewDidAppear (bool animated) {
 			base.ViewDidAppear (animated);
 			btnReturn.TouchUpInside+= btnReturnTouchUpInside;
 			btnMore.TouchUpInside+= btnMoreTouchUpInside;
@@ -58,11 +53,7 @@ namespace TotemAppIos
 			txtSearch.EditingChanged+= TxtSearchValueChangedHandler;
 		}
 
-
-
-
-		public override void ViewWillDisappear (bool animated)
-		{
+		public override void ViewWillDisappear (bool animated) {
 			base.ViewWillDisappear (animated);
 			btnReturn.TouchUpInside-= btnReturnTouchUpInside;
 			btnMore.TouchUpInside-= btnMoreTouchUpInside;
@@ -77,14 +68,13 @@ namespace TotemAppIos
 
 		#region private methods
 
-		private void setData(){
+		private void setData() {
 			lblTitle.Text = "Eigenschappen";
 
 			imgReturn.Image = UIImage.FromBundle ("SharedAssets/arrow_back_white");
 			imgSearch.Image = UIImage.FromBundle ("SharedAssets/search_white");
 			imgMore.Image = UIImage.FromBundle ("SharedAssets/more_vert_white");
 
-			//txtSearch.RemoveFromSuperview ();
 			txtSearch.Hidden=true;
 			txtSearch.TintColor = UIColor.White;
 			txtSearch.ReturnKeyType = UIReturnKeyType.Search;
@@ -97,20 +87,17 @@ namespace TotemAppIos
 			tblEigenschappen.Source = new EigenschappenTableViewSource (_appController.Eigenschappen);
 		}
 
-		void btnReturnTouchUpInside (object sender, EventArgs e)
-		{
+		void btnReturnTouchUpInside (object sender, EventArgs e) {
 			resetSelections ();
 			NavigationController.PopViewController (true);
 		}
 
-		void btnMoreTouchUpInside (object sender, EventArgs e)
-		{
+		void btnMoreTouchUpInside (object sender, EventArgs e) {
 			// Create a new Alert Controller
 			UIAlertController actionSheetAlert = UIAlertController.Create(null,null,UIAlertControllerStyle.ActionSheet);
 
 			// Add Actions
 			actionSheetAlert.AddAction(UIAlertAction.Create("Reset selectie",UIAlertActionStyle.Default, (action) => resetSelections ()));
-
 
 			actionSheetAlert.AddAction(UIAlertAction.Create(isShowingSelected?"Toon volledige lijst":"Toon enkel selectie",UIAlertActionStyle.Default, (action) => toggleShowSelected()));
 
@@ -128,12 +115,8 @@ namespace TotemAppIos
 			this.PresentViewController(actionSheetAlert,true,null);
 		}
 
-		void btnSearchTouchUpInside (object sender, EventArgs e)
-		{
+		void btnSearchTouchUpInside (object sender, EventArgs e) {
 			if (isSearching) {
-//				txtSearch.RemoveFromSuperview ();
-//				vwSearchBar.Add (btnReturn);
-//				vwSearchBar.Add (lblTitle);
 				txtSearch.Hidden = true;
 				btnReturn.Hidden = false;
 				lblTitle.Hidden = false;
@@ -142,9 +125,6 @@ namespace TotemAppIos
 				txtSearch.ResignFirstResponder ();
 				imgSearch.Image = UIImage.FromBundle ("SharedAssets/search_white");
 			} else {
-//				btnReturn.RemoveFromSuperview ();
-//				lblTitle.RemoveFromSuperview ();
-//				vwSearchBar.Add (txtSearch);
 				txtSearch.Hidden = false;
 				btnReturn.Hidden = true;
 				lblTitle.Hidden = true;
@@ -153,38 +133,32 @@ namespace TotemAppIos
 			}
 			isSearching = !isSearching;
 		}
-		void TxtSearchValueChangedHandler (object sender, EventArgs e)
-		{
+
+		void TxtSearchValueChangedHandler (object sender, EventArgs e) {
 			(tblEigenschappen.Source as EigenschappenTableViewSource).Eigenschappen = _appController.FindEigenschapOpNaam ((sender as UITextField).Text);
 			tblEigenschappen.ReloadSections (new Foundation.NSIndexSet (0), UITableViewRowAnimation.Automatic);
 			isShowingSelected = false;
 		}
 
-		void resetSelections(){
-			foreach (var eigenschap in _appController.Eigenschappen) {
+		void resetSelections() {
+			foreach (var eigenschap in _appController.Eigenschappen) 
 				eigenschap.selected = false;
-			}
+			
 			txtSearch.Text = "";
 			TxtSearchValueChangedHandler (txtSearch,null);
 			txtSearch.ResignFirstResponder ();
 			isShowingSelected = false;
 		}
 
-		void toggleShowSelected(){
-			if (isShowingSelected){
+		void toggleShowSelected() {
+			if (isShowingSelected)
 				(tblEigenschappen.Source as EigenschappenTableViewSource).Eigenschappen = _appController.FindEigenschapOpNaam (txtSearch.Text);
-			}else{
+			else
 				(tblEigenschappen.Source as EigenschappenTableViewSource).Eigenschappen = _appController.FindEigenschapOpNaam (txtSearch.Text).FindAll (x=>x.selected);
-			}
+			
 			tblEigenschappen.ReloadSections (new Foundation.NSIndexSet (0), UITableViewRowAnimation.Automatic);
 			isShowingSelected = !isShowingSelected;
 		}
 		#endregion
-
-
-
-
 	}
 }
-
-

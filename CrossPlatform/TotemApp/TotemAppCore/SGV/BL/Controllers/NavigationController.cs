@@ -1,9 +1,7 @@
 ﻿using System;
 
-namespace TotemAppCore
-{
-	public class NavigationController
-	{
+namespace TotemAppCore {
+	public class NavigationController {
 		#region delegates
 		public delegate void GoToPageDelegate();
 		public event GoToPageDelegate GotoMainEvent;
@@ -18,8 +16,7 @@ namespace TotemAppCore
 		#endregion
 
 		#region variables
-		enum Pages 
-		{
+		enum Pages {
 			MAIN,
 			TOTEMLIST,
 			TOTEMDETAIL,
@@ -33,9 +30,7 @@ namespace TotemAppCore
 		#endregion
 
 		#region constructor
-		public NavigationController ()
-		{
-		}
+		public NavigationController () {}
 		#endregion
 
 		#region properties
@@ -44,35 +39,35 @@ namespace TotemAppCore
 
 		#region public methods
 
-		public void GoToTotemList(){
+		public void GoToTotemList() {
 			goToPage (Pages.TOTEMLIST);
 		}
 
-		public void GoToTotemDetail(){
+		public void GoToTotemDetail() {
 			goToPage (Pages.TOTEMDETAIL);
 		}
 
-		public void GoToTotemResult(){
+		public void GoToTotemResult() {
 			goToPage (Pages.TOTEMRESULT);
 		}
 
-		public void GoToEigenschapList(){
+		public void GoToEigenschapList() {
 			goToPage (Pages.EIGENSCHAPLIST);
 		}
 
-		public void GoToProfileList(){
+		public void GoToProfileList() {
 			goToPage (Pages.PROFILELLIST);
 		}
 
-		public void GoToProfileTotemList(){
+		public void GoToProfileTotemList() {
 			goToPage (Pages.PROFILETOTEMLIST);
 		}
 
-		public void GoToChecklist(){
+		public void GoToChecklist() {
 			goToPage (Pages.CHECKLIST);
 		}
 
-		public void GoToTinder(){
+		public void GoToTinder() {
 			goToPage (Pages.TINDER);
 		}
 
@@ -87,54 +82,44 @@ namespace TotemAppCore
 		#endregion
 
 		#region private methods
-		private void goToPage(Pages page){
+		private void goToPage(Pages page) {
 			switch (page) {
 			case Pages.TOTEMLIST:
-				if (GotoTotemListEvent != null) {
+				if (GotoTotemListEvent != null)
 					GotoTotemListEvent ();
-				}
 				break;
 			case Pages.TOTEMDETAIL:
-				if (GotoTotemDetailEvent != null) {
+				if (GotoTotemDetailEvent != null)
 					GotoTotemDetailEvent ();
-				}
 				break;
 			case Pages.TOTEMRESULT:
-				if (GotoTotemResultEvent != null) {
+				if (GotoTotemResultEvent != null)
 					GotoTotemResultEvent ();
-				}
 				break;
 			case Pages.EIGENSCHAPLIST:
-				if (GotoEigenschapListEvent != null) {
+				if (GotoEigenschapListEvent != null)
 					GotoEigenschapListEvent ();
-				}
 				break;
 			case Pages.PROFILELLIST:
-				if (GotoProfileListEvent != null) {
+				if (GotoProfileListEvent != null)
 					GotoProfileListEvent ();
-				}
 				break;
 			case Pages.PROFILETOTEMLIST:
-				if (GotoProfileTotemListEvent != null) {
+				if (GotoProfileTotemListEvent != null)
 					GotoProfileTotemListEvent ();
-				}
 				break;
 			case Pages.CHECKLIST:
-				if (GotoChecklistEvent != null) {
+				if (GotoChecklistEvent != null)
 					GotoChecklistEvent ();
-				}
 				break;
 			case Pages.TINDER:
-				if (GotoTinderEvent != null) {
+				if (GotoTinderEvent != null)
 					GotoTinderEvent ();
-				}
 				break;
 			default:
 				break;
 			}
 		}
 		#endregion
-
 	}
 }
-

@@ -15,118 +15,92 @@ using SQLite;
 namespace TotemAppCore {
 	public class Database {
 
-			SQLiteConnection database;
-			#if __ANDROID__
+		SQLiteConnection database;
+		#if __ANDROID__
 		string originalDBLocation = "totems.sqlite";
-			#elif __IOS__
+		#elif __IOS__
 		string originalDBLocation = "SharedAssets/totems.sqlite";
-			#endif
+		#endif
 
 		string currentDBName = "totems.sgv";
 
-			string DatabasePath //path for checking if database exists.
-			{
-				get { 
-					var sqliteFilename = currentDBName;
+		string DatabasePath { //path for checking if database exists.
+			get { 
+				var sqliteFilename = currentDBName;
 
-					#if __IOS__
-					int SystemVersion = Convert.ToInt16(UIKit.UIDevice.CurrentDevice.SystemVersion.Split('.')[0]);
-					string libraryPath;
-					if(SystemVersion >= 8){
-						var documentsPath = NSFileManager.DefaultManager.GetUrls(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User)[0].Path;
-						libraryPath = Path.Combine(documentsPath, "..", "Library/Testaankoop");
-					}else{
-						string documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // Documents folder
-						libraryPath = Path.Combine (documentsPath, "..", "Library/Testaankoop"); // Library folder
-					}
-					var path = Path.Combine(libraryPath, sqliteFilename);
-					#else
-					#if __ANDROID__
-					string documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // Documents folder
-					var path = Path.Combine(documentsPath, sqliteFilename);
-					//var path = sqliteFilename;
-					#else
-					// WinPhone
-					var path = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, sqliteFilename);;
-					#endif
-					#endif
-					return path;
+				#if __IOS__
+				int SystemVersion = Convert.ToInt16(UIKit.UIDevice.CurrentDevice.SystemVersion.Split('.')[0]);
+				string documentsPath;
+				if(SystemVersion >= 8){
+					documentsPath = NSFileManager.DefaultManager.GetUrls(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User)[0].Path;
+				}else{
+					documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // Documents folder
 				}
+				var path = Path.Combine(documentsPath, sqliteFilename);
+				#else
+				#if __ANDROID__
+				string documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // Documents folder
+				var path = Path.Combine(documentsPath, sqliteFilename);
+				//var path = sqliteFilename;
+				#else // WinPhone
+				var path = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, sqliteFilename);;
+				#endif
+				#endif
+				return path;
+			}
+		}
+
+		/// <Summary>
+		/// Reads the write stream.
+		/// </Summary>
+		/// <param name="readStream">Read stream.</param>
+		/// <param name="writeStream">Write stream.</param>
+		void ReadWriteStream(Stream readStream, Stream writeStream)
+		{
+			int Length = 256;
+			Byte[] buffer = new Byte[Length];
+			int bytesRead = readStream.Read(buffer, 0, Length);
+			// write the required bytes
+			while (bytesRead > 0)
+			{
+				writeStream.Write(buffer, 0, bytesRead);
+				bytesRead = readStream.Read(buffer, 0, Length);
+			}
+			readStream.Close();
+			writeStream.Close();
+		}
+
+		/// <Summary>
+		/// Initializes a new instance of the <see cref="Bazookas.Testaankoop.DL.TestaankoopDB"/> Database. 
+		/// if the database doesn't exist, it will create the database and all the tables.
+		/// </Summary>
+		/// <param name='path'>
+		/// Path.
+		/// </param>
+		public Database() {
+			var dbPath = DatabasePath;
+			if (!File.Exists (dbPath)) {
+				#if __ANDROID__
+				var s = Application.Context.Assets.Open (originalDBLocation);
+				FileStream writeStream = new FileStream (dbPath, FileMode.OpenOrCreate, FileAccess.Write);
+				ReadWriteStream (s, writeStream);
+				writeStream.Close ();
+
+				#elif __IOS__
+				var appDir = NSBundle.MainBundle.ResourcePath;
+				var originalLocation = Path.Combine (appDir, originalDBLocation);
+				File.Copy (originalLocation, dbPath);
+				#endif
 			}
 
-			/// <Summary>
-			/// Reads the write stream.
-			/// </Summary>
-			/// <param name="readStream">Read stream.</param>
-			/// <param name="writeStream">Write stream.</param>
-			void ReadWriteStream(Stream readStream, Stream writeStream)
-			{
-				int Length = 256;
-				Byte[] buffer = new Byte[Length];
-				int bytesRead = readStream.Read(buffer, 0, Length);
-				// write the required bytes
-				while (bytesRead > 0)
-				{
-					writeStream.Write(buffer, 0, bytesRead);
-					bytesRead = readStream.Read(buffer, 0, Length);
-				}
-				readStream.Close();
-				writeStream.Close();
-			}
-
-			/// <Summary>
-			/// Initializes a new instance of the <see cref="Bazookas.Testaankoop.DL.TestaankoopDB"/> Database. 
-			/// if the database doesn't exist, it will create the database and all the tables.
-			/// </Summary>
-			/// <param name='path'>
-			/// Path.
-			/// </param>
-			public Database()
-			{
-				var dbPath = DatabasePath;
-				if (!File.Exists (dbPath)) 
-				{
-					#if __ANDROID__
-					var s = Application.Context.Assets.Open (originalDBLocation);
-					FileStream writeStream = new FileStream (dbPath, FileMode.OpenOrCreate, FileAccess.Write);
-					ReadWriteStream (s, writeStream);
-					writeStream.Close ();
-
-					#elif __IOS__
-					int SystemVersion = Convert.ToInt16(UIKit.UIDevice.CurrentDevice.SystemVersion.Split('.')[0]);
-					string libraryPath;
-					string imagePath;
-					if(SystemVersion >= 8){
-						var documents = NSFileManager.DefaultManager.GetUrls(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User)[0].Path;
-						var lib = Path.Combine(documents, "..", "Library");
-						libraryPath = Path.Combine (lib, "Testaankoop");
-						imagePath = Path.Combine (libraryPath, "Images");
-					}else{
-						string documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal);
-						libraryPath = Path.Combine (documentsPath, "../Library/Testaankoop");
-						imagePath = Path.Combine (documentsPath, "../Library/Testaankoop/Images");
-					}
-					if (!Directory.Exists (libraryPath)) {
-						Directory.CreateDirectory (libraryPath);
-					}
-					if (!Directory.Exists (imagePath)) {
-						Directory.CreateDirectory (imagePath);
-					}
-					// does not exist yet, copy local database into new database
-
-					var appDir = NSBundle.MainBundle.ResourcePath;
-					var originalLocation = Path.Combine (appDir, originalDBLocation);
-					File.Copy (originalLocation, dbPath);
-					#endif
-				}
-
-				database = new SQLiteConnection (dbPath);
-				// create the tables
-				//database.CreateTable<TodoItem>();
-			}
+			database = new SQLiteConnection (dbPath);
+			// create the tables
+			//database.CreateTable<TodoItem>();
+		}
 			
 
 		/* ------------------------------ INITIALIZE DB ------------------------------ */
+
 
 		//extract eigenschappen from DB and put them in a list
 		public List<Eigenschap> GetEigenschappen() {
@@ -164,8 +138,6 @@ namespace TotemAppCore {
 			}
 		}
 
-
-
 		//add totem to profile in db
 		public void AddTotemToProfiel(string totemID, string profielName) {
 			lock (database) {
@@ -198,7 +170,6 @@ namespace TotemAppCore {
 			}
 		}
 
-
 		//delete a totem from a profile
 		public void DeleteTotemFromProfile(string totemID, string profielName) {
 			lock (database) {
@@ -211,9 +182,8 @@ namespace TotemAppCore {
 		}
 
 
-
-
 		/* ------------------------------ TOTEMS EN EIGENSCHAPPEN ------------------------------ */
+
 
 		//returns List of Totem_eigenschapp related to eigenschap id
 		public List<Totem_eigenschap> GetTotemsVanEigenschapsID(string id) {
@@ -238,8 +208,6 @@ namespace TotemAppCore {
 			}
 			return list [0];
 		}
-
-
 
 
 		/* ------------------------------ UTILS ------------------------------ */

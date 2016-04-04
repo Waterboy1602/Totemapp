@@ -7,6 +7,7 @@
     <customFonts key="customFonts">
         <mutableArray key="DINPro-Regular_13937.ttf">
             <string>DINPro-Regular</string>
+            <string>DINPro-Regular</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -18,6 +19,7 @@
                 <outlet property="imgSearch" destination="Hd3-6L-Zxq" id="7lg-K3-L3R"/>
                 <outlet property="lblTitle" destination="Duq-84-spT" id="s0T-Yg-bwK"/>
                 <outlet property="tblTotems" destination="N9e-Bh-P9Q" id="9R0-55-ex9"/>
+                <outlet property="txtSearch" destination="DF4-PT-Ka5" id="MWe-si-34R"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -32,7 +34,7 @@
                         <constraint firstAttribute="height" constant="20" id="Rgu-8N-Nvu"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cah-WM-hOk">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cah-WM-hOk" userLabel="Vw Search Bar">
                     <rect key="frame" x="0.0" y="20" width="600" height="50"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="owt-pf-BFJ" customClass="UIButton">
@@ -75,6 +77,12 @@
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Zoek totem" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DF4-PT-Ka5" userLabel="Txt Search">
+                            <rect key="frame" x="23" y="12" width="492" height="26"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="20"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
                     </subviews>
                     <color key="backgroundColor" red="0.0" green="0.36078431370000003" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -82,9 +90,12 @@
                         <constraint firstItem="Duq-84-spT" firstAttribute="leading" secondItem="owt-pf-BFJ" secondAttribute="trailing" constant="5" id="B90-j3-eJP"/>
                         <constraint firstItem="DED-Hg-AXL" firstAttribute="leading" secondItem="Duq-84-spT" secondAttribute="trailing" constant="5" id="ECH-oQ-JAK"/>
                         <constraint firstItem="owt-pf-BFJ" firstAttribute="top" secondItem="cah-WM-hOk" secondAttribute="top" id="LGp-bj-eJx"/>
+                        <constraint firstItem="DF4-PT-Ka5" firstAttribute="leading" secondItem="cah-WM-hOk" secondAttribute="leading" constant="23" id="LKv-ZI-ik6"/>
                         <constraint firstItem="Duq-84-spT" firstAttribute="centerY" secondItem="cah-WM-hOk" secondAttribute="centerY" id="LX1-la-rtN"/>
                         <constraint firstAttribute="trailing" secondItem="DED-Hg-AXL" secondAttribute="trailing" id="NEI-Lj-Tdu"/>
                         <constraint firstItem="DED-Hg-AXL" firstAttribute="height" secondItem="cah-WM-hOk" secondAttribute="height" id="Z5d-9U-09Z"/>
+                        <constraint firstItem="DF4-PT-Ka5" firstAttribute="centerY" secondItem="cah-WM-hOk" secondAttribute="centerY" id="eg7-xr-FQp"/>
+                        <constraint firstItem="DED-Hg-AXL" firstAttribute="leading" secondItem="DF4-PT-Ka5" secondAttribute="trailing" constant="5" id="jA3-25-0Yn"/>
                         <constraint firstAttribute="height" constant="50" id="k1k-Uj-hEn"/>
                         <constraint firstItem="owt-pf-BFJ" firstAttribute="leading" secondItem="cah-WM-hOk" secondAttribute="leading" id="kaz-CU-oR7"/>
                         <constraint firstItem="owt-pf-BFJ" firstAttribute="height" secondItem="cah-WM-hOk" secondAttribute="height" id="usD-c0-n1u"/>

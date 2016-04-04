@@ -84,6 +84,9 @@
     <InterfaceDefinition Include="SGV\TotemApp\Components\TotemsTableViewCell.xib" />
     <InterfaceDefinition Include="SGV\TotemApp\Controllers\EigenschappenViewController.xib" />
     <InterfaceDefinition Include="SGV\TotemApp\Components\EigenschappenTableViewCell.xib" />
+    <InterfaceDefinition Include="SGV\TotemApp\Controllers\ChecklistViewController.xib" />
+    <InterfaceDefinition Include="SGV\TotemApp\Controllers\TotemDetailViewController.xib" />
+    <InterfaceDefinition Include="SGV\TotemApp\Controllers\ProfielenViewController.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -116,6 +119,18 @@
     <Compile Include="SGV\TotemApp\Components\EigenschappenTableViewCell.cs" />
     <Compile Include="SGV\TotemApp\Components\EigenschappenTableViewCell.designer.cs">
       <DependentUpon>EigenschappenTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SGV\TotemApp\Controllers\ChecklistViewController.cs" />
+    <Compile Include="SGV\TotemApp\Controllers\ChecklistViewController.designer.cs">
+      <DependentUpon>ChecklistViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SGV\TotemApp\Controllers\TotemDetailViewController.cs" />
+    <Compile Include="SGV\TotemApp\Controllers\TotemDetailViewController.designer.cs">
+      <DependentUpon>TotemDetailViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SGV\TotemApp\Controllers\ProfielenViewController.cs" />
+    <Compile Include="SGV\TotemApp\Controllers\ProfielenViewController.designer.cs">
+      <DependentUpon>ProfielenViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="..\TotemAppCore\TotemAppCore.projitems" Label="Shared" Condition="Exists('..\TotemAppCore\TotemAppCore.projitems')" />
@@ -157,5 +172,6 @@
     <BundleResource Include="SharedAssets\Lijn_bold.png" />
     <BundleResource Include="SharedAssets\Totem.png" />
     <BundleResource Include="SharedAssets\checklist.xml" />
+    <BundleResource Include="Resources\DIN-LightItalic.ttf" />
   </ItemGroup>
 </Project>

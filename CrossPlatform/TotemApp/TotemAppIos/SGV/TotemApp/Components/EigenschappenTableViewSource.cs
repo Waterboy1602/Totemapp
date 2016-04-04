@@ -4,12 +4,10 @@ using TotemAppCore;
 using UIKit;
 using Foundation;
 
-namespace TotemAppIos
-{
-	public class EigenschappenTableViewSource:UITableViewSource
-	{
-		public EigenschappenTableViewSource (List<Eigenschap> eigenschappen)
-		{
+namespace TotemAppIos {
+	public class EigenschappenTableViewSource:UITableViewSource {
+		
+		public EigenschappenTableViewSource (List<Eigenschap> eigenschappen) {
 			this.eigenschappen = eigenschappen;
 		}
 
@@ -24,15 +22,13 @@ namespace TotemAppIos
 		}
 		#region implemented abstract members of UITableViewSource
 
-		public override UITableViewCell GetCell (UITableView tableView, Foundation.NSIndexPath indexPath)
-		{
+		public override UITableViewCell GetCell (UITableView tableView, Foundation.NSIndexPath indexPath) {
 			EigenschappenTableViewCell cell;
 
 			cell = tableView.DequeueReusableCell (EigenschappenTableViewCell.Key) as EigenschappenTableViewCell;
-			if (cell == null) {
+			if (cell == null)
 				cell = EigenschappenTableViewCell.Create ();
 
-			}
 			cell.Eigenschap = eigenschappen [indexPath.Row];
 			cell.setData ();
 
@@ -40,22 +36,19 @@ namespace TotemAppIos
 			return cell;
 		}
 
-		public override nint RowsInSection (UITableView tableview, nint section)
-		{
+		public override nint RowsInSection (UITableView tableview, nint section) {
 			return eigenschappen.Count;
 		}
 
-		public override nint NumberOfSections (UITableView tableView)
-		{
+		public override nint NumberOfSections (UITableView tableView) {
 			return 1;
 		}
 
-		public override nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
-		{
+		public override nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath) {
 			return 50;
 		}
-		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
-		{
+
+		public override void RowSelected (UITableView tableView, NSIndexPath indexPath) {
 			(tableView.CellAt (indexPath) as EigenschappenTableViewCell).toggleCheckbox ();
 			Console.WriteLine (eigenschappen[indexPath.Row].name);
 			tableView.DeselectRow (indexPath,true);
@@ -63,4 +56,3 @@ namespace TotemAppIos
 		#endregion
 	}
 }
-

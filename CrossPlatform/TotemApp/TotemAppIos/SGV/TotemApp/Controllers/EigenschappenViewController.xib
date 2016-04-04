@@ -146,4 +146,23 @@
             </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="SharedAssets/add_white.png" width="96" height="96"/>
+        <image name="SharedAssets/arrow_back_white.png" width="96" height="96"/>
+        <image name="SharedAssets/arrow_forward_white.png" width="96" height="96"/>
+        <image name="SharedAssets/close_white.png" width="96" height="96"/>
+        <image name="SharedAssets/delete_white.png" width="96" height="96"/>
+        <image name="SharedAssets/more_vert_white.png" width="96" height="96"/>
+        <image name="SharedAssets/search_white.png" width="96" height="96"/>
+        <image name="DINPro-Light.ttf" width="0" height="0"/>
+        <image name="Verveine W01 Regular.ttf" width="0" height="0"/>
+        <image name="sketch_block_light.ttf" width="0" height="0"/>
+        <image name="DINPro-Regular_13937.ttf" width="0" height="0"/>
+        <image name="SharedAssets/Berg.png" width="462" height="503"/>
+        <image name="SharedAssets/Lamp.png" width="87" height="97"/>
+        <image name="SharedAssets/Lijn_bold.png" width="1181" height="24"/>
+        <image name="SharedAssets/Totem.png" width="342" height="601"/>
+        <image name="ufonts.com_din-lightitalic.ttf" width="0" height="0"/>
+        <image name="DIN-LightItalic.ttf" width="0" height="0"/>
+    </resources>
 </document>

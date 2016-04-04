@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TotemAppCore
-{
-	public class AppController
-	{
+namespace TotemAppCore {
+	public class AppController {
 
 		#region delegates
 
@@ -21,12 +19,10 @@ namespace TotemAppCore
 
 		NavigationController _navigationController;
 
-
 		#endregion
 
 		#region constructor
-		public AppController ()
-		{
+		public AppController () {
 			_totems = database.GetTotems ();
 			_eigenschappen = database.GetEigenschappen ();
 			_navigationController = new NavigationController ();
@@ -167,38 +163,38 @@ namespace TotemAppCore
 			return namen;
 		}
 
-		public void TotemMenuItemClicked(){
+		public void TotemMenuItemClicked() {
 			_navigationController.GoToTotemList ();
 		}
 
-		public void EigenschappenMenuItemClicked(){
+		public void EigenschappenMenuItemClicked() {
 			_navigationController.GoToEigenschapList ();
 		}
 
-		public void ProfileMenuItemClicked(){
+		public void ProfileMenuItemClicked() {
 			_navigationController.GoToProfileList ();
 		}
 
-		public void ChecklistMenuItemClicked(){
+		public void ChecklistMenuItemClicked() {
 			_navigationController.GoToChecklist ();
 		}
 
-		public void TinderMenuItemClicked(){
+		public void TinderMenuItemClicked() {
 			_navigationController.GoToTinder ();
 		}
 
-		public void TotemSelected(string totemID){
+		public void TotemSelected(string totemID) {
 			setCurrentProfile (null);
 			setCurrentTotem (totemID);
 			_navigationController.GoToTotemDetail ();
 		}
 
-		public void ProfileSelected(string profileName){
+		public void ProfileSelected(string profileName) {
 			setCurrentProfile (profileName);
 			_navigationController.GoToProfileTotemList ();
 		}
 
-		public void ProfileTotemSelected(string profileName, string totemID){
+		public void ProfileTotemSelected(string profileName, string totemID) {
 			setCurrentProfile (profileName);
 			setCurrentTotem (totemID);
 			_navigationController.GoToTotemDetail ();
@@ -220,12 +216,12 @@ namespace TotemAppCore
 		#endregion
 
 		#region private methods
-		void setCurrentTotem(string totemID){
+		void setCurrentTotem(string totemID) {
 			var totem = _totems.Find (x => x.nid.Equals (totemID));
 			CurrentTotem = totem;
 		}
 
-		void setCurrentProfile(string profileName){
+		void setCurrentProfile(string profileName) {
 			if (profileName == null) {
 				CurrentProfiel = null;
 			} else {
