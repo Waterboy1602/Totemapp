@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
@@ -18,7 +19,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TotemDetailViewController">
             <connections>
+                <outlet property="btnAction" destination="Oq9-Oa-Dwz" id="nHM-O5-CtU"/>
                 <outlet property="btnReturn" destination="Sqy-GD-Odc" id="HT5-zi-kdG"/>
+                <outlet property="imgAction" destination="3P7-gW-uu3" id="olH-zR-aMt"/>
                 <outlet property="imgLine" destination="nDL-bp-by6" id="MY7-B4-CCp"/>
                 <outlet property="imgReturn" destination="VYH-v9-rf3" id="vJY-Jc-uU6"/>
                 <outlet property="lblBody" destination="4Dq-of-Y8a" id="2TH-K8-A99"/>
@@ -52,11 +55,11 @@
                                 <constraint firstItem="VYH-v9-rf3" firstAttribute="centerX" secondItem="Sqy-GD-Odc" secondAttribute="centerX" id="xch-5Y-kOK"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oq9-Oa-Dwz" customClass="UIButton">
-                            <rect key="frame" x="560" y="0.0" width="40" height="50"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oq9-Oa-Dwz" userLabel="Btn Action" customClass="UIButton">
+                            <rect key="frame" x="530" y="0.0" width="70" height="50"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3P7-gW-uu3">
-                                    <rect key="frame" x="8" y="13" width="24" height="24"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3P7-gW-uu3" userLabel="Img Action">
+                                    <rect key="frame" x="23" y="13" width="24" height="24"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="24" id="Db7-gp-Urc"/>
                                         <constraint firstAttribute="width" constant="24" id="wrC-zv-Ws8"/>
@@ -66,11 +69,11 @@
                             <constraints>
                                 <constraint firstItem="3P7-gW-uu3" firstAttribute="centerX" secondItem="Oq9-Oa-Dwz" secondAttribute="centerX" id="9uc-zw-iT7"/>
                                 <constraint firstItem="3P7-gW-uu3" firstAttribute="centerY" secondItem="Oq9-Oa-Dwz" secondAttribute="centerY" id="fw9-83-VBH"/>
-                                <constraint firstAttribute="width" constant="40" id="zMN-Pa-JTV"/>
+                                <constraint firstAttribute="width" constant="70" id="zMN-Pa-JTV"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpT-dP-RC5">
-                            <rect key="frame" x="75" y="13" width="49" height="24"/>
+                            <rect key="frame" x="75" y="12" width="450" height="26"/>
                             <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="20"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -81,6 +84,7 @@
                         <constraint firstItem="wpT-dP-RC5" firstAttribute="centerY" secondItem="ibo-xw-3vm" secondAttribute="centerY" id="28Y-xU-jZn"/>
                         <constraint firstItem="Sqy-GD-Odc" firstAttribute="leading" secondItem="ibo-xw-3vm" secondAttribute="leading" id="BXU-Da-SVj"/>
                         <constraint firstItem="Sqy-GD-Odc" firstAttribute="top" secondItem="ibo-xw-3vm" secondAttribute="top" id="FW5-7q-z5S"/>
+                        <constraint firstItem="Oq9-Oa-Dwz" firstAttribute="leading" secondItem="wpT-dP-RC5" secondAttribute="trailing" constant="5" id="LCH-B0-2bj"/>
                         <constraint firstItem="wpT-dP-RC5" firstAttribute="centerY" secondItem="ibo-xw-3vm" secondAttribute="centerY" id="VYJ-6c-5ve"/>
                         <constraint firstItem="wpT-dP-RC5" firstAttribute="leading" secondItem="Sqy-GD-Odc" secondAttribute="trailing" constant="5" id="a2U-Tp-JY1"/>
                         <constraint firstItem="Oq9-Oa-Dwz" firstAttribute="height" secondItem="ibo-xw-3vm" secondAttribute="height" id="b5C-MA-r9t"/>
@@ -98,19 +102,19 @@
                     </constraints>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nDL-bp-by6" userLabel="imgLine">
-                    <rect key="frame" x="10" y="87" width="580" height="34"/>
+                    <rect key="frame" x="10" y="118" width="580" height="34"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="nDL-bp-by6" secondAttribute="height" multiplier="120:7" id="yaK-cl-6W7"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bm6-ch-hFJ">
-                    <rect key="frame" x="10" y="70" width="84" height="40"/>
+                    <rect key="frame" x="10" y="70" width="58" height="48"/>
                     <fontDescription key="fontDescription" name="VerveineW01-Regular" family="VerveineW01-Regular" pointSize="34"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CvG-OU-4pN" userLabel="Lbl Head">
-                    <rect key="frame" x="94" y="70" width="496" height="17"/>
+                    <rect key="frame" x="68" y="70" width="522" height="48"/>
                     <attributedString key="attributedText">
                         <fragment content="Label ">
                             <attributes>
@@ -123,7 +127,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Dq-of-Y8a" userLabel="Lbl Body">
-                    <rect key="frame" x="10" y="126" width="580" height="24"/>
+                    <rect key="frame" x="10" y="157" width="580" height="26"/>
                     <fontDescription key="fontDescription" name="DINPro-Light" family="DINPro" pointSize="20"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>

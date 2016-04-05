@@ -79,15 +79,19 @@
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
-    <InterfaceDefinition Include="SGV\TotemApp\Controllers\MainViewController.xib" />
-    <InterfaceDefinition Include="SGV\TotemApp\Controllers\TotemListViewController.xib" />
-    <InterfaceDefinition Include="SGV\TotemApp\Components\TotemsTableViewCell.xib" />
-    <InterfaceDefinition Include="SGV\TotemApp\Controllers\EigenschappenViewController.xib" />
-    <InterfaceDefinition Include="SGV\TotemApp\Components\EigenschappenTableViewCell.xib" />
-    <InterfaceDefinition Include="SGV\TotemApp\Controllers\ChecklistViewController.xib" />
-    <InterfaceDefinition Include="SGV\TotemApp\Controllers\TotemDetailViewController.xib" />
-    <InterfaceDefinition Include="SGV\TotemApp\Controllers\ProfielenViewController.xib" />
     <InterfaceDefinition Include="Resources\SGV\TotemApp\Components\ChecklistHeaderFooter.xib" />
+    <InterfaceDefinition Include="SGV\TotemApp\Components\Eigenschappen\EigenschappenTableViewCell.xib" />
+    <InterfaceDefinition Include="SGV\TotemApp\Components\Profielen\ProfielenTableViewCell.xib" />
+    <InterfaceDefinition Include="SGV\TotemApp\Components\Totems\TotemsTableViewCell.xib" />
+    <InterfaceDefinition Include="SGV\TotemApp\Controllers\Checklist\ChecklistViewController.xib" />
+    <InterfaceDefinition Include="SGV\TotemApp\Controllers\Eigenschappen\EigenschappenViewController.xib" />
+    <InterfaceDefinition Include="SGV\TotemApp\Controllers\Profielen\ProfielenViewController.xib" />
+    <InterfaceDefinition Include="SGV\TotemApp\Controllers\TotemDetail\TotemDetailViewController.xib" />
+    <InterfaceDefinition Include="SGV\TotemApp\Controllers\Totems\TotemListViewController.xib" />
+    <InterfaceDefinition Include="SGV\TotemApp\Controllers\Main\MainViewController.xib" />
+    <InterfaceDefinition Include="SGV\TotemApp\Components\ProfielTotems\ProfielTotemsTableViewCell.xib" />
+    <InterfaceDefinition Include="SGV\TotemApp\Controllers\ProfielTotems\ProfielTotemsViewController.xib" />
+    <InterfaceDefinition Include="SGV\TotemApp\Controllers\TotemsResult\TotemsResultViewController.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -96,44 +100,63 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="SGV\TotemApp\Controllers\MainViewController.cs">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="SGV\TotemApp\Controllers\MainViewController.designer.cs">
-      <DependentUpon>MainViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="SGV\TotemApp\IosUtils.cs" />
-    <Compile Include="SGV\TotemApp\Controllers\TotemListViewController.cs" />
-    <Compile Include="SGV\TotemApp\Controllers\TotemListViewController.designer.cs">
-      <DependentUpon>TotemListViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SGV\TotemApp\Components\TotemsTableViewSource.cs" />
-    <Compile Include="SGV\TotemApp\Components\TotemsTableViewCell.cs" />
-    <Compile Include="SGV\TotemApp\Components\TotemsTableViewCell.designer.cs">
-      <DependentUpon>TotemsTableViewCell.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SGV\TotemApp\Controllers\EigenschappenViewController.cs" />
-    <Compile Include="SGV\TotemApp\Controllers\EigenschappenViewController.designer.cs">
-      <DependentUpon>EigenschappenViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SGV\TotemApp\Components\EigenschappenTableViewSource.cs" />
-    <Compile Include="SGV\TotemApp\Components\EigenschappenTableViewCell.cs" />
-    <Compile Include="SGV\TotemApp\Components\EigenschappenTableViewCell.designer.cs">
+    <Compile Include="SGV\TotemApp\Components\Checklist\ChecklistTableViewSource.cs" />
+    <Compile Include="SGV\TotemApp\Components\Eigenschappen\EigenschappenTableViewCell.cs" />
+    <Compile Include="SGV\TotemApp\Components\Eigenschappen\EigenschappenTableViewCell.designer.cs">
       <DependentUpon>EigenschappenTableViewCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="SGV\TotemApp\Controllers\ChecklistViewController.cs" />
-    <Compile Include="SGV\TotemApp\Controllers\ChecklistViewController.designer.cs">
+    <Compile Include="SGV\TotemApp\Components\Eigenschappen\EigenschappenTableViewSource.cs" />
+    <Compile Include="SGV\TotemApp\Components\Profielen\ProfielenTableViewCell.cs" />
+    <Compile Include="SGV\TotemApp\Components\Profielen\ProfielenTableViewCell.designer.cs">
+      <DependentUpon>ProfielenTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SGV\TotemApp\Components\Profielen\ProfielenTableViewSource.cs" />
+    <Compile Include="SGV\TotemApp\Components\Totems\TotemsTableViewCell.cs" />
+    <Compile Include="SGV\TotemApp\Components\Totems\TotemsTableViewCell.designer.cs">
+      <DependentUpon>TotemsTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SGV\TotemApp\Components\Totems\TotemsTableViewSource.cs" />
+    <Compile Include="SGV\TotemApp\Controllers\Checklist\ChecklistViewController.cs" />
+    <Compile Include="SGV\TotemApp\Controllers\Checklist\ChecklistViewController.designer.cs">
       <DependentUpon>ChecklistViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="SGV\TotemApp\Controllers\TotemDetailViewController.cs" />
-    <Compile Include="SGV\TotemApp\Controllers\TotemDetailViewController.designer.cs">
-      <DependentUpon>TotemDetailViewController.cs</DependentUpon>
+    <Compile Include="SGV\TotemApp\Controllers\Eigenschappen\EigenschappenViewController.cs" />
+    <Compile Include="SGV\TotemApp\Controllers\Eigenschappen\EigenschappenViewController.designer.cs">
+      <DependentUpon>EigenschappenViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="SGV\TotemApp\Controllers\ProfielenViewController.cs" />
-    <Compile Include="SGV\TotemApp\Controllers\ProfielenViewController.designer.cs">
+    <Compile Include="SGV\TotemApp\Controllers\Profielen\ProfielenViewController.cs" />
+    <Compile Include="SGV\TotemApp\Controllers\Profielen\ProfielenViewController.designer.cs">
       <DependentUpon>ProfielenViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="SGV\TotemApp\Components\ChecklistTableViewSource.cs" />
+    <Compile Include="SGV\TotemApp\Controllers\TotemDetail\TotemDetailViewController.cs" />
+    <Compile Include="SGV\TotemApp\Controllers\TotemDetail\TotemDetailViewController.designer.cs">
+      <DependentUpon>TotemDetailViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SGV\TotemApp\Controllers\Totems\TotemListViewController.cs" />
+    <Compile Include="SGV\TotemApp\Controllers\Totems\TotemListViewController.designer.cs">
+      <DependentUpon>TotemListViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SGV\TotemApp\Controllers\Main\MainViewController.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="SGV\TotemApp\Controllers\Main\MainViewController.designer.cs">
+      <DependentUpon>MainViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SGV\TotemApp\Components\ProfielTotems\ProfielTotemsTableViewSource.cs" />
+    <Compile Include="SGV\TotemApp\Components\ProfielTotems\ProfielTotemsTableViewCell.cs" />
+    <Compile Include="SGV\TotemApp\Components\ProfielTotems\ProfielTotemsTableViewCell.designer.cs">
+      <DependentUpon>ProfielTotemsTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SGV\TotemApp\Controllers\ProfielTotems\ProfielTotemsViewController.cs" />
+    <Compile Include="SGV\TotemApp\Controllers\ProfielTotems\ProfielTotemsViewController.designer.cs">
+      <DependentUpon>ProfielTotemsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SGV\TotemApp\Controllers\TotemsResult\TotemsResultViewController.cs" />
+    <Compile Include="SGV\TotemApp\Controllers\TotemsResult\TotemsResultViewController.designer.cs">
+      <DependentUpon>TotemsResultViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SGV\TotemApp\Components\TotemsResult\TotemsResultTableViewSource.cs" />
   </ItemGroup>
   <Import Project="..\TotemAppCore\TotemAppCore.projitems" Label="Shared" Condition="Exists('..\TotemAppCore\TotemAppCore.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -142,6 +165,20 @@
     <Folder Include="SGV\TotemApp\" />
     <Folder Include="SGV\TotemApp\Controllers\" />
     <Folder Include="SGV\TotemApp\Components\" />
+    <Folder Include="SGV\TotemApp\Components\Checklist\" />
+    <Folder Include="SGV\TotemApp\Components\Eigenschappen\" />
+    <Folder Include="SGV\TotemApp\Components\Totems\" />
+    <Folder Include="SGV\TotemApp\Components\Profielen\" />
+    <Folder Include="SGV\TotemApp\Components\ProfielTotems\" />
+    <Folder Include="SGV\TotemApp\Controllers\Checklist\" />
+    <Folder Include="SGV\TotemApp\Controllers\Eigenschappen\" />
+    <Folder Include="SGV\TotemApp\Controllers\Totems\" />
+    <Folder Include="SGV\TotemApp\Controllers\Profielen\" />
+    <Folder Include="SGV\TotemApp\Controllers\ProfielTotems\" />
+    <Folder Include="SGV\TotemApp\Controllers\TotemDetail\" />
+    <Folder Include="SGV\TotemApp\Controllers\Main\" />
+    <Folder Include="SGV\TotemApp\Controllers\TotemsResult\" />
+    <Folder Include="SGV\TotemApp\Components\TotemsResult\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\TotemAppCore\SharedAssets\totems.sqlite">

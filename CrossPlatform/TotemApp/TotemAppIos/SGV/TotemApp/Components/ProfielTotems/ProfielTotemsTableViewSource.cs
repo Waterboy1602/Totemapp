@@ -1,12 +1,14 @@
 ﻿using System;
-using UIKit;
 using System.Collections.Generic;
 using TotemAppCore;
+using UIKit;
 using Foundation;
 
 namespace TotemAppIos {
-	public class TotemsTableViewSource:UITableViewSource {
-		public TotemsTableViewSource (List<Totem> totems) {
+	public class ProfielTotemsTableViewSource : UITableViewSource {
+		public ProfielTotemsTableViewSource () {}
+
+		public ProfielTotemsTableViewSource (List<Totem> totems) {
 			this.totems = totems;
 		}
 
@@ -22,14 +24,12 @@ namespace TotemAppIos {
 			}
 		}
 
-		#region implemented abstract members of UITableViewSource
-
 		public override UITableViewCell GetCell (UITableView tableView, Foundation.NSIndexPath indexPath) {
-			TotemsTableViewCell cell;
+			ProfielTotemsTableViewCell cell;
 
-				cell = tableView.DequeueReusableCell (TotemsTableViewCell.Key) as TotemsTableViewCell;
-				if (cell == null)
-					cell = TotemsTableViewCell.Create ();
+			cell = tableView.DequeueReusableCell (ProfielTotemsTableViewCell.Key) as ProfielTotemsTableViewCell;
+			if (cell == null)
+				cell = ProfielTotemsTableViewCell.Create ();
 
 			cell.Totem = totems [indexPath.Row];
 			cell.RippleColor = UIColor.FromRGBA (200, 200, 200, 50);
@@ -52,8 +52,7 @@ namespace TotemAppIos {
 
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath) {
 			//Console.WriteLine (totems[indexPath.Row].title);
-			_appController.TotemSelected (totems[indexPath.Row].nid);
+			_appController.ProfileTotemSelected (_appController.CurrentProfiel.name, totems[indexPath.Row].nid);
 		}
-		#endregion
 	}
 }

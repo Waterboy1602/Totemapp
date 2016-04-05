@@ -77,8 +77,8 @@
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Zoek totem" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DF4-PT-Ka5" userLabel="Txt Search">
-                            <rect key="frame" x="23" y="12" width="492" height="26"/>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Zoek totem" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DF4-PT-Ka5" userLabel="Txt Search">
+                            <rect key="frame" x="23" y="12" width="502" height="26"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="20"/>
                             <textInputTraits key="textInputTraits"/>

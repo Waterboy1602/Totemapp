@@ -8,6 +8,7 @@
     <customFonts key="customFonts">
         <mutableArray key="DINPro-Regular_13937.ttf">
             <string>DINPro-Regular</string>
+            <string>DINPro-Regular</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -20,41 +21,31 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EkD-hH-lNN" misplaced="YES">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EkD-hH-lNN">
                         <rect key="frame" x="18" y="9" width="284" height="26"/>
+                        <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="20"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTy-6F-eBD">
+                        <rect key="frame" x="252" y="9" width="50" height="26"/>
                         <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="20"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="gTy-6F-eBD" secondAttribute="trailing" constant="10" id="Ah3-sN-dTT"/>
                     <constraint firstAttribute="trailingMargin" secondItem="EkD-hH-lNN" secondAttribute="trailing" constant="10" id="NqJ-sg-rqe"/>
+                    <constraint firstItem="gTy-6F-eBD" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="UsI-1V-Eym"/>
                     <constraint firstItem="EkD-hH-lNN" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leadingMargin" constant="10" id="Z0K-P5-yY7"/>
                     <constraint firstItem="EkD-hH-lNN" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="yYF-pW-OIG"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="lblFreq" destination="gTy-6F-eBD" id="gZd-lL-s6x"/>
                 <outlet property="lblTotemName" destination="EkD-hH-lNN" id="Bq1-hu-QsB"/>
             </connections>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="SharedAssets/add_white.png" width="96" height="96"/>
-        <image name="SharedAssets/arrow_back_white.png" width="96" height="96"/>
-        <image name="SharedAssets/arrow_forward_white.png" width="96" height="96"/>
-        <image name="SharedAssets/close_white.png" width="96" height="96"/>
-        <image name="SharedAssets/delete_white.png" width="96" height="96"/>
-        <image name="SharedAssets/more_vert_white.png" width="96" height="96"/>
-        <image name="SharedAssets/search_white.png" width="96" height="96"/>
-        <image name="DINPro-Light.ttf" width="0" height="0"/>
-        <image name="Verveine W01 Regular.ttf" width="0" height="0"/>
-        <image name="sketch_block_light.ttf" width="0" height="0"/>
-        <image name="DINPro-Regular_13937.ttf" width="0" height="0"/>
-        <image name="SharedAssets/Berg.png" width="462" height="503"/>
-        <image name="SharedAssets/Lamp.png" width="87" height="97"/>
-        <image name="SharedAssets/Lijn_bold.png" width="1181" height="24"/>
-        <image name="SharedAssets/Totem.png" width="342" height="601"/>
-        <image name="ufonts.com_din-lightitalic.ttf" width="0" height="0"/>
-        <image name="DIN-LightItalic.ttf" width="0" height="0"/>
-    </resources>
 </document>

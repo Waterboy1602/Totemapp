@@ -7,6 +7,8 @@
     <customFonts key="customFonts">
         <mutableArray key="DINPro-Light.ttf">
             <string>DINPro-Light</string>
+            <string>DINPro-Light</string>
+            <string>DINPro-Light</string>
         </mutableArray>
         <mutableArray key="DINPro-Regular_13937.ttf">
             <string>DINPro-Regular</string>
@@ -18,9 +20,12 @@
                 <outlet property="btnMore" destination="EFI-Tt-aAe" id="wlw-8k-4TU"/>
                 <outlet property="btnReturn" destination="UgO-8V-ohQ" id="chK-5G-oWR"/>
                 <outlet property="btnSearch" destination="VDl-dA-zjN" id="f2i-gV-SB9"/>
+                <outlet property="btnVind" destination="u1f-1Q-Bxk" id="egE-ja-9bI"/>
                 <outlet property="imgMore" destination="SQq-Qz-3nh" id="Njs-dR-71U"/>
                 <outlet property="imgReturn" destination="Shw-h8-wGj" id="fPs-u6-a79"/>
                 <outlet property="imgSearch" destination="bKh-nG-3XT" id="GLQ-Yp-BAl"/>
+                <outlet property="imgVind" destination="1wZ-yt-6wh" id="F81-B5-KsA"/>
+                <outlet property="lblNumberSelected" destination="U39-ja-cca" id="3Qb-tA-QxQ"/>
                 <outlet property="lblTitle" destination="gmK-tp-k98" id="5ld-Dc-gaz"/>
                 <outlet property="tblEigenschappen" destination="STr-kM-TUf" id="OU9-00-1hf"/>
                 <outlet property="txtSearch" destination="sNK-5N-ksf" id="MxX-N8-sky"/>
@@ -77,7 +82,7 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gmK-tp-k98">
-                            <rect key="frame" x="75" y="12" width="440" height="26"/>
+                            <rect key="frame" x="75" y="13" width="440" height="24"/>
                             <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="20"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -100,7 +105,7 @@
                             </constraints>
                         </view>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Zoek eigenschap" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sNK-5N-ksf">
-                            <rect key="frame" x="23" y="12" width="492" height="26"/>
+                            <rect key="frame" x="23" y="13" width="492" height="24"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="DINPro-Light" family="DINPro" pointSize="20"/>
                             <textInputTraits key="textInputTraits"/>
@@ -126,43 +131,72 @@
                         <constraint firstItem="UgO-8V-ohQ" firstAttribute="top" secondItem="6z2-OI-PYf" secondAttribute="top" id="vQF-H6-MYh"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Yu-Km-OqX" userLabel="Vw Bottom Bar">
+                    <rect key="frame" x="0.0" y="550" width="600" height="50"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U39-ja-cca">
+                            <rect key="frame" x="10" y="13" width="49" height="24"/>
+                            <fontDescription key="fontDescription" name="DINPro-Light" family="DINPro" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="u1f-1Q-Bxk" userLabel="Vw Vind Button">
+                            <rect key="frame" x="466" y="0.0" width="124" height="50"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1wZ-yt-6wh">
+                                    <rect key="frame" x="100" y="13" width="24" height="24"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="24" id="XK0-5W-88u"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VIND TOTEM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrj-1m-Fx3">
+                                    <rect key="frame" x="5" y="16" width="90" height="18"/>
+                                    <fontDescription key="fontDescription" name="DINPro-Light" family="DINPro" pointSize="15"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="1wZ-yt-6wh" firstAttribute="leading" secondItem="zrj-1m-Fx3" secondAttribute="trailing" constant="5" id="19R-MR-Ia2"/>
+                                <constraint firstItem="1wZ-yt-6wh" firstAttribute="centerY" secondItem="u1f-1Q-Bxk" secondAttribute="centerY" id="NDn-2q-ncH"/>
+                                <constraint firstItem="zrj-1m-Fx3" firstAttribute="leading" secondItem="u1f-1Q-Bxk" secondAttribute="leading" constant="5" id="dqK-1U-tq2"/>
+                                <constraint firstItem="zrj-1m-Fx3" firstAttribute="centerY" secondItem="u1f-1Q-Bxk" secondAttribute="centerY" id="elh-D6-9gM"/>
+                                <constraint firstAttribute="trailing" secondItem="1wZ-yt-6wh" secondAttribute="trailing" id="oBO-tf-vdi"/>
+                                <constraint firstItem="1wZ-yt-6wh" firstAttribute="top" secondItem="u1f-1Q-Bxk" secondAttribute="top" constant="13" id="ydA-87-ZgO"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.36078431370000003" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="U39-ja-cca" firstAttribute="centerY" secondItem="9Yu-Km-OqX" secondAttribute="centerY" id="72R-SF-b5m"/>
+                        <constraint firstItem="U39-ja-cca" firstAttribute="leading" secondItem="9Yu-Km-OqX" secondAttribute="leading" constant="10" id="ZNc-Zu-Csw"/>
+                        <constraint firstAttribute="trailing" secondItem="u1f-1Q-Bxk" secondAttribute="trailing" constant="10" id="aNF-Gw-Bdj"/>
+                        <constraint firstAttribute="height" constant="50" id="e6r-ID-tef"/>
+                        <constraint firstItem="u1f-1Q-Bxk" firstAttribute="top" secondItem="9Yu-Km-OqX" secondAttribute="top" id="f3h-04-8Kw"/>
+                        <constraint firstItem="u1f-1Q-Bxk" firstAttribute="centerY" secondItem="9Yu-Km-OqX" secondAttribute="centerY" id="k0z-F9-SSc"/>
+                    </constraints>
+                </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="STr-kM-TUf">
-                    <rect key="frame" x="0.0" y="70" width="600" height="530"/>
+                    <rect key="frame" x="0.0" y="70" width="600" height="480"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                 </tableView>
             </subviews>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="6z2-OI-PYf" secondAttribute="trailing" id="3lH-j3-pLn"/>
-                <constraint firstItem="STr-kM-TUf" firstAttribute="top" secondItem="6z2-OI-PYf" secondAttribute="bottom" id="3tv-Zg-fzd"/>
                 <constraint firstItem="6z2-OI-PYf" firstAttribute="leading" secondItem="5DB-aA-NTd" secondAttribute="leading" id="6Kg-nO-wXf"/>
-                <constraint firstAttribute="bottom" secondItem="STr-kM-TUf" secondAttribute="bottom" id="Can-q3-2u6"/>
                 <constraint firstItem="6z2-OI-PYf" firstAttribute="top" secondItem="5DB-aA-NTd" secondAttribute="top" constant="20" id="FpT-sc-l2k"/>
-                <constraint firstAttribute="trailing" secondItem="STr-kM-TUf" secondAttribute="trailing" id="GhX-V4-hdz"/>
-                <constraint firstItem="STr-kM-TUf" firstAttribute="leading" secondItem="5DB-aA-NTd" secondAttribute="leading" id="PYx-zM-epe"/>
+                <constraint firstAttribute="trailing" secondItem="9Yu-Km-OqX" secondAttribute="trailing" id="Iox-cr-2eM"/>
+                <constraint firstItem="STr-kM-TUf" firstAttribute="top" secondItem="6z2-OI-PYf" secondAttribute="bottom" id="LR6-T7-UZh"/>
+                <constraint firstAttribute="trailing" secondItem="STr-kM-TUf" secondAttribute="trailing" id="NiB-Ru-WsI"/>
                 <constraint firstItem="eTh-EI-VSX" firstAttribute="leading" secondItem="5DB-aA-NTd" secondAttribute="leading" id="QKA-7n-vC3"/>
+                <constraint firstAttribute="bottom" secondItem="9Yu-Km-OqX" secondAttribute="bottom" id="WJe-F7-9Sg"/>
+                <constraint firstItem="STr-kM-TUf" firstAttribute="leading" secondItem="5DB-aA-NTd" secondAttribute="leading" id="Z18-AJ-gud"/>
+                <constraint firstItem="9Yu-Km-OqX" firstAttribute="top" secondItem="STr-kM-TUf" secondAttribute="bottom" id="gdd-MA-HiB"/>
+                <constraint firstItem="9Yu-Km-OqX" firstAttribute="leading" secondItem="5DB-aA-NTd" secondAttribute="leading" id="hd1-f9-dPA"/>
                 <constraint firstAttribute="trailing" secondItem="eTh-EI-VSX" secondAttribute="trailing" id="oWU-bm-a6R"/>
                 <constraint firstItem="eTh-EI-VSX" firstAttribute="top" secondItem="5DB-aA-NTd" secondAttribute="top" id="zJS-dU-TV4"/>
             </constraints>
         </view>
     </objects>
-    <resources>
-        <image name="SharedAssets/add_white.png" width="96" height="96"/>
-        <image name="SharedAssets/arrow_back_white.png" width="96" height="96"/>
-        <image name="SharedAssets/arrow_forward_white.png" width="96" height="96"/>
-        <image name="SharedAssets/close_white.png" width="96" height="96"/>
-        <image name="SharedAssets/delete_white.png" width="96" height="96"/>
-        <image name="SharedAssets/more_vert_white.png" width="96" height="96"/>
-        <image name="SharedAssets/search_white.png" width="96" height="96"/>
-        <image name="DINPro-Light.ttf" width="0" height="0"/>
-        <image name="Verveine W01 Regular.ttf" width="0" height="0"/>
-        <image name="sketch_block_light.ttf" width="0" height="0"/>
-        <image name="DINPro-Regular_13937.ttf" width="0" height="0"/>
-        <image name="SharedAssets/Berg.png" width="462" height="503"/>
-        <image name="SharedAssets/Lamp.png" width="87" height="97"/>
-        <image name="SharedAssets/Lijn_bold.png" width="1181" height="24"/>
-        <image name="SharedAssets/Totem.png" width="342" height="601"/>
-        <image name="ufonts.com_din-lightitalic.ttf" width="0" height="0"/>
-        <image name="DIN-LightItalic.ttf" width="0" height="0"/>
-    </resources>
 </document>

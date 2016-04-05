@@ -51,6 +51,11 @@ namespace TotemAppIos {
 			btnMore.TouchUpInside+= btnMoreTouchUpInside;
 			btnSearch.TouchUpInside+= btnSearchTouchUpInside;
 			txtSearch.EditingChanged+= TxtSearchValueChangedHandler;
+
+			//button op verkeerde manier aangemaakt? want crash
+			btnVind.TouchUpInside += btnVindTouchUpInside;
+
+			_appController.NavigationController.GotoTotemResultEvent += gotoResultListHandler;
 		}
 
 		public override void ViewWillDisappear (bool animated) {
@@ -58,7 +63,12 @@ namespace TotemAppIos {
 			btnReturn.TouchUpInside-= btnReturnTouchUpInside;
 			btnMore.TouchUpInside-= btnMoreTouchUpInside;
 			btnSearch.TouchUpInside -= btnSearchTouchUpInside;
-			txtSearch.EditingChanged-= TxtSearchValueChangedHandler;
+			txtSearch.EditingChanged -= TxtSearchValueChangedHandler;
+
+			//button op verkeerde manier aangemaakt? want crash
+			btnVind.TouchUpInside -= btnVindTouchUpInside;
+
+			_appController.NavigationController.GotoTotemResultEvent -= gotoResultListHandler;
 		}
 		#endregion
 
@@ -74,6 +84,7 @@ namespace TotemAppIos {
 			imgReturn.Image = UIImage.FromBundle ("SharedAssets/arrow_back_white");
 			imgSearch.Image = UIImage.FromBundle ("SharedAssets/search_white");
 			imgMore.Image = UIImage.FromBundle ("SharedAssets/more_vert_white");
+			imgVind.Image = UIImage.FromBundle ("SharedAssets/arrow_forward_white");
 
 			txtSearch.Hidden=true;
 			txtSearch.TintColor = UIColor.White;
@@ -140,6 +151,10 @@ namespace TotemAppIos {
 			isShowingSelected = false;
 		}
 
+		void gotoResultListHandler () {
+			NavigationController.PushViewController (new TotemsResultViewController(),true);
+		}
+
 		void resetSelections() {
 			foreach (var eigenschap in _appController.Eigenschappen) 
 				eigenschap.selected = false;
@@ -160,6 +175,10 @@ namespace TotemAppIos {
 				tblEigenschappen.ReloadSections (new Foundation.NSIndexSet (0), UITableViewRowAnimation.Automatic);
 				isShowingSelected = !isShowingSelected;
 			}
+		}
+
+		void btnVindTouchUpInside (object sender, EventArgs e) {
+			_appController.CalculateResultlist(_appController.Eigenschappen);
 		}
 		#endregion
 	}

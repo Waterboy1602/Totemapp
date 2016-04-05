@@ -231,6 +231,7 @@ namespace TotemAppCore {
 		}
 
 		void FillAndSortDict(List<Eigenschap> checkboxList) {
+			TotemEigenschapDict = new Dictionary<Totem, int> ();
 			foreach (Eigenschap eig in checkboxList) {
 				if(eig.selected) {
 					List<Totem_eigenschap> toAdd = GetTotemsVanEigenschapsID (eig.eigenschapID);
