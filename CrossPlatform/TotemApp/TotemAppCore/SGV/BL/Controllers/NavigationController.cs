@@ -4,7 +4,6 @@ namespace TotemAppCore {
 	public class NavigationController {
 		#region delegates
 		public delegate void GoToPageDelegate();
-		public event GoToPageDelegate GotoMainEvent;
 		public event GoToPageDelegate GotoTotemListEvent;
 		public event GoToPageDelegate GotoTotemDetailEvent;
 		public event GoToPageDelegate GotoTotemResultEvent;

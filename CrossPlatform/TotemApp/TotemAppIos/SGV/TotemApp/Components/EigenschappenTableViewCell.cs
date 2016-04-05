@@ -31,6 +31,7 @@ namespace TotemAppIos {
 		public void setData() {
 			lblEigenschapName.Text = Eigenschap.name;
 			_checkBox = new BemCheckBox.BemCheckBox (new CoreGraphics.CGRect (0, 0, 25, 25), new MyBemCheckBoxDelegate(this));
+			//_checkBox.onFillColor = UIColor.FromRGB (0, 92, 157);
 			vwCheckBoxHolder.Add (_checkBox);
 			_checkBox.SetOn (Eigenschap.selected,false);
 		}

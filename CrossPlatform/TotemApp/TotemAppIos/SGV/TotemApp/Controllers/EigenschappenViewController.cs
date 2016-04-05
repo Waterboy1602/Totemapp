@@ -151,13 +151,15 @@ namespace TotemAppIos {
 		}
 
 		void toggleShowSelected() {
-			if (isShowingSelected)
+			if (isShowingSelected) {
 				(tblEigenschappen.Source as EigenschappenTableViewSource).Eigenschappen = _appController.FindEigenschapOpNaam (txtSearch.Text);
-			else
-				(tblEigenschappen.Source as EigenschappenTableViewSource).Eigenschappen = _appController.FindEigenschapOpNaam (txtSearch.Text).FindAll (x=>x.selected);
-			
-			tblEigenschappen.ReloadSections (new Foundation.NSIndexSet (0), UITableViewRowAnimation.Automatic);
-			isShowingSelected = !isShowingSelected;
+				tblEigenschappen.ReloadSections (new Foundation.NSIndexSet (0), UITableViewRowAnimation.Automatic);
+				isShowingSelected = !isShowingSelected;
+			} else if ((_appController.FindEigenschapOpNaam (txtSearch.Text).FindAll (x=>x.selected)).Count != 0) {
+				(tblEigenschappen.Source as EigenschappenTableViewSource).Eigenschappen = _appController.FindEigenschapOpNaam (txtSearch.Text).FindAll (x => x.selected);
+				tblEigenschappen.ReloadSections (new Foundation.NSIndexSet (0), UITableViewRowAnimation.Automatic);
+				isShowingSelected = !isShowingSelected;
+			}
 		}
 		#endregion
 	}

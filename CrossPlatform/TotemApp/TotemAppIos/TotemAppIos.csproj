@@ -87,6 +87,7 @@
     <InterfaceDefinition Include="SGV\TotemApp\Controllers\ChecklistViewController.xib" />
     <InterfaceDefinition Include="SGV\TotemApp\Controllers\TotemDetailViewController.xib" />
     <InterfaceDefinition Include="SGV\TotemApp\Controllers\ProfielenViewController.xib" />
+    <InterfaceDefinition Include="Resources\SGV\TotemApp\Components\ChecklistHeaderFooter.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -132,6 +133,7 @@
     <Compile Include="SGV\TotemApp\Controllers\ProfielenViewController.designer.cs">
       <DependentUpon>ProfielenViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="SGV\TotemApp\Components\ChecklistTableViewSource.cs" />
   </ItemGroup>
   <Import Project="..\TotemAppCore\TotemAppCore.projitems" Label="Shared" Condition="Exists('..\TotemAppCore\TotemAppCore.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
