@@ -86,11 +86,6 @@ namespace TotemAppIos {
 
 			imgMountain.Image = UIImage.FromBundle ("SharedAssets/Berg");
 			imgTotem.Image = UIImage.FromBundle ("SharedAssets/Totem");
-
-			btnTotems.RippleColor = UIColor.FromRGB (0, 68, 116);
-			btnEigenschappen.RippleColor = UIColor.FromRGB (0, 68, 116);
-			btnProfielen.RippleColor = UIColor.FromRGB (0, 68, 116);
-			btnChecklist.RippleColor = UIColor.FromRGB (0, 68, 116);
 		}
 
 		void btnTotemsTouchUpInsideHandler (object sender, EventArgs e)	{

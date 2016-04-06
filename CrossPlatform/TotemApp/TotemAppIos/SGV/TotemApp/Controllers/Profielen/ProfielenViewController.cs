@@ -32,8 +32,8 @@ namespace TotemAppIos {
 		public override void ViewDidAppear (bool animated) {
 			base.ViewDidAppear (animated);
 			btnReturn.TouchUpInside += btnReturnTouchUpInside;
-			btnAdd.TouchUpInside += deleteProfiles;
-			//btnDelete.TouchUpInside += deleteProfiles;
+			btnAdd.TouchUpInside += addProfileDialog;
+			btnDelete.TouchUpInside += deleteProfiles;
 			_appController.NavigationController.GotoProfileTotemListEvent += gotoProfileTotemHandler;
 		}
 
