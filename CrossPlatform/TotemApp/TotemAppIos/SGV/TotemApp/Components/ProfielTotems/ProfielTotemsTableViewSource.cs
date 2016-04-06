@@ -24,6 +24,8 @@ namespace TotemAppIos {
 			}
 		}
 
+		public bool check { get; set; }
+
 		public override UITableViewCell GetCell (UITableView tableView, Foundation.NSIndexPath indexPath) {
 			ProfielTotemsTableViewCell cell;
 
@@ -32,14 +34,13 @@ namespace TotemAppIos {
 				cell = ProfielTotemsTableViewCell.Create ();
 
 			cell.Totem = totems [indexPath.Row];
-			cell.RippleColor = UIColor.FromRGBA (200, 200, 200, 50);
 
 			//make sperator full width
 			cell.PreservesSuperviewLayoutMargins = false;
 			cell.SeparatorInset = UIEdgeInsets.Zero;
 			cell.LayoutMargins = UIEdgeInsets.Zero;
 
-			cell.setData ();
+			cell.setData (check);
 
 			return cell;
 		}
@@ -57,8 +58,12 @@ namespace TotemAppIos {
 		}
 
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath) {
-			//Console.WriteLine (totems[indexPath.Row].title);
-			_appController.ProfileTotemSelected (_appController.CurrentProfiel.name, totems[indexPath.Row].nid);
+			if(check)
+				(tableView.CellAt (indexPath) as ProfielTotemsTableViewCell).toggleCheckbox ();
+			else
+				_appController.ProfileTotemSelected (_appController.CurrentProfiel.name, totems[indexPath.Row].nid);
+			
+			tableView.DeselectRow (indexPath,true);
 		}
 	}
 }

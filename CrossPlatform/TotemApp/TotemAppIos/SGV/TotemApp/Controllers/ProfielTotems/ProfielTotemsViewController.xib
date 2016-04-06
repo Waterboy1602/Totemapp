@@ -15,7 +15,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfielTotemsViewController">
             <connections>
+                <outlet property="btnDelete" destination="R4a-BE-kt0" id="sg2-VT-YBU"/>
                 <outlet property="btnReturn" destination="Z2i-az-SXT" id="UVu-pJ-n52"/>
+                <outlet property="imgDelete" destination="UsR-i7-F6F" id="094-O4-mcO"/>
                 <outlet property="imgReturn" destination="J1f-CG-ZGh" id="boH-XR-eEO"/>
                 <outlet property="lblTitle" destination="2tI-99-s8R" id="Sjl-q5-3Vf"/>
                 <outlet property="tblTotems" destination="tFq-R7-nVm" id="BAc-U1-Yxj"/>

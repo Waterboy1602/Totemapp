@@ -74,7 +74,7 @@
                         <constraint firstAttribute="bottom" secondItem="oWO-9Z-8Le" secondAttribute="bottom" constant="15" id="ht4-sR-d2E"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HkJ-xr-dq0" customClass="MDButton">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HkJ-xr-dq0" customClass="UIButton">
                     <rect key="frame" x="50" y="193" width="220" height="51"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3G-07-O78">
@@ -91,7 +91,7 @@
                         <constraint firstItem="s3G-07-O78" firstAttribute="centerX" secondItem="HkJ-xr-dq0" secondAttribute="centerX" id="KWW-nK-7A3"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tpf-qq-QTm" customClass="MDButton">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tpf-qq-QTm" customClass="UIButton">
                     <rect key="frame" x="50" y="254" width="220" height="51"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RlJ-ST-geN">
@@ -108,7 +108,7 @@
                         <constraint firstItem="RlJ-ST-geN" firstAttribute="top" secondItem="Tpf-qq-QTm" secondAttribute="top" constant="15" id="qTw-D3-7IT"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4zS-Ta-aic" customClass="MDButton">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4zS-Ta-aic" customClass="UIButton">
                     <rect key="frame" x="50" y="315" width="220" height="51"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hyt-ea-aK4">

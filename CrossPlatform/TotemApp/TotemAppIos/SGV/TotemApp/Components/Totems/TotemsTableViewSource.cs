@@ -32,7 +32,6 @@ namespace TotemAppIos {
 					cell = TotemsTableViewCell.Create ();
 
 			cell.Totem = totems [indexPath.Row];
-			cell.RippleColor = UIColor.FromRGBA (200, 200, 200, 50);
 
 			//make sperator full width
 			cell.PreservesSuperviewLayoutMargins = false;
@@ -58,6 +57,7 @@ namespace TotemAppIos {
 
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath) {
 			_appController.TotemSelected (totems[indexPath.Row].nid);
+			tableView.DeselectRow (indexPath,true);
 		}
 		#endregion
 	}

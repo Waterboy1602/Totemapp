@@ -15,6 +15,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfielenViewController">
             <connections>
+                <outlet property="addBtnWidth" destination="wBO-Tw-mgv" id="GlX-Vo-eAn"/>
                 <outlet property="btnAdd" destination="6Uq-JQ-nQq" id="PvS-hm-bTO"/>
                 <outlet property="btnDelete" destination="ZDs-86-vtS" id="rke-rq-Ing"/>
                 <outlet property="btnReturn" destination="zwu-Qs-ReA" id="kFT-Zb-ixC"/>

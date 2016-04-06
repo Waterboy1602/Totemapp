@@ -6,7 +6,7 @@ using MaterialControls;
 using TotemAppCore;
 
 namespace TotemAppIos {
-	public partial class TotemsTableViewCell : MDTableViewCell {
+	public partial class TotemsTableViewCell : UITableViewCell {
 		public static readonly NSString Key = new NSString ("TotemsTableViewCell");
 		public static readonly UINib Nib;
 		public Totem Totem { get; set; }

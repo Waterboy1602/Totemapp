@@ -10,6 +10,7 @@ namespace TotemAppIos {
 	public partial class ProfielenViewController : UIViewController	{
 
 		AppController _appController = AppController.Instance;
+		List<Profiel> profielen;
 
 		public ProfielenViewController () : base ("ProfielenViewController", null) {}
 
@@ -22,7 +23,6 @@ namespace TotemAppIos {
 
 		public override void DidReceiveMemoryWarning () {
 			base.DidReceiveMemoryWarning ();
-			// Release any cached data, images, etc that aren't in use.
 		}
 
 		public override UIStatusBarStyle PreferredStatusBarStyle () {
@@ -89,7 +89,8 @@ namespace TotemAppIos {
 			imgReturn.Image = UIImage.FromBundle ("SharedAssets/arrow_back_white");
 			imgAdd.Image = UIImage.FromBundle ("SharedAssets/add_white");
 			imgDelete.Image = UIImage.FromBundle ("SharedAssets/delete_white");
-			tblProfielen.Source = new ProfielenTableViewSource (_appController.DistinctProfielen);
+			profielen = _appController.DistinctProfielen;
+			tblProfielen.Source = new ProfielenTableViewSource (profielen);
 			var empty = _appController.DistinctProfielen.Count == 0;
 			tblProfielen.Hidden = empty;
 			btnDelete.Hidden = empty;
@@ -97,9 +98,10 @@ namespace TotemAppIos {
 		}
 
 		private void updateListSource() {
-			(tblProfielen.Source as ProfielenTableViewSource).Profielen = _appController.DistinctProfielen;
+			profielen = _appController.DistinctProfielen;
+			(tblProfielen.Source as ProfielenTableViewSource).Profielen = profielen;
 			tblProfielen.ReloadSections (new Foundation.NSIndexSet (0), UITableViewRowAnimation.None);
-			var empty = _appController.DistinctProfielen.Count == 0;
+			var empty = profielen.Count == 0;
 			tblProfielen.Hidden = empty;
 			btnDelete.Hidden = empty;
 		}
@@ -113,7 +115,12 @@ namespace TotemAppIos {
 			btnReturn.TouchUpInside -= btnReturnTouchUpInside;
 			btnReturn.TouchUpInside += exitDelete;
 			btnAdd.Hidden = true;
+			addBtnWidth.Constant = 0;
 			lblTitle.Hidden = true;
+			((ProfielenTableViewSource)tblProfielen.Source).check = true;
+			tblProfielen.ReloadSections (new Foundation.NSIndexSet (0), UITableViewRowAnimation.None);
+			btnDelete.TouchUpInside -= deleteProfiles;
+			btnDelete.TouchUpInside += deleteDialog;
 		}
 
 		void exitDelete(object sender, EventArgs e) {
@@ -121,7 +128,35 @@ namespace TotemAppIos {
 			btnReturn.TouchUpInside -= exitDelete;
 			btnReturn.TouchUpInside += btnReturnTouchUpInside;
 			btnAdd.Hidden = false;
+			addBtnWidth.Constant = 50;
 			lblTitle.Hidden = false;
+			this.profielen = _appController.DistinctProfielen;
+			(tblProfielen.Source as ProfielenTableViewSource).Profielen = profielen;
+			((ProfielenTableViewSource)tblProfielen.Source).check = false;
+			tblProfielen.ReloadSections (new Foundation.NSIndexSet (0), UITableViewRowAnimation.None);
+			btnDelete.TouchUpInside -= deleteDialog;
+			btnDelete.TouchUpInside += deleteProfiles;
+		}
+
+		void deleteDialog(object sender, EventArgs e) {
+			//Create Alert
+			var okCancelAlertController = UIAlertController.Create(null, "Geselecteerde profielen verwijderen?", UIAlertControllerStyle.Alert);
+
+			//Add Actions
+			okCancelAlertController.AddAction(UIAlertAction.Create("Ja", UIAlertActionStyle.Default, alert => deleteSelected(sender, e)));
+			okCancelAlertController.AddAction(UIAlertAction.Create("Nee", UIAlertActionStyle.Cancel, null));
+
+			//Present Alert
+			PresentViewController(okCancelAlertController, true, null);
+		}
+
+		void deleteSelected(object sender, EventArgs e) {
+			var deleteList = profielen.FindAll (x => x.selected);
+			foreach(Profiel p in deleteList)
+				_appController.DeleteProfile (p.name);
+
+			updateListSource ();
+			exitDelete (sender, e);
 		}
 	}
 }

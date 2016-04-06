@@ -15,16 +15,16 @@ namespace TotemAppIos
 	partial class MainViewController
 	{
 		[Outlet]
-		MaterialControls.MDButton btnChecklist { get; set; }
+		UIKit.UIButton btnChecklist { get; set; }
 
 		[Outlet]
-		MaterialControls.MDButton btnEigenschappen { get; set; }
+		UIKit.UIButton btnEigenschappen { get; set; }
 
 		[Outlet]
-		MaterialControls.MDButton btnProfielen { get; set; }
+		UIKit.UIButton btnProfielen { get; set; }
 
 		[Outlet]
-		MaterialControls.MDButton btnTotems { get; set; }
+		UIKit.UIButton btnTotems { get; set; }
 
 		[Outlet]
 		UIKit.UIImageView imgMountain { get; set; }

@@ -3,6 +3,7 @@ using TotemAppCore;
 using UIKit;
 using System.Collections.Generic;
 using Foundation;
+using System.Runtime.InteropServices;
 
 namespace TotemAppIos {
 	public class ProfielenTableViewSource : UITableViewSource {
@@ -23,6 +24,8 @@ namespace TotemAppIos {
 			}
 		}
 
+		public bool check { get; set; }
+
 		public override UITableViewCell GetCell (UITableView tableView, Foundation.NSIndexPath indexPath) {
 			ProfielenTableViewCell cell;
 
@@ -31,14 +34,13 @@ namespace TotemAppIos {
 				cell = ProfielenTableViewCell.Create ();
 
 			cell.Profiel = profielen [indexPath.Row];
-			cell.RippleColor = UIColor.FromRGBA (200, 200, 200, 50);
 
 			//make sperator full width
 			cell.PreservesSuperviewLayoutMargins = false;
 			cell.SeparatorInset = UIEdgeInsets.Zero;
 			cell.LayoutMargins = UIEdgeInsets.Zero;
 
-			cell.setData ();
+			cell.setData (check);
 
 			return cell;
 		}
@@ -56,7 +58,14 @@ namespace TotemAppIos {
 		}
 
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath) {
-			_appController.ProfileSelected (profielen[indexPath.Row].name);
+			if(check)
+				(tableView.CellAt (indexPath) as ProfielenTableViewCell).toggleCheckbox ();
+			else
+				_appController.ProfileSelected (profielen[indexPath.Row].name);
+
+			tableView.DeselectRow (indexPath,true);
 		}
+
+
 	}
 }
