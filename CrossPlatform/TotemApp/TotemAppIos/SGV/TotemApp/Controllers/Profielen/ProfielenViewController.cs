@@ -92,8 +92,8 @@ namespace TotemAppIos {
 			tblProfielen.Source = new ProfielenTableViewSource (_appController.DistinctProfielen);
 			var empty = _appController.DistinctProfielen.Count == 0;
 			tblProfielen.Hidden = empty;
-			lblEmpty.Hidden = !empty;
 			btnDelete.Hidden = empty;
+			tblProfielen.TableFooterView = new UIView ();
 		}
 
 		private void updateListSource() {
@@ -101,7 +101,6 @@ namespace TotemAppIos {
 			tblProfielen.ReloadSections (new Foundation.NSIndexSet (0), UITableViewRowAnimation.None);
 			var empty = _appController.DistinctProfielen.Count == 0;
 			tblProfielen.Hidden = empty;
-			lblEmpty.Hidden = !empty;
 			btnDelete.Hidden = empty;
 		}
 

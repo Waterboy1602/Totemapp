@@ -30,6 +30,12 @@ namespace TotemAppIos {
 				cell = EigenschappenTableViewCell.Create ();
 
 			cell.Eigenschap = eigenschappen [indexPath.Row];
+
+			//make sperator full width
+			cell.PreservesSuperviewLayoutMargins = false;
+			cell.SeparatorInset = UIEdgeInsets.Zero;
+			cell.LayoutMargins = UIEdgeInsets.Zero;
+
 			cell.setData ();
 
 

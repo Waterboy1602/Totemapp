@@ -36,6 +36,12 @@ namespace TotemAppIos {
 			cell.Totem = totems [indexPath.Row];
 			cell.Freq = Dict [totems [indexPath.Row]];
 			cell.RippleColor = UIColor.FromRGBA (200, 200, 200, 50);
+
+			//make sperator full width
+			cell.PreservesSuperviewLayoutMargins = false;
+			cell.SeparatorInset = UIEdgeInsets.Zero;
+			cell.LayoutMargins = UIEdgeInsets.Zero;
+
 			cell.setData ();
 
 			return cell;

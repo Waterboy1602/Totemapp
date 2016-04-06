@@ -5,6 +5,9 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <customFonts key="customFonts">
+        <mutableArray key="DINPro-Light.ttf">
+            <string>DINPro-Light</string>
+        </mutableArray>
         <mutableArray key="DINPro-Regular_13937.ttf">
             <string>DINPro-Regular</string>
         </mutableArray>
@@ -88,6 +91,12 @@
                         <constraint firstItem="Z2i-az-SXT" firstAttribute="leading" secondItem="4kq-0H-HOC" secondAttribute="leading" id="yoI-Z5-BwN"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Geen totems om weer te geven" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="izh-zJ-vYu">
+                    <rect key="frame" x="185" y="85" width="231" height="22"/>
+                    <fontDescription key="fontDescription" name="DINPro-Light" family="DINPro" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tFq-R7-nVm">
                     <rect key="frame" x="0.0" y="70" width="600" height="530"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -95,8 +104,10 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="izh-zJ-vYu" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="632-Cf-Pax"/>
                 <constraint firstAttribute="trailing" secondItem="4kq-0H-HOC" secondAttribute="trailing" id="7uh-o0-dyI"/>
                 <constraint firstAttribute="trailing" secondItem="tFq-R7-nVm" secondAttribute="trailing" id="CaP-xB-FOJ"/>
+                <constraint firstItem="izh-zJ-vYu" firstAttribute="top" secondItem="4kq-0H-HOC" secondAttribute="bottom" constant="15" id="LEO-16-CML"/>
                 <constraint firstAttribute="trailing" secondItem="VV2-8d-YoP" secondAttribute="trailing" id="Mp1-ZI-5VU"/>
                 <constraint firstAttribute="bottom" secondItem="tFq-R7-nVm" secondAttribute="bottom" id="O54-44-3Nw"/>
                 <constraint firstItem="tFq-R7-nVm" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="aSS-0F-LZL"/>

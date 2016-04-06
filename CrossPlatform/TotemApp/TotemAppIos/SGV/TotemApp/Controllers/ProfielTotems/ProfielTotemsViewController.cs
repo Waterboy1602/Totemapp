@@ -30,7 +30,9 @@ namespace TotemAppIos {
 		public override void ViewDidAppear (bool animated) {
 			base.ViewDidAppear (animated);
 			if (tblTotems.Source != null) {
-				(tblTotems.Source as ProfielTotemsTableViewSource).Totems = _appController.GetTotemsFromProfiel (_appController.CurrentProfiel.name);
+				var list = _appController.GetTotemsFromProfiel (_appController.CurrentProfiel.name);
+				tblTotems.Hidden = list.Count == 0;
+				(tblTotems.Source as ProfielTotemsTableViewSource).Totems = list;
 				tblTotems.ReloadSections (new Foundation.NSIndexSet (0), UITableViewRowAnimation.None);
 			}
 			btnReturn.TouchUpInside += btnReturnTouchUpInside;
@@ -48,7 +50,12 @@ namespace TotemAppIos {
 
 			imgReturn.Image = UIImage.FromBundle ("SharedAssets/arrow_back_white");
 
-			tblTotems.Source = new ProfielTotemsTableViewSource (_appController.GetTotemsFromProfiel (_appController.CurrentProfiel.name));
+			var list = _appController.GetTotemsFromProfiel (_appController.CurrentProfiel.name);
+
+			tblTotems.Hidden = list.Count == 0;
+
+			tblTotems.Source = new ProfielTotemsTableViewSource (list);
+			tblTotems.TableFooterView = new UIView ();
 		}
 			
 		void gotoTotemDetailHandler() {
