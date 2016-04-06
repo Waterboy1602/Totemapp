@@ -120,7 +120,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CvG-OU-4pN" userLabel="Lbl Head">
-                                    <rect key="frame" x="68" y="10" width="522" height="48"/>
+                                    <rect key="frame" x="73" y="10" width="517" height="48"/>
                                     <attributedString key="attributedText">
                                         <fragment content="Label ">
                                             <attributes>
@@ -148,7 +148,7 @@
                                 <constraint firstItem="4Dq-of-Y8a" firstAttribute="top" secondItem="nDL-bp-by6" secondAttribute="bottom" constant="5" id="Ijp-q7-iI7"/>
                                 <constraint firstItem="Bm6-ch-hFJ" firstAttribute="leading" secondItem="vqq-5r-YUH" secondAttribute="leading" constant="10" id="Vmp-4G-Dli"/>
                                 <constraint firstItem="CvG-OU-4pN" firstAttribute="top" secondItem="vqq-5r-YUH" secondAttribute="top" constant="10" id="h3U-3z-vWE"/>
-                                <constraint firstItem="CvG-OU-4pN" firstAttribute="leading" secondItem="Bm6-ch-hFJ" secondAttribute="trailing" id="jgJ-Cl-lt0"/>
+                                <constraint firstItem="CvG-OU-4pN" firstAttribute="leading" secondItem="Bm6-ch-hFJ" secondAttribute="trailing" constant="5" id="jgJ-Cl-lt0"/>
                                 <constraint firstAttribute="trailing" secondItem="CvG-OU-4pN" secondAttribute="trailing" constant="10" id="nWr-FA-1qa"/>
                                 <constraint firstAttribute="trailing" secondItem="nDL-bp-by6" secondAttribute="trailing" constant="10" id="pGL-lm-B8x"/>
                                 <constraint firstAttribute="trailing" secondItem="4Dq-of-Y8a" secondAttribute="trailing" constant="10" id="rCb-jV-YGE"/>

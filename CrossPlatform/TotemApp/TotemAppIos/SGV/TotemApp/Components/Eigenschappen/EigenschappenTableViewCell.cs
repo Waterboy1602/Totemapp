@@ -10,10 +10,9 @@ namespace TotemAppIos {
 	public partial class EigenschappenTableViewCell : UITableViewCell {
 		public static readonly NSString Key = new NSString ("EigenschappenTableViewCell");
 		public static readonly UINib Nib;
-		public Eigenschap Eigenschap {
-			get;
-			set;
-		}
+		public Eigenschap Eigenschap { get; set; }
+
+		AppController _appController = AppController.Instance;
 
 		static EigenschappenTableViewCell () {
 			Nib = UINib.FromName ("EigenschappenTableViewCell", NSBundle.MainBundle);
@@ -39,10 +38,13 @@ namespace TotemAppIos {
 		public void toggleCheckbox() {
 			_checkBox.SetOn (!_checkBox.On,true);
 			Eigenschap.selected = _checkBox.On;
+			_appController.FireUpdateEvent ();
+
 		}
 
 		class MyBemCheckBoxDelegate : BemCheckBoxDelegate {
 			EigenschappenTableViewCell cell;
+			AppController _appController = AppController.Instance;
 
 			public MyBemCheckBoxDelegate(EigenschappenTableViewCell cell):base() {
 				this.cell = cell;
@@ -50,6 +52,7 @@ namespace TotemAppIos {
 
 			public override void DidTapCheckBox(bool checkBoxIsOn) {
 				cell.Eigenschap.selected = checkBoxIsOn;
+				_appController.FireUpdateEvent ();
 			}
 		}
 	}

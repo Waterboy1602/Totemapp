@@ -2,6 +2,7 @@
 
 using UIKit;
 using TotemAppCore;
+using CoreGraphics;
 
 namespace TotemAppIos {
 	public partial class TotemListViewController : UIViewController {
@@ -110,6 +111,7 @@ namespace TotemAppIos {
 		void TxtSearchValueChangedHandler (object sender, EventArgs e) {
 			(tblTotems.Source as TotemsTableViewSource).Totems = _appController.FindTotemOpNaam ((sender as UITextField).Text);
 			tblTotems.ReloadSections (new Foundation.NSIndexSet (0), UITableViewRowAnimation.Automatic);
+			tblTotems.ScrollRectToVisible (new CGRect(0,0,1,1), true);
 		}
 
 		void gotoTotemDetailHandler() {

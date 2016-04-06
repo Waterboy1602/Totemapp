@@ -5,7 +5,7 @@ using UIKit;
 using Foundation;
 
 namespace TotemAppIos {
-	public class EigenschappenTableViewSource:UITableViewSource {
+	public class EigenschappenTableViewSource : UITableViewSource {
 		
 		public EigenschappenTableViewSource (List<Eigenschap> eigenschappen) {
 			this.eigenschappen = eigenschappen;
@@ -50,7 +50,6 @@ namespace TotemAppIos {
 
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath) {
 			(tableView.CellAt (indexPath) as EigenschappenTableViewCell).toggleCheckbox ();
-			Console.WriteLine (eigenschappen[indexPath.Row].name);
 			tableView.DeselectRow (indexPath,true);
 		}
 		#endregion

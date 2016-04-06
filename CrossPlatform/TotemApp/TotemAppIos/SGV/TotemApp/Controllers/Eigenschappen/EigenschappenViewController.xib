@@ -17,6 +17,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EigenschappenViewController">
             <connections>
+                <outlet property="bottomBarHeight" destination="e6r-ID-tef" id="K0x-ZB-qo0"/>
                 <outlet property="btnMore" destination="EFI-Tt-aAe" id="wlw-8k-4TU"/>
                 <outlet property="btnReturn" destination="UgO-8V-ohQ" id="chK-5G-oWR"/>
                 <outlet property="btnSearch" destination="VDl-dA-zjN" id="f2i-gV-SB9"/>
@@ -30,6 +31,7 @@
                 <outlet property="tblEigenschappen" destination="STr-kM-TUf" id="OU9-00-1hf"/>
                 <outlet property="txtSearch" destination="sNK-5N-ksf" id="MxX-N8-sky"/>
                 <outlet property="view" destination="5DB-aA-NTd" id="3qV-wY-T48"/>
+                <outlet property="vwBottomBar" destination="9Yu-Km-OqX" id="CBG-NH-5BA"/>
                 <outlet property="vwSearchBar" destination="6z2-OI-PYf" id="jSE-o1-Skk"/>
             </connections>
         </placeholder>

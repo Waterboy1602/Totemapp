@@ -13,6 +13,9 @@ namespace TotemAppCore {
 		static readonly AppController _instance = new AppController();
 		readonly Database database = DatabaseHelper.GetInstance ();
 
+		public delegate void Update();
+		public event Update UpdateCounter;
+
 		List<Totem> _totems;
 		List<Eigenschap> _eigenschappen;
 		List<Profiel> _profielen;
@@ -79,6 +82,11 @@ namespace TotemAppCore {
 		#endregion
 
 		#region public methods
+
+		public void FireUpdateEvent() {
+			if (UpdateCounter != null)
+				UpdateCounter ();
+		}
 
 		//returns totem-object with given id
 		public Totem GetTotemOnID(int idx) {

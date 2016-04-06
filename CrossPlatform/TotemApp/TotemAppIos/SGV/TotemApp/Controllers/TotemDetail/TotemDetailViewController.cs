@@ -74,7 +74,7 @@ namespace TotemAppIos {
 			title_synonyms.SetAttributes (titleAttributes.Dictionary, new NSRange (0, _appController.CurrentTotem.title.Length));
 			title_synonyms.SetAttributes (synonymsAttributes.Dictionary, new NSRange (_appController.CurrentTotem.title.Length, (title_synonyms.Length-_appController.CurrentTotem.title.Length)));
 
-			lblNumber.Text = _appController.CurrentTotem.number + ". ";
+			lblNumber.Text = _appController.CurrentTotem.number + ".";
 			lblHead.AttributedText = title_synonyms;
 			lblBody.Text = _appController.CurrentTotem.body;
 			imgLine.Image = UIImage.FromBundle ("SharedAssets/Lijn_bold");

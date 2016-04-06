@@ -3,6 +3,8 @@
 using UIKit;
 
 using TotemAppCore;
+using CoreGraphics;
+using System.Threading;
 
 namespace TotemAppIos {
 	public partial class EigenschappenViewController : UIViewController	{
@@ -51,10 +53,9 @@ namespace TotemAppIos {
 			btnMore.TouchUpInside+= btnMoreTouchUpInside;
 			btnSearch.TouchUpInside+= btnSearchTouchUpInside;
 			txtSearch.EditingChanged+= TxtSearchValueChangedHandler;
-
-			//button op verkeerde manier aangemaakt? want crash
 			btnVind.TouchUpInside += btnVindTouchUpInside;
 
+			_appController.UpdateCounter += updateCounter;
 			_appController.NavigationController.GotoTotemResultEvent += gotoResultListHandler;
 		}
 
@@ -64,10 +65,9 @@ namespace TotemAppIos {
 			btnMore.TouchUpInside-= btnMoreTouchUpInside;
 			btnSearch.TouchUpInside -= btnSearchTouchUpInside;
 			txtSearch.EditingChanged -= TxtSearchValueChangedHandler;
-
-			//button op verkeerde manier aangemaakt? want crash
 			btnVind.TouchUpInside -= btnVindTouchUpInside;
 
+			_appController.UpdateCounter -= updateCounter;
 			_appController.NavigationController.GotoTotemResultEvent -= gotoResultListHandler;
 		}
 		#endregion
@@ -85,6 +85,8 @@ namespace TotemAppIos {
 			imgSearch.Image = UIImage.FromBundle ("SharedAssets/search_white");
 			imgMore.Image = UIImage.FromBundle ("SharedAssets/more_vert_white");
 			imgVind.Image = UIImage.FromBundle ("SharedAssets/arrow_forward_white");
+
+			bottomBarHeight.Constant = 0;
 
 			txtSearch.Hidden=true;
 			txtSearch.TintColor = UIColor.White;
@@ -112,7 +114,7 @@ namespace TotemAppIos {
 
 			actionSheetAlert.AddAction(UIAlertAction.Create(isShowingSelected?"Toon volledige lijst":"Toon enkel selectie",UIAlertActionStyle.Default, (action) => toggleShowSelected()));
 
-			actionSheetAlert.AddAction(UIAlertAction.Create("Annuleer",UIAlertActionStyle.Cancel, (action) => Console.WriteLine ("Cancel button pressed.")));
+			actionSheetAlert.AddAction(UIAlertAction.Create("Annuleer",UIAlertActionStyle.Cancel, null));
 
 			// Required for iPad - You must specify a source for the Action Sheet since it is
 			// displayed as a popover
@@ -148,6 +150,7 @@ namespace TotemAppIos {
 		void TxtSearchValueChangedHandler (object sender, EventArgs e) {
 			(tblEigenschappen.Source as EigenschappenTableViewSource).Eigenschappen = _appController.FindEigenschapOpNaam ((sender as UITextField).Text);
 			tblEigenschappen.ReloadSections (new Foundation.NSIndexSet (0), UITableViewRowAnimation.Automatic);
+			tblEigenschappen.ScrollRectToVisible (new CGRect(0,0,1,1), false);
 			isShowingSelected = false;
 		}
 
@@ -162,7 +165,9 @@ namespace TotemAppIos {
 			txtSearch.Text = "";
 			TxtSearchValueChangedHandler (txtSearch,null);
 			txtSearch.ResignFirstResponder ();
+			tblEigenschappen.ScrollRectToVisible (new CGRect(0,0,1,1), true);
 			isShowingSelected = false;
+			_appController.FireUpdateEvent ();
 		}
 
 		void toggleShowSelected() {
@@ -175,6 +180,15 @@ namespace TotemAppIos {
 				tblEigenschappen.ReloadSections (new Foundation.NSIndexSet (0), UITableViewRowAnimation.Automatic);
 				isShowingSelected = !isShowingSelected;
 			}
+		}
+
+		void updateCounter() {
+			int count = _appController.Eigenschappen.FindAll (x => x.selected).Count;
+			lblNumberSelected.Text = count + " geselecteerd";
+			if(count > 0)
+				bottomBarHeight.Constant = 50;
+			else
+				bottomBarHeight.Constant = 0;
 		}
 
 		void btnVindTouchUpInside (object sender, EventArgs e) {

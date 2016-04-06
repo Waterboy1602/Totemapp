@@ -13,6 +13,9 @@ namespace TotemAppIos
 	partial class EigenschappenViewController
 	{
 		[Outlet]
+		UIKit.NSLayoutConstraint bottomBarHeight { get; set; }
+
+		[Outlet]
 		UIKit.UIButton btnMore { get; set; }
 
 		[Outlet]
@@ -49,6 +52,9 @@ namespace TotemAppIos
 		UIKit.UITextField txtSearch { get; set; }
 
 		[Outlet]
+		UIKit.UIView vwBottomBar { get; set; }
+
+		[Outlet]
 		UIKit.UIView vwSearchBar { get; set; }
 		
 		void ReleaseDesignerOutlets ()
@@ -68,6 +74,11 @@ namespace TotemAppIos
 				btnSearch = null;
 			}
 
+			if (btnVind != null) {
+				btnVind.Dispose ();
+				btnVind = null;
+			}
+
 			if (imgMore != null) {
 				imgMore.Dispose ();
 				imgMore = null;
@@ -81,6 +92,16 @@ namespace TotemAppIos
 			if (imgSearch != null) {
 				imgSearch.Dispose ();
 				imgSearch = null;
+			}
+
+			if (imgVind != null) {
+				imgVind.Dispose ();
+				imgVind = null;
+			}
+
+			if (lblNumberSelected != null) {
+				lblNumberSelected.Dispose ();
+				lblNumberSelected = null;
 			}
 
 			if (lblTitle != null) {
@@ -103,19 +124,14 @@ namespace TotemAppIos
 				vwSearchBar = null;
 			}
 
-			if (lblNumberSelected != null) {
-				lblNumberSelected.Dispose ();
-				lblNumberSelected = null;
+			if (vwBottomBar != null) {
+				vwBottomBar.Dispose ();
+				vwBottomBar = null;
 			}
 
-			if (imgVind != null) {
-				imgVind.Dispose ();
-				imgVind = null;
-			}
-
-			if (btnVind != null) {
-				btnVind.Dispose ();
-				btnVind = null;
+			if (bottomBarHeight != null) {
+				bottomBarHeight.Dispose ();
+				bottomBarHeight = null;
 			}
 		}
 	}
