@@ -98,6 +98,7 @@ namespace TotemAppIos {
 			UIColor color = UIColor.White;
 			txtSearch.AttributedPlaceholder = new Foundation.NSAttributedString("Zoek eigenschap",foregroundColor: color);
 			tblEigenschappen.Source = new EigenschappenTableViewSource (_appController.Eigenschappen);
+			tblEigenschappen.TableFooterView = new UIView ();
 		}
 
 		void btnReturnTouchUpInside (object sender, EventArgs e) {

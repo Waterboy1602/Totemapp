@@ -53,22 +53,29 @@ namespace TotemAppIos {
 			else
 				imgAction.Image = UIImage.FromBundle ("SharedAssets/delete_white");
 
-			var paragraphStyle = new NSMutableParagraphStyle ();
-			paragraphStyle.LineSpacing = 15;
+			var paragraphStyleTitle = new NSMutableParagraphStyle ();
+			paragraphStyleTitle.LineSpacing = 15;
+
+			var paragraphStyleSyn = new NSMutableParagraphStyle ();
+			paragraphStyleSyn.LineSpacing = 20;
+
+
 
 			var titleAttributes = new UIStringAttributes {
 				Font = UIFont.FromName("VerveineW01-Regular", 35f),
-				ParagraphStyle = paragraphStyle	
+				ParagraphStyle = paragraphStyleTitle	
 			};
 
 			var synonymsAttributes = new UIStringAttributes {
 				Font = UIFont.FromName("DIN-LightItalic", 17f),
-				ParagraphStyle = paragraphStyle					
+				ParagraphStyle = paragraphStyleSyn					
 			};
 
 			var content = _appController.CurrentTotem.title;
 			if(_appController.CurrentTotem.synonyms != null)
 				content += " - " + _appController.CurrentTotem.synonyms;
+
+			content += "\n";
 			
 			var title_synonyms = new NSMutableAttributedString(content);
 			title_synonyms.SetAttributes (titleAttributes.Dictionary, new NSRange (0, _appController.CurrentTotem.title.Length));
@@ -76,6 +83,7 @@ namespace TotemAppIos {
 
 			lblNumber.Text = _appController.CurrentTotem.number + ".";
 			lblHead.AttributedText = title_synonyms;
+
 			lblBody.Text = _appController.CurrentTotem.body;
 			imgLine.Image = UIImage.FromBundle ("SharedAssets/Lijn_bold");
 

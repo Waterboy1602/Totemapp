@@ -83,6 +83,7 @@ namespace TotemAppIos {
 			txtSearch.AttributedPlaceholder = new Foundation.NSAttributedString("Zoek totem",foregroundColor: color);
 
 			tblTotems.Source = new TotemsTableViewSource (_appController.Totems);
+			tblTotems.TableFooterView = new UIView ();
 		}
 
 		void btnReturnTouchUpInside (object sender, EventArgs e) {

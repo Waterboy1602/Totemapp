@@ -157,6 +157,10 @@
       <DependentUpon>TotemsResultViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="SGV\TotemApp\Components\TotemsResult\TotemsResultTableViewSource.cs" />
+    <Compile Include="PaddingLabel.cs" />
+    <Compile Include="PaddingLabel.designer.cs">
+      <DependentUpon>PaddingLabel.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="..\TotemAppCore\TotemAppCore.projitems" Label="Shared" Condition="Exists('..\TotemAppCore\TotemAppCore.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
