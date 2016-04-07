@@ -10,6 +10,8 @@ namespace TotemAppIos
 		public static NSString _key = new NSString ("IndentTableViewCell");
 		public static UINib Nib;
 
+		public nfloat cellHeight { get; set; }
+
 		public override NSString Key { 
 			get {
 				return _key;
@@ -32,6 +34,7 @@ namespace TotemAppIos
 		public override void setData(string s) {
 			lblBulletPoint.Text = "\u25EF";
 			lblIndent.Text = s;
+			cellHeight = lblIndent.Frame.Height;
 		}
 	}
 }

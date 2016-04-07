@@ -42,6 +42,9 @@ namespace TotemAppIos {
 
 			imgReturn.Image = UIImage.FromBundle ("SharedAssets/arrow_back_white");
 
+
+			//tblChecklist.RowHeight = UITableView.AutomaticDimension;
+			//tblChecklist.EstimatedRowHeight = 40;
 			ExtrectDataFromXML ();
 			tblChecklist.Source = new ChecklistTableViewSource (tableData);
 
