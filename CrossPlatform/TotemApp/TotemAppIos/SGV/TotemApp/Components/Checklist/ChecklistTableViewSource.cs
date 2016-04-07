@@ -2,6 +2,7 @@
 using UIKit;
 using System.Collections.Generic;
 using Foundation;
+using System.Drawing;
 
 namespace TotemAppIos {
 	public class ChecklistTableViewSource : UITableViewSource {
@@ -52,6 +53,7 @@ namespace TotemAppIos {
 			}
 
 			cell.setData (content);
+			cell.SetNeedsLayout ();
 
 			return cell;
 		}
@@ -60,9 +62,12 @@ namespace TotemAppIos {
 			return dict.Count;
 		}
 
-		/*public override nfloat GetHeightForRow (UITableView tableView, NSIndexPath indexPath) {
-			return 38.0f;
-		}*/
+		public override nfloat GetHeightForRow (UITableView tableView, NSIndexPath indexPath) {
+			string item = dict [indexPath.Row];
+			SizeF size = new SizeF ((float)tableView.Bounds.Width - 40, float.MaxValue);
+			nfloat height = UIStringDrawing.StringSize (item, UIFont.FromName("DINPro-Light", 15), size, UILineBreakMode.WordWrap).Height + 20;
+			return height;
+		}
 
 		public override nint NumberOfSections (UITableView tableView) {
 			return 1;
