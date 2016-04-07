@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="DINPro-Regular_13937.ttf">
+            <string>DINPro-Regular</string>
+            <string>DINPro-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="44" id="cxk-wN-pdQ" customClass="IndentTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cxk-wN-pdQ" id="YTl-1W-gDM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="254" verticalHuggingPriority="253" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" text="o" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mjk-ts-2L7">
+                        <rect key="frame" x="43" y="11" width="8" height="20"/>
+                        <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="15"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vec-GJ-Cj5">
+                        <rect key="frame" x="66" y="11" width="241" height="20"/>
+                        <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="15"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="vec-GJ-Cj5" firstAttribute="leading" secondItem="Mjk-ts-2L7" secondAttribute="trailing" constant="15" id="9GJ-cU-g6z"/>
+                    <constraint firstItem="Mjk-ts-2L7" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="topMargin" constant="3" id="Nas-ze-a87"/>
+                    <constraint firstItem="Mjk-ts-2L7" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leadingMargin" constant="35" id="Q4Q-OK-Jy4"/>
+                    <constraint firstItem="vec-GJ-Cj5" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="topMargin" constant="3" id="cmj-XE-jOF"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="vec-GJ-Cj5" secondAttribute="trailing" constant="5" id="z3n-Qq-BWe"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="lblBulletPoint" destination="Mjk-ts-2L7" id="yrB-h3-EEM"/>
+                <outlet property="lblIndent" destination="vec-GJ-Cj5" id="pTH-Iz-gks"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

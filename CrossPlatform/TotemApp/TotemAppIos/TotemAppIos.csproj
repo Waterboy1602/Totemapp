@@ -92,6 +92,11 @@
     <InterfaceDefinition Include="SGV\TotemApp\Components\ProfielTotems\ProfielTotemsTableViewCell.xib" />
     <InterfaceDefinition Include="SGV\TotemApp\Controllers\ProfielTotems\ProfielTotemsViewController.xib" />
     <InterfaceDefinition Include="SGV\TotemApp\Controllers\TotemsResult\TotemsResultViewController.xib" />
+    <InterfaceDefinition Include="SGV\TotemApp\Components\Checklist\HeadTableViewCell.xib" />
+    <InterfaceDefinition Include="SGV\TotemApp\Components\Checklist\IndentTableViewCell.xib" />
+    <InterfaceDefinition Include="SGV\TotemApp\Components\Checklist\NormalTableViewCell.xib" />
+    <InterfaceDefinition Include="SGV\TotemApp\Components\Checklist\BaseChecklistTableViewCell.xib" />
+    <InterfaceDefinition Include="SGV\TotemApp\Components\Checklist\TitleTableViewCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -161,6 +166,26 @@
     <Compile Include="PaddingLabel.designer.cs">
       <DependentUpon>PaddingLabel.cs</DependentUpon>
     </Compile>
+    <Compile Include="SGV\TotemApp\Components\Checklist\HeadTableViewCell.cs" />
+    <Compile Include="SGV\TotemApp\Components\Checklist\HeadTableViewCell.designer.cs">
+      <DependentUpon>HeadTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SGV\TotemApp\Components\Checklist\IndentTableViewCell.cs" />
+    <Compile Include="SGV\TotemApp\Components\Checklist\IndentTableViewCell.designer.cs">
+      <DependentUpon>IndentTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SGV\TotemApp\Components\Checklist\NormalTableViewCell.cs" />
+    <Compile Include="SGV\TotemApp\Components\Checklist\NormalTableViewCell.designer.cs">
+      <DependentUpon>NormalTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SGV\TotemApp\Components\Checklist\BaseChecklistTableViewCell.cs" />
+    <Compile Include="SGV\TotemApp\Components\Checklist\BaseChecklistTableViewCell.designer.cs">
+      <DependentUpon>BaseChecklistTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SGV\TotemApp\Components\Checklist\TitleTableViewCell.cs" />
+    <Compile Include="SGV\TotemApp\Components\Checklist\TitleTableViewCell.designer.cs">
+      <DependentUpon>TitleTableViewCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="..\TotemAppCore\TotemAppCore.projitems" Label="Shared" Condition="Exists('..\TotemAppCore\TotemAppCore.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -216,5 +241,6 @@
     <BundleResource Include="SharedAssets\Totem.png" />
     <BundleResource Include="SharedAssets\checklist.xml" />
     <BundleResource Include="Resources\DIN-LightItalic.ttf" />
+    <BundleResource Include="Resources\DINPro-Bold.ttf" />
   </ItemGroup>
 </Project>

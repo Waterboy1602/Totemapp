@@ -7,7 +7,7 @@ using Foundation;
 
 namespace TotemAppIos {
 	public partial class ChecklistViewController : UIViewController {
-		Dictionary<string, List<string>> tableData;
+		List<string> tableData;
 
 		public ChecklistViewController () : base ("ChecklistViewController", null) {}
 
@@ -43,21 +43,20 @@ namespace TotemAppIos {
 			imgReturn.Image = UIImage.FromBundle ("SharedAssets/arrow_back_white");
 
 			ExtrectDataFromXML ();
+			tblChecklist.Source = new ChecklistTableViewSource (tableData);
+
 		}
 
 		void ExtrectDataFromXML() {
-			tableData = new Dictionary<string, List<string>>();
+			tableData = new List<string>();
 
 			XmlDocument doc = new XmlDocument ();
 			doc.Load(NSBundle.MainBundle.PathForResource ("SharedAssets/checklist","xml"));
 			var childNodes = doc.FirstChild.ChildNodes;
 			foreach (var item in childNodes) {
-				var itemName=(item as XmlElement).GetAttribute ("name");
-				tableData.Add (itemName,new List<string>());
 				var children = (item as XmlElement).ChildNodes;
 				foreach (var child in children) {
-
-					tableData [itemName].Add ((child as XmlElement).InnerText);
+					tableData.Add ((child as XmlElement).InnerText);
 				}
 			}
 		}

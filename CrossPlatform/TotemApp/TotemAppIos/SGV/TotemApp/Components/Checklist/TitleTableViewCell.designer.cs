@@ -9,36 +9,20 @@ using System.CodeDom.Compiler;
 
 namespace TotemAppIos
 {
-	[Register ("ChecklistViewController")]
-	partial class ChecklistViewController
+	[Register ("TitleTableViewCell")]
+	partial class TitleTableViewCell
 	{
 		[Outlet]
-		UIKit.UIButton btnReturn { get; set; }
-
-		[Outlet]
-		UIKit.UIImageView imgReturn { get; set; }
+		UIKit.UIImageView imgHead { get; set; }
 
 		[Outlet]
 		UIKit.UILabel lblTitle { get; set; }
-
-		[Outlet]
-		UIKit.UITableView tblChecklist { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (btnReturn != null) {
-				btnReturn.Dispose ();
-				btnReturn = null;
-			}
-
-			if (imgReturn != null) {
-				imgReturn.Dispose ();
-				imgReturn = null;
-			}
-
-			if (tblChecklist != null) {
-				tblChecklist.Dispose ();
-				tblChecklist = null;
+			if (imgHead != null) {
+				imgHead.Dispose ();
+				imgHead = null;
 			}
 
 			if (lblTitle != null) {

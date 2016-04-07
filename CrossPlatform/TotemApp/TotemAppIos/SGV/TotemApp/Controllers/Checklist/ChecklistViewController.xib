@@ -14,7 +14,8 @@
             <connections>
                 <outlet property="btnReturn" destination="yWf-db-qGX" id="IHB-2A-hUt"/>
                 <outlet property="imgReturn" destination="NW9-LU-wAf" id="fEW-SS-uUN"/>
-                <outlet property="lblTitle" destination="JQJ-OA-zyo" id="QAA-O3-5dS"/>
+                <outlet property="lblTitle" destination="JQJ-OA-zyo" id="Sgy-gR-Ej3"/>
+                <outlet property="tblChecklist" destination="8zA-oM-dVj" id="IA1-QD-qWe"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -88,15 +89,23 @@
                         <constraint firstAttribute="height" constant="20" id="TMo-5D-PAd"/>
                     </constraints>
                 </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8zA-oM-dVj">
+                    <rect key="frame" x="0.0" y="70" width="600" height="530"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="8zA-oM-dVj" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="4ap-gu-OAC"/>
                 <constraint firstItem="jQf-pc-4ii" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="4xB-A7-V30"/>
                 <constraint firstItem="jQf-pc-4ii" firstAttribute="top" secondItem="2" secondAttribute="top" constant="20" id="G7f-di-1vX"/>
                 <constraint firstAttribute="trailing" secondItem="jQf-pc-4ii" secondAttribute="trailing" id="JRp-6Q-vND"/>
+                <constraint firstAttribute="trailing" secondItem="8zA-oM-dVj" secondAttribute="trailing" id="RFS-N0-HfL"/>
                 <constraint firstAttribute="trailing" secondItem="rbK-bC-6Tg" secondAttribute="trailing" id="SgE-Fo-8sP"/>
                 <constraint firstItem="rbK-bC-6Tg" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="cIa-Se-Fea"/>
+                <constraint firstAttribute="bottom" secondItem="8zA-oM-dVj" secondAttribute="bottom" id="g2C-hE-0r8"/>
                 <constraint firstItem="rbK-bC-6Tg" firstAttribute="top" secondItem="2" secondAttribute="top" id="h8i-1K-7Gv"/>
+                <constraint firstItem="8zA-oM-dVj" firstAttribute="top" secondItem="jQf-pc-4ii" secondAttribute="bottom" id="sq7-O3-nsn"/>
             </constraints>
         </view>
     </objects>

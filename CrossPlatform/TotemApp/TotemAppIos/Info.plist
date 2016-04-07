@@ -42,6 +42,7 @@
 		<string>sketch_block_light.ttf</string>
 		<string>Verveine W01 Regular.ttf</string>
 		<string>DIN-LightItalic.ttf</string>
+		<string>DINPro-Bold.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
