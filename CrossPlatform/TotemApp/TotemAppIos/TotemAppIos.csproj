@@ -242,5 +242,6 @@
     <BundleResource Include="SharedAssets\checklist.xml" />
     <BundleResource Include="Resources\DIN-LightItalic.ttf" />
     <BundleResource Include="Resources\DINPro-Bold.ttf" />
+    <BundleResource Include="SharedAssets\lijn_trans.png" />
   </ItemGroup>
 </Project>

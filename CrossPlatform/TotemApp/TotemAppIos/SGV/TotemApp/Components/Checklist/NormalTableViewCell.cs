@@ -3,12 +3,10 @@
 using Foundation;
 using UIKit;
 
-namespace TotemAppIos
-{
-	public partial class NormalTableViewCell : BaseChecklistTableViewCell
-	{
-		public static NSString _key = new NSString ("NormalTableViewCell");
-		public static UINib Nib;
+namespace TotemAppIos {
+	public partial class NormalTableViewCell : BaseChecklistTableViewCell {
+		new public static NSString _key = new NSString ("NormalTableViewCell");
+		new public static UINib Nib;
 
 		public override NSString Key { 
 			get {
@@ -16,8 +14,7 @@ namespace TotemAppIos
 			}
 		}
 
-		static NormalTableViewCell ()
-		{
+		static NormalTableViewCell () {
 			Nib = UINib.FromName ("NormalTableViewCell", NSBundle.MainBundle);
 		}
 
@@ -25,9 +22,7 @@ namespace TotemAppIos
 			return (NormalTableViewCell)Nib.Instantiate (null, null) [0];
 		}
 
-		public NormalTableViewCell (IntPtr handle) : base (handle)
-		{
-		}
+		public NormalTableViewCell (IntPtr handle) : base (handle) {}
 
 		public override void setData(string s) {
 			lblBulletPoint.Text = "\u25EF";

@@ -5,8 +5,8 @@ using UIKit;
 
 namespace TotemAppIos {
 	public partial class TitleTableViewCell : BaseChecklistTableViewCell {
-		public static readonly NSString _key = new NSString ("TitleTableViewCell");
-		public static readonly UINib Nib;
+		new public static readonly NSString _key = new NSString ("TitleTableViewCell");
+		new public static readonly UINib Nib;
 
 		public override NSString Key { 
 			get {

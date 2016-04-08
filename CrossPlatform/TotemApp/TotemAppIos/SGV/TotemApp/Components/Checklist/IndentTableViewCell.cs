@@ -3,12 +3,10 @@
 using Foundation;
 using UIKit;
 
-namespace TotemAppIos
-{
-	public partial class IndentTableViewCell : BaseChecklistTableViewCell
-	{
-		public static NSString _key = new NSString ("IndentTableViewCell");
-		public static UINib Nib;
+namespace TotemAppIos {
+	public partial class IndentTableViewCell : BaseChecklistTableViewCell {
+		new public static NSString _key = new NSString ("IndentTableViewCell");
+		new public static UINib Nib;
 
 		public nfloat cellHeight { get; set; }
 
@@ -18,8 +16,7 @@ namespace TotemAppIos
 			}
 		}
 
-		static IndentTableViewCell ()
-		{
+		static IndentTableViewCell () {
 			Nib = UINib.FromName ("IndentTableViewCell", NSBundle.MainBundle);
 		}
 
@@ -27,9 +24,7 @@ namespace TotemAppIos
 			return (IndentTableViewCell)Nib.Instantiate (null, null) [0];
 		}
 
-		public IndentTableViewCell (IntPtr handle) : base (handle)
-		{
-		}
+		public IndentTableViewCell (IntPtr handle) : base (handle) {}
 
 		public override void setData(string s) {
 			lblBulletPoint.Text = "\u25EF";

@@ -19,6 +19,12 @@ namespace TotemAppIos
 		UIKit.UIImageView imgReturn { get; set; }
 
 		[Outlet]
+		UIKit.UILabel lblFoot { get; set; }
+
+		[Outlet]
+		UIKit.UILabel lblHead { get; set; }
+
+		[Outlet]
 		UIKit.UILabel lblTitle { get; set; }
 
 		[Outlet]
@@ -36,14 +42,24 @@ namespace TotemAppIos
 				imgReturn = null;
 			}
 
+			if (lblTitle != null) {
+				lblTitle.Dispose ();
+				lblTitle = null;
+			}
+
 			if (tblChecklist != null) {
 				tblChecklist.Dispose ();
 				tblChecklist = null;
 			}
 
-			if (lblTitle != null) {
-				lblTitle.Dispose ();
-				lblTitle = null;
+			if (lblHead != null) {
+				lblHead.Dispose ();
+				lblHead = null;
+			}
+
+			if (lblFoot != null) {
+				lblFoot.Dispose ();
+				lblFoot = null;
 			}
 		}
 	}

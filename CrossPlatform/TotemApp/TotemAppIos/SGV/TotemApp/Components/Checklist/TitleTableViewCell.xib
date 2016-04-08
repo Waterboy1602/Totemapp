@@ -28,7 +28,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQA-ze-PRM">
-                        <rect key="frame" x="62" y="12" width="245" height="20"/>
+                        <rect key="frame" x="62" y="13" width="245" height="19"/>
                         <fontDescription key="fontDescription" name="SketchBlock-Light" family="Sketch Block" pointSize="22"/>
                         <color key="textColor" red="0.0" green="0.36078431370000003" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -36,10 +36,11 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="rQA-ze-PRM" firstAttribute="leading" secondItem="Dmb-J5-jaY" secondAttribute="trailing" constant="20" id="Ajc-xj-egE"/>
-                    <constraint firstItem="rQA-ze-PRM" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="L6C-k4-bpC"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="rQA-ze-PRM" secondAttribute="bottom" constant="3" id="Cfh-C8-wdu"/>
                     <constraint firstAttribute="trailingMargin" secondItem="rQA-ze-PRM" secondAttribute="trailing" constant="5" id="R3X-9e-nwi"/>
                     <constraint firstItem="Dmb-J5-jaY" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leadingMargin" constant="10" id="XLh-gu-HM9"/>
                     <constraint firstItem="Dmb-J5-jaY" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="lGW-LJ-cvZ"/>
+                    <constraint firstItem="rQA-ze-PRM" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="topMargin" constant="5" id="qx3-lM-054"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

@@ -1,6 +1,5 @@
 ﻿<resources>
 	<string-array name="Voorbereiding">
-		<item>t_Voorbereiding</item>
 		<item>h_Sta stil bij:</item>
 		<item>n_Welke totemvorm?</item>
 		<item>n_Traditie</item>
@@ -17,7 +16,6 @@
 	</string-array>
 
 	<string-array name="Totemopdrachten">
-		<item>t_Totemopdrachten</item>
 		<item>n_Individuele opdracht</item>
 		<item>n_Groepsopdracht</item>
 		<item>n_Doeopdracht</item>
@@ -36,8 +34,7 @@
 		<item>i_het lid behoudt zijn zelfrespect</item>
 	</string-array>
 
-	<string-array name="Geven">
-		<item>t_Geven van een totem</item>
+	<string-array name="Geven van een totem">
 		<item>h_Denk aan:</item>
 		<item>n_Sfeer</item>
 		<item>n_Intimiteit</item>
@@ -48,7 +45,6 @@
 	</string-array>
 
 	<string-array name="Bezinning">
-		<item>t_Bezinning</item>
 		<item>h_Individueel:</item>
 		<item>h_Totemisant denkt na over...</item>
 		<item>n_zichzelf</item>
