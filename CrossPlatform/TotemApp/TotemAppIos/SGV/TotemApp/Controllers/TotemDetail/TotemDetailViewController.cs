@@ -139,6 +139,7 @@ namespace TotemAppIos {
 			//Add Text Input
 			textInputAlertController.AddTextField(textField => {
 				textField.AutocapitalizationType = UITextAutocapitalizationType.Words;
+				textField.Placeholder = "Naam";
 			});
 
 			//Add Actions

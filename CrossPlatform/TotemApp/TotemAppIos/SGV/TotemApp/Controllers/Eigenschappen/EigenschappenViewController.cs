@@ -95,6 +95,9 @@ namespace TotemAppIos {
 				textfield.ResignFirstResponder ();
 				return true;
 			});
+
+			tblEigenschappen.KeyboardDismissMode = UIScrollViewKeyboardDismissMode.OnDrag;
+
 			UIColor color = UIColor.White;
 			txtSearch.AttributedPlaceholder = new Foundation.NSAttributedString("Zoek eigenschap",foregroundColor: color);
 			tblEigenschappen.Source = new EigenschappenTableViewSource (_appController.Eigenschappen);

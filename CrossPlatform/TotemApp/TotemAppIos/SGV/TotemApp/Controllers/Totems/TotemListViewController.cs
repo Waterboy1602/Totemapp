@@ -59,6 +59,7 @@ namespace TotemAppIos {
 			txtSearch.EditingChanged -= TxtSearchValueChangedHandler;
 			_appController.NavigationController.GotoTotemDetailEvent -= gotoTotemDetailHandler;
 		}
+
 		#endregion
 
 		#endregion
@@ -79,6 +80,9 @@ namespace TotemAppIos {
 				textfield.ResignFirstResponder ();
 				return true;
 			});
+
+			tblTotems.KeyboardDismissMode = UIScrollViewKeyboardDismissMode.OnDrag;
+
 			UIColor color = UIColor.White;
 			txtSearch.AttributedPlaceholder = new Foundation.NSAttributedString("Zoek totem",foregroundColor: color);
 
