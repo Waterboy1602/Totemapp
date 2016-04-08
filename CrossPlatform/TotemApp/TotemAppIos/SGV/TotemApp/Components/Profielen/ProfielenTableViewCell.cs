@@ -4,7 +4,6 @@ using Foundation;
 using UIKit;
 using MaterialControls;
 using TotemAppCore;
-using BemCheckBox;
 
 namespace TotemAppIos {
 	public partial class ProfielenTableViewCell : UITableViewCell {
@@ -12,7 +11,7 @@ namespace TotemAppIos {
 		public static readonly UINib Nib;
 		public Profiel Profiel { get; set; }
 
-		BemCheckBox.BemCheckBox _checkBox;
+		BemCheckBox _checkBox;
 
 		static ProfielenTableViewCell () {
 			Nib = UINib.FromName ("ProfielenTableViewCell", NSBundle.MainBundle);
@@ -27,7 +26,7 @@ namespace TotemAppIos {
 		public void setData(bool check) {
 			lblProfile.Text = Profiel.name;
 			if (check) {
-				_checkBox = new BemCheckBox.BemCheckBox (new CoreGraphics.CGRect (0, 0, 25, 25), new MyBemCheckBoxDelegate(this));
+				_checkBox = new BemCheckBox (new CoreGraphics.CGRect (0, 0, 20, 20), new MyBemCheckBoxDelegate(this));
 				vwCheckbox.Add (_checkBox);
 			}
 		}

@@ -70,9 +70,6 @@
     <Reference Include="MaterialControls">
       <HintPath>libs\MaterialControls.dll</HintPath>
     </Reference>
-    <Reference Include="BemCheckBox">
-      <HintPath>libs\BemCheckBox.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
@@ -101,6 +98,7 @@
   <ItemGroup>
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
+    <None Include="SGV\BemCheckBox\BemCheckBox.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -186,6 +184,12 @@
     <Compile Include="SGV\TotemApp\Components\Checklist\TitleTableViewCell.designer.cs">
       <DependentUpon>TitleTableViewCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="SGV\BemCheckBox\BemAnimationManager.cs" />
+    <Compile Include="SGV\BemCheckBox\BemAnimationType.cs" />
+    <Compile Include="SGV\BemCheckBox\BemBoxType.cs" />
+    <Compile Include="SGV\BemCheckBox\BemCheckBox.cs" />
+    <Compile Include="SGV\BemCheckBox\BemCheckBoxDelegate.cs" />
+    <Compile Include="SGV\BemCheckBox\BemPathManager.cs" />
   </ItemGroup>
   <Import Project="..\TotemAppCore\TotemAppCore.projitems" Label="Shared" Condition="Exists('..\TotemAppCore\TotemAppCore.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

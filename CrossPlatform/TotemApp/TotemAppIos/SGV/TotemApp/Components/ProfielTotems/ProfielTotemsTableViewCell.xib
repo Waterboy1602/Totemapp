@@ -22,11 +22,11 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I2H-Cp-Vst">
-                        <rect key="frame" x="277" y="9" width="25" height="25"/>
+                        <rect key="frame" x="282" y="12" width="20" height="20"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="25" id="VTm-9d-0GJ"/>
-                            <constraint firstAttribute="width" constant="25" id="oth-j0-gfR"/>
+                            <constraint firstAttribute="height" constant="20" id="VTm-9d-0GJ"/>
+                            <constraint firstAttribute="width" constant="20" id="oth-j0-gfR"/>
                         </constraints>
                     </view>
                 </subviews>
