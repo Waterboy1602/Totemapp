@@ -13,7 +13,7 @@ using Android.Widget;
 using TotemAppCore;
 
 namespace TotemAndroid {
-	[Activity (Label = "Eigenschappen", WindowSoftInputMode = Android.Views.SoftInput.AdjustPan)]			
+	[Activity (Label = "Eigenschappen", WindowSoftInputMode = SoftInput.AdjustPan)]			
 	public class EigenschappenActivity : BaseActivity {
 		EigenschapAdapter eigenschapAdapter;
 		ListView allEigenschappenListView;
@@ -86,30 +86,30 @@ namespace TotemAndroid {
 				else
 					e.Handled = false;
 			};
-
-			allEigenschappenListView.ItemLongClick += ShowExplanation;
 		}
 
 		protected override void OnResume ()	{
 			base.OnResume ();
 
+			_appController.UpdateCounter += updateCounter;
 			_appController.NavigationController.GotoTotemResultEvent+= StartResultTotemsActivity;
 		}
 
 		protected override void OnPause ()	{
 			base.OnPause ();
 
+			_appController.UpdateCounter -= updateCounter;
 			_appController.NavigationController.GotoTotemResultEvent-= StartResultTotemsActivity;
 		}
 
-		//IDEA
-		//shows short explanation of eigenschap
-		void ShowExplanation(object sender, AdapterView.ItemLongClickEventArgs e) {
-			int pos = e.Position;
-			var item = eigenschapAdapter.GetItemAtPosition(pos);
-
-			mToastLong.SetText("Meer uitleg over " + item.name.ToLower());
-			mToastLong.Show();
+		void updateCounter () {
+			int count = _appController.Eigenschappen.FindAll (x => x.selected).Count;
+			var tvNumberSelected = FindViewById<TextView> (Resource.Id.selected);
+			tvNumberSelected.Text = count + " geselecteerd";
+			if (count > 0)
+				bottomBar.Visibility = ViewStates.Visible;
+			else
+				bottomBar.Visibility = ViewStates.Gone;
 		}
 
 		//toggles the search bar
@@ -163,12 +163,7 @@ namespace TotemAndroid {
 		//renders list of totems with frequencies based on selected eigenschappen
 		//and redirects to TotemsActivity to view them
 		void VindTotem(object sender, EventArgs e) {
-			/*if (freqs.Count == 0) {
-				mToastShort.SetText ("Geen eigenschappen geselecteerd");
-				mToastShort.Show ();
-			} else {*/
-				_appController.CalculateResultlist(eigenschappenList);
-			//}
+			_appController.CalculateResultlist(_appController.Eigenschappen);
 		}
 
 		void StartResultTotemsActivity() {
@@ -178,7 +173,7 @@ namespace TotemAndroid {
 
 		//create options menu
 		public override bool OnCreateOptionsMenu(IMenu m) {
-			this.menu = m;
+			menu = m;
 			MenuInflater.Inflate(Resource.Menu.EigenschapSelectieMenu, menu);
 			IMenuItem item = menu.FindItem (Resource.Id.full);
 			item.SetVisible (false);
@@ -234,8 +229,8 @@ namespace TotemAndroid {
 			IMenuItem s = menu.FindItem (Resource.Id.select);
 			IMenuItem f = menu.FindItem (Resource.Id.full);
 
-			Task.Factory.StartNew(() => Thread.Sleep(500)).ContinueWith((t) => {
-				if(fullList) {
+			Task.Factory.StartNew(() => Thread.Sleep(500)).ContinueWith(t => {
+				if (fullList) {
 					s.SetVisible (true);
 					f.SetVisible (false);
 				} else {
@@ -248,7 +243,7 @@ namespace TotemAndroid {
 		//returns list of eigenschappen that have been checked
 		List<Eigenschap> GetSelectedEigenschappen() {
 			var result = new List<Eigenschap> ();
-			foreach(Eigenschap e in eigenschappenList)
+			foreach(Eigenschap e in _appController.Eigenschappen)
 				if (e.selected)
 					result.Add (e);
 

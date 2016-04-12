@@ -10,18 +10,20 @@ namespace TotemAndroid {
 		Activity _activity;
 		List<Eigenschap> eigenschapList;
 
+		AppController _appController = AppController.Instance;
+
 		MyOnCheckBoxClickListener mListener;
 
 		public EigenschapAdapter (Activity activity, List<Eigenschap> list, MyOnCheckBoxClickListener listener) {	
 			_activity = activity;
 			eigenschapList = list;
 			mListener = listener;
-			mListener.UpdateCounter(eigenschapList);
+			_appController.FireUpdateEvent();
 		}
 
 		public void UpdateData(List<Eigenschap> list) {
-			this.eigenschapList = list;
-			mListener.UpdateCounter(eigenschapList);
+			eigenschapList = list;
+			_appController.FireUpdateEvent();
 		}
 
 		public override Eigenschap this[int index] {
@@ -57,17 +59,31 @@ namespace TotemAndroid {
 			viewHolder.checkbox.Checked = eigenschapList [(int)viewHolder.checkbox.Tag].selected;
 
 			//notifies CheckBoxListener and stores selection
-			viewHolder.checkbox.Click += (o, e) => {
-				mListener.OnCheckboxClicked ();
-				if (viewHolder.checkbox.Checked)
-					eigenschapList [(int)viewHolder.checkbox.Tag].selected = true;
-				else
-					eigenschapList [(int)viewHolder.checkbox.Tag].selected = false;
+			if (!viewHolder.checkbox.HasOnClickListeners) {
+				viewHolder.checkbox.Click += (o, e) => {
+					mListener.OnCheckboxClicked ();
+					if (viewHolder.checkbox.Checked)
+						eigenschapList [(int)viewHolder.checkbox.Tag].selected = true;
+					else
+						eigenschapList [(int)viewHolder.checkbox.Tag].selected = false;
+				
+					_appController.FireUpdateEvent ();
+				};
+			}
+				
+			if (!convertView.HasOnClickListeners) {
+				convertView.Click += (o, e) => {
+					mListener.OnCheckboxClicked ();
+					viewHolder.checkbox.Checked = !(viewHolder.checkbox.Checked);
+					if (viewHolder.checkbox.Checked)
+						eigenschapList [(int)viewHolder.checkbox.Tag].selected = true;
+					else
+						eigenschapList [(int)viewHolder.checkbox.Tag].selected = false;
 
-				mListener.UpdateCounter(eigenschapList);
-			};
-
-			convertView.LongClickable = true;
+					_appController.FireUpdateEvent();
+				};
+			}
+				
 			return convertView;
 		}
 
