@@ -28,7 +28,6 @@ namespace TotemAppIos {
 		#region overrided methods
 		public override void DidReceiveMemoryWarning () {
 			base.DidReceiveMemoryWarning ();
-			// Release any cached data, images, etc that aren't in use.
 		}
 
 		public override UIStatusBarStyle PreferredStatusBarStyle () {
@@ -41,7 +40,6 @@ namespace TotemAppIos {
 			setData ();
 			NavigationController.NavigationBarHidden = true;
 			NavigationController.NavigationBar.BarStyle = UIBarStyle.Black;
-			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
 		public override void ViewDidAppear (bool animated) {
@@ -116,7 +114,7 @@ namespace TotemAppIos {
 
 		void TxtSearchValueChangedHandler (object sender, EventArgs e) {
 			(tblTotems.Source as TotemsTableViewSource).Totems = _appController.FindTotemOpNaam ((sender as UITextField).Text);
-			tblTotems.ReloadSections (new Foundation.NSIndexSet (0), UITableViewRowAnimation.Automatic);
+			tblTotems.ReloadData ();
 			tblTotems.ScrollRectToVisible (new CGRect(0,0,1,1), false);
 		}
 
