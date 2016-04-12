@@ -1,46 +1,14 @@
 ﻿using System;
 
-using UIKit;
-using TotemAppCore;
 using CoreGraphics;
+using UIKit;
 
 namespace TotemAppIos {
-	public partial class TotemListViewController : UIViewController {
-		#region delegates
+	public partial class TotemListViewController : BaseViewController {
 
-		#endregion
-
-		#region variables
-		AppController _appController = AppController.Instance;
 		bool isSearching;
-		#endregion
 
-		#region constructor
 		public TotemListViewController () : base ("TotemListViewController", null) {}
-		#endregion
-
-		#region properties
-
-		#endregion
-
-		#region public methods
-
-		#region overrided methods
-		public override void DidReceiveMemoryWarning () {
-			base.DidReceiveMemoryWarning ();
-		}
-
-		public override UIStatusBarStyle PreferredStatusBarStyle () {
-			return UIStatusBarStyle.LightContent;
-		}
-
-		#region viewlifecycle
-		public override void ViewDidLoad () {
-			base.ViewDidLoad ();
-			setData ();
-			NavigationController.NavigationBarHidden = true;
-			NavigationController.NavigationBar.BarStyle = UIBarStyle.Black;
-		}
 
 		public override void ViewDidAppear (bool animated) {
 			base.ViewDidAppear (animated);
@@ -58,39 +26,34 @@ namespace TotemAppIos {
 			_appController.NavigationController.GotoTotemDetailEvent -= gotoTotemDetailHandler;
 		}
 
-		#endregion
-
-		#endregion
-
-		#endregion
-
-		#region private methods
-
-		private void setData() {
+		public override void setData() {
 			lblTitle.Text = "Totems";
 
 			imgReturn.Image = UIImage.FromBundle ("SharedAssets/arrow_back_white");
 			imgSearch.Image = UIImage.FromBundle ("SharedAssets/search_white");
+
+			//search field is initially hidden
 			txtSearch.Hidden=true;
 			txtSearch.TintColor = UIColor.White;
 			txtSearch.ReturnKeyType = UIReturnKeyType.Search;
-			txtSearch.ShouldReturn = ((UITextField textfield) => {
+			txtSearch.ShouldReturn = (textfield => {
 				textfield.ResignFirstResponder ();
 				return true;
 			});
 
+			//hide keyboard when tapped outside it
 			tblTotems.KeyboardDismissMode = UIScrollViewKeyboardDismissMode.OnDrag;
 
 			UIColor color = UIColor.White;
 			txtSearch.AttributedPlaceholder = new Foundation.NSAttributedString("Zoek totem",foregroundColor: color);
 
+			//color of index letters on the right
 			tblTotems.SectionIndexColor = UIColor.FromRGB (0, 92, 157);
-			tblTotems.Source = new TotemsTableViewSource (_appController.Totems);
-			tblTotems.TableFooterView = new UIView ();
-		}
 
-		void btnReturnTouchUpInside (object sender, EventArgs e) {
-			NavigationController.PopViewController (true);
+			tblTotems.Source = new TotemsTableViewSource (_appController.Totems);
+
+			//empty view at footer to prevent empty cells at the bottom
+			tblTotems.TableFooterView = new UIView ();
 		}
 
 		void btnSearchTouchUpInside (object sender, EventArgs e) {
@@ -112,6 +75,7 @@ namespace TotemAppIos {
 			isSearching = !isSearching;
 		}
 
+		//updates list to match entered query
 		void TxtSearchValueChangedHandler (object sender, EventArgs e) {
 			(tblTotems.Source as TotemsTableViewSource).Totems = _appController.FindTotemOpNaam ((sender as UITextField).Text);
 			tblTotems.ReloadData ();
@@ -121,6 +85,5 @@ namespace TotemAppIos {
 		void gotoTotemDetailHandler() {
 			NavigationController.PushViewController (new TotemDetailViewController(), true);
 		}
-		#endregion
 	}
 }

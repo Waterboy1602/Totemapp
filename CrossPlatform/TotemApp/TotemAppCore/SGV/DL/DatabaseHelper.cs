@@ -1,9 +1,9 @@
 ﻿namespace TotemAppCore {
-	
+
 	//Database singleton
 	public static class DatabaseHelper {
-		
-		static Database dbInstance = null;
+
+		static Database dbInstance;
 
 		public static Database GetInstance() {
 			if (dbInstance == null) 

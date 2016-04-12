@@ -1,11 +1,9 @@
-namespace TotemAppIos
-{
-    internal enum BemBoxType
-    {
-        /// Circled box.
+namespace TotemAppIos {
+    enum BemBoxType {
+        /// Circled box
         BemBoxTypeCircle,
 
-        /// Squared box.
+        /// Squared box
         BemBoxTypeSquare
     }
 }

@@ -1,15 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace TotemAppCore {
 	public class AppController {
 
-		#region delegates
-
-		#endregion
-
-		#region variables
 		static readonly AppController _instance = new AppController();
 		readonly Database database = DatabaseHelper.GetInstance ();
 
@@ -22,9 +16,6 @@ namespace TotemAppCore {
 
 		NavigationController _navigationController;
 
-		#endregion
-
-		#region constructor
 		public AppController () {
 			_totems = database.GetTotems ();
 			_eigenschappen = database.GetEigenschappen ();
@@ -32,9 +23,10 @@ namespace TotemAppCore {
 			TotemEigenschapDict = new Dictionary<Totem, int> ();
 		}
 
-		#endregion
 
-		#region properties
+		/* ------------------------------ PROPERTIES ------------------------------ */
+
+
 		public static AppController Instance {
 			get {
 				return _instance;
@@ -79,14 +71,9 @@ namespace TotemAppCore {
 
 		public Dictionary<Totem, int> TotemEigenschapDict { get; set; }
 
-		#endregion
 
-		#region public methods
+		/* ------------------------------ DATABASE ------------------------------ */
 
-		public void FireUpdateEvent() {
-			if (UpdateCounter != null)
-				UpdateCounter ();
-		}
 
 		//returns totem-object with given id
 		public Totem GetTotemOnID(int idx) {
@@ -121,6 +108,7 @@ namespace TotemAppCore {
 
 			return result;
 		}
+
 		//returns a list of totems related to a profile
 		public List<Totem> GetTotemsFromProfiel(string name) {
 			List<Profiel> list = AllProfielen.FindAll (x=>x.name == name);
@@ -132,34 +120,42 @@ namespace TotemAppCore {
 			return result;
 		}
 
+		//add totem to profile in db
 		public void AddTotemToProfiel(string totemID, string profielName) {
 			database.AddTotemToProfiel (totemID,profielName);
 		}
 
+		//add a profile
 		public void AddProfile(string name){
 			database.AddProfile (name);
 		}
 
+		//delete a profile
 		public void DeleteProfile(string name) {
 			database.DeleteProfile (name);
 		}
 
+		//delete a totem from a profile
 		public void DeleteTotemFromProfile(string totemID, string profielName) {
 			database.DeleteTotemFromProfile (totemID,profielName);
 		}
 
+		//returns List of Totem_eigenschapp related to eigenschap id
 		public List<Totem_eigenschap> GetTotemsVanEigenschapsID(string id) {
 			return database.GetTotemsVanEigenschapsID (id);
 		}
 
+		//returns Userpref-object based on parameter
 		public Userpref GetPreference(string preference) {
 			return database.GetPreference (preference);
 		}
 
+		//updates the preference with new value
 		public void ChangePreference(string preference, string value) {
 			database.ChangePreference (preference,value);
 		}
 
+		//returns random tip out of the database
 		public string GetRandomTip() {
 			return database.GetRandomTip ();
 		}
@@ -170,6 +166,10 @@ namespace TotemAppCore {
 				namen.Add (p.name);
 			return namen;
 		}
+
+
+		/* ------------------------------ BUTTON CLICK EVENTS ------------------------------ */
+
 
 		public void TotemMenuItemClicked() {
 			_navigationController.GoToTotemList ();
@@ -191,39 +191,35 @@ namespace TotemAppCore {
 			_navigationController.GoToTinder ();
 		}
 
+		//sets current totem and resets current profile
 		public void TotemSelected(string totemID) {
 			setCurrentProfile (null);
 			setCurrentTotem (totemID);
 			_navigationController.GoToTotemDetail ();
 		}
 
+		//sets current profile
 		public void ProfileSelected(string profileName) {
 			setCurrentProfile (profileName);
 			_navigationController.GoToProfileTotemList ();
 		}
 
+		//sets current totem and current profile
 		public void ProfileTotemSelected(string profileName, string totemID) {
 			setCurrentProfile (profileName);
 			setCurrentTotem (totemID);
 			_navigationController.GoToTotemDetail ();
 		}
-
+			
 		public void CalculateResultlist(List<Eigenschap> checkboxList) {
 			FillAndSortDict (checkboxList);
 			_navigationController.GoToTotemResult ();
 		}
 
-		#region overrided methods
 
-		#region viewlifecycle
+		/* ------------------------------ MISC ------------------------------ */
 
-		#endregion
-
-		#endregion
-
-		#endregion
-
-		#region private methods
+			
 		void setCurrentTotem(string totemID) {
 			var totem = _totems.Find (x => x.nid.Equals (totemID));
 			CurrentTotem = totem;
@@ -238,6 +234,7 @@ namespace TotemAppCore {
 			}
 		}
 
+		//fills dictionary with totems and according frequency based on selected eigenschappen
 		void FillAndSortDict(List<Eigenschap> checkboxList) {
 			TotemEigenschapDict = new Dictionary<Totem, int> ();
 			foreach (Eigenschap eig in checkboxList) {
@@ -250,6 +247,10 @@ namespace TotemAppCore {
 			}
 			TotemEigenschapDict = CollectionHelper.GetSortedList (TotemEigenschapDict);
 		}
-		#endregion
+
+		public void FireUpdateEvent() {
+			if (UpdateCounter != null)
+				UpdateCounter ();
+		}
 	}
 }

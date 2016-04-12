@@ -1,49 +1,12 @@
 ﻿using System;
 
 using UIKit;
-using TotemAppCore;
-using System.Xml;
-using Foundation;
-using System.Collections.Generic;
 
 namespace TotemAppIos {
-	public partial class MainViewController : UIViewController {
+	public partial class MainViewController : BaseViewController {
 
-		#region delegates
 
-		#endregion
-
-		#region variables
-		AppController _appController = AppController.Instance;
-		#endregion
-
-		#region constructor
 		public MainViewController () : base ("MainViewController", null) {}
-		#endregion
-
-		#region properties
-
-		#endregion
-
-		#region public methods
-
-		#region overrided methods
-
-		public override void DidReceiveMemoryWarning () {
-			base.DidReceiveMemoryWarning ();
-			// Release any cached data, images, etc that aren't in use.
-		}
-		public override UIStatusBarStyle PreferredStatusBarStyle ()	{
-			return UIStatusBarStyle.LightContent;
-		}
-		#region viewlifecycle
-
-		public override void ViewDidLoad () {
-			base.ViewDidLoad ();
-			setData ();
-			NavigationController.NavigationBarHidden = true;
-			NavigationController.NavigationBar.BarStyle = UIBarStyle.Black;
-		}
 
 		public override void ViewDidAppear (bool animated) {
 			base.ViewDidAppear (animated);
@@ -70,14 +33,8 @@ namespace TotemAppIos {
 			_appController.NavigationController.GotoProfileListEvent -= gotoProfileListHandler;
 			_appController.NavigationController.GotoChecklistEvent -= gotoChecklistEvent;
 		}
-		#endregion
 
-		#endregion
-
-		#endregion
-
-		#region private methods
-		private void setData() {
+		public override void setData() {
 			lblTitle.Text = "TOTEMAPP";
 			lblTotemsButton.Text = "TOTEMS";
 			lblEigenschappenButton.Text = "EIGENSCHAPPEN";
@@ -88,6 +45,7 @@ namespace TotemAppIos {
 			imgTotem.Image = UIImage.FromBundle ("SharedAssets/Totem");
 		}
 
+										//button click handlers//
 		void btnTotemsTouchUpInsideHandler (object sender, EventArgs e)	{
 			_appController.TotemMenuItemClicked ();
 		}
@@ -104,6 +62,7 @@ namespace TotemAppIos {
 			_appController.ChecklistMenuItemClicked ();
 		}
 
+										//navigation event handlers//
 		void gotoTotemListHandler () {
 			NavigationController.PushViewController (new TotemListViewController(),true);
 		}
@@ -119,7 +78,5 @@ namespace TotemAppIos {
 		void gotoChecklistEvent () {
 			NavigationController.PushViewController (new ChecklistViewController(),true);
 		}
-
-		#endregion
 	}
 }

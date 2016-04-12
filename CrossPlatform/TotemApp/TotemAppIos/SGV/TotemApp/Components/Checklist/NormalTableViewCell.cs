@@ -4,6 +4,8 @@ using Foundation;
 using UIKit;
 
 namespace TotemAppIos {
+
+	//normal cell
 	public partial class NormalTableViewCell : BaseChecklistTableViewCell {
 		new public static NSString _key = new NSString ("NormalTableViewCell");
 		new public static UINib Nib;
@@ -25,6 +27,7 @@ namespace TotemAppIos {
 		public NormalTableViewCell (IntPtr handle) : base (handle) {}
 
 		public override void setData(string s) {
+			//bullet point char in UNICODE
 			lblBulletPoint.Text = "\u25EF";
 			lblNormal.Text = s;
 		}

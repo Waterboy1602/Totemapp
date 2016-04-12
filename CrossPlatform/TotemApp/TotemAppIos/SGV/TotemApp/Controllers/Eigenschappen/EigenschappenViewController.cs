@@ -1,51 +1,16 @@
 ﻿using System;
 
+using CoreGraphics;
+using TotemAppCore;
 using UIKit;
 
-using TotemAppCore;
-using CoreGraphics;
-using System.Threading;
-
 namespace TotemAppIos {
-	public partial class EigenschappenViewController : UIViewController	{
-		#region delegates
+	public partial class EigenschappenViewController : BaseViewController {
 
-		#endregion
-
-		#region variables
-		AppController _appController = AppController.Instance;
 		bool isSearching;
 		bool isShowingSelected;
-		#endregion
 
-		#region constructor
 		public EigenschappenViewController () : base ("EigenschappenViewController", null) {}
-		#endregion
-
-		#region properties
-
-		#endregion
-
-		#region public methods
-
-		#region overrided methods
-		public override void DidReceiveMemoryWarning () {
-			base.DidReceiveMemoryWarning ();
-			// Release any cached data, images, etc that aren't in use.
-		}
-
-		public override UIStatusBarStyle PreferredStatusBarStyle () {
-			return UIStatusBarStyle.LightContent;
-		}
-
-		#region viewlifecycle
-		public override void ViewDidLoad () {
-			base.ViewDidLoad ();
-			setData ();
-			NavigationController.NavigationBarHidden = true;
-			NavigationController.NavigationBar.BarStyle = UIBarStyle.Black;
-			// Perform any additional setup after loading the view, typically from a nib.
-		}
 
 		public override void ViewDidAppear (bool animated) {
 			base.ViewDidAppear (animated);
@@ -70,15 +35,8 @@ namespace TotemAppIos {
 			_appController.UpdateCounter -= updateCounter;
 			_appController.NavigationController.GotoTotemResultEvent -= gotoResultListHandler;
 		}
-		#endregion
 
-		#endregion
-
-		#endregion
-
-		#region private methods
-
-		private void setData() {
+		public override void setData() {
 			lblTitle.Text = "Eigenschappen";
 
 			imgReturn.Image = UIImage.FromBundle ("SharedAssets/arrow_back_white");
@@ -86,52 +44,55 @@ namespace TotemAppIos {
 			imgMore.Image = UIImage.FromBundle ("SharedAssets/more_vert_white");
 			imgVind.Image = UIImage.FromBundle ("SharedAssets/arrow_forward_white");
 
+			//bottombar is initially hidden
 			bottomBarHeight.Constant = 0;
 
+			//search field is initially hidden
 			txtSearch.Hidden=true;
 			txtSearch.TintColor = UIColor.White;
 			txtSearch.ReturnKeyType = UIReturnKeyType.Search;
-			txtSearch.ShouldReturn = ((UITextField textfield) => {
+			txtSearch.ShouldReturn = (textfield => {
 				textfield.ResignFirstResponder ();
 				return true;
 			});
 
+			//hide keyboard when tapped outside it
 			tblEigenschappen.KeyboardDismissMode = UIScrollViewKeyboardDismissMode.OnDrag;
 
 			UIColor color = UIColor.White;
 			txtSearch.AttributedPlaceholder = new Foundation.NSAttributedString("Zoek eigenschap",foregroundColor: color);
+
 			tblEigenschappen.Source = new EigenschappenTableViewSource (_appController.Eigenschappen);
+
+			//empty view at footer to prevent empty cells at the bottom
 			tblEigenschappen.TableFooterView = new UIView ();
 		}
 
-		void btnReturnTouchUpInside (object sender, EventArgs e) {
+		new void btnReturnTouchUpInside (object sender, EventArgs e) {
 			resetSelections ();
 			NavigationController.PopViewController (true);
 		}
 
+		//creates options menu
 		void btnMoreTouchUpInside (object sender, EventArgs e) {
-			// Create a new Alert Controller
 			UIAlertController actionSheetAlert = UIAlertController.Create(null,null,UIAlertControllerStyle.ActionSheet);
 
-			// Add Actions
-			actionSheetAlert.AddAction(UIAlertAction.Create("Reset selectie",UIAlertActionStyle.Default, (action) => resetSelections ()));
-
-			actionSheetAlert.AddAction(UIAlertAction.Create(isShowingSelected?"Toon volledige lijst":"Toon enkel selectie",UIAlertActionStyle.Default, (action) => toggleShowSelected()));
-
+			actionSheetAlert.AddAction(UIAlertAction.Create("Reset selectie",UIAlertActionStyle.Default, action => resetSelections ()));
+			actionSheetAlert.AddAction(UIAlertAction.Create(isShowingSelected?"Toon volledige lijst":"Toon enkel selectie",UIAlertActionStyle.Default, action => toggleShowSelected ()));
 			actionSheetAlert.AddAction(UIAlertAction.Create("Annuleer",UIAlertActionStyle.Cancel, null));
 
 			// Required for iPad - You must specify a source for the Action Sheet since it is
 			// displayed as a popover
 			UIPopoverPresentationController presentationPopover = actionSheetAlert.PopoverPresentationController;
 			if (presentationPopover!=null) {
-				presentationPopover.SourceView = this.View;
+				presentationPopover.SourceView = View;
 				presentationPopover.PermittedArrowDirections = UIPopoverArrowDirection.Up;
 			}
-
-			// Display the alert
-			this.PresentViewController(actionSheetAlert,true,null);
+				
+			PresentViewController(actionSheetAlert,true,null);
 		}
 
+		//toggles searchbar and handkes visibility, keyboard,...
 		void btnSearchTouchUpInside (object sender, EventArgs e) {
 			if (isSearching) {
 				txtSearch.Hidden = true;
@@ -151,6 +112,7 @@ namespace TotemAppIos {
 			isSearching = !isSearching;
 		}
 
+		//updates list to match entered query
 		void TxtSearchValueChangedHandler (object sender, EventArgs e) {
 			(tblEigenschappen.Source as EigenschappenTableViewSource).Eigenschappen = _appController.FindEigenschapOpNaam ((sender as UITextField).Text);
 			tblEigenschappen.ReloadSections (new Foundation.NSIndexSet (0), UITableViewRowAnimation.Automatic);
@@ -162,6 +124,7 @@ namespace TotemAppIos {
 			NavigationController.PushViewController (new TotemsResultViewController(),true);
 		}
 
+		//resets selection
 		void resetSelections() {
 			foreach (var eigenschap in _appController.Eigenschappen) 
 				eigenschap.selected = false;
@@ -174,6 +137,7 @@ namespace TotemAppIos {
 			_appController.FireUpdateEvent ();
 		}
 
+		//handles options menu item
 		void toggleShowSelected() {
 			if (isShowingSelected) {
 				(tblEigenschappen.Source as EigenschappenTableViewSource).Eigenschappen = _appController.FindEigenschapOpNaam (txtSearch.Text);
@@ -188,6 +152,7 @@ namespace TotemAppIos {
 			}
 		}
 
+		//updates number of selected eigenschappen on bottom bar
 		void updateCounter() {
 			int count = _appController.Eigenschappen.FindAll (x => x.selected).Count;
 			lblNumberSelected.Text = count + " geselecteerd";
@@ -200,6 +165,5 @@ namespace TotemAppIos {
 		void btnVindTouchUpInside (object sender, EventArgs e) {
 			_appController.CalculateResultlist(_appController.Eigenschappen);
 		}
-		#endregion
 	}
 }

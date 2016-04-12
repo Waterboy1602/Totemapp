@@ -1,9 +1,8 @@
 ﻿using System;
 
 using Foundation;
-using UIKit;
-using MaterialControls;
 using TotemAppCore;
+using UIKit;
 
 namespace TotemAppIos {
 	public partial class ProfielenTableViewCell : UITableViewCell {
@@ -22,7 +21,7 @@ namespace TotemAppIos {
 		public static ProfielenTableViewCell Create () {
 			return (ProfielenTableViewCell)Nib.Instantiate (null, null) [0];
 		}
-
+			
 		public void setData(bool check) {
 			lblProfile.Text = Profiel.name;
 			if (check) {
@@ -38,9 +37,8 @@ namespace TotemAppIos {
 
 		class MyBemCheckBoxDelegate : BemCheckBoxDelegate {
 			ProfielenTableViewCell cell;
-			//AppController _appController = AppController.Instance;
 
-			public MyBemCheckBoxDelegate(ProfielenTableViewCell cell):base() {
+			public MyBemCheckBoxDelegate(ProfielenTableViewCell cell) : base() {
 				this.cell = cell;
 			}
 

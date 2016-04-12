@@ -94,6 +94,7 @@
     <InterfaceDefinition Include="SGV\TotemApp\Components\Checklist\NormalTableViewCell.xib" />
     <InterfaceDefinition Include="SGV\TotemApp\Components\Checklist\BaseChecklistTableViewCell.xib" />
     <InterfaceDefinition Include="SGV\TotemApp\Components\Checklist\TitleTableViewCell.xib" />
+    <InterfaceDefinition Include="SGV\TotemApp\BaseViewController.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -160,10 +161,6 @@
       <DependentUpon>TotemsResultViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="SGV\TotemApp\Components\TotemsResult\TotemsResultTableViewSource.cs" />
-    <Compile Include="PaddingLabel.cs" />
-    <Compile Include="PaddingLabel.designer.cs">
-      <DependentUpon>PaddingLabel.cs</DependentUpon>
-    </Compile>
     <Compile Include="SGV\TotemApp\Components\Checklist\HeadTableViewCell.cs" />
     <Compile Include="SGV\TotemApp\Components\Checklist\HeadTableViewCell.designer.cs">
       <DependentUpon>HeadTableViewCell.cs</DependentUpon>
@@ -190,6 +187,10 @@
     <Compile Include="SGV\BemCheckBox\BemCheckBox.cs" />
     <Compile Include="SGV\BemCheckBox\BemCheckBoxDelegate.cs" />
     <Compile Include="SGV\BemCheckBox\BemPathManager.cs" />
+    <Compile Include="SGV\TotemApp\BaseViewController.cs" />
+    <Compile Include="SGV\TotemApp\BaseViewController.designer.cs">
+      <DependentUpon>BaseViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="..\TotemAppCore\TotemAppCore.projitems" Label="Shared" Condition="Exists('..\TotemAppCore\TotemAppCore.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

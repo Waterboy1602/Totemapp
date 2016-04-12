@@ -33,20 +33,27 @@ namespace TotemAndroid {
 		//i -> indented
 		//h -> head
 		//n -> normal
+		//e.g.: i_het past in de context
 		public override View GetChildView (int groupPosition, int childPosition, bool isLastChild, View convertView, ViewGroup parent) {
+
+			//extract type of view and content
 			var item = _dictGroup [_lstGroupID [groupPosition]] [childPosition];
 			string[] data = item.Split ('_');
 			var type = data [0];
 			var content = data [1];
 			TextView tv = null;
+
+			//indented view
 			if (type.Equals ("i")) {
 				if(convertView == null || convertView.FindViewById<TextView> (Resource.Id.childindent) == null) 
 					convertView = _activity.LayoutInflater.Inflate (Resource.Layout.ExpandChildIndent, parent, false);
 				tv = convertView.FindViewById<TextView> (Resource.Id.childindent);
+			//header view
 			} else if (type.Equals ("h")) {
 				if(convertView == null || convertView.FindViewById<TextView> (Resource.Id.childhead) == null)
 					convertView = _activity.LayoutInflater.Inflate (Resource.Layout.ExpandChildHead, parent, false);
 				tv = convertView.FindViewById<TextView> (Resource.Id.childhead);
+			//normal view
 			} else if (type.Equals ("n")) {
 				if(convertView == null || convertView.FindViewById<TextView> (Resource.Id.child) == null)
 					convertView = _activity.LayoutInflater.Inflate (Resource.Layout.ExpandChild, parent, false);

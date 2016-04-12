@@ -1,9 +1,8 @@
 ﻿using System;
 
 using Foundation;
-using UIKit;
-using MaterialControls;
 using TotemAppCore;
+using UIKit;
 
 namespace TotemAppIos {
 	public partial class EigenschappenTableViewCell : UITableViewCell {
@@ -26,13 +25,14 @@ namespace TotemAppIos {
 
 		public EigenschappenTableViewCell (IntPtr handle) : base (handle) {}
 
+		//add custom checkbox and initialize it with the right value
 		public void setData() {
 			lblEigenschapName.Text = Eigenschap.name;
 			_checkBox = new BemCheckBox (new CoreGraphics.CGRect (0, 0, 20, 20), new MyBemCheckBoxDelegate(this));
 			vwCheckBoxHolder.Add (_checkBox);
 			_checkBox.SetOn (Eigenschap.selected,false);
 		}
-
+			
 		public void toggleCheckbox() {
 			_checkBox.SetOn (!_checkBox.On,true);
 			Eigenschap.selected = _checkBox.On;
@@ -43,7 +43,7 @@ namespace TotemAppIos {
 			EigenschappenTableViewCell cell;
 			AppController _appController = AppController.Instance;
 
-			public MyBemCheckBoxDelegate(EigenschappenTableViewCell cell):base() {
+			public MyBemCheckBoxDelegate(EigenschappenTableViewCell cell) : base() {
 				this.cell = cell;
 			}
 

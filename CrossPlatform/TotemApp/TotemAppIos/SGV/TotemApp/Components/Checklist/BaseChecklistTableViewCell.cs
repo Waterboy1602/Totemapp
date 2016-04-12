@@ -4,6 +4,8 @@ using Foundation;
 using UIKit;
 
 namespace TotemAppIos {
+
+	//base class of all Checklist TableViewCells
 	public abstract partial class BaseChecklistTableViewCell : UITableViewCell {
 		public static NSString _key;
 		public static UINib Nib;
@@ -14,8 +16,10 @@ namespace TotemAppIos {
 			Nib = UINib.FromName ("BaseChecklistTableViewCell", NSBundle.MainBundle);
 		}
 
-		public BaseChecklistTableViewCell (IntPtr handle) : base (handle) {}
+		protected BaseChecklistTableViewCell (IntPtr handle) : base (handle) {}
 
+		//sets TableViewCell data
+		//overwritten in every child class
 		public abstract void setData(string s);
 	}
 }

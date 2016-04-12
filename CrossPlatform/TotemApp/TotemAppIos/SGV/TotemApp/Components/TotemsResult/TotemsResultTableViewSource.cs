@@ -1,31 +1,22 @@
 ﻿using System;
-using UIKit;
 using System.Collections.Generic;
-using TotemAppCore;
-using Foundation;
 using System.Linq;
+
+using Foundation;
+using TotemAppCore;
+using UIKit;
 
 namespace TotemAppIos {
 	public class TotemsResultTableViewSource : UITableViewSource {
 		public TotemsResultTableViewSource (Dictionary<Totem, int> dict) {
-			this.dict = dict;
+			this.Dict = dict;
 		}
 
 		AppController _appController = AppController.Instance;
 
-		Dictionary<Totem, int> dict;
-		Dictionary<Totem, int> Dict {
-			get {
-				return this.dict;
-			}
-			set {
-				dict = value;
-			}
-		}
+		Dictionary<Totem, int> Dict { get; set;	}
 
-		#region implemented abstract members of UITableViewSource
-
-		public override UITableViewCell GetCell (UITableView tableView, Foundation.NSIndexPath indexPath) {
+		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath) {
 			TotemsTableViewCell cell;
 
 			cell = tableView.DequeueReusableCell (TotemsTableViewCell.Key) as TotemsTableViewCell;
@@ -62,6 +53,5 @@ namespace TotemAppIos {
 			_appController.TotemSelected (Dict.Keys.ToList()[indexPath.Row].nid);
 			tableView.DeselectRow (indexPath,true);
 		}
-		#endregion
 	}
 }

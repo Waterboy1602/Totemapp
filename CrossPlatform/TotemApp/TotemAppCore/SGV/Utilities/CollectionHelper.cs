@@ -3,10 +3,10 @@ using System.Linq;
 
 namespace TotemAppCore {
 
-	//static helper class for operations on Dictionaries and other collections
+	//static helper class for operations on Dictionary
 	public static class CollectionHelper {
 
-		//return sorted array of keys or values from dictionary
+		//return sorted dictionary
 		public static Dictionary<Totem, int> GetSortedList(Dictionary<Totem, int> dict) {
 			var tempList = new List<KeyValuePair<Totem, int>>(dict);
 

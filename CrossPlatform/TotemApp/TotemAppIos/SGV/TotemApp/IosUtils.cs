@@ -1,7 +1,5 @@
-﻿using System;
-
-namespace TotemAppIos {
-	public class IosUtils {
+﻿namespace TotemAppIos {
+	public static class IosUtils {
 		public const string DINPRO_Reg = "DINPro-Regular";
 		public const string DINPRO_Light = "DINPro-Light";
 		public const string DINPRO_Regular = "DIN-LightItalic";

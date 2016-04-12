@@ -4,6 +4,8 @@ using Foundation;
 using UIKit;
 
 namespace TotemAppIos {
+
+	//indented cell
 	public partial class IndentTableViewCell : BaseChecklistTableViewCell {
 		new public static NSString _key = new NSString ("IndentTableViewCell");
 		new public static UINib Nib;
@@ -27,6 +29,7 @@ namespace TotemAppIos {
 		public IndentTableViewCell (IntPtr handle) : base (handle) {}
 
 		public override void setData(string s) {
+			//bullet point char in UNICODE
 			lblBulletPoint.Text = "\u25EF";
 			lblIndent.Text = s;
 			cellHeight = lblIndent.Frame.Height;

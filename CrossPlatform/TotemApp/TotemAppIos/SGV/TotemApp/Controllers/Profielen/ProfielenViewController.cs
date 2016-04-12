@@ -1,33 +1,15 @@
 ﻿using System;
-
-using UIKit;
-using TotemAppCore;
-
 using System.Collections.Generic;
-using MaterialControls;
+
+using TotemAppCore;
+using UIKit;
 
 namespace TotemAppIos {
-	public partial class ProfielenViewController : UIViewController	{
+	public partial class ProfielenViewController : BaseViewController {
 
-		AppController _appController = AppController.Instance;
 		List<Profiel> profielen;
 
 		public ProfielenViewController () : base ("ProfielenViewController", null) {}
-
-		public override void ViewDidLoad () {
-			base.ViewDidLoad ();
-			setData ();
-			NavigationController.NavigationBarHidden = true;
-			NavigationController.NavigationBar.BarStyle = UIBarStyle.Black;
-		}
-
-		public override void DidReceiveMemoryWarning () {
-			base.DidReceiveMemoryWarning ();
-		}
-
-		public override UIStatusBarStyle PreferredStatusBarStyle () {
-			return UIStatusBarStyle.LightContent;
-		}
 
 		public override void ViewDidAppear (bool animated) {
 			base.ViewDidAppear (animated);
@@ -45,32 +27,26 @@ namespace TotemAppIos {
 			_appController.NavigationController.GotoProfileTotemListEvent -= gotoProfileTotemHandler;
 		}
 
-		void btnReturnTouchUpInside (object sender, EventArgs e) {
-			NavigationController.PopViewController (true);
-		}
-
+		//displays popup dialog for adding profile
 		void addProfileDialog (object sender, EventArgs e) {
-			//Create Alert
 			var textInputAlertController = UIAlertController.Create("Nieuw profiel", null, UIAlertControllerStyle.Alert);
 
-			//Add Text Input
 			textInputAlertController.AddTextField(textField => {
 				textField.AutocapitalizationType = UITextAutocapitalizationType.Words;
 				textField.Placeholder = "Naam";
 			});
-
-			//Add Actions
+				
 			var cancelAction = UIAlertAction.Create ("Annuleer", UIAlertActionStyle.Cancel, null);
 			var okayAction = UIAlertAction.Create ("OK", UIAlertActionStyle.Default, alertAction => addProfile(textInputAlertController.TextFields[0].Text));
 
 			textInputAlertController.AddAction(cancelAction);
 			textInputAlertController.AddAction(okayAction);
 
-			//Present Alert
 			PresentViewController(textInputAlertController, true, null);
 		}
 
-		private void addProfile(string name) {
+		//handles wrong input and adds profile
+		void addProfile(string name) {
 			if (_appController.GetProfielNamen ().Contains (name)) {
 				var okAlertController = UIAlertController.Create (null, "Profiel " + name + " bestaat al", UIAlertControllerStyle.Alert);
 				okAlertController.AddAction (UIAlertAction.Create ("Ok", UIAlertActionStyle.Default, null));
@@ -85,20 +61,27 @@ namespace TotemAppIos {
 			}
 		}
 
-		private void setData() {
+		public override void setData() {
 			lblTitle.Text = "Profielen";
+
 			imgReturn.Image = UIImage.FromBundle ("SharedAssets/arrow_back_white");
 			imgAdd.Image = UIImage.FromBundle ("SharedAssets/add_white");
 			imgDelete.Image = UIImage.FromBundle ("SharedAssets/delete_white");
+
 			profielen = _appController.DistinctProfielen;
 			tblProfielen.Source = new ProfielenTableViewSource (profielen);
+
+			//hide necessary UI elements
 			var empty = _appController.DistinctProfielen.Count == 0;
 			tblProfielen.Hidden = empty;
 			btnDelete.Hidden = empty;
+
+			//empty view at footer to prevent empty cells at the bottom
 			tblProfielen.TableFooterView = new UIView ();
 		}
 
-		private void updateListSource() {
+		//updates data of TableView and handles necessary UI changes
+		void updateListSource() {
 			profielen = _appController.DistinctProfielen;
 			(tblProfielen.Source as ProfielenTableViewSource).Profielen = profielen;
 			tblProfielen.ReloadSections (new Foundation.NSIndexSet (0), UITableViewRowAnimation.None);
@@ -111,6 +94,7 @@ namespace TotemAppIos {
 			NavigationController.PushViewController (new ProfielTotemsViewController(), true);
 		}
 
+		//handles UI changes for deleting profiles
 		void deleteProfiles(object sender, EventArgs e) {
 			imgReturn.Image = UIImage.FromBundle ("SharedAssets/close_white");
 			btnReturn.TouchUpInside -= btnReturnTouchUpInside;
@@ -124,6 +108,7 @@ namespace TotemAppIos {
 			btnDelete.TouchUpInside += deleteDialog;
 		}
 
+		//reverts UI changes for deleting profiles
 		void exitDelete(object sender, EventArgs e) {
 			imgReturn.Image = UIImage.FromBundle ("SharedAssets/arrow_back_white");
 			btnReturn.TouchUpInside -= exitDelete;
@@ -131,7 +116,7 @@ namespace TotemAppIos {
 			btnAdd.Hidden = false;
 			addBtnWidth.Constant = 50;
 			lblTitle.Hidden = false;
-			this.profielen = _appController.DistinctProfielen;
+			profielen = _appController.DistinctProfielen;
 			(tblProfielen.Source as ProfielenTableViewSource).Profielen = profielen;
 			((ProfielenTableViewSource)tblProfielen.Source).check = false;
 			tblProfielen.ReloadSections (new Foundation.NSIndexSet (0), UITableViewRowAnimation.None);
@@ -139,18 +124,17 @@ namespace TotemAppIos {
 			btnDelete.TouchUpInside += deleteProfiles;
 		}
 
+		//delete confirmation dialog
 		void deleteDialog(object sender, EventArgs e) {
-			//Create Alert
 			var okCancelAlertController = UIAlertController.Create(null, "Geselecteerde profielen verwijderen?", UIAlertControllerStyle.Alert);
 
-			//Add Actions
 			okCancelAlertController.AddAction(UIAlertAction.Create("Ja", UIAlertActionStyle.Default, alert => deleteSelected(sender, e)));
 			okCancelAlertController.AddAction(UIAlertAction.Create("Nee", UIAlertActionStyle.Cancel, null));
 
-			//Present Alert
 			PresentViewController(okCancelAlertController, true, null);
 		}
 
+		//the actual deletion of the selected profiles
 		void deleteSelected(object sender, EventArgs e) {
 			var deleteList = profielen.FindAll (x => x.selected);
 			foreach(Profiel p in deleteList)

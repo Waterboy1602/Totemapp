@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace TotemAppCore {
+﻿namespace TotemAppCore {
 	public class NavigationController {
-		#region delegates
+
 		public delegate void GoToPageDelegate();
 		public event GoToPageDelegate GotoTotemListEvent;
 		public event GoToPageDelegate GotoTotemDetailEvent;
@@ -12,9 +10,7 @@ namespace TotemAppCore {
 		public event GoToPageDelegate GotoProfileTotemListEvent;
 		public event GoToPageDelegate GotoChecklistEvent;
 		public event GoToPageDelegate GotoTinderEvent;
-		#endregion
 
-		#region variables
 		enum Pages {
 			MAIN,
 			TOTEMLIST,
@@ -26,17 +22,6 @@ namespace TotemAppCore {
 			CHECKLIST,
 			TINDER
 		}
-		#endregion
-
-		#region constructor
-		public NavigationController () {}
-		#endregion
-
-		#region properties
-
-		#endregion
-
-		#region public methods
 
 		public void GoToTotemList() {
 			goToPage (Pages.TOTEMLIST);
@@ -69,19 +54,8 @@ namespace TotemAppCore {
 		public void GoToTinder() {
 			goToPage (Pages.TINDER);
 		}
-
-		#region overrided methods
-
-		#region viewlifecycle
-
-		#endregion
-
-		#endregion
-
-		#endregion
-
-		#region private methods
-		private void goToPage(Pages page) {
+			
+		void goToPage(Pages page) {
 			switch (page) {
 			case Pages.TOTEMLIST:
 				if (GotoTotemListEvent != null)
@@ -115,10 +89,7 @@ namespace TotemAppCore {
 				if (GotoTinderEvent != null)
 					GotoTinderEvent ();
 				break;
-			default:
-				break;
 			}
 		}
-		#endregion
 	}
 }

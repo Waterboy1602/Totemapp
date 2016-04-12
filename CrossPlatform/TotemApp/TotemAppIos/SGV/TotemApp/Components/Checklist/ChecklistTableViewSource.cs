@@ -1,10 +1,11 @@
 ﻿using System;
-using UIKit;
 using System.Collections.Generic;
-using Foundation;
 using System.Drawing;
 using System.Linq;
+
 using CoreAnimation;
+using Foundation;
+using UIKit;
 
 namespace TotemAppIos {
 	public class ChecklistTableViewSource : UITableViewSource {
@@ -14,45 +15,50 @@ namespace TotemAppIos {
 			this.xmlDict = xmlDict;
 		}
 
+		//builds layout for section headers
 		public override UIView GetViewForHeader (UITableView tableView, nint section) {
 			return BuildSectionHeaderView(sectionTitles (tableView) [section]);
 		}
 
+		//defines layout for section headers
 		public static UIView BuildSectionHeaderView(string caption) {
-			UIView view = new UIView(new System.Drawing.RectangleF(0,0,1000,20));
+			var  view = new UIView(new RectangleF(0,0,1000,20));
 			view.BackgroundColor = UIColor.White;
 
-			CALayer topBorder = new CALayer ();
+			var topBorder = new CALayer ();
 			topBorder.Frame = new RectangleF(0, 0, (float)view.Frame.Size.Width, 3);
 			topBorder.BackgroundColor = UIColor.FromRGB (0, 92, 157).CGColor;
 			view.Layer.AddSublayer (topBorder);
 
-			CALayer bottomBorder = new CALayer ();
+			var bottomBorder = new CALayer ();
 			bottomBorder.Frame = new RectangleF(0, 37, (float)view.Frame.Size.Width, 3);
 			bottomBorder.BackgroundColor = UIColor.FromRGB (0, 92, 157).CGColor;
 			view.Layer.AddSublayer (bottomBorder);
 
-			UILabel label = new UILabel();
+			var label = new UILabel();
 			label.Opaque = true;
 			label.TextColor = UIColor.FromRGB (0, 92, 157);
 			label.Font = UIFont.FromName("SketchBlock-Light", 22f);
-			label.Frame = new System.Drawing.RectangleF(20,12,315,20);
+			label.Frame = new RectangleF(20,12,315,20);
 			label.Text = caption;
 			view.AddSubview(label);
 			return view;
 		}
 
-
 		public override nfloat GetHeightForHeader (UITableView tableView, nint section) {
 			return 40f;
 		}
 
-		#region implemented abstract members of UITableViewSource
+		//returns matching view for the type of data
+		//i -> indented
+		//h -> head
+		//n -> normal
+		//t -> title
+		//e.g.: i_het past in de context
+		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath) {
+			BaseChecklistTableViewCell cell;
 
-		public override UITableViewCell GetCell (UITableView tableView, Foundation.NSIndexPath indexPath) {
-			BaseChecklistTableViewCell cell = null;
-
-			//var item = xmlData [indexPath.Row];
+			//extract type of cell and content
 			var item = xmlDict [sectionTitles (tableView)[indexPath.Section]][indexPath.Row];
 			string[] data = item.Split ('_');
 			var type = data [0];
@@ -90,7 +96,5 @@ namespace TotemAppIos {
 		string[] sectionTitles (UITableView tableView) {
 			return xmlDict.Keys.ToArray ();
 		}
-
-		#endregion
 	}
 }

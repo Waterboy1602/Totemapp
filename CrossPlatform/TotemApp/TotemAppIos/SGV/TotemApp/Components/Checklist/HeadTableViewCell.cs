@@ -4,6 +4,8 @@ using Foundation;
 using UIKit;
 
 namespace TotemAppIos {
+
+	//header cell
 	public partial class HeadTableViewCell : BaseChecklistTableViewCell	{
 		new public static NSString _key = new NSString ("HeadTableViewCell");
 		new public static UINib Nib;

@@ -31,9 +31,9 @@ namespace TotemAppCore {
 				#if __IOS__
 				int SystemVersion = Convert.ToInt16(UIKit.UIDevice.CurrentDevice.SystemVersion.Split('.')[0]);
 				string documentsPath;
-				if(SystemVersion >= 8){
+				if(SystemVersion >= 8) {
 					documentsPath = NSFileManager.DefaultManager.GetUrls(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User)[0].Path;
-				}else{
+				} else {
 					documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // Documents folder
 				}
 				var path = Path.Combine(documentsPath, sqliteFilename);
@@ -55,14 +55,12 @@ namespace TotemAppCore {
 		/// </Summary>
 		/// <param name="readStream">Read stream.</param>
 		/// <param name="writeStream">Write stream.</param>
-		void ReadWriteStream(Stream readStream, Stream writeStream)
-		{
+		void ReadWriteStream(Stream readStream, Stream writeStream) {
 			int Length = 256;
-			Byte[] buffer = new Byte[Length];
+			var buffer = new Byte[Length];
 			int bytesRead = readStream.Read(buffer, 0, Length);
 			// write the required bytes
-			while (bytesRead > 0)
-			{
+			while (bytesRead > 0) {
 				writeStream.Write(buffer, 0, bytesRead);
 				bytesRead = readStream.Read(buffer, 0, Length);
 			}
@@ -71,7 +69,7 @@ namespace TotemAppCore {
 		}
 
 		/// <Summary>
-		/// Initializes a new instance of the <see cref="Bazookas.Testaankoop.DL.TestaankoopDB"/> Database. 
+		/// Initializes a new instance of the Database. 
 		/// if the database doesn't exist, it will create the database and all the tables.
 		/// </Summary>
 		/// <param name='path'>
@@ -82,7 +80,7 @@ namespace TotemAppCore {
 			if (!File.Exists (dbPath)) {
 				#if __ANDROID__
 				var s = Application.Context.Assets.Open (originalDBLocation);
-				FileStream writeStream = new FileStream (dbPath, FileMode.OpenOrCreate, FileAccess.Write);
+				var writeStream = new FileStream (dbPath, FileMode.OpenOrCreate, FileAccess.Write);
 				ReadWriteStream (s, writeStream);
 				writeStream.Close ();
 
@@ -240,7 +238,7 @@ namespace TotemAppCore {
 		public string GetRandomTip() {
 			List<Tip> list;
 			lock (database) {
-				var cmd = new SQLite.SQLiteCommand (database);
+				var cmd = new SQLiteCommand (database);
 				cmd.CommandText = "select * from tip";
 				list = cmd.ExecuteQuery<Tip> ();
 			}

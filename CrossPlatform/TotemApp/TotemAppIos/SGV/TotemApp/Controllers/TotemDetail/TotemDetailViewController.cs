@@ -1,32 +1,14 @@
 ﻿using System;
 
+using Foundation;
+using TotemAppCore;
 using UIKit;
 
-using TotemAppCore;
-using Foundation;
-
 namespace TotemAppIos {
-	public partial class TotemDetailViewController : UIViewController {
+	public partial class TotemDetailViewController : BaseViewController {
 		public TotemDetailViewController () : base ("TotemDetailViewController", null) {}
 
-		AppController _appController = AppController.Instance;
 		bool add;
-
-		public override void ViewDidLoad () {
-			base.ViewDidLoad ();
-			setData ();
-			NavigationController.NavigationBarHidden = true;
-			NavigationController.NavigationBar.BarStyle = UIBarStyle.Black;
-		}
-
-		public override void DidReceiveMemoryWarning () {
-			base.DidReceiveMemoryWarning ();
-			// Release any cached data, images, etc that aren't in use.
-		}
-
-		public override UIStatusBarStyle PreferredStatusBarStyle () {
-			return UIStatusBarStyle.LightContent;
-		}
 
 		public override void ViewDidAppear (bool animated) {
 			base.ViewDidAppear (animated);
@@ -40,25 +22,23 @@ namespace TotemAppIos {
 			btnAction.TouchUpInside -= btnActionTouchUpInside;
 		}
 
-		void btnReturnTouchUpInside (object sender, EventArgs e) {
-			NavigationController.PopViewController (true);
-		}
-
-		private void setData() {
+		public override void setData() {
 			lblTitle.Text = "Beschrijving";
 
+			//shows button depending on action
 			add = (_appController.CurrentProfiel == null);
 			if(add)
 				imgAction.Image = UIImage.FromBundle ("SharedAssets/add_white");
 			else
 				imgAction.Image = UIImage.FromBundle ("SharedAssets/delete_white");
 
+			//styling for title (totem name)
 			var paragraphStyleTitle = new NSMutableParagraphStyle ();
 			paragraphStyleTitle.LineSpacing = 15;
 
+			//styling for synonyms
 			var paragraphStyleSyn = new NSMutableParagraphStyle ();
 			paragraphStyleSyn.LineSpacing = 20;
-
 
 
 			var titleAttributes = new UIStringAttributes {
@@ -75,8 +55,10 @@ namespace TotemAppIos {
 			if(_appController.CurrentTotem.synonyms != null)
 				content += " - " + _appController.CurrentTotem.synonyms;
 
+			//whitespace for UI purposes
 			content += "\n";
-			
+
+			//applying attributes
 			var title_synonyms = new NSMutableAttributedString(content);
 			title_synonyms.SetAttributes (titleAttributes.Dictionary, new NSRange (0, _appController.CurrentTotem.title.Length));
 			title_synonyms.SetAttributes (synonymsAttributes.Dictionary, new NSRange (_appController.CurrentTotem.title.Length, (title_synonyms.Length-_appController.CurrentTotem.title.Length)));
@@ -88,19 +70,17 @@ namespace TotemAppIos {
 			imgLine.Image = UIImage.FromBundle ("SharedAssets/Lijn_bold");
 
 			imgReturn.Image = UIImage.FromBundle ("SharedAssets/arrow_back_white");
-
-			UIColor color = UIColor.White;
 		}
 
+		//handles button click depending on action
 		void btnActionTouchUpInside(object sender, EventArgs e) {
 			if (add) {
-				// Create a new Alert Controller
 				UIAlertController actionSheetAlert = UIAlertController.Create (null, null, UIAlertControllerStyle.ActionSheet);
 				foreach (Profiel p in _appController.DistinctProfielen) {
-					actionSheetAlert.AddAction (UIAlertAction.Create (p.name, UIAlertActionStyle.Default, (action) => addToProfile (p.name)));
+					actionSheetAlert.AddAction (UIAlertAction.Create (p.name, UIAlertActionStyle.Default, action => addToProfile (p.name)));
 				}
 					
-				actionSheetAlert.AddAction (UIAlertAction.Create ("Nieuw profiel", UIAlertActionStyle.Default, (action) => addProfileDialog ()));
+				actionSheetAlert.AddAction (UIAlertAction.Create ("Nieuw profiel", UIAlertActionStyle.Default, action => addProfileDialog ()));
 
 				actionSheetAlert.AddAction (UIAlertAction.Create ("Annuleer", UIAlertActionStyle.Cancel, null));
 
@@ -108,24 +88,19 @@ namespace TotemAppIos {
 				// displayed as a popover
 				UIPopoverPresentationController presentationPopover = actionSheetAlert.PopoverPresentationController;
 				if (presentationPopover != null) {
-					presentationPopover.SourceView = this.View;
+					presentationPopover.SourceView = View;
 					presentationPopover.PermittedArrowDirections = UIPopoverArrowDirection.Up;
 				}
-
-				// Display the alert
-				this.PresentViewController (actionSheetAlert, true, null);
+					
+				PresentViewController (actionSheetAlert, true, null);
 			} else {
-				//Create Alert
 				var okCancelAlertController = UIAlertController.Create(null, _appController.CurrentTotem.title + " verwijderen uit profiel " + _appController.CurrentProfiel.name + "?", UIAlertControllerStyle.Alert);
 
-				//Add Actions
 				okCancelAlertController.AddAction(UIAlertAction.Create("Ja", UIAlertActionStyle.Default, alert => deleteFromProfile()));
 				okCancelAlertController.AddAction(UIAlertAction.Create("Nee", UIAlertActionStyle.Cancel, null));
 
-				//Present Alert
 				PresentViewController(okCancelAlertController, true, null);
-			}
-				
+			}	
 		}
 
 		void addToProfile(string name) {
@@ -133,27 +108,24 @@ namespace TotemAppIos {
 		}
 
 		void addProfileDialog () {
-			//Create Alert
 			var textInputAlertController = UIAlertController.Create("Nieuw profiel", null, UIAlertControllerStyle.Alert);
 
-			//Add Text Input
 			textInputAlertController.AddTextField(textField => {
 				textField.AutocapitalizationType = UITextAutocapitalizationType.Words;
 				textField.Placeholder = "Naam";
 			});
-
-			//Add Actions
+				
 			var cancelAction = UIAlertAction.Create ("Annuleer", UIAlertActionStyle.Cancel, alertAction => Console.WriteLine ("Cancel was Pressed"));
 			var okayAction = UIAlertAction.Create ("OK", UIAlertActionStyle.Default, alertAction => addProfile(textInputAlertController.TextFields[0].Text));
 
 			textInputAlertController.AddAction(cancelAction);
 			textInputAlertController.AddAction(okayAction);
 
-			//Present Alert
 			PresentViewController(textInputAlertController, true, null);
 		}
 
-		private void addProfile(string name) {
+		//handles wrong input and adds profile
+		void addProfile(string name) {
 			if (_appController.GetProfielNamen ().Contains (name)) {
 				var okAlertController = UIAlertController.Create (null, "Profiel " + name + " bestaat al", UIAlertControllerStyle.Alert);
 				okAlertController.AddAction (UIAlertAction.Create ("Ok", UIAlertActionStyle.Default, null));
@@ -168,6 +140,7 @@ namespace TotemAppIos {
 			}
 		}
 
+		//deletes totem drom profile and returns to totem page
 		void deleteFromProfile() {
 			_appController.DeleteTotemFromProfile (_appController.CurrentTotem.nid, _appController.CurrentProfiel.name);
 			NavigationController.PopViewController (true);

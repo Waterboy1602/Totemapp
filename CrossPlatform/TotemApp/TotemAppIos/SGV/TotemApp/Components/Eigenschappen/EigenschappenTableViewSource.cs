@@ -1,35 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+
+using Foundation;
 using TotemAppCore;
 using UIKit;
-using Foundation;
 
 namespace TotemAppIos {
 	public class EigenschappenTableViewSource : UITableViewSource {
 		
 		public EigenschappenTableViewSource (List<Eigenschap> eigenschappen) {
-			this.eigenschappen = eigenschappen;
+			Eigenschappen = eigenschappen;
 		}
 
-		List<Eigenschap> eigenschappen;
-		public List<Eigenschap> Eigenschappen {
-			get {
-				return this.eigenschappen;
-			}
-			set {
-				eigenschappen = value;
-			}
-		}
-		#region implemented abstract members of UITableViewSource
+		public List<Eigenschap> Eigenschappen { get; set; }
 
-		public override UITableViewCell GetCell (UITableView tableView, Foundation.NSIndexPath indexPath) {
+		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath) {
 			EigenschappenTableViewCell cell;
 
 			cell = tableView.DequeueReusableCell (EigenschappenTableViewCell.Key) as EigenschappenTableViewCell;
 			if (cell == null)
 				cell = EigenschappenTableViewCell.Create ();
 
-			cell.Eigenschap = eigenschappen [indexPath.Row];
+			cell.Eigenschap = Eigenschappen [indexPath.Row];
 
 			//make sperator full width
 			cell.PreservesSuperviewLayoutMargins = false;
@@ -43,7 +35,7 @@ namespace TotemAppIos {
 		}
 
 		public override nint RowsInSection (UITableView tableview, nint section) {
-			return eigenschappen.Count;
+			return Eigenschappen.Count;
 		}
 
 		public override nint NumberOfSections (UITableView tableView) {
@@ -58,6 +50,5 @@ namespace TotemAppIos {
 			(tableView.CellAt (indexPath) as EigenschappenTableViewCell).toggleCheckbox ();
 			tableView.DeselectRow (indexPath,true);
 		}
-		#endregion
 	}
 }

@@ -1,9 +1,10 @@
 ﻿using System;
-using UIKit;
 using System.Collections.Generic;
-using TotemAppCore;
-using Foundation;
 using System.Linq;
+
+using Foundation;
+using TotemAppCore;
+using UIKit;
 
 namespace TotemAppIos {
 	public class TotemsTableViewSource : UITableViewSource {
@@ -21,7 +22,7 @@ namespace TotemAppIos {
 		List<Totem> totems;
 		public List<Totem> Totems {
 			get {
-				return this.totems;
+				return totems;
 			}
 			set {
 				totems = value;
@@ -29,28 +30,26 @@ namespace TotemAppIos {
 			}
 		}
 
+		//fill dictionary on letter
 		void FillDict(List<Totem> list) {
 			dict = new Dictionary<string, List<Totem>> ();
 			foreach (var t in list) {
 				if (dict.ContainsKey (t.title[0].ToString ())) {
 					dict[t.title[0].ToString ()].Add(t);
 				} else {
-					dict.Add (t.title[0].ToString (), new List<Totem>() {t});
+					dict.Add (t.title[0].ToString (), new List<Totem> {t});
 				}
 			}
 			keys = dict.Keys.ToArray ();
 		}
 
-		#region implemented abstract members of UITableViewSource
-
-		public override UITableViewCell GetCell (UITableView tableView, Foundation.NSIndexPath indexPath) {
+		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath) {
 			TotemsTableViewCell cell;
 
-				cell = tableView.DequeueReusableCell (TotemsTableViewCell.Key) as TotemsTableViewCell;
-				if (cell == null)
-					cell = TotemsTableViewCell.Create ();
+			cell = tableView.DequeueReusableCell (TotemsTableViewCell.Key) as TotemsTableViewCell;
+			if (cell == null)
+				cell = TotemsTableViewCell.Create ();
 
-			//cell.Totem = totems [indexPath.Row];
 			cell.Totem = dict[keys[indexPath.Section]][indexPath.Row];
 
 			//make sperator full width
@@ -83,6 +82,5 @@ namespace TotemAppIos {
 			_appController.TotemSelected (dict[keys[indexPath.Section]][indexPath.Row].nid);
 			tableView.DeselectRow (indexPath,true);
 		}
-		#endregion
 	}
 }

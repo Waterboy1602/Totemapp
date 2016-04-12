@@ -1,9 +1,8 @@
 ﻿using System;
 
 using Foundation;
-using UIKit;
-using MaterialControls;
 using TotemAppCore;
+using UIKit;
 
 namespace TotemAppIos {
 	public partial class TotemsTableViewCell : UITableViewCell {

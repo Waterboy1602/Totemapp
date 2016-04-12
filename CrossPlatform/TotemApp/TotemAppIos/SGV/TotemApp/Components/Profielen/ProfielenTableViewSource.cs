@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+
+using Foundation;
 using TotemAppCore;
 using UIKit;
-using System.Collections.Generic;
-using Foundation;
-using System.Runtime.InteropServices;
 
 namespace TotemAppIos {
 	public class ProfielenTableViewSource : UITableViewSource {
@@ -11,29 +11,21 @@ namespace TotemAppIos {
 		AppController _appController = AppController.Instance;
 
 		public ProfielenTableViewSource (List<Profiel> profielen) {
-			this.profielen = profielen;
+			Profielen = profielen;
 		}
 
-		List<Profiel> profielen;
-		public List<Profiel> Profielen {
-			get {
-				return this.profielen;
-			}
-			set {
-				profielen = value;
-			}
-		}
+		public List<Profiel> Profielen { get; set; }
 
 		public bool check { get; set; }
 
-		public override UITableViewCell GetCell (UITableView tableView, Foundation.NSIndexPath indexPath) {
+		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath) {
 			ProfielenTableViewCell cell;
 
 			cell = tableView.DequeueReusableCell (ProfielenTableViewCell.Key) as ProfielenTableViewCell;
 			if (cell == null)
 				cell = ProfielenTableViewCell.Create ();
 
-			cell.Profiel = profielen [indexPath.Row];
+			cell.Profiel = Profielen [indexPath.Row];
 
 			//make sperator full width
 			cell.PreservesSuperviewLayoutMargins = false;
@@ -46,7 +38,7 @@ namespace TotemAppIos {
 		}
 
 		public override nint RowsInSection (UITableView tableview, nint section) {
-			return profielen.Count;
+			return Profielen.Count;
 		}
 
 		public override nint NumberOfSections (UITableView tableView) {
@@ -61,11 +53,9 @@ namespace TotemAppIos {
 			if(check)
 				(tableView.CellAt (indexPath) as ProfielenTableViewCell).toggleCheckbox ();
 			else
-				_appController.ProfileSelected (profielen[indexPath.Row].name);
+				_appController.ProfileSelected (Profielen[indexPath.Row].name);
 
 			tableView.DeselectRow (indexPath,true);
 		}
-
-
 	}
 }
