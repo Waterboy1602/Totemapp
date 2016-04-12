@@ -86,6 +86,7 @@ namespace TotemAppIos {
 			UIColor color = UIColor.White;
 			txtSearch.AttributedPlaceholder = new Foundation.NSAttributedString("Zoek totem",foregroundColor: color);
 
+			tblTotems.SectionIndexColor = UIColor.FromRGB (0, 92, 157);
 			tblTotems.Source = new TotemsTableViewSource (_appController.Totems);
 			tblTotems.TableFooterView = new UIView ();
 		}

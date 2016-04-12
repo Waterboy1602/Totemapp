@@ -3,11 +3,17 @@ using UIKit;
 using System.Collections.Generic;
 using TotemAppCore;
 using Foundation;
+using System.Linq;
 
 namespace TotemAppIos {
 	public class TotemsTableViewSource : UITableViewSource {
+
+		Dictionary<string, List<Totem>> dict;
+		string[] keys;
+
 		public TotemsTableViewSource (List<Totem> totems) {
 			this.totems = totems;
+			FillDict (totems);
 		}
 
 		AppController _appController = AppController.Instance;
@@ -19,7 +25,20 @@ namespace TotemAppIos {
 			}
 			set {
 				totems = value;
+				FillDict (totems);
 			}
+		}
+
+		void FillDict(List<Totem> list) {
+			dict = new Dictionary<string, List<Totem>> ();
+			foreach (var t in list) {
+				if (dict.ContainsKey (t.title[0].ToString ())) {
+					dict[t.title[0].ToString ()].Add(t);
+				} else {
+					dict.Add (t.title[0].ToString (), new List<Totem>() {t});
+				}
+			}
+			keys = dict.Keys.ToArray ();
 		}
 
 		#region implemented abstract members of UITableViewSource
@@ -31,7 +50,8 @@ namespace TotemAppIos {
 				if (cell == null)
 					cell = TotemsTableViewCell.Create ();
 
-			cell.Totem = totems [indexPath.Row];
+			//cell.Totem = totems [indexPath.Row];
+			cell.Totem = dict[keys[indexPath.Section]][indexPath.Row];
 
 			//make sperator full width
 			cell.PreservesSuperviewLayoutMargins = false;
@@ -44,11 +64,15 @@ namespace TotemAppIos {
 		}
 
 		public override nint RowsInSection (UITableView tableview, nint section) {
-			return totems.Count;
+			return dict[keys[section]].Count;
 		}
 
 		public override nint NumberOfSections (UITableView tableView) {
-			return 1;
+			return keys.Length;
+		}
+
+		public override string[] SectionIndexTitles (UITableView tableView) {
+			return keys;
 		}
 
 		public override nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath) {
@@ -56,7 +80,7 @@ namespace TotemAppIos {
 		}
 
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath) {
-			_appController.TotemSelected (totems[indexPath.Row].nid);
+			_appController.TotemSelected (dict[keys[indexPath.Section]][indexPath.Row].nid);
 			tableView.DeselectRow (indexPath,true);
 		}
 		#endregion
