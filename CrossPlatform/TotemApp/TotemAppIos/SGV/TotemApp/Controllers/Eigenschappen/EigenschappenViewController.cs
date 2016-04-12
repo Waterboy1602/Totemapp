@@ -180,8 +180,8 @@ namespace TotemAppIos {
 				tblEigenschappen.ReloadSections (new Foundation.NSIndexSet (0), UITableViewRowAnimation.Automatic);
 				tblEigenschappen.ScrollRectToVisible (new CGRect(0,0,1,1), false);
 				isShowingSelected = !isShowingSelected;
-			} else if ((_appController.FindEigenschapOpNaam (txtSearch.Text).FindAll (x=>x.selected)).Count != 0) {
-				(tblEigenschappen.Source as EigenschappenTableViewSource).Eigenschappen = _appController.FindEigenschapOpNaam (txtSearch.Text).FindAll (x => x.selected);
+			} else if ((_appController.Eigenschappen.FindAll (x=>x.selected)).Count != 0) {
+				(tblEigenschappen.Source as EigenschappenTableViewSource).Eigenschappen = _appController.Eigenschappen.FindAll (x => x.selected);
 				tblEigenschappen.ReloadSections (new Foundation.NSIndexSet (0), UITableViewRowAnimation.Automatic);
 				isShowingSelected = !isShowingSelected;
 				tblEigenschappen.ScrollRectToVisible (new CGRect(0,0,1,1), false);
