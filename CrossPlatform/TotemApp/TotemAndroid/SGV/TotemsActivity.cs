@@ -38,6 +38,7 @@ namespace TotemAndroid {
 			totemAdapter = new TotemAdapter (this, totemList);
 			allTotemListView = FindViewById<ListView> (Resource.Id.all_totem_list);
 			allTotemListView.Adapter = totemAdapter;
+			allTotemListView.FastScrollEnabled = true;
 
 			title.Text = "Totems";
 			query.Hint = "Zoek totem";

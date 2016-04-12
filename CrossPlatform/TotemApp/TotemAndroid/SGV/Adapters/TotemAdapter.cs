@@ -7,17 +7,36 @@ using Android.Widget;
 using TotemAppCore;
 
 namespace TotemAndroid {
-	public class TotemAdapter: BaseAdapter<Totem> {
+	public class TotemAdapter: BaseAdapter<Totem>, ISectionIndexer {
 		Activity _activity;
 		List<Totem> totemList;
 		int[] freqs;
 		int selected;
 		bool showDelete;
 
+		Dictionary<string, int> alphaIndex;
+		string [] sections;
+		Java.Lang.Object[] sectionsObjects;
+
 		public TotemAdapter (Activity activity, List<Totem> list) {	
 			_activity = activity;
 			totemList = list;
 			showDelete = false;
+
+			var items = list.ToArray ();
+
+			alphaIndex = new Dictionary<string, int>();
+			for (int i = 0; i < items.Length; i++) {
+				var key = items[i].title[0].ToString();
+				if (!alphaIndex.ContainsKey(key)) 
+					alphaIndex.Add(key, i);
+			}
+			sections = new string[alphaIndex.Keys.Count];
+			alphaIndex.Keys.CopyTo(sections, 0);
+			sectionsObjects = new Java.Lang.Object[sections.Length];
+			for (int i = 0; i < sections.Length; i++) {
+				sectionsObjects[i] = new Java.Lang.String(sections[i]);
+			}
 		}
 
 		public TotemAdapter (Activity activity, List<Totem> list, int[] freqs, int selected): this(activity, list) {	
@@ -26,15 +45,15 @@ namespace TotemAndroid {
 		}
 
 		public void ShowDelete() {
-			this.showDelete = true;
+			showDelete = true;
 		}
 
 		public void HideDelete() {
-			this.showDelete = false;
+			showDelete = false;
 		}
 
 		public void UpdateData(List<Totem> list) {
-			this.totemList = list;
+			totemList = list;
 		}
 
 		public override Totem this[int index] {
@@ -94,6 +113,18 @@ namespace TotemAndroid {
 
 		public Totem GetItemAtPosition(int position) {
 			return totemList[position];
+		}
+
+		public int GetPositionForSection (int section) {
+			return alphaIndex[sections[section]];
+		}
+
+		public int GetSectionForPosition(int position) {
+			return 1;
+		}
+
+		public Java.Lang.Object[] GetSections () {
+			return sectionsObjects;
 		}
 	}
 }
