@@ -63,6 +63,7 @@ namespace TotemAndroid {
 			}
 		}
 
+		/*
 		//create options menu
 		public override bool OnCreateOptionsMenu(IMenu m) {
 			IMenu menu = m;
@@ -84,6 +85,7 @@ namespace TotemAndroid {
 
 			return base.OnOptionsItemSelected(item);
 		}
+		*/
 
 		//redirect to the result activity
 		//totems and their frequencies are sorted and passed seperately as parameters
