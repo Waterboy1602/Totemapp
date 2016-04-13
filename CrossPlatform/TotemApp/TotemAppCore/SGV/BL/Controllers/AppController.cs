@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TotemAppCore {
 	public class AppController {
@@ -24,6 +25,12 @@ namespace TotemAppCore {
 			_eigenschappen = database.GetEigenschappen ();
 			_navigationController = new NavigationController ();
 			TotemEigenschapDict = new Dictionary<Totem, int> ();
+		}
+
+		public enum DetailMode {
+			NORMAL,
+			PROFILE,
+			RESULT
 		}
 
 
@@ -69,6 +76,43 @@ namespace TotemAppCore {
 		}
 
 		public Totem CurrentTotem { get; set; }
+		public DetailMode detailMode { get; set; }
+
+		public Totem NextTotem {
+			get {
+				List<Totem> list;
+				if (detailMode == DetailMode.NORMAL) {
+					list = Totems;
+				} else if (detailMode == DetailMode.PROFILE) {
+					list = GetTotemsFromProfiel (CurrentProfiel.name);
+				} else {
+					list = TotemEigenschapDict.Keys.ToList ();
+				}
+				var index = list.FindIndex (x => x.title.Equals (CurrentTotem.title));
+				if (index != (list.Count-1))
+					return list [index + 1];
+				else
+					return null;
+			}
+		}
+
+		public Totem PrevTotem {
+			get {
+				List<Totem> list;
+				if (detailMode == DetailMode.NORMAL) {
+					list = Totems;
+				} else if (detailMode == DetailMode.PROFILE) {
+					list = GetTotemsFromProfiel (CurrentProfiel.name);
+				} else {
+					list = TotemEigenschapDict.Keys.ToList ();
+				}
+				var index = list.FindIndex (x => x.title.Equals (CurrentTotem.title));
+				if (index != 0)
+					return list [index - 1];
+				else
+					return null;
+			}
+		}
 
 		public Profiel CurrentProfiel { get; set; }
 
@@ -211,11 +255,13 @@ namespace TotemAppCore {
 		public void ProfileTotemSelected(string profileName, string totemID) {
 			setCurrentProfile (profileName);
 			setCurrentTotem (totemID);
+			detailMode = DetailMode.PROFILE;
 			_navigationController.GoToTotemDetail ();
 		}
 			
 		public void CalculateResultlist(List<Eigenschap> checkboxList) {
 			FillAndSortDict (checkboxList);
+			detailMode = DetailMode.RESULT;
 			_navigationController.GoToTotemResult ();
 		}
 

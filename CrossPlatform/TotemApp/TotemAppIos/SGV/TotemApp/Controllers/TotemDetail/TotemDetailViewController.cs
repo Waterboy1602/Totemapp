@@ -10,6 +10,34 @@ namespace TotemAppIos {
 
 		bool add;
 
+		public override void ViewDidLoad () {
+			base.ViewDidLoad ();
+
+			var leftSwipeGesture = new UISwipeGestureRecognizer (LeftSwipeHandler);
+			leftSwipeGesture.Direction = UISwipeGestureRecognizerDirection.Left;
+			var rightSwipeGesture = new UISwipeGestureRecognizer (RightSwipeHandler);
+			rightSwipeGesture.Direction = UISwipeGestureRecognizerDirection.Right;
+
+			View.AddGestureRecognizer (leftSwipeGesture);
+			View.AddGestureRecognizer (rightSwipeGesture);
+		}
+
+		void LeftSwipeHandler (UISwipeGestureRecognizer gestureRecognizer) {
+			var next = _appController.NextTotem;
+			if(next != null) {
+				_appController.CurrentTotem = next;
+				setData ();
+			}
+		}
+
+		void RightSwipeHandler (UISwipeGestureRecognizer gestureRecognizer) {
+			var prev = _appController.PrevTotem;
+			if(prev != null) {
+				_appController.CurrentTotem = prev;
+				setData ();
+			}       
+		}
+
 		public override void ViewDidAppear (bool animated) {
 			base.ViewDidAppear (animated);
 			btnReturn.TouchUpInside += btnReturnTouchUpInside;

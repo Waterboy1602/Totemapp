@@ -9,7 +9,7 @@ using UIKit;
 namespace TotemAppIos {
 	public class TotemsResultTableViewSource : UITableViewSource {
 		public TotemsResultTableViewSource (Dictionary<Totem, int> dict) {
-			this.Dict = dict;
+			Dict = dict;
 		}
 
 		AppController _appController = AppController.Instance;
