@@ -1,11 +1,13 @@
 // WARNING
 //
-// This file has been generated automatically by Xamarin Studio Community to store outlets and
-// actions made in the UI designer. If it is removed, they will be lost.
-// Manual changes to this file may not be handled correctly.
+// This file has been generated automatically by Xamarin Studio from the outlets and
+// actions declared in your storyboard file.
+// Manual changes to this file will not be maintained.
 //
 using Foundation;
+using System;
 using System.CodeDom.Compiler;
+using UIKit;
 
 namespace TotemAppIos
 {
@@ -35,47 +37,40 @@ namespace TotemAppIos
 
 		[Outlet]
 		UIKit.UILabel lblTitle { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
-			if (lblEigenschap != null) {
-				lblEigenschap.Dispose ();
-				lblEigenschap = null;
-			}
-
 			if (btnJa != null) {
 				btnJa.Dispose ();
 				btnJa = null;
 			}
-
+			if (btnMore != null) {
+				btnMore.Dispose ();
+				btnMore = null;
+			}
 			if (btnNee != null) {
 				btnNee.Dispose ();
 				btnNee = null;
 			}
-
-			if (lblTitle != null) {
-				lblTitle.Dispose ();
-				lblTitle = null;
-			}
-
-			if (imgReturn != null) {
-				imgReturn.Dispose ();
-				imgReturn = null;
-			}
-
 			if (btnReturn != null) {
 				btnReturn.Dispose ();
 				btnReturn = null;
 			}
-
 			if (imgMore != null) {
 				imgMore.Dispose ();
 				imgMore = null;
 			}
-
-			if (btnMore != null) {
-				btnMore.Dispose ();
-				btnMore = null;
+			if (imgReturn != null) {
+				imgReturn.Dispose ();
+				imgReturn = null;
+			}
+			if (lblEigenschap != null) {
+				lblEigenschap.Dispose ();
+				lblEigenschap = null;
+			}
+			if (lblTitle != null) {
+				lblTitle.Dispose ();
+				lblTitle = null;
 			}
 		}
 	}

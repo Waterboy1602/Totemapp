@@ -13,11 +13,13 @@ namespace TotemAppIos {
 		public override void ViewDidLoad () {
 			base.ViewDidLoad ();
 
+			//defines left and right swipe gesture
 			var leftSwipeGesture = new UISwipeGestureRecognizer (LeftSwipeHandler);
 			leftSwipeGesture.Direction = UISwipeGestureRecognizerDirection.Left;
 			var rightSwipeGesture = new UISwipeGestureRecognizer (RightSwipeHandler);
 			rightSwipeGesture.Direction = UISwipeGestureRecognizerDirection.Right;
 
+			//adds gestures to superview
 			View.AddGestureRecognizer (leftSwipeGesture);
 			View.AddGestureRecognizer (rightSwipeGesture);
 		}
