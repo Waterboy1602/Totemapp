@@ -35,20 +35,8 @@ namespace TotemAndroid {
 
 			UpdateScreen ();
 
-			jaKnop.Click += (sender, eventArgs) => PushJa();
-			neeKnop.Click += (sender, eventArgs) => PushNee();
-		}
-
-		protected override void OnResume ()	{
-			base.OnResume ();
-
-			_appController.NavigationController.GotoTotemResultEvent+= StartResultTotemsActivity;
-		}
-
-		protected override void OnPause ()	{
-			base.OnPause ();
-
-			_appController.NavigationController.GotoTotemResultEvent-= StartResultTotemsActivity;
+			jaKnop.Click += (sender, eventArgs) => Push(true);
+			neeKnop.Click += (sender, eventArgs) => Push(false);
 		}
 
 		//show next eigenschap
@@ -86,30 +74,9 @@ namespace TotemAndroid {
 			return base.OnOptionsItemSelected(item);
 		}
 		*/
-
-		//redirect to the result activity
-		//totems and their frequencies are sorted and passed seperately as parameters
-		public void VindTotem() {
-			_appController.CalculateResultlist(eigenschappen);
-		}
-
-		void StartResultTotemsActivity() {
-			var totemsActivity = new Intent (this, typeof(ResultTotemsActivity));
-			totemsActivity.PutExtra ("GoToMain", true);
-			StartActivity (totemsActivity);
-		}
-
-		//adds totem IDs related to the eigenschap to freqs
-		//increases eigenschap count next
-		public void PushJa() {
-			eigenschappen [eigenschapCount].selected = true;
-			eigenschapCount++;
-			UpdateScreen ();
-		}
-
-		//increases eigenschap count
-		public void PushNee() {
-			eigenschappen [eigenschapCount].selected = false;
+			
+		public void Push(bool choice) {
+			eigenschappen [eigenschapCount].selected = choice;
 			eigenschapCount++;
 			UpdateScreen ();
 		}
