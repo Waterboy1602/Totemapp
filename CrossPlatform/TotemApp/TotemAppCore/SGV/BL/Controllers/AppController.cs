@@ -91,10 +91,7 @@ namespace TotemAppCore {
 					list = TotemEigenschapDict.Keys.ToList ();
 				}
 				var index = list.FindIndex (x => x.title.Equals (CurrentTotem.title));
-				if (index != (list.Count-1))
-					return list [index + 1];
-				else
-					return null;
+				return index != (list.Count - 1) ? list [index + 1] : null;
 			}
 		}
 
@@ -110,10 +107,7 @@ namespace TotemAppCore {
 					list = TotemEigenschapDict.Keys.ToList ();
 				}
 				var index = list.FindIndex (x => x.title.Equals (CurrentTotem.title));
-				if (index != 0)
-					return list [index - 1];
-				else
-					return null;
+				return index != 0 ? list [index - 1] : null;
 			}
 		}
 

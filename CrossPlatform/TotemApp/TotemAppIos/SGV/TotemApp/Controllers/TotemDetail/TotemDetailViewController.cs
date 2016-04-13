@@ -57,10 +57,7 @@ namespace TotemAppIos {
 
 			//shows button depending on action
 			add = (_appController.CurrentProfiel == null);
-			if(add)
-				imgAction.Image = UIImage.FromBundle ("SharedAssets/add_white");
-			else
-				imgAction.Image = UIImage.FromBundle ("SharedAssets/delete_white");
+			imgAction.Image = add ? UIImage.FromBundle ("SharedAssets/add_white") : UIImage.FromBundle ("SharedAssets/delete_white");
 
 			//styling for title (totem name)
 			var paragraphStyleTitle = new NSMutableParagraphStyle ();
