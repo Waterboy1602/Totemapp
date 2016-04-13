@@ -148,6 +148,7 @@
     <AndroidResource Include="Resources\values\colors.xml" />
     <AndroidResource Include="Resources\values\Strings.xml" />
     <AndroidResource Include="Resources\values\styles.xml" />
+    <AndroidResource Include="Resources\Menu\TinderMenu.xml" />
   </ItemGroup>
   <Import Project="..\TotemAppCore\TotemAppCore.projitems" Label="Shared" Condition="Exists('..\TotemAppCore\TotemAppCore.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

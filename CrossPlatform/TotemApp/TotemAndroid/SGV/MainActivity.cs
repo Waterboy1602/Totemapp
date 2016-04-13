@@ -13,7 +13,6 @@ namespace TotemAndroid {
 		Button eigenschappen;
 		Button profielen;
 		Button checklist;
-		Button tinder;
 
 		protected override void OnCreate (Bundle bundle) {
 			base.OnCreate (bundle);
@@ -24,10 +23,7 @@ namespace TotemAndroid {
 			eigenschappen = FindViewById<Button> (Resource.Id.eigenschappen);
 			profielen = FindViewById<Button> (Resource.Id.profielen);
 			checklist = FindViewById<Button> (Resource.Id.checklist);
-			tinder = FindViewById<Button> (Resource.Id.tinder);
 
-			//TEMP
-			//tinder.Visibility = ViewStates.Gone;
 
 			//if(_appController. GetPreference("tips").value.Equals("true"))
 				//ShowTipDialog ();
@@ -36,7 +32,6 @@ namespace TotemAndroid {
 			eigenschappen.Click += (sender, eventArgs) => _appController.EigenschappenMenuItemClicked ();
 			profielen.Click += (sender, eventArgs) => _appController.ProfileMenuItemClicked ();
 			checklist.Click += (sender, eventArgs) => _appController.ChecklistMenuItemClicked ();
-			tinder.Click += (sender, eventArgs) => _appController.TinderMenuItemClicked ();
 		}
 
 		protected override void OnResume ()	{
@@ -46,7 +41,6 @@ namespace TotemAndroid {
 			_appController.NavigationController.GotoEigenschapListEvent+= gotoEigenschappenListHandler;
 			_appController.NavigationController.GotoProfileListEvent+= gotoProfileListHandler;
 			_appController.NavigationController.GotoChecklistEvent+= gotoChecklistHandler;
-			_appController.NavigationController.GotoTinderEvent+= gotoTinderHandler;
 		}
 
 
@@ -56,7 +50,6 @@ namespace TotemAndroid {
 			_appController.NavigationController.GotoEigenschapListEvent-= gotoEigenschappenListHandler;
 			_appController.NavigationController.GotoProfileListEvent-= gotoProfileListHandler;
 			_appController.NavigationController.GotoChecklistEvent-= gotoChecklistHandler;
-			_appController.NavigationController.GotoTinderEvent-= gotoTinderHandler;
 		}
 
 		void GoToActivity(string activity) {
@@ -73,9 +66,6 @@ namespace TotemAndroid {
 				break;
 			case "checklist":
 				intent = new Intent (this, typeof(TotemisatieChecklistActivity));
-				break;
-			case "tinder":
-				intent = new Intent (this, typeof(TinderEigenschappenActivity));
 				break;
 			}
 			StartActivity (intent);
@@ -107,10 +97,6 @@ namespace TotemAndroid {
 
 		void gotoChecklistHandler () {
 			GoToActivity ("checklist");
-		}
-
-		void gotoTinderHandler () {
-			GoToActivity ("tinder");
 		}
 	}
 }

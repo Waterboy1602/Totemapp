@@ -92,13 +92,23 @@ namespace TotemAndroid {
 			base.OnResume ();
 
 			_appController.UpdateCounter += updateCounter;
+			_appController.ShowSelected += ShowSelectedOnly;
 			_appController.NavigationController.GotoTotemResultEvent+= StartResultTotemsActivity;
+
+			eigenschapAdapter.NotifyDataSetChanged ();
+
+			Task.Factory.StartNew(() => Thread.Sleep(50)).ContinueWith(t => {
+				allEigenschappenListView.SetSelection (0);
+			}, TaskScheduler.FromCurrentSynchronizationContext());
+
+			_appController.FireUpdateEvent ();
 		}
 
 		protected override void OnPause ()	{
 			base.OnPause ();
 
 			_appController.UpdateCounter -= updateCounter;
+			_appController.ShowSelected -= ShowSelectedOnly;
 			_appController.NavigationController.GotoTotemResultEvent-= StartResultTotemsActivity;
 		}
 
@@ -197,17 +207,7 @@ namespace TotemAndroid {
 			
 			//show selected only
 			case Resource.Id.select:
-				List<Eigenschap> list = GetSelectedEigenschappen ();
-				if (list.Count == 0) {
-					mToastShort.SetText ("Geen eigenschappen geselecteerd");
-					mToastShort.Show ();
-				} else {
-					fullList = false;
-					UpdateOptionsMenu ();
-					eigenschapAdapter.UpdateData (list);
-					eigenschapAdapter.NotifyDataSetChanged ();
-					bottomBar.Visibility = ViewStates.Visible;
-				}
+				ShowSelectedOnly ();
 				return true;
 
 			//show full list
@@ -218,9 +218,29 @@ namespace TotemAndroid {
 				eigenschapAdapter.UpdateData (_appController.Eigenschappen);
 				eigenschapAdapter.NotifyDataSetChanged ();
 				return true;
+
+			//show full list
+			case Resource.Id.tinderView:
+				var totemsActivity = new Intent (this, typeof(TinderEigenschappenActivity));
+				StartActivity (totemsActivity);
+				return true;
 			}
 
 			return base.OnOptionsItemSelected(item);
+		}
+
+		void ShowSelectedOnly() {
+			List<Eigenschap> list = GetSelectedEigenschappen ();
+			if (list.Count == 0) {
+				mToastShort.SetText ("Geen eigenschappen geselecteerd");
+				mToastShort.Show ();
+			} else {
+				fullList = false;
+				UpdateOptionsMenu ();
+				eigenschapAdapter.UpdateData (list);
+				eigenschapAdapter.NotifyDataSetChanged ();
+				bottomBar.Visibility = ViewStates.Visible;
+			}
 		}
 
 		//changes the options menu items according to list

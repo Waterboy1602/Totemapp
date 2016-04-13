@@ -10,6 +10,9 @@ namespace TotemAppCore {
 		public delegate void Update();
 		public event Update UpdateCounter;
 
+		public delegate void SelectedEigenschappen();
+		public event Update ShowSelected;
+
 		List<Totem> _totems;
 		List<Eigenschap> _eigenschappen;
 		List<Profiel> _profielen;
@@ -251,6 +254,11 @@ namespace TotemAppCore {
 		public void FireUpdateEvent() {
 			if (UpdateCounter != null)
 				UpdateCounter ();
+		}
+
+		public void FireSelectedEvent() {
+			if (ShowSelected != null)
+				ShowSelected ();
 		}
 	}
 }

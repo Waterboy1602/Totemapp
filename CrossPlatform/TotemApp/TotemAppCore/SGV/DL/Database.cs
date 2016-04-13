@@ -207,6 +207,16 @@ namespace TotemAppCore {
 			return list [0];
 		}
 
+		/*public void SaveSelectedEigenschappen(List<Eigenschap> list) {
+			lock (database) {
+				var cmd = new SQLiteCommand (database);
+				foreach (Eigenschap e in list) {
+					cmd.CommandText = "update eigenschap_nieuw set selectedString='" + e.selected + "' where tid='" + e.eigenschapID + "'";
+					cmd.ExecuteQuery<Userpref> ();
+				}
+			}
+		}*/
+
 
 		/* ------------------------------ UTILS ------------------------------ */
 
