@@ -95,6 +95,7 @@
     <InterfaceDefinition Include="SGV\TotemApp\Components\Checklist\BaseChecklistTableViewCell.xib" />
     <InterfaceDefinition Include="SGV\TotemApp\Components\Checklist\TitleTableViewCell.xib" />
     <InterfaceDefinition Include="SGV\TotemApp\BaseViewController.xib" />
+    <InterfaceDefinition Include="SGV\TotemApp\Controllers\TinderEigenschappen\TinderEigenschappenViewController.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -191,6 +192,10 @@
     <Compile Include="SGV\TotemApp\BaseViewController.designer.cs">
       <DependentUpon>BaseViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="SGV\TotemApp\Controllers\TinderEigenschappen\TinderEigenschappenViewController.cs" />
+    <Compile Include="SGV\TotemApp\Controllers\TinderEigenschappen\TinderEigenschappenViewController.designer.cs">
+      <DependentUpon>TinderEigenschappenViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="..\TotemAppCore\TotemAppCore.projitems" Label="Shared" Condition="Exists('..\TotemAppCore\TotemAppCore.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -213,6 +218,7 @@
     <Folder Include="SGV\TotemApp\Controllers\Main\" />
     <Folder Include="SGV\TotemApp\Controllers\TotemsResult\" />
     <Folder Include="SGV\TotemApp\Components\TotemsResult\" />
+    <Folder Include="SGV\TotemApp\Controllers\TinderEigenschappen\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\TotemAppCore\SharedAssets\totems.sqlite">

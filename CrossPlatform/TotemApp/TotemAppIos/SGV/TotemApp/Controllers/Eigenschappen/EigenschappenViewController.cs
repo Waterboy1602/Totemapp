@@ -12,6 +12,12 @@ namespace TotemAppIos {
 
 		public EigenschappenViewController () : base ("EigenschappenViewController", null) {}
 
+		public override void ViewDidLoad () {
+			base.ViewDidLoad ();
+			_appController.ShowSelected += toggleShowSelected;
+
+		}
+
 		public override void ViewDidAppear (bool animated) {
 			base.ViewDidAppear (animated);
 			btnReturn.TouchUpInside+= btnReturnTouchUpInside;
@@ -21,7 +27,12 @@ namespace TotemAppIos {
 			btnVind.TouchUpInside += btnVindTouchUpInside;
 
 			_appController.UpdateCounter += updateCounter;
+
 			_appController.NavigationController.GotoTotemResultEvent += gotoResultListHandler;
+
+			tblEigenschappen.ReloadSections (new Foundation.NSIndexSet (0), UITableViewRowAnimation.None);
+			tblEigenschappen.ScrollRectToVisible (new CGRect(0,0,1,1), false);
+			_appController.FireUpdateEvent ();
 		}
 
 		public override void ViewWillDisappear (bool animated) {
@@ -33,6 +44,7 @@ namespace TotemAppIos {
 			btnVind.TouchUpInside -= btnVindTouchUpInside;
 
 			_appController.UpdateCounter -= updateCounter;
+
 			_appController.NavigationController.GotoTotemResultEvent -= gotoResultListHandler;
 		}
 
@@ -79,6 +91,7 @@ namespace TotemAppIos {
 
 			actionSheetAlert.AddAction(UIAlertAction.Create("Reset selectie",UIAlertActionStyle.Default, action => resetSelections ()));
 			actionSheetAlert.AddAction(UIAlertAction.Create(isShowingSelected?"Toon volledige lijst":"Toon enkel selectie",UIAlertActionStyle.Default, action => toggleShowSelected ()));
+			actionSheetAlert.AddAction(UIAlertAction.Create("Individuele weergave",UIAlertActionStyle.Default, action => gotoTinderHandler ()));
 			actionSheetAlert.AddAction(UIAlertAction.Create("Annuleer",UIAlertActionStyle.Cancel, null));
 
 			// Required for iPad - You must specify a source for the Action Sheet since it is
@@ -124,6 +137,10 @@ namespace TotemAppIos {
 			NavigationController.PushViewController (new TotemsResultViewController(),true);
 		}
 
+		void gotoTinderHandler () {
+			NavigationController.PushViewController (new TinderEigenschappenViewController(),true);
+		}
+
 		//resets selection
 		void resetSelections() {
 			foreach (var eigenschap in _appController.Eigenschappen) 
@@ -138,7 +155,7 @@ namespace TotemAppIos {
 		}
 
 		//handles options menu item
-		void toggleShowSelected() {
+		void toggleShowSelected() {				
 			if (isShowingSelected) {
 				(tblEigenschappen.Source as EigenschappenTableViewSource).Eigenschappen = _appController.FindEigenschapOpNaam (txtSearch.Text);
 				tblEigenschappen.ReloadSections (new Foundation.NSIndexSet (0), UITableViewRowAnimation.Automatic);
