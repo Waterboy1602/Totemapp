@@ -12,7 +12,7 @@ using TotemAppCore;
 
 namespace TotemAndroid {
 	[Activity (Label = "Beschrijving", WindowSoftInputMode=SoftInput.StateAlwaysHidden)]			
-	public class TotemDetailActivity : BaseActivity	{
+	public class TotemDetailActivity : BaseActivity, GestureDetector.IOnGestureListener	{
 		TextView number;
 		TextView title_synonyms;
 		TextView body;
@@ -23,7 +23,10 @@ namespace TotemAndroid {
 		ImageButton back;
 		ImageButton action;
 
-		Totem t;
+		//used for swiping
+		public GestureDetector _gestureDetector;
+		const int SWIPE_MIN_DISTANCE = 120;
+		const int SWIPE_THRESHOLD_VELOCITY = 200;
 
 		protected override void OnCreate (Bundle bundle) {
 			base.OnCreate (bundle);
@@ -42,20 +45,81 @@ namespace TotemAndroid {
 			title_synonyms = FindViewById<TextView> (Resource.Id.title_synonyms);
 			body = FindViewById<TextView> (Resource.Id.body);
 
-			title.Text = "Beschrijving";
+			_gestureDetector = new GestureDetector (this);
 
-			t = _appController.CurrentTotem;
+			title.Text = "Beschrijving";
 
 			if (_appController.CurrentProfiel != null) {
 				action = base.ActionBarDelete;
 				action.Click += (sender, e) => RemoveFromProfile (_appController.CurrentProfiel.name);
 			} else {
 				action = base.ActionBarAdd;
-				action.Click += (object sender, EventArgs e) => ProfilePopup();
+				action.Click += (sender, e) => ProfilePopup();
 			}
 			action.Visibility = ViewStates.Visible;
 
 			SetInfo ();
+		}
+
+		//redirect touch event
+		public override bool OnTouchEvent(MotionEvent e) {
+			_gestureDetector.OnTouchEvent(e);
+			return false;
+		}
+
+		//detect left or right swipe and update info accordingly
+		public bool OnFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+			//next
+			if (e1.GetX () - e2.GetX () > SWIPE_MIN_DISTANCE && Math.Abs (velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+				var next = _appController.NextTotem;
+				if (next != null) {
+					_appController.CurrentTotem = next;
+					SetInfo ();
+				}
+				return true;
+			//previous
+			} else if (e2.GetX () - e1.GetX () > SWIPE_MIN_DISTANCE && Math.Abs (velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+				var prev = _appController.PrevTotem;
+				if (prev != null) {
+					_appController.CurrentTotem = prev;
+					SetInfo ();
+				}
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		//GestureListener method
+		//NOT USED
+		public void OnLongPress(MotionEvent e) {}
+
+		//GestureListener method
+		//NOT USED
+		public bool OnScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+			return false;
+		}
+
+		//GestureListener method
+		//NOT USED
+		public void OnShowPress(MotionEvent e) {}
+
+		//GestureListener method
+		//NOT USED
+		public bool OnSingleTapUp(MotionEvent e) {
+			return false;
+		}
+
+		//GestureListener method
+		//NOT USED
+		public bool OnDown(MotionEvent e) {
+			return false;
+		}
+
+		//ensures swipe works on ScrollView
+		public override bool DispatchTouchEvent (MotionEvent ev) {
+			base.DispatchTouchEvent (ev);
+			return _gestureDetector.OnTouchEvent (ev);
 		}
 
 		protected override void OnResume ()	{
@@ -72,10 +136,10 @@ namespace TotemAndroid {
 
 		private void RemoveFromProfile(string profileName) {
 			var alert = new AlertDialog.Builder (this);
-			alert.SetMessage (t.title + " verwijderen uit profiel " + profileName + "?");
+			alert.SetMessage (_appController.CurrentTotem.title + " verwijderen uit profiel " + profileName + "?");
 			alert.SetPositiveButton ("Ja", (senderAlert, args) => {
-				_appController.DeleteTotemFromProfile(t.nid, profileName);
-				mToast.SetText(t.title + " verwijderd");
+				_appController.DeleteTotemFromProfile(_appController.CurrentTotem.nid, profileName);
+				mToast.SetText(_appController.CurrentTotem.title + " verwijderd");
 				mToast.Show();
 				if(_appController.GetTotemsFromProfiel(profileName).Count == 0) {
 					_appController.ProfileMenuItemClicked ();
@@ -127,8 +191,8 @@ namespace TotemAndroid {
 								mToast.Show();
 							} else {
 								_appController.AddProfile(value);
-								_appController.AddTotemToProfiel(t.nid, value);
-								mToast.SetText(_appController.GetTotemOnID(t.nid).title + " toegevoegd aan profiel " + value.Replace("'", ""));
+								_appController.AddTotemToProfiel(_appController.CurrentTotem.nid, value);
+								mToast.SetText(_appController.GetTotemOnID(_appController.CurrentTotem.nid).title + " toegevoegd aan profiel " + value.Replace("'", ""));
 								mToast.Show();
 							}
 						});
@@ -146,8 +210,8 @@ namespace TotemAndroid {
 					RunOnUiThread (d1.Show);
 
 					} else {
-						_appController.AddTotemToProfiel(t.nid, arg1.Item.TitleFormatted.ToString());
-					mToast.SetText(_appController.GetTotemOnID (t.nid).title + " toegevoegd aan profiel " + arg1.Item.TitleFormatted);
+						_appController.AddTotemToProfiel(_appController.CurrentTotem.nid, arg1.Item.TitleFormatted.ToString());
+						mToast.SetText(_appController.GetTotemOnID (_appController.CurrentTotem.nid).title + " toegevoegd aan profiel " + arg1.Item.TitleFormatted);
 						mToast.Show();
 					}
 				};
@@ -163,15 +227,15 @@ namespace TotemAndroid {
 
 		//displays totem info
 		private void SetInfo() {
-			number.Text = t.number + ". ";
+			number.Text = _appController.CurrentTotem.number + ". ";
 			Typeface Verveine = Typeface.CreateFromAsset (Assets, "fonts/Verveine W01 Regular.ttf");
 
 			//code to get formatting right
 			//title and synonyms are in the same TextView
 			//font, size,... are given using spans
-			if (t.synonyms != null) {
-				string titlestring = t.title;
-				string synonymsstring = " - " + t.synonyms + " ";
+			if (_appController.CurrentTotem.synonyms != null) {
+				string titlestring = _appController.CurrentTotem.title;
+				string synonymsstring = " - " + _appController.CurrentTotem.synonyms + " ";
 
 				Typeface Din = Typeface.CreateFromAsset (Assets, "fonts/DINPro-Light.ttf");
 
@@ -181,10 +245,10 @@ namespace TotemAndroid {
 
 				title_synonyms.TextFormatted = sp;
 			} else {
-				title_synonyms.Text = t.title;
+				title_synonyms.Text = _appController.CurrentTotem.title;
 				title_synonyms.SetTypeface (Verveine, 0);
 			}
-			body.Text = t.body;
+			body.Text = _appController.CurrentTotem.body;
 		}
 	}
 }

@@ -56,7 +56,7 @@ namespace TotemAndroid {
 			delete.Visibility = ViewStates.Visible;
 			delete.Click += ShowDeleteTotems;
 		}
-
+			
 		protected override void OnResume ()	{
 			base.OnResume ();
 

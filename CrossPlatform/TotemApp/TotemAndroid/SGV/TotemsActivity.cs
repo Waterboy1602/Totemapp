@@ -48,6 +48,8 @@ namespace TotemAndroid {
 
 			LiveSearch ();
 
+			_appController.detailMode = AppController.DetailMode.NORMAL;
+
 			allTotemListView.ItemClick += ShowDetail;
 
 			search.Visibility = ViewStates.Visible;

@@ -27,6 +27,7 @@ namespace TotemAppCore {
 			TotemEigenschapDict = new Dictionary<Totem, int> ();
 		}
 
+		//used to determine context of detail page
 		public enum DetailMode {
 			NORMAL,
 			PROFILE,
@@ -78,6 +79,7 @@ namespace TotemAppCore {
 		public Totem CurrentTotem { get; set; }
 		public DetailMode detailMode { get; set; }
 
+		//returns next totem depending on context
 		public Totem NextTotem {
 			get {
 				List<Totem> list;
@@ -96,6 +98,7 @@ namespace TotemAppCore {
 			}
 		}
 
+		//returns next totem depending on context
 		public Totem PrevTotem {
 			get {
 				List<Totem> list;
