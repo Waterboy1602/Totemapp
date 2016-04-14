@@ -30,7 +30,7 @@ namespace TotemAndroid {
 			SetContentView (Resource.Layout.Profielen);
 
 			//Action bar
-			InitializeActionBar (SupportActionBar);
+			InitializeActionBar (ActionBar);
 			title = ActionBarTitle;
 			close = ActionBarClose;
 			back = ActionBarBack;

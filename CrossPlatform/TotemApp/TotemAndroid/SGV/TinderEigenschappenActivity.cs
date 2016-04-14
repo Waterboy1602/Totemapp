@@ -22,7 +22,7 @@ namespace TotemAndroid {
 			SetContentView (Resource.Layout.Eigenschappen);
 
 			//Action bar
-			InitializeActionBar (SupportActionBar);
+			InitializeActionBar (ActionBar);
 
 			ActionBarTitle.Text = "Eigenschappen";
 	

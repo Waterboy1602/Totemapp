@@ -7,11 +7,10 @@ using Android.Views;
 using Android.Widget;
 using TotemAndroid;
 using TotemAppCore;
-using Android.Support.V7.App;
 
 namespace TotemAndroid {
 	[Activity (Label = "BaseActivity")]			
-	public abstract class BaseActivity : AppCompatActivity {
+	public abstract class BaseActivity : Activity {
 
 		protected TextView ActionBarTitle { get; set; }
 		protected ImageButton ActionBarBack { get; set; }
@@ -20,7 +19,7 @@ namespace TotemAndroid {
 		protected ImageButton ActionBarClose { get; set; }
 		protected ImageButton ActionBarDelete { get; set; }
 		protected EditText ActionBarQuery { get; set; }
-		protected Android.Support.V7.App.ActionBar mActionBar { get; set; }
+		protected ActionBar mActionBar { get; set; }
 
 		protected AppController _appController = AppController.Instance;
 
@@ -29,7 +28,7 @@ namespace TotemAndroid {
 			RequestedOrientation = ScreenOrientation.SensorPortrait;
 		}
 
-		protected void InitializeActionBar(Android.Support.V7.App.ActionBar ab) {
+		protected void InitializeActionBar(ActionBar ab) {
 			mActionBar = ab;
 
 			LayoutInflater mInflater = LayoutInflater.From (this);
@@ -45,7 +44,7 @@ namespace TotemAndroid {
 
 			ActionBarBack.Click += (sender, e) => OnBackPressed ();
 
-			var layout = new Android.Support.V7.App.ActionBar.LayoutParams (ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent);
+			var layout = new ActionBar.LayoutParams (ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent);
 
 			mActionBar.SetCustomView (mCustomView, layout);
 			mActionBar.SetDisplayShowCustomEnabled (true);
