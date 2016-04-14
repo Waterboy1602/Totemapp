@@ -26,10 +26,19 @@ namespace TotemAppIos {
 
 		public NormalTableViewCell (IntPtr handle) : base (handle) {}
 
-		public override void setData(string s) {
+		public override void setData(string s, bool firstItem, bool lastItem) {
 			//bullet point char in UNICODE
-			lblBulletPoint.Text = "\u25EF";
-			lblNormal.Text = s;
+
+
+			if (firstItem) {
+				lblBulletPoint.Text = "\n" + "\u25EF";
+				lblNormal.Text = "\n" + s;
+			} else {
+				lblBulletPoint.Text = "\u25EF";
+				lblNormal.Text = s;
+			}
+			
+			if(lastItem) lblNormal.Text += "\n";
 		}
 	}
 }

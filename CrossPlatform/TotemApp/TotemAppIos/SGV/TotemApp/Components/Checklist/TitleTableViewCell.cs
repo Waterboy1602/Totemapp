@@ -26,7 +26,7 @@ namespace TotemAppIos {
 
 		public TitleTableViewCell (IntPtr handle) : base (handle) {}
 
-		public override void setData(string s) {
+		public override void setData(string s, bool firstItem, bool lastItem) {
 			lblTitle.Text = s;
 		}
 	}

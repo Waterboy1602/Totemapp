@@ -20,6 +20,6 @@ namespace TotemAppIos {
 
 		//sets TableViewCell data
 		//overwritten in every child class
-		public abstract void setData(string s);
+		public abstract void setData(string s, bool firstItem, bool lastItem);
 	}
 }

@@ -6,6 +6,7 @@ using System.Linq;
 using CoreAnimation;
 using Foundation;
 using UIKit;
+using CoreGraphics;
 
 namespace TotemAppIos {
 	public class ChecklistTableViewSource : UITableViewSource {
@@ -22,7 +23,7 @@ namespace TotemAppIos {
 
 		//defines layout for section headers
 		public static UIView BuildSectionHeaderView(string caption) {
-			var  view = new UIView(new RectangleF(0,0,1000,20));
+			var  view = new UIView(new RectangleF(0,0,1000,40));
 			view.BackgroundColor = UIColor.White;
 
 			var topBorder = new CALayer ();
@@ -59,6 +60,8 @@ namespace TotemAppIos {
 			BaseChecklistTableViewCell cell;
 
 			//extract type of cell and content
+			bool firstItem = (indexPath.Row == 0);
+			bool lastItem = (indexPath.Row == (RowsInSection (tableView, indexPath.Section) - 1));
 			var item = xmlDict [sectionTitles (tableView)[indexPath.Section]][indexPath.Row];
 			string[] data = item.Split ('_');
 			var type = data [0];
@@ -78,15 +81,17 @@ namespace TotemAppIos {
 			//title cell
 			} else if (cell == null || !cell.Key.Equals ("TitleTableViewCell")) {
 				cell = TitleTableViewCell.Create ();
-			}
-
-			cell.setData (content);
+			}	
+			cell.setData (content, firstItem, lastItem);
 
 			return cell;
 		}
 
 		public override nint RowsInSection (UITableView tableview, nint section) {
-			return xmlDict[sectionTitles (tableview)[section]].Count ();
+			if (section >= 0)
+				return xmlDict [sectionTitles (tableview) [section]].Count ();
+			else
+				return 0;
 		}
 
 		public override nint NumberOfSections (UITableView tableView) {
