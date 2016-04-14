@@ -7,6 +7,7 @@ using TotemAppCore;
 namespace TotemAppIos {
 	public partial class TotemListViewController : BaseViewController {
 
+		AppController _appController = AppController.Instance;
 		bool isSearching;
 
 		public TotemListViewController () : base ("TotemListViewController", null) {}
