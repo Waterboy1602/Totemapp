@@ -28,7 +28,7 @@ namespace TotemAppIos {
 
 		public override void setData(string s, bool firstItem, bool lastItem) {
 			if (firstItem)
-				heightPadding.Constant = 50;
+				heightPadding.Constant = 16;
 			else
 				heightPadding.Constant = 0;
 			
