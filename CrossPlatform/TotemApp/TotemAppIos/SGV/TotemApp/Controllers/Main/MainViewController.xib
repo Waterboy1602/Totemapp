@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -34,36 +33,107 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="2">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GxE-pw-Qhj">
-                    <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                    <rect key="frame" x="0.0" y="974" width="768" height="50"/>
                     <color key="backgroundColor" red="0.42352941176470588" green="0.46666666666666667" blue="0.23137254901960785" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="xQb-e4-vyV"/>
+                        <constraint firstAttribute="height" constant="50" id="xQb-e4-vyV">
+                            <variation key="heightClass=regular-widthClass=regular" constant="100"/>
+                        </constraint>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sRJ-aW-Hiy">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                    <rect key="frame" x="0.0" y="0.0" width="768" height="20"/>
                     <color key="backgroundColor" red="0.0" green="0.2666666667" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="8SE-yJ-q9N"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOTEMAPP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ny0-Fe-zLL">
-                    <rect key="frame" x="34" y="20" width="253" height="112"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOTEMAPP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ny0-Fe-zLL">
+                    <rect key="frame" x="171" y="20" width="427" height="94"/>
                     <fontDescription key="fontDescription" name="VerveineW01-Regular" family="VerveineW01-Regular" pointSize="80"/>
                     <color key="textColor" red="0.0" green="0.36078431372549019" blue="0.61568627450980395" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hmI-en-E5o" customClass="UIButton">
-                    <rect key="frame" x="50" y="132" width="220" height="51"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HkJ-xr-dq0" customClass="UIButton">
+                    <rect key="frame" x="50" y="173" width="668" height="49"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWO-9Z-8Le">
-                            <rect key="frame" x="90" y="15" width="40" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3G-07-O78">
+                            <rect key="frame" x="314" y="15" width="40" height="19"/>
                             <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
+                            <variation key="heightClass=regular-widthClass=regular">
+                                <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="32"/>
+                            </variation>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.36078431370000003" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="49" id="5gM-gt-rR1">
+                            <variation key="heightClass=regular-widthClass=regular" constant="75"/>
+                        </constraint>
+                        <constraint firstItem="s3G-07-O78" firstAttribute="top" secondItem="HkJ-xr-dq0" secondAttribute="top" constant="15" id="7EE-Dq-YD1"/>
+                        <constraint firstAttribute="bottom" secondItem="s3G-07-O78" secondAttribute="bottom" constant="15" id="8DA-Uc-pVc"/>
+                        <constraint firstItem="s3G-07-O78" firstAttribute="centerX" secondItem="HkJ-xr-dq0" secondAttribute="centerX" id="KWW-nK-7A3"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="5gM-gt-rR1"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=regular">
+                        <mask key="constraints">
+                            <include reference="5gM-gt-rR1"/>
+                        </mask>
+                    </variation>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tpf-qq-QTm" customClass="UIButton">
+                    <rect key="frame" x="50" y="232" width="668" height="49"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RlJ-ST-geN">
+                            <rect key="frame" x="314" y="15" width="40" height="19"/>
+                            <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="heightClass=regular-widthClass=regular">
+                                <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="32"/>
+                            </variation>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.36078431370000003" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="RlJ-ST-geN" secondAttribute="bottom" constant="15" id="0xP-8t-gFB"/>
+                        <constraint firstAttribute="height" constant="49" id="fWm-5M-SHp">
+                            <variation key="heightClass=regular-widthClass=regular" constant="75"/>
+                        </constraint>
+                        <constraint firstItem="RlJ-ST-geN" firstAttribute="centerX" secondItem="Tpf-qq-QTm" secondAttribute="centerX" id="glz-lr-Vbp"/>
+                        <constraint firstItem="RlJ-ST-geN" firstAttribute="top" secondItem="Tpf-qq-QTm" secondAttribute="top" constant="15" id="qTw-D3-7IT"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="fWm-5M-SHp"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=regular">
+                        <mask key="constraints">
+                            <include reference="fWm-5M-SHp"/>
+                        </mask>
+                    </variation>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hmI-en-E5o" customClass="UIButton">
+                    <rect key="frame" x="50" y="114" width="668" height="49"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWO-9Z-8Le">
+                            <rect key="frame" x="314" y="15" width="40" height="19"/>
+                            <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="heightClass=regular-widthClass=regular">
+                                <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="32"/>
+                            </variation>
                         </label>
                     </subviews>
                     <color key="backgroundColor" red="0.0" green="0.36078431370000003" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -71,104 +141,141 @@
                     <constraints>
                         <constraint firstItem="oWO-9Z-8Le" firstAttribute="centerX" secondItem="hmI-en-E5o" secondAttribute="centerX" id="Mq3-6Z-EZZ"/>
                         <constraint firstItem="oWO-9Z-8Le" firstAttribute="top" secondItem="hmI-en-E5o" secondAttribute="top" constant="15" id="bUO-p3-iji"/>
+                        <constraint firstAttribute="height" constant="49" id="fGR-dL-QWZ">
+                            <variation key="heightClass=regular-widthClass=regular" constant="75"/>
+                        </constraint>
                         <constraint firstAttribute="bottom" secondItem="oWO-9Z-8Le" secondAttribute="bottom" constant="15" id="ht4-sR-d2E"/>
                     </constraints>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HkJ-xr-dq0" customClass="UIButton">
-                    <rect key="frame" x="50" y="193" width="220" height="51"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3G-07-O78">
-                            <rect key="frame" x="90" y="15" width="40" height="21"/>
-                            <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
-                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" red="0.0" green="0.36078431370000003" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstItem="s3G-07-O78" firstAttribute="top" secondItem="HkJ-xr-dq0" secondAttribute="top" constant="15" id="7EE-Dq-YD1"/>
-                        <constraint firstAttribute="bottom" secondItem="s3G-07-O78" secondAttribute="bottom" constant="15" id="8DA-Uc-pVc"/>
-                        <constraint firstItem="s3G-07-O78" firstAttribute="centerX" secondItem="HkJ-xr-dq0" secondAttribute="centerX" id="KWW-nK-7A3"/>
-                    </constraints>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tpf-qq-QTm" customClass="UIButton">
-                    <rect key="frame" x="50" y="254" width="220" height="51"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RlJ-ST-geN">
-                            <rect key="frame" x="90" y="15" width="40" height="21"/>
-                            <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
-                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" red="0.0" green="0.36078431370000003" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="bottom" secondItem="RlJ-ST-geN" secondAttribute="bottom" constant="15" id="0xP-8t-gFB"/>
-                        <constraint firstItem="RlJ-ST-geN" firstAttribute="centerX" secondItem="Tpf-qq-QTm" secondAttribute="centerX" id="glz-lr-Vbp"/>
-                        <constraint firstItem="RlJ-ST-geN" firstAttribute="top" secondItem="Tpf-qq-QTm" secondAttribute="top" constant="15" id="qTw-D3-7IT"/>
-                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="fGR-dL-QWZ"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=regular">
+                        <mask key="constraints">
+                            <include reference="fGR-dL-QWZ"/>
+                        </mask>
+                    </variation>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4zS-Ta-aic" customClass="UIButton">
-                    <rect key="frame" x="50" y="315" width="220" height="51"/>
+                    <rect key="frame" x="50" y="291" width="668" height="49"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hyt-ea-aK4">
-                            <rect key="frame" x="90" y="15" width="40" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hyt-ea-aK4">
+                            <rect key="frame" x="314" y="15" width="40" height="19"/>
                             <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
+                            <variation key="heightClass=regular-widthClass=regular">
+                                <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="32"/>
+                            </variation>
                         </label>
                     </subviews>
                     <color key="backgroundColor" red="0.0" green="0.36078431370000003" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="Hyt-ea-aK4" firstAttribute="top" secondItem="4zS-Ta-aic" secondAttribute="top" constant="15" id="8HJ-0a-dnn"/>
                         <constraint firstAttribute="bottom" secondItem="Hyt-ea-aK4" secondAttribute="bottom" constant="15" id="A2e-HK-WQi"/>
+                        <constraint firstAttribute="height" constant="49" id="V6M-To-uZd">
+                            <variation key="heightClass=regular-widthClass=regular" constant="75"/>
+                        </constraint>
                         <constraint firstItem="Hyt-ea-aK4" firstAttribute="centerX" secondItem="4zS-Ta-aic" secondAttribute="centerX" id="Vxv-OB-lQk"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="V6M-To-uZd"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=regular">
+                        <mask key="constraints">
+                            <include reference="V6M-To-uZd"/>
+                        </mask>
+                    </variation>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jfy-EN-nGt">
-                    <rect key="frame" x="153" y="353" width="300" height="300"/>
+                    <rect key="frame" x="601" y="809" width="300" height="300"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="300" id="ChH-Pt-NsG"/>
-                        <constraint firstAttribute="width" constant="300" id="yLe-FQ-brG"/>
+                        <constraint firstAttribute="height" constant="300" id="ChH-Pt-NsG">
+                            <variation key="heightClass=regular-widthClass=regular" constant="600"/>
+                        </constraint>
+                        <constraint firstAttribute="width" constant="300" id="yLe-FQ-brG">
+                            <variation key="heightClass=regular-widthClass=regular" constant="600"/>
+                        </constraint>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kOZ-7x-JkA">
-                    <rect key="frame" x="-40" y="312" width="150" height="250"/>
+                    <rect key="frame" x="-40" y="768" width="150" height="250"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="250" id="bwY-5F-EjY"/>
-                        <constraint firstAttribute="width" constant="150" id="ger-qe-n7U"/>
+                        <constraint firstAttribute="height" constant="250" id="bwY-5F-EjY">
+                            <variation key="heightClass=regular-widthClass=regular" constant="500"/>
+                        </constraint>
+                        <constraint firstAttribute="width" constant="150" id="ger-qe-n7U">
+                            <variation key="heightClass=regular-widthClass=regular" constant="300"/>
+                        </constraint>
                     </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="hmI-en-E5o" secondAttribute="trailing" constant="50" id="2dD-zv-jya"/>
-                <constraint firstAttribute="trailing" secondItem="4zS-Ta-aic" secondAttribute="trailing" constant="50" id="4jo-If-DKz"/>
-                <constraint firstItem="HkJ-xr-dq0" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="50" id="78O-dR-Ry3"/>
-                <constraint firstAttribute="trailing" secondItem="Tpf-qq-QTm" secondAttribute="trailing" constant="50" id="7jS-Mv-AuR"/>
-                <constraint firstItem="HkJ-xr-dq0" firstAttribute="top" secondItem="hmI-en-E5o" secondAttribute="bottom" constant="10" id="9GT-E6-56H"/>
+                <constraint firstAttribute="trailing" secondItem="hmI-en-E5o" secondAttribute="trailing" constant="50" id="2dD-zv-jya">
+                    <variation key="heightClass=regular-widthClass=regular" constant="100"/>
+                </constraint>
+                <constraint firstAttribute="trailing" secondItem="4zS-Ta-aic" secondAttribute="trailing" constant="50" id="4jo-If-DKz">
+                    <variation key="heightClass=regular-widthClass=regular" constant="100"/>
+                </constraint>
+                <constraint firstItem="HkJ-xr-dq0" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="50" id="78O-dR-Ry3">
+                    <variation key="heightClass=regular-widthClass=regular" constant="100"/>
+                </constraint>
+                <constraint firstAttribute="trailing" secondItem="Tpf-qq-QTm" secondAttribute="trailing" constant="50" id="7jS-Mv-AuR">
+                    <variation key="heightClass=regular-widthClass=regular" constant="100"/>
+                </constraint>
+                <constraint firstItem="HkJ-xr-dq0" firstAttribute="top" secondItem="hmI-en-E5o" secondAttribute="bottom" constant="10" id="9GT-E6-56H">
+                    <variation key="heightClass=regular-widthClass=regular" constant="20"/>
+                </constraint>
                 <constraint firstItem="sRJ-aW-Hiy" firstAttribute="top" secondItem="2" secondAttribute="top" id="B0b-pe-OOB"/>
                 <constraint firstItem="Ny0-Fe-zLL" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="BKr-mn-FsK"/>
-                <constraint firstItem="Tpf-qq-QTm" firstAttribute="top" secondItem="HkJ-xr-dq0" secondAttribute="bottom" constant="10" id="BxF-ok-zBF"/>
-                <constraint firstAttribute="bottom" secondItem="kOZ-7x-JkA" secondAttribute="bottom" constant="6" id="C4M-cF-kSA"/>
-                <constraint firstItem="hmI-en-E5o" firstAttribute="top" secondItem="Ny0-Fe-zLL" secondAttribute="bottom" id="HvI-mV-qVo"/>
+                <constraint firstItem="Tpf-qq-QTm" firstAttribute="top" secondItem="HkJ-xr-dq0" secondAttribute="bottom" constant="10" id="BxF-ok-zBF">
+                    <variation key="heightClass=regular-widthClass=regular" constant="20"/>
+                </constraint>
+                <constraint firstAttribute="bottom" secondItem="kOZ-7x-JkA" secondAttribute="bottom" constant="6" id="C4M-cF-kSA">
+                    <variation key="heightClass=regular-widthClass=regular" constant="12"/>
+                </constraint>
+                <constraint firstItem="hmI-en-E5o" firstAttribute="top" secondItem="Ny0-Fe-zLL" secondAttribute="bottom" id="HvI-mV-qVo">
+                    <variation key="heightClass=regular-widthClass=regular" constant="10"/>
+                </constraint>
                 <constraint firstItem="GxE-pw-Qhj" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="R7Z-kD-Dl6"/>
                 <constraint firstItem="sRJ-aW-Hiy" firstAttribute="width" secondItem="2" secondAttribute="width" id="RrU-a0-SJM"/>
-                <constraint firstItem="kOZ-7x-JkA" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="-40" id="XaD-OY-hTD"/>
+                <constraint firstItem="kOZ-7x-JkA" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="-40" id="XaD-OY-hTD">
+                    <variation key="heightClass=regular-widthClass=regular" constant="-80"/>
+                </constraint>
                 <constraint firstItem="hmI-en-E5o" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="ZD1-OE-C2f"/>
                 <constraint firstAttribute="trailing" secondItem="GxE-pw-Qhj" secondAttribute="trailing" id="ebG-db-dlz"/>
-                <constraint firstItem="hmI-en-E5o" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="50" id="hdA-ex-3WF"/>
-                <constraint firstAttribute="bottom" secondItem="jfy-EN-nGt" secondAttribute="bottom" constant="-85" id="i0a-8n-dtL"/>
+                <constraint firstItem="hmI-en-E5o" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="50" id="hdA-ex-3WF">
+                    <variation key="heightClass=regular-widthClass=regular" constant="100"/>
+                </constraint>
+                <constraint firstAttribute="bottom" secondItem="jfy-EN-nGt" secondAttribute="bottom" constant="-85" id="i0a-8n-dtL">
+                    <variation key="heightClass=regular-widthClass=regular" constant="-170"/>
+                </constraint>
                 <constraint firstItem="sRJ-aW-Hiy" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="qIG-I7-YEj"/>
-                <constraint firstAttribute="trailing" secondItem="jfy-EN-nGt" secondAttribute="trailing" constant="-133" id="t30-Lf-oX6"/>
-                <constraint firstItem="Tpf-qq-QTm" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="50" id="t5f-uc-jHf"/>
+                <constraint firstAttribute="trailing" secondItem="jfy-EN-nGt" secondAttribute="trailing" constant="-133" id="t30-Lf-oX6">
+                    <variation key="heightClass=regular-widthClass=regular" constant="-266"/>
+                </constraint>
+                <constraint firstItem="Tpf-qq-QTm" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="50" id="t5f-uc-jHf">
+                    <variation key="heightClass=regular-widthClass=regular" constant="100"/>
+                </constraint>
                 <constraint firstAttribute="bottom" secondItem="GxE-pw-Qhj" secondAttribute="bottom" id="tLK-1A-Rxo"/>
                 <constraint firstItem="Ny0-Fe-zLL" firstAttribute="top" secondItem="2" secondAttribute="top" constant="20" id="vt7-ju-xVS"/>
-                <constraint firstItem="4zS-Ta-aic" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="50" id="wXz-sL-HxP"/>
-                <constraint firstItem="4zS-Ta-aic" firstAttribute="top" secondItem="Tpf-qq-QTm" secondAttribute="bottom" constant="10" id="wZA-2l-tca"/>
-                <constraint firstAttribute="trailing" secondItem="HkJ-xr-dq0" secondAttribute="trailing" constant="50" id="zcF-fv-95x"/>
+                <constraint firstItem="4zS-Ta-aic" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="50" id="wXz-sL-HxP">
+                    <variation key="heightClass=regular-widthClass=regular" constant="100"/>
+                </constraint>
+                <constraint firstItem="4zS-Ta-aic" firstAttribute="top" secondItem="Tpf-qq-QTm" secondAttribute="bottom" constant="10" id="wZA-2l-tca">
+                    <variation key="heightClass=regular-widthClass=regular" constant="20"/>
+                </constraint>
+                <constraint firstAttribute="trailing" secondItem="HkJ-xr-dq0" secondAttribute="trailing" constant="50" id="zcF-fv-95x">
+                    <variation key="heightClass=regular-widthClass=regular" constant="100"/>
+                </constraint>
             </constraints>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+            <point key="canvasLocation" x="694" y="428"/>
         </view>
     </objects>
 </document>

@@ -3,6 +3,7 @@
 using CoreGraphics;
 using TotemAppCore;
 using UIKit;
+using System.Drawing;
 
 namespace TotemAppIos {
 	public partial class EigenschappenViewController : BaseViewController {
@@ -98,7 +99,8 @@ namespace TotemAppIos {
 			// displayed as a popover
 			UIPopoverPresentationController presentationPopover = actionSheetAlert.PopoverPresentationController;
 			if (presentationPopover!=null) {
-				presentationPopover.SourceView = View;
+				presentationPopover.SourceView = imgMore;
+				presentationPopover.SourceRect = new RectangleF(0, 0, 25, 25);
 				presentationPopover.PermittedArrowDirections = UIPopoverArrowDirection.Up;
 			}
 				

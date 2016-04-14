@@ -3,6 +3,7 @@
 using Foundation;
 using TotemAppCore;
 using UIKit;
+using System.Drawing;
 
 namespace TotemAppIos {
 	public partial class TotemDetailViewController : BaseViewController {
@@ -115,7 +116,8 @@ namespace TotemAppIos {
 				// displayed as a popover
 				UIPopoverPresentationController presentationPopover = actionSheetAlert.PopoverPresentationController;
 				if (presentationPopover != null) {
-					presentationPopover.SourceView = View;
+					presentationPopover.SourceView = imgAction;
+					presentationPopover.SourceRect = new RectangleF(0, 0, 25, 25);
 					presentationPopover.PermittedArrowDirections = UIPopoverArrowDirection.Up;
 				}
 					
@@ -142,7 +144,7 @@ namespace TotemAppIos {
 				textField.Placeholder = "Naam";
 			});
 				
-			var cancelAction = UIAlertAction.Create ("Annuleer", UIAlertActionStyle.Cancel, alertAction => Console.WriteLine ("Cancel was Pressed"));
+			var cancelAction = UIAlertAction.Create ("Annuleer", UIAlertActionStyle.Cancel, alertAction => Console.WriteLine ());
 			var okayAction = UIAlertAction.Create ("OK", UIAlertActionStyle.Default, alertAction => addProfile(textInputAlertController.TextFields[0].Text));
 
 			textInputAlertController.AddAction(cancelAction);
