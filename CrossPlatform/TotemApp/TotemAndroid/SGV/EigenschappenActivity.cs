@@ -107,7 +107,8 @@ namespace TotemAndroid {
             eigenschapAdapter.NotifyDataSetChanged ();
             HideSearch();
 
-			Task.Factory.StartNew(() => Thread.Sleep(50)).ContinueWith(t => {
+            //this needs a delay for some reason
+            Task.Factory.StartNew(() => Thread.Sleep(50)).ContinueWith(t => {
 				allEigenschappenListView.SetSelection (0);
 			}, TaskScheduler.FromCurrentSynchronizationContext());
 
@@ -213,14 +214,20 @@ namespace TotemAndroid {
 
 			//reset selection
 			case Resource.Id.reset:
-				query.Text = "";
+                query.Text = "";
 				fullList = true;
 				foreach (Eigenschap e in eigenschappenList)
 					e.selected = false;
 				eigenschapAdapter.UpdateData (_appController.Eigenschappen);
 				eigenschapAdapter.NotifyDataSetChanged ();
-				UpdateOptionsMenu ();
-				return true;
+                UpdateOptionsMenu ();
+                
+                //this needs a delay for some reason
+                Task.Factory.StartNew(() => Thread.Sleep(50)).ContinueWith(t => {
+                    allEigenschappenListView.SetSelection(0);
+                }, TaskScheduler.FromCurrentSynchronizationContext());
+
+                return true;
 			
 			//show selected only
 			case Resource.Id.select:
