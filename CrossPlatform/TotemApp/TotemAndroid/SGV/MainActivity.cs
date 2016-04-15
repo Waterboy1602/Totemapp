@@ -24,10 +24,6 @@ namespace TotemAndroid {
 			profielen = FindViewById<Button> (Resource.Id.profielen);
 			checklist = FindViewById<Button> (Resource.Id.checklist);
 
-
-			//if(_appController. GetPreference("tips").value.Equals("true"))
-				//ShowTipDialog ();
-
 			totems.Click += (sender, eventArgs) => _appController.TotemMenuItemClicked ();
 			eigenschappen.Click += (sender, eventArgs) => _appController.EigenschappenMenuItemClicked ();
 			profielen.Click += (sender, eventArgs) => _appController.ProfileMenuItemClicked ();

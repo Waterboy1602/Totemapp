@@ -60,6 +60,10 @@ namespace TotemAppCore {
 			get {
 				return _eigenschappen;
 			}
+
+            set {
+                _eigenschappen = value;
+            }
 		}
 
 		public List<Profiel> AllProfielen {

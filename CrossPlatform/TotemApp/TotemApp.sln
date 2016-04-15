@@ -37,7 +37,7 @@ Global
 		{47CD0A50-00AF-4DAB-BC4D-16E099B64A73}.Debug|iPhone.Build.0 = Debug|iPhone
 		{47CD0A50-00AF-4DAB-BC4D-16E099B64A73}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
 		{47CD0A50-00AF-4DAB-BC4D-16E099B64A73}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{47CD0A50-00AF-4DAB-BC4D-16E099B64A73}.Debug|x86.ActiveCfg = Debug|iPhoneSimulator
+		{47CD0A50-00AF-4DAB-BC4D-16E099B64A73}.Debug|x86.ActiveCfg = Release|iPhone
 		{47CD0A50-00AF-4DAB-BC4D-16E099B64A73}.Release|iPhone.ActiveCfg = Release|iPhone
 		{47CD0A50-00AF-4DAB-BC4D-16E099B64A73}.Release|iPhone.Build.0 = Release|iPhone
 		{47CD0A50-00AF-4DAB-BC4D-16E099B64A73}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator

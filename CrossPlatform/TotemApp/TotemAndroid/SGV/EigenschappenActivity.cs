@@ -10,7 +10,9 @@ using Android.OS;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
+
 using TotemAppCore;
+using ServiceStack.Text;
 
 namespace TotemAndroid {
 	[Activity (Label = "Eigenschappen", WindowSoftInputMode = SoftInput.AdjustPan)]			
@@ -30,6 +32,8 @@ namespace TotemAndroid {
 		ImageButton search;
 
 		IMenu menu;
+
+        ISharedPreferences sharedPrefs;
 
 		MyOnCheckBoxClickListener mListener;
 
@@ -52,14 +56,10 @@ namespace TotemAndroid {
 
 			eigenschappenList = _appController.Eigenschappen;
 
-			//initialize with default values (false) for each eigenschap
-			foreach (Eigenschap e in eigenschappenList)
-				e.selected = false;
-
 			//listener to pass to EigenschapAdapter containing context
 			mListener = new MyOnCheckBoxClickListener (this);
 
-			eigenschapAdapter = new EigenschapAdapter (this, eigenschappenList, mListener);
+			eigenschapAdapter = new EigenschapAdapter (this, _appController.Eigenschappen, mListener);
 			allEigenschappenListView = FindViewById<ListView> (Resource.Id.all_eigenschappen_list);
 			allEigenschappenListView.Adapter = eigenschapAdapter;
 
@@ -70,6 +70,8 @@ namespace TotemAndroid {
 			allEigenschappenListView.SetOnTouchListener(new MyOnTouchListener(this, query));
 
 			LiveSearch ();
+
+            sharedPrefs = GetSharedPreferences("data", FileCreationMode.Private);
 
 			var vind = FindViewById<LinearLayout> (Resource.Id.vind);
 			vind.Click += VindTotem;
@@ -95,13 +97,21 @@ namespace TotemAndroid {
 			_appController.ShowSelected += ShowSelectedOnly;
 			_appController.NavigationController.GotoTotemResultEvent+= StartResultTotemsActivity;
 
-			eigenschapAdapter.NotifyDataSetChanged ();
+            //update eigenschappenlist from sharedprefs
+            var ser = sharedPrefs.GetString("eigenschappen", "error");
+            if (!ser.Equals("error")) {
+                _appController.Eigenschappen = JsonSerializer.DeserializeFromString<List<Eigenschap>>(ser);
+                eigenschapAdapter.UpdateData(_appController.Eigenschappen);
+            }
+
+            eigenschapAdapter.NotifyDataSetChanged ();
+            HideSearch();
 
 			Task.Factory.StartNew(() => Thread.Sleep(50)).ContinueWith(t => {
 				allEigenschappenListView.SetSelection (0);
 			}, TaskScheduler.FromCurrentSynchronizationContext());
 
-			_appController.FireUpdateEvent ();
+            _appController.FireUpdateEvent ();
 		}
 
 		protected override void OnPause ()	{
@@ -110,6 +120,12 @@ namespace TotemAndroid {
 			_appController.UpdateCounter -= updateCounter;
 			_appController.ShowSelected -= ShowSelectedOnly;
 			_appController.NavigationController.GotoTotemResultEvent-= StartResultTotemsActivity;
+
+            //save eigenschappenlist statie in sharedprefs
+            var editor = sharedPrefs.Edit();
+            var ser = ServiceStack.Text.JsonSerializer.SerializeToString(_appController.Eigenschappen);
+            editor.PutString("eigenschappen", ser);
+            editor.Commit();
 		}
 
 		void updateCounter () {
@@ -126,7 +142,6 @@ namespace TotemAndroid {
 		void ToggleSearch() {
 			if (query.Visibility == ViewStates.Visible) {
 				HideSearch();
-				search.SetImageResource (Resource.Drawable.ic_search_white_24dp);
 			} else {
 				back.Visibility = ViewStates.Gone;
 				title.Visibility = ViewStates.Gone;
@@ -143,12 +158,14 @@ namespace TotemAndroid {
 			back.Visibility = ViewStates.Visible;
 			title.Visibility = ViewStates.Visible;
 			query.Visibility = ViewStates.Gone;
-			KeyboardHelper.HideKeyboard (this);
+            search.SetImageResource(Resource.Drawable.ic_search_white_24dp);
+            KeyboardHelper.HideKeyboard (this);
 			eigenschapAdapter.UpdateData (_appController.Eigenschappen);
 			eigenschapAdapter.NotifyDataSetChanged ();
 			query.Text = "";
 			fullList = true;
-			UpdateOptionsMenu ();
+            if(menu != null)
+			    UpdateOptionsMenu ();
 		}
 
 		//update list after every keystroke
