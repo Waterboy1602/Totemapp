@@ -16,7 +16,9 @@ namespace TotemAndroid {
 		List<Eigenschap> eigenschappen;
 		int eigenschapCount = 0;
 
-		protected override void OnCreate (Bundle bundle) {
+        ISharedPreferences sharedPrefs;
+
+        protected override void OnCreate (Bundle bundle) {
 			base.OnCreate (bundle);
 
 			SetContentView (Resource.Layout.Eigenschappen);
@@ -25,24 +27,34 @@ namespace TotemAndroid {
 			InitializeActionBar (SupportActionBar);
 
 			ActionBarTitle.Text = "Eigenschappen";
-	
-			eigenschappen = _appController.Eigenschappen;
 
 			Button jaKnop = FindViewById<Button> (Resource.Id.jaKnop);
 			Button neeKnop = FindViewById<Button> (Resource.Id.neeKnop);
 
 			adjectief = FindViewById<TextView> (Resource.Id.eigenschap);
 
-			UpdateScreen ();
+            sharedPrefs = GetSharedPreferences("data", FileCreationMode.Private);
+
+            UpdateScreen ();
 
 			jaKnop.Click += (sender, eventArgs) => Push(true);
 			neeKnop.Click += (sender, eventArgs) => Push(false);
 		}
 
-		//show next eigenschap
-		public void UpdateScreen() {
+        protected override void OnPause() {
+            base.OnPause();
+
+            //save eigenschappenlist state in sharedprefs
+            var editor = sharedPrefs.Edit();
+            var ser = ServiceStack.Text.JsonSerializer.SerializeToString(_appController.Eigenschappen);
+            editor.PutString("eigenschappen", ser);
+            editor.Commit();
+        }
+
+        //show next eigenschap
+        public void UpdateScreen() {
 			if (eigenschapCount < 324) {
-				adjectief.Text = eigenschappen [eigenschapCount].name;
+				adjectief.Text = _appController.Eigenschappen[eigenschapCount].name;
 			} else {
 				var i = new Intent (this, typeof(EigenschappenActivity));
 				i.SetFlags(ActivityFlags.ClearTop | ActivityFlags.SingleTop);
@@ -50,33 +62,9 @@ namespace TotemAndroid {
 				StartActivity (i);
 			}
 		}
-
-		/*
-		//create options menu
-		public override bool OnCreateOptionsMenu(IMenu m) {
-			IMenu menu = m;
-			MenuInflater.Inflate(Resource.Menu.TinderMenu, menu);
-			return base.OnCreateOptionsMenu(menu);
-		}
-
-		//options menu: add profile, view selection of view full list
-		public override bool OnOptionsItemSelected(IMenuItem item) {
-			switch (item.ItemId) {
-
-			//reset selection
-			case Resource.Id.checklistView:
-				var i = new Intent (this, typeof(EigenschappenActivity));
-				i.SetFlags(ActivityFlags.ClearTop | ActivityFlags.SingleTop);
-				StartActivity (i);
-				return true;			
-			}
-
-			return base.OnOptionsItemSelected(item);
-		}
-		*/
 			
 		public void Push(bool choice) {
-			eigenschappen [eigenschapCount].selected = choice;
+			_appController.Eigenschappen [eigenschapCount].selected = choice;
 			eigenschapCount++;
 			UpdateScreen ();
 		}

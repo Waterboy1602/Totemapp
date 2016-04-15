@@ -114,14 +114,14 @@ namespace TotemAndroid {
             _appController.FireUpdateEvent ();
 		}
 
-		protected override void OnPause ()	{
+		protected override void OnPause () {
 			base.OnPause ();
 
 			_appController.UpdateCounter -= updateCounter;
 			_appController.ShowSelected -= ShowSelectedOnly;
 			_appController.NavigationController.GotoTotemResultEvent-= StartResultTotemsActivity;
 
-            //save eigenschappenlist statie in sharedprefs
+            //save eigenschappenlist state in sharedprefs
             var editor = sharedPrefs.Edit();
             var ser = ServiceStack.Text.JsonSerializer.SerializeToString(_appController.Eigenschappen);
             editor.PutString("eigenschappen", ser);
