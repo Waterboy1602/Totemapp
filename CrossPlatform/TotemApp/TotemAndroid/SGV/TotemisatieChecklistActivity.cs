@@ -16,7 +16,7 @@ namespace TotemAndroid {
 
 			SetContentView (Resource.Layout.Checklist);
 
-			InitializeActionBar (ActionBar);
+			InitializeActionBar (SupportActionBar);
 
 			ActionBarTitle.Text = "Totemisatie checklist";
 

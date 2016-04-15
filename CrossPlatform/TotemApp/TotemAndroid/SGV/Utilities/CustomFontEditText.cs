@@ -1,11 +1,12 @@
 ﻿using Android.Content;
+using Android.Support.V7.Widget;
 using Android.Util;
 using Android.Widget;
 
 namespace TotemAndroid {
 
 	//allows to put custom font in XML
-	public class CustomFontEditText : EditText {
+	public class CustomFontEditText : AppCompatEditText {
 
 		public CustomFontEditText (Context context): base(context) {
 			CustomFontHelper.ApplyCustomFont (this, context, null);

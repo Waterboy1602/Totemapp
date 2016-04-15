@@ -1,35 +1,45 @@
 ﻿<resources xmlns:android="http://schemas.android.com/apk/res/android">
-	<style name="AppBaseTheme" parent="@android:style/Theme.Material.Light">
-		<item name="android:textColorPrimary">@android:color/black</item>
-		<item name="android:textColorSecondary">@android:color/black</item>
-	    <item name="android:textColorTertiary">@android:color/black</item>
-	    <item name="android:colorButtonNormal">@color/totemblue</item>
-	    <item name="android:colorControlNormal">@color/totemblue</item>
-	    <item name="android:colorPrimary">@color/totemblue</item>
-	    <item name="android:colorAccent">@color/totemblue</item>
-	    <item name="android:statusBarColor">@color/totemdarkblue</item>
-	    <item name="android:actionBarStyle">@style/MyActionBar</item>
-	    <item name="android:actionOverflowButtonStyle">@style/MyCustomTheme.OverFlow</item>
+  <style name="AppTheme" parent="AppBaseTheme">
+  </style>
+  
+  <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
+	    <item name="colorControlNormal">@color/totemblue</item>
+	    <item name="colorPrimary">@color/totemblue</item>
+      <item name="buttonStyle">@style/ColoredButton</item>
+	    <item name="colorAccent">@color/totemblue</item>
+	    <item name="actionBarStyle">@style/MyActionBar</item>
+      <item name="actionOverflowButtonStyle">@style/MyCustomTheme.OverFlow</item>
 	</style>
 
-	<style name="AppThemeNoAction" parent="@android:style/Theme.Material.Light.NoActionBar">
-		<item name="android:colorPrimary">@color/totemblue</item>
-		<item name="android:textColorPrimary">@android:color/black</item>
-		<item name="android:textColorSecondary">@android:color/black</item>
-	    <item name="android:textColorTertiary">@android:color/black</item>
-	    <item name="android:colorButtonNormal">@color/totemblue</item>
-	    <item name="android:colorControlNormal">@color/totemblue</item>
-	    <item name="android:colorAccent">@color/totemblue</item>
-	    <item name="android:statusBarColor">@color/totemdarkblue</item>
+  <style name="AppThemeNoAction" parent="AppBaseThemeNoAction">
+  </style>
+  
+	<style name="AppBaseThemeNoAction" parent="Theme.AppCompat.Light.NoActionBar">
+		  <item name="colorPrimary">@color/totemblue</item>
+      <item name="buttonStyle">@style/ColoredButton</item>
+	    <item name="colorAccent">@color/totemblue</item>
 	</style>
 
-	<style name="MyActionBar" parent="@style/AppBaseTheme">
-        <item name="android:background">@color/totemblue</item>
-        <item name="android:textColorSecondary">@android:color/white</item>
-    </style>
+  <style name="ColoredButton" parent="Base.Widget.AppCompat.Button.Colored">
+      <item name="colorButtonNormal">@color/totemblue</item>
+      <item name="android:textColor">@android:color/white</item>
+  </style>
+  
+  <style name="CustomImageButton" parent="Base.Widget.AppCompat.ImageButton">
+      <item name="android:background">@android:color/transparent</item>
+  </style>
+  
+   <style name="CheckBoxBackground" parent="AppBaseTheme">
+      <item name="android:background">@android:color/transparent</item>
+  </style>
 
-    <style name="MyCustomTheme.OverFlow" parent="@android:style/Theme.Material.Light">
+	<style name="MyActionBar" parent="AppBaseTheme">
+      <item name="background">@color/totemblue</item>
+   </style>
+
+  <style name="MyCustomTheme.OverFlow" parent="Widget.AppCompat.ActionButton.Overflow">
     	<item name="android:src">@drawable/ic_more_vert_white_24dp</item>
     	<item name="android:paddingRight">15dp</item>
+      <item name="android:background">@android:color/transparent</item>
 	</style>
 </resources>

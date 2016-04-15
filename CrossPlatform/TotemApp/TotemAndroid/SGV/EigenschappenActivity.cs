@@ -41,7 +41,7 @@ namespace TotemAndroid {
 			SetContentView (Resource.Layout.AllEigenschappen);
 
 			//Action bar
-			InitializeActionBar (ActionBar);
+			InitializeActionBar (SupportActionBar);
 			title = ActionBarTitle;
 			query = ActionBarQuery;
 			search = ActionBarSearch;

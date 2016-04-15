@@ -30,13 +30,13 @@
             android:layout_centerVertical="true"
             app:font="@string/DIN_light" />
         <LinearLayout
+            style="@style/CustomImageButton"
             android:id="@+id/vind"
             android:layout_height="50dp"
             android:layout_width="wrap_content"
             android:layout_marginRight="10sp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:background="?android:attr/selectableItemBackgroundBorderless"
             android:clickable="true">
             <TotemAndroid.CustomFontTextView
                 android:id="@+id/vindText"

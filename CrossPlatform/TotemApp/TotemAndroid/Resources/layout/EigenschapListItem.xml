@@ -16,6 +16,7 @@
         android:layout_alignParentLeft="true"
         app:font="@string/DIN_regular" />
     <CheckBox
+        style="@style/CheckBoxBackground"
         android:id="@+id/checkbox"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
