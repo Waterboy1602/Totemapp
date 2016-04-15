@@ -1,18 +1,26 @@
 ﻿using System;
 
 using UIKit;
+using Foundation;
+using ServiceStack.Text;
 
 namespace TotemAppIos {
 	public partial class TinderEigenschappenViewController : BaseViewController	{
 
 		int eigenschapCount = 0;
+		NSUserDefaults userDefs;
 
 		public TinderEigenschappenViewController () : base ("TinderEigenschappenViewController", null) {}
+
+		public override void ViewDidLoad () {
+			base.ViewDidLoad ();
+			userDefs = NSUserDefaults.StandardUserDefaults;
+
+		}
 
 		public override void ViewDidAppear (bool animated) {
 			base.ViewDidAppear (animated);
 			btnReturn.TouchUpInside+= btnReturnTouchUpInside;
-			//btnMore.TouchUpInside+= btnMoreTouchUpInside;
 
 			btnJa.TouchUpInside += pushJa ;
 			btnNee.TouchUpInside += pushNee;
@@ -22,10 +30,13 @@ namespace TotemAppIos {
 		public override void ViewWillDisappear (bool animated) {
 			base.ViewWillDisappear (animated);
 			btnReturn.TouchUpInside-= btnReturnTouchUpInside;
-			//btnMore.TouchUpInside-= btnMoreTouchUpInside;
 
 			btnJa.TouchUpInside -= pushJa;
 			btnNee.TouchUpInside -= pushNee;
+
+			var ser = JsonSerializer.SerializeToString (_appController.Eigenschappen);
+			userDefs.SetString (ser, "eigenschappen");
+			userDefs.Synchronize ();
 
 		}
 

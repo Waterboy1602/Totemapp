@@ -4,6 +4,9 @@ using CoreGraphics;
 using TotemAppCore;
 using UIKit;
 using System.Drawing;
+using Foundation;
+using ServiceStack.Text;
+using System.Collections.Generic;
 
 namespace TotemAppIos {
 	public partial class EigenschappenViewController : BaseViewController {
@@ -11,11 +14,14 @@ namespace TotemAppIos {
 		bool isSearching;
 		bool isShowingSelected;
 
+		NSUserDefaults userDefs;
+
 		public EigenschappenViewController () : base ("EigenschappenViewController", null) {}
 
 		public override void ViewDidLoad () {
 			base.ViewDidLoad ();
 			_appController.ShowSelected += toggleShowSelected;
+			userDefs = NSUserDefaults.StandardUserDefaults;
 
 		}
 
@@ -31,7 +37,14 @@ namespace TotemAppIos {
 
 			_appController.NavigationController.GotoTotemResultEvent += gotoResultListHandler;
 
-			tblEigenschappen.ReloadSections (new Foundation.NSIndexSet (0), UITableViewRowAnimation.None);
+			var ser = userDefs.StringForKey ("eigenschappen");
+			if (ser != null) {
+				_appController.Eigenschappen = JsonSerializer.DeserializeFromString <List<Eigenschap>> (ser);
+				(tblEigenschappen.Source as EigenschappenTableViewSource).Eigenschappen = _appController.Eigenschappen;
+
+			}				
+
+			tblEigenschappen.ReloadSections (new NSIndexSet (0), UITableViewRowAnimation.None);
 			tblEigenschappen.ScrollRectToVisible (new CGRect(0,0,1,1), false);
 			_appController.FireUpdateEvent ();
 		}
@@ -47,6 +60,10 @@ namespace TotemAppIos {
 			_appController.UpdateCounter -= updateCounter;
 
 			_appController.NavigationController.GotoTotemResultEvent -= gotoResultListHandler;
+
+			var ser = JsonSerializer.SerializeToString (_appController.Eigenschappen);
+			userDefs.SetString (ser, "eigenschappen");
+			userDefs.Synchronize ();
 		}
 
 		public override void setData() {
@@ -73,7 +90,7 @@ namespace TotemAppIos {
 			tblEigenschappen.KeyboardDismissMode = UIScrollViewKeyboardDismissMode.OnDrag;
 
 			UIColor color = UIColor.White;
-			txtSearch.AttributedPlaceholder = new Foundation.NSAttributedString("Zoek eigenschap",foregroundColor: color);
+			txtSearch.AttributedPlaceholder = new NSAttributedString("Zoek eigenschap",foregroundColor: color);
 
 			tblEigenschappen.Source = new EigenschappenTableViewSource (_appController.Eigenschappen);
 
@@ -82,7 +99,6 @@ namespace TotemAppIos {
 		}
 
 		new void btnReturnTouchUpInside (object sender, EventArgs e) {
-			resetSelections ();
 			NavigationController.PopViewController (true);
 		}
 
@@ -130,7 +146,7 @@ namespace TotemAppIos {
 		//updates list to match entered query
 		void TxtSearchValueChangedHandler (object sender, EventArgs e) {
 			(tblEigenschappen.Source as EigenschappenTableViewSource).Eigenschappen = _appController.FindEigenschapOpNaam ((sender as UITextField).Text);
-			tblEigenschappen.ReloadSections (new Foundation.NSIndexSet (0), UITableViewRowAnimation.Automatic);
+			tblEigenschappen.ReloadSections (new NSIndexSet (0), UITableViewRowAnimation.Automatic);
 			tblEigenschappen.ScrollRectToVisible (new CGRect(0,0,1,1), false);
 			isShowingSelected = false;
 		}
@@ -160,12 +176,12 @@ namespace TotemAppIos {
 		void toggleShowSelected() {				
 			if (isShowingSelected) {
 				(tblEigenschappen.Source as EigenschappenTableViewSource).Eigenschappen = _appController.FindEigenschapOpNaam (txtSearch.Text);
-				tblEigenschappen.ReloadSections (new Foundation.NSIndexSet (0), UITableViewRowAnimation.Automatic);
+				tblEigenschappen.ReloadSections (new NSIndexSet (0), UITableViewRowAnimation.Automatic);
 				tblEigenschappen.ScrollRectToVisible (new CGRect(0,0,1,1), false);
 				isShowingSelected = !isShowingSelected;
 			} else if ((_appController.Eigenschappen.FindAll (x=>x.selected)).Count != 0) {
 				(tblEigenschappen.Source as EigenschappenTableViewSource).Eigenschappen = _appController.Eigenschappen.FindAll (x => x.selected);
-				tblEigenschappen.ReloadSections (new Foundation.NSIndexSet (0), UITableViewRowAnimation.Automatic);
+				tblEigenschappen.ReloadSections (new NSIndexSet (0), UITableViewRowAnimation.Automatic);
 				isShowingSelected = !isShowingSelected;
 				tblEigenschappen.ScrollRectToVisible (new CGRect(0,0,1,1), false);
 			}
