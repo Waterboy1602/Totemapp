@@ -13,7 +13,6 @@ namespace TotemAndroid {
 	[Activity (Label = "Totem bepalen", Icon = "@drawable/icon", ScreenOrientation = ScreenOrientation.Portrait)]
 	public class TinderEigenschappenActivity : BaseActivity {
 		TextView adjectief;
-		List<Eigenschap> eigenschappen;
 		int eigenschapCount = 0;
 
         ISharedPreferences sharedPrefs;
