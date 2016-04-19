@@ -7,7 +7,7 @@ namespace TotemAppCore {
 	public static class CollectionHelper {
 
 		//return sorted dictionary
-		public static Dictionary<Totem, int> GetSortedList(Dictionary<Totem, int> dict) {
+		public static Dictionary<Totem, int> GetSortedDict(Dictionary<Totem, int> dict) {
 			var tempList = new List<KeyValuePair<Totem, int>>(dict);
 
 			tempList.Sort ((firstPair, secondPair) => secondPair.Value.CompareTo (firstPair.Value));

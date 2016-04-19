@@ -89,7 +89,7 @@ namespace TotemAndroid {
 			viewHolder.totem.Text = totemList [position].title;
 			viewHolder.checkbox.Checked = totemList [(int)viewHolder.checkbox.Tag].selected;
 			if (freqs != null)
-				viewHolder.freq.Text = freqs [position].ToString () /*+ "/" + totemList [position].numberOfEigenschappen*/;
+				viewHolder.freq.Text = freqs [position].ToString ();
 
 			viewHolder.checkbox.Click += (o, e) => {
 				totemList [(int)viewHolder.checkbox.Tag].selected = viewHolder.checkbox.Checked;
@@ -120,7 +120,7 @@ namespace TotemAndroid {
 		}
 
 		public int GetSectionForPosition(int position) {
-			return 1;
+			return 0;
 		}
 
 		public Java.Lang.Object[] GetSections () {

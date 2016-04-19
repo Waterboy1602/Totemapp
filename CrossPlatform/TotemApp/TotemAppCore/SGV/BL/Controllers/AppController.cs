@@ -99,7 +99,7 @@ namespace TotemAppCore {
 			}
 		}
 
-		//returns next totem depending on context
+		//returns previous totem depending on context
 		public Totem PrevTotem {
 			get {
 				List<Totem> list;
@@ -123,7 +123,7 @@ namespace TotemAppCore {
 		/* ------------------------------ DATABASE ------------------------------ */
 
 
-		//returns totem-object with given id
+		//returns totem-object with given id (int)
 		public Totem GetTotemOnID(int idx) {
 			foreach(Totem t in _totems)
 				if(t.nid.Equals(idx.ToString()))
@@ -132,9 +132,9 @@ namespace TotemAppCore {
 			return null;
 		}
 
-		//returns totem-object with given id
+		//returns totem-object with given id (string)
 		public Totem GetTotemOnID(string idx) {
-			return GetTotemOnID (Int32.Parse (idx));
+			return GetTotemOnID (int.Parse (idx));
 		}
 
 		//returns totem-object with given name
@@ -188,7 +188,7 @@ namespace TotemAppCore {
 			database.DeleteTotemFromProfile (totemID,profielName);
 		}
 
-		//returns List of Totem_eigenschapp related to eigenschap id
+		//returns List of Totem_eigenschappen related to eigenschap id
 		public List<Totem_eigenschap> GetTotemsVanEigenschapsID(string id) {
 			return database.GetTotemsVanEigenschapsID (id);
 		}
@@ -216,7 +216,7 @@ namespace TotemAppCore {
 		}
 
 
-		/* ------------------------------ BUTTON CLICK EVENTS ------------------------------ */
+		/* ------------------------------ CLICK EVENTS ------------------------------ */
 
 
 		public void TotemMenuItemClicked() {
@@ -285,6 +285,7 @@ namespace TotemAppCore {
 		}
 
 		//fills dictionary with totems and according frequency based on selected eigenschappen
+        //sorts the dicitionary by value
 		void FillAndSortDict(List<Eigenschap> checkboxList) {
 			TotemEigenschapDict = new Dictionary<Totem, int> ();
 			foreach (Eigenschap eig in checkboxList) {
@@ -295,7 +296,7 @@ namespace TotemAppCore {
 					}
 				}
 			}
-			TotemEigenschapDict = CollectionHelper.GetSortedList (TotemEigenschapDict);
+			TotemEigenschapDict = CollectionHelper.GetSortedDict (TotemEigenschapDict);
 		}
 
 		public void FireUpdateEvent() {

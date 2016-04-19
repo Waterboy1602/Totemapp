@@ -24,7 +24,8 @@ namespace TotemAppCore {
 
 		string currentDBName = "totems.sqlite";
 
-		string DatabasePath { //path for checking if database exists.
+        //path for checking if database exists
+        string DatabasePath { 
 			get { 
 				var sqliteFilename = currentDBName;
 
@@ -47,11 +48,7 @@ namespace TotemAppCore {
 			}
 		}
 
-		/// <Summary>
-		/// Reads the write stream.
-		/// </Summary>
-		/// <param name="readStream">Read stream.</param>
-		/// <param name="writeStream">Write stream.</param>
+		//reads the write stream.
 		void ReadWriteStream(Stream readStream, Stream writeStream) {
 			int Length = 256;
 			var buffer = new Byte[Length];
@@ -65,13 +62,8 @@ namespace TotemAppCore {
 			writeStream.Close();
 		}
 
-		/// <Summary>
-		/// Initializes a new instance of the Database. 
-		/// if the database doesn't exist, it will create the database and all the tables.
-		/// </Summary>
-		/// <param name='path'>
-		/// Path.
-		/// </param>
+		//initializes a new instance of the database
+		//if the database doesn't exist, it will create the database and all the tables
 		public Database() {
 			var dbPath = DatabasePath;
 			if (!File.Exists (dbPath)) {
@@ -89,8 +81,6 @@ namespace TotemAppCore {
 			}
 
 			database = new SQLiteConnection (dbPath);
-			// create the tables
-			//database.CreateTable<TodoItem>();
 		}
 			
 
