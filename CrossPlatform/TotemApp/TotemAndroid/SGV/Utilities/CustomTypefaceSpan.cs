@@ -1,6 +1,6 @@
 ﻿using Android.Graphics;
-using Android.Text.Style;
 using Android.Text;
+using Android.Text.Style;
 
 namespace TotemAndroid {
 

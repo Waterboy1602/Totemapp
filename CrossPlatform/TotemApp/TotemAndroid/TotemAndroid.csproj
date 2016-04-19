@@ -76,7 +76,6 @@
     <Compile Include="SGV\Utilities\CustomFontHelper.cs" />
     <Compile Include="SGV\Utilities\CustomFontTextView.cs" />
     <Compile Include="SGV\Utilities\CustomTypefaceSpan.cs" />
-    <Compile Include="SGV\Utilities\DynamicImageView.cs" />
     <Compile Include="SGV\Utilities\KeyboardHelper.cs" />
     <Compile Include="SGV\Utilities\MyOnCheckBoxClickListener.cs" />
     <Compile Include="SGV\Utilities\MyOnDismissListener.cs" />

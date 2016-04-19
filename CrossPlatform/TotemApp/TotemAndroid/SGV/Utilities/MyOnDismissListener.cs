@@ -1,8 +1,6 @@
-﻿using System;
+﻿using Android.Content;
 
-using Android.Content;
-using Android.Runtime;
-using Android.Views;
+using System;
 
 namespace TotemAndroid {
 	public class MyOnDismissListener : Java.Lang.Object, IDialogInterfaceOnDismissListener  {

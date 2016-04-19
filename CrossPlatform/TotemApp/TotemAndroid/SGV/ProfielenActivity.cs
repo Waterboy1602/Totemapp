@@ -1,16 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
+
+using System;
+using System.Collections.Generic;
+
 using TotemAppCore;
 
 namespace TotemAndroid {
-	[Activity (Label = "Profielen", WindowSoftInputMode=SoftInput.StateAlwaysHidden)]			
+    [Activity (Label = "Profielen", WindowSoftInputMode=SoftInput.StateAlwaysHidden)]			
 	public class ProfielenActivity : BaseActivity {
 		ProfielAdapter profielAdapter;
 		ListView profielenListView;

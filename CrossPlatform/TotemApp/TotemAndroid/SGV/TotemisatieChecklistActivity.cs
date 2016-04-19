@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-using Android.App;
+﻿using Android.App;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+
+using System.Collections.Generic;
+using System.Linq;
 
 namespace TotemAndroid {
 	[Activity (Label = "Checklist")]			

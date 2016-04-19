@@ -1,16 +1,16 @@
-﻿using System;
-
+﻿
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
-using TotemAndroid;
-using TotemAppCore;
-using Android.Support.V7.App;
 
-namespace TotemAndroid {
-	[Activity (Label = "BaseActivity")]			
+using TotemAppCore;
+
+namespace TotemAndroid
+{
+    [Activity (Label = "BaseActivity")]			
 	public abstract class BaseActivity : AppCompatActivity {
 
 		protected TextView ActionBarTitle { get; set; }

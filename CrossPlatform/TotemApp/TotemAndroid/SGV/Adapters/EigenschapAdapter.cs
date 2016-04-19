@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
-
-using Android.App;
+﻿using Android.App;
 using Android.Views;
 using Android.Widget;
+
+using System.Collections.Generic;
+
 using TotemAppCore;
 
 namespace TotemAndroid {
-	public class EigenschapAdapter: BaseAdapter<Eigenschap> {
+    public class EigenschapAdapter: BaseAdapter<Eigenschap> {
 		Activity _activity;
 		List<Eigenschap> eigenschapList;
 

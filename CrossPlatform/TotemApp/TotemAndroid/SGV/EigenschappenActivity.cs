@@ -1,21 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-
-using Android.App;
-
+﻿using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
 
-using TotemAppCore;
 using ServiceStack.Text;
 
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+
+using TotemAppCore;
+
 namespace TotemAndroid {
-	[Activity (Label = "Eigenschappen", WindowSoftInputMode = SoftInput.AdjustPan)]			
+    [Activity (Label = "Eigenschappen", WindowSoftInputMode = SoftInput.AdjustPan)]			
 	public class EigenschappenActivity : BaseActivity {
 		EigenschapAdapter eigenschapAdapter;
 		ListView allEigenschappenListView;

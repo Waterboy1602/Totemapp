@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Android.Content;
 
-using Android.Content;
+using System;
 
 namespace TotemAndroid {
 	public class MyOnCheckBoxClickListener {

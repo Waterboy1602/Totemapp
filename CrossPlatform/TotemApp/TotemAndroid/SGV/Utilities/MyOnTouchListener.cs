@@ -1,9 +1,9 @@
-﻿using System;
-
-using Android.Content;
+﻿using Android.Content;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
+
+using System;
 
 namespace TotemAndroid {
 	public class MyOnTouchListener : Java.Lang.Object, View.IOnTouchListener {

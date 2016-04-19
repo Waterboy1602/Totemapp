@@ -2,10 +2,11 @@
 using Android.Content;
 using Android.OS;
 using Android.Widget;
+
 using TotemAppCore;
 
 namespace TotemAndroid {
-	public class TipDialog : DialogFragment	{
+    public class TipDialog : DialogFragment	{
 		CheckBox weergeven_checkbox;
 		TextView tip;
 

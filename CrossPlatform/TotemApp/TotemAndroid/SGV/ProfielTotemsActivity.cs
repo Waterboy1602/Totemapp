@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+
+using System;
+using System.Collections.Generic;
+
 using TotemAppCore;
 
 namespace TotemAndroid {
-	[Activity (Label = "Totems")]
+    [Activity (Label = "Totems")]
 	public class ProfielTotemsActivity : BaseActivity {
 		TotemAdapter totemAdapter;
 		ListView allTotemListView;

@@ -1,7 +1,6 @@
 ﻿using Android.Content;
 using Android.Support.V7.Widget;
 using Android.Util;
-using Android.Widget;
 
 namespace TotemAndroid {
 	

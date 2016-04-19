@@ -1,6 +1,4 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.Graphics;
 using Android.OS;
@@ -8,10 +6,13 @@ using Android.Text;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
+
+using System;
+
 using TotemAppCore;
 
 namespace TotemAndroid {
-	[Activity (Label = "Beschrijving", WindowSoftInputMode=SoftInput.StateAlwaysHidden)]			
+    [Activity (Label = "Beschrijving", WindowSoftInputMode=SoftInput.StateAlwaysHidden)]			
 	public class TotemDetailActivity : BaseActivity, GestureDetector.IOnGestureListener	{
 		TextView number;
 		TextView title_synonyms;

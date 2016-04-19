@@ -1,12 +1,10 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Views;
 using Android.Widget;
-using System.Runtime.InteropServices;
 
 namespace TotemAndroid {
-	[Activity (Label = "Totemapp", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/AppThemeNoAction")]
+    [Activity (Label = "Totemapp", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/AppThemeNoAction")]
 	public class MainActivity : BaseActivity {
 		//Database db;
 		Button totems;
