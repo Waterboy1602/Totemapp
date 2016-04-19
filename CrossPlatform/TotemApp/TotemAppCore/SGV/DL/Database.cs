@@ -4,6 +4,8 @@ using System.IO;
 
 #if __ANDROID__
 using Android.App;
+using Android.Content;
+using Android.Preferences;
 #endif
 
 #if __IOS__
@@ -16,6 +18,7 @@ namespace TotemAppCore {
 	public class Database {
 
 		SQLiteConnection database;
+		const int DATABASE_VERSION = 1;
 		#if __ANDROID__
 		string originalDBLocation = "totems.sqlite";
 		#elif __IOS__
@@ -66,23 +69,43 @@ namespace TotemAppCore {
 		//if the database doesn't exist, it will create the database and all the tables
 		public Database() {
 			var dbPath = DatabasePath;
-			if (!File.Exists (dbPath)) {
-				#if __ANDROID__
-				var s = Application.Context.Assets.Open (originalDBLocation);
-				var writeStream = new FileStream (dbPath, FileMode.OpenOrCreate, FileAccess.Write);
-				ReadWriteStream (s, writeStream);
-				writeStream.Close ();
+			int dbVersion;
 
-				#elif __IOS__
-				var appDir = NSBundle.MainBundle.ResourcePath;
-				var originalLocation = Path.Combine (appDir, originalDBLocation);
-				File.Copy (originalLocation, dbPath);
-				#endif
+			#if __ANDROID__
+			ISharedPreferences sharedPrefs = PreferenceManager.GetDefaultSharedPreferences (Application.Context);
+			dbVersion = sharedPrefs.GetInt ("db_ver", 0);
+			#elif __IOS__
+			NSUserDefaults userDefs = NSUserDefaults.StandardUserDefaults;
+			dbVersion = (int)userDefs.IntForKey ("db_ver");
+			#endif
+
+			if (!File.Exists (dbPath) || dbVersion != DATABASE_VERSION) {
+				CreateDatabase (dbPath);
 			}
 
 			database = new SQLiteConnection (dbPath);
 		}
-			
+
+		void CreateDatabase(string dbPath) {
+			#if __ANDROID__
+			var s = Application.Context.Assets.Open (originalDBLocation);
+			var writeStream = new FileStream (dbPath, FileMode.OpenOrCreate, FileAccess.Write);
+			ReadWriteStream (s, writeStream);
+			writeStream.Close ();
+			ISharedPreferences sharedPrefs = PreferenceManager.GetDefaultSharedPreferences (Application.Context);
+			ISharedPreferencesEditor editor = sharedPrefs.Edit ();
+			editor.PutInt ("db_ver", DATABASE_VERSION);
+
+			#elif __IOS__
+			var appDir = NSBundle.MainBundle.ResourcePath;
+			var originalLocation = Path.Combine (appDir, originalDBLocation);
+			File.Delete(dbPath);
+			File.Copy (originalLocation, dbPath);
+			NSUserDefaults userDefs = NSUserDefaults.StandardUserDefaults;
+			userDefs.SetInt (DATABASE_VERSION, "db_ver");
+			userDefs.Synchronize ();
+			#endif
+		}
 
 		/* ------------------------------ INITIALIZE DB ------------------------------ */
 
