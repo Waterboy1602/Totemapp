@@ -59,7 +59,9 @@ namespace TotemAndroid {
 			}
 			action.Visibility = ViewStates.Visible;
 
-			SetInfo ();
+            _appController.NavigationController.GotoProfileListEvent += StartProfielenActivity;
+
+            SetInfo ();
 		}
 
 		//redirect touch event
@@ -125,14 +127,7 @@ namespace TotemAndroid {
 
 		protected override void OnResume ()	{
 			base.OnResume ();
-
-			_appController.NavigationController.GotoProfileListEvent+= StartProfielenActivity;
-		}
-
-		protected override void OnPause ()	{
-			base.OnPause ();
-
-			_appController.NavigationController.GotoProfileListEvent-= StartProfielenActivity;
+            SetInfo();
 		}
 
 		private void RemoveFromProfile(string profileName) {
