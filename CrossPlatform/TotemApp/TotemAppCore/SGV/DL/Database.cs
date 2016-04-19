@@ -101,7 +101,7 @@ namespace TotemAppCore {
 		public List<Eigenschap> GetEigenschappen() {
 			lock (database) {
 				var cmd = new SQLiteCommand (database);
-				cmd.CommandText = "select * from eigenschap_nieuw order by name";
+				cmd.CommandText = "select * from eigenschap order by name";
 				var eigenschappen = cmd.ExecuteQuery<Eigenschap> ();
 				return eigenschappen;
 			}
@@ -111,7 +111,7 @@ namespace TotemAppCore {
 		public List<Totem> GetTotems() {
 			lock (database) {
 				var cmd = new SQLiteCommand (database);
-				cmd.CommandText = "select * from totem_nieuw order by title";
+				cmd.CommandText = "select * from totem order by title";
 				var totems = cmd.ExecuteQuery<Totem> ();
 				return totems;
 			}
@@ -186,7 +186,7 @@ namespace TotemAppCore {
 			lock (database) {
 				var cmd = new SQLiteCommand (database);
 				var cleanId = id.Replace("'", "");
-				cmd.CommandText = "select nid from totem_eigenschap_nieuw where tid = " + cleanId;
+				cmd.CommandText = "select nid from totem_eigenschap where tid = " + cleanId;
 				totemsVanEigenschap = cmd.ExecuteQuery<Totem_eigenschap> ();
 			}
 			return totemsVanEigenschap;
@@ -198,21 +198,11 @@ namespace TotemAppCore {
 			lock (database) {
 				var cmd = new SQLiteCommand (database);
 				var cleanId = id.Replace("'", "");
-				cmd.CommandText = "select * from totem_nieuw where nid = " + cleanId;
+				cmd.CommandText = "select * from totem where nid = " + cleanId;
 				list = cmd.ExecuteQuery<Totem> ();
 			}
 			return list [0];
 		}
-
-		/*public void SaveSelectedEigenschappen(List<Eigenschap> list) {
-			lock (database) {
-				var cmd = new SQLiteCommand (database);
-				foreach (Eigenschap e in list) {
-					cmd.CommandText = "update eigenschap_nieuw set selectedString='" + e.selected + "' where tid='" + e.eigenschapID + "'";
-					cmd.ExecuteQuery<Userpref> ();
-				}
-			}
-		}*/
 
 
 		/* ------------------------------ UTILS ------------------------------ */
