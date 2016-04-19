@@ -138,12 +138,17 @@ namespace TotemAndroid {
             SetInfo();
 		}
 
-        void ToggleHidden() {
+        void ToggleHidden()
+        {
             hidden = !hidden;
-            if(hidden)
+            if (hidden) {
                 search.SetImageResource(Resource.Drawable.ic_visibility_white_24dp);
-            else
+                number.Visibility = ViewStates.Gone;
+            } else {
                 search.SetImageResource(Resource.Drawable.ic_visibility_off_white_24dp);
+                number.Visibility = ViewStates.Visible;
+            }
+
             SetInfo();
         }
 
@@ -242,7 +247,6 @@ namespace TotemAndroid {
 		private void SetInfo() {
             body.Text = _appController.CurrentTotem.body;
             if (hidden) {
-                number.Text = "";
                 title_synonyms.Text = "...";
                 body.Text = _appController.CurrentTotem.body.Replace(_appController.CurrentTotem.title, "...");
             } else {
