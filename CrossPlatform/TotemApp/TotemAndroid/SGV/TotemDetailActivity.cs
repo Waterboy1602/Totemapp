@@ -23,6 +23,9 @@ namespace TotemAndroid {
 		TextView title;
 		ImageButton back;
 		ImageButton action;
+        ImageButton search;
+
+        bool hidden = false;
 
 		//used for swiping
 		public GestureDetector _gestureDetector;
@@ -38,9 +41,10 @@ namespace TotemAndroid {
 			InitializeActionBar (SupportActionBar);
 			title = ActionBarTitle;
 			back = ActionBarBack;
+            search = ActionBarSearch;
 
-			//single toast for entire activity
-			mToast = Toast.MakeText (this, "", ToastLength.Short);
+            //single toast for entire activity
+            mToast = Toast.MakeText (this, "", ToastLength.Short);
 
 			number = FindViewById<TextView> (Resource.Id.number);
 			title_synonyms = FindViewById<TextView> (Resource.Id.title_synonyms);
@@ -58,6 +62,10 @@ namespace TotemAndroid {
 				action.Click += (sender, e) => ProfilePopup();
 			}
 			action.Visibility = ViewStates.Visible;
+
+            search.Visibility = ViewStates.Visible;
+            search.SetImageResource(Resource.Drawable.ic_visibility_off_white_24dp);
+            search.Click += (sender, e) => ToggleHidden();
 
             _appController.NavigationController.GotoProfileListEvent += StartProfielenActivity;
 
@@ -130,7 +138,16 @@ namespace TotemAndroid {
             SetInfo();
 		}
 
-		private void RemoveFromProfile(string profileName) {
+        void ToggleHidden() {
+            hidden = !hidden;
+            if(hidden)
+                search.SetImageResource(Resource.Drawable.ic_visibility_white_24dp);
+            else
+                search.SetImageResource(Resource.Drawable.ic_visibility_off_white_24dp);
+            SetInfo();
+        }
+
+        private void RemoveFromProfile(string profileName) {
 			var alert = new AlertDialog.Builder (this);
 			alert.SetMessage (_appController.CurrentTotem.title + " verwijderen uit profiel " + profileName + "?");
 			alert.SetPositiveButton ("Ja", (senderAlert, args) => {
@@ -223,28 +240,35 @@ namespace TotemAndroid {
 
 		//displays totem info
 		private void SetInfo() {
-			number.Text = _appController.CurrentTotem.number + ". ";
-			Typeface Verveine = Typeface.CreateFromAsset (Assets, "fonts/Verveine W01 Regular.ttf");
+            body.Text = _appController.CurrentTotem.body;
+            if (hidden) {
+                number.Text = "";
+                title_synonyms.Text = "...";
+                body.Text = _appController.CurrentTotem.body.Replace(_appController.CurrentTotem.title, "...");
+            } else {
+                number.Text = _appController.CurrentTotem.number + ". ";
 
-			//code to get formatting right
-			//title and synonyms are in the same TextView
-			//font, size,... are given using spans
-			if (_appController.CurrentTotem.synonyms != null) {
-				string titlestring = _appController.CurrentTotem.title;
-				string synonymsstring = " - " + _appController.CurrentTotem.synonyms + " ";
+                Typeface Verveine = Typeface.CreateFromAsset(Assets, "fonts/Verveine W01 Regular.ttf");
 
-				Typeface Din = Typeface.CreateFromAsset (Assets, "fonts/DINPro-Light.ttf");
+                //code to get formatting right
+                //title and synonyms are in the same TextView
+                //font, size,... are given using spans
+                if (_appController.CurrentTotem.synonyms != null) {
+                    string titlestring = _appController.CurrentTotem.title;
+                    string synonymsstring = " - " + _appController.CurrentTotem.synonyms + " ";
 
-				ISpannable sp = new SpannableString (titlestring + synonymsstring);
-				sp.SetSpan (new CustomTypefaceSpan ("sans-serif", Verveine, 0), 0, titlestring.Length, SpanTypes.ExclusiveExclusive);
-				sp.SetSpan (new CustomTypefaceSpan ("sans-serif", Din, TypefaceStyle.Italic, ConvertDPToPixels(17)), titlestring.Length, titlestring.Length + synonymsstring.Length, SpanTypes.ExclusiveExclusive);
+                    Typeface Din = Typeface.CreateFromAsset(Assets, "fonts/DINPro-Light.ttf");
 
-				title_synonyms.TextFormatted = sp;
-			} else {
-				title_synonyms.Text = _appController.CurrentTotem.title;
-				title_synonyms.SetTypeface (Verveine, 0);
-			}
-			body.Text = _appController.CurrentTotem.body;
+                    ISpannable sp = new SpannableString(titlestring + synonymsstring);
+                    sp.SetSpan(new CustomTypefaceSpan("sans-serif", Verveine, 0), 0, titlestring.Length, SpanTypes.ExclusiveExclusive);
+                    sp.SetSpan(new CustomTypefaceSpan("sans-serif", Din, TypefaceStyle.Italic, ConvertDPToPixels(17)), titlestring.Length, titlestring.Length + synonymsstring.Length, SpanTypes.ExclusiveExclusive);
+
+                    title_synonyms.TextFormatted = sp;
+                } else {
+                    title_synonyms.Text = _appController.CurrentTotem.title;
+                    title_synonyms.SetTypeface(Verveine, 0);
+                }
+            }
 		}
 	}
 }

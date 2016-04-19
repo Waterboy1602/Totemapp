@@ -95,6 +95,7 @@ namespace TotemAppCore {
 			ISharedPreferences sharedPrefs = PreferenceManager.GetDefaultSharedPreferences (Application.Context);
 			ISharedPreferencesEditor editor = sharedPrefs.Edit ();
 			editor.PutInt ("db_ver", DATABASE_VERSION);
+            editor.Commit();
 
 			#elif __IOS__
 			var appDir = NSBundle.MainBundle.ResourcePath;
