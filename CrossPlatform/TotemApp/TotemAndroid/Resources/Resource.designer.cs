@@ -61,42 +61,6 @@ namespace TotemAndroid
 			// aapt resource value: 0x7f040009
 			public const int abc_slide_out_top = 2130968585;
 			
-			// aapt resource value: 0x7f04000a
-			public const int arrow_to_drawer_path = 2130968586;
-			
-			// aapt resource value: 0x7f04000b
-			public const int arrow_to_drawer_rotation = 2130968587;
-			
-			// aapt resource value: 0x7f04000c
-			public const int drawer_to_arrow_path = 2130968588;
-			
-			// aapt resource value: 0x7f04000d
-			public const int drawer_to_arrow_rotation = 2130968589;
-			
-			// aapt resource value: 0x7f04000e
-			public const int pause_to_play_path = 2130968590;
-			
-			// aapt resource value: 0x7f04000f
-			public const int pause_to_play_rotation = 2130968591;
-			
-			// aapt resource value: 0x7f040010
-			public const int play_to_pause_path = 2130968592;
-			
-			// aapt resource value: 0x7f040011
-			public const int play_to_pause_rotation = 2130968593;
-			
-			// aapt resource value: 0x7f040012
-			public const int play_to_stop_path = 2130968594;
-			
-			// aapt resource value: 0x7f040013
-			public const int play_to_stop_rotation = 2130968595;
-			
-			// aapt resource value: 0x7f040014
-			public const int stop_to_play_path = 2130968596;
-			
-			// aapt resource value: 0x7f040015
-			public const int stop_to_play_rotation = 2130968597;
-			
 			static Animation()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -429,8 +393,8 @@ namespace TotemAndroid
 			// aapt resource value: 0x7f01001e
 			public const int expandActivityOverflowButtonDrawable = 2130771998;
 			
-			// aapt resource value: 0x7f0100ed
-			public const int font = 2130772205;
+			// aapt resource value: 0x7f0100d1
+			public const int font = 2130772177;
 			
 			// aapt resource value: 0x7f01009a
 			public const int gapBetweenBars = 2130772122;
@@ -515,9 +479,6 @@ namespace TotemAndroid
 			
 			// aapt resource value: 0x7f01009f
 			public const int measureWithLargestChild = 2130772127;
-			
-			// aapt resource value: 0x7f0100dd
-			public const int morphButtonStyle = 2130772189;
 			
 			// aapt resource value: 0x7f010021
 			public const int multiChoiceItemLayout = 2130772001;
@@ -734,87 +695,6 @@ namespace TotemAndroid
 			
 			// aapt resource value: 0x7f0100b6
 			public const int track = 2130772150;
-			
-			// aapt resource value: 0x7f0100d1
-			public const int vc_autoMirrored = 2130772177;
-			
-			// aapt resource value: 0x7f0100d8
-			public const int vc_autoStartAnimation = 2130772184;
-			
-			// aapt resource value: 0x7f0100d9
-			public const int vc_backgroundTint = 2130772185;
-			
-			// aapt resource value: 0x7f0100da
-			public const int vc_backgroundTintMode = 2130772186;
-			
-			// aapt resource value: 0x7f0100d7
-			public const int vc_endDrawable = 2130772183;
-			
-			// aapt resource value: 0x7f0100e6
-			public const int vc_fillAlpha = 2130772198;
-			
-			// aapt resource value: 0x7f0100e5
-			public const int vc_fillColor = 2130772197;
-			
-			// aapt resource value: 0x7f0100db
-			public const int vc_foregroundTint = 2130772187;
-			
-			// aapt resource value: 0x7f0100dc
-			public const int vc_foregroundTintMode = 2130772188;
-			
-			// aapt resource value: 0x7f0100d2
-			public const int vc_pathData = 2130772178;
-			
-			// aapt resource value: 0x7f0100d6
-			public const int vc_startDrawable = 2130772182;
-			
-			// aapt resource value: 0x7f0100e4
-			public const int vc_strokeAlpha = 2130772196;
-			
-			// aapt resource value: 0x7f0100e3
-			public const int vc_strokeColor = 2130772195;
-			
-			// aapt resource value: 0x7f0100ea
-			public const int vc_strokeLineCap = 2130772202;
-			
-			// aapt resource value: 0x7f0100eb
-			public const int vc_strokeLineJoin = 2130772203;
-			
-			// aapt resource value: 0x7f0100ec
-			public const int vc_strokeMiterLimit = 2130772204;
-			
-			// aapt resource value: 0x7f0100e2
-			public const int vc_strokeWidth = 2130772194;
-			
-			// aapt resource value: 0x7f0100d3
-			public const int vc_tint = 2130772179;
-			
-			// aapt resource value: 0x7f0100d4
-			public const int vc_tintMode = 2130772180;
-			
-			// aapt resource value: 0x7f0100e0
-			public const int vc_translateX = 2130772192;
-			
-			// aapt resource value: 0x7f0100e1
-			public const int vc_translateY = 2130772193;
-			
-			// aapt resource value: 0x7f0100e8
-			public const int vc_trimPathEnd = 2130772200;
-			
-			// aapt resource value: 0x7f0100e9
-			public const int vc_trimPathOffset = 2130772201;
-			
-			// aapt resource value: 0x7f0100e7
-			public const int vc_trimPathStart = 2130772199;
-			
-			// aapt resource value: 0x7f0100d5
-			public const int vc_valueType = 2130772181;
-			
-			// aapt resource value: 0x7f0100df
-			public const int vc_viewportHeight = 2130772191;
-			
-			// aapt resource value: 0x7f0100de
-			public const int vc_viewportWidth = 2130772190;
 			
 			// aapt resource value: 0x7f0100b1
 			public const int voiceIcon = 2130772145;
@@ -1613,64 +1493,31 @@ namespace TotemAndroid
 			public const int ic_arrow_forward_white_24dp = 2130837583;
 			
 			// aapt resource value: 0x7f020050
-			public const int ic_arrow_to_drawer = 2130837584;
+			public const int ic_close_white_24dp = 2130837584;
 			
 			// aapt resource value: 0x7f020051
-			public const int ic_arrow_vector = 2130837585;
+			public const int ic_delete_white_24dp = 2130837585;
 			
 			// aapt resource value: 0x7f020052
-			public const int ic_close_white_24dp = 2130837586;
+			public const int ic_more_vert_white_24dp = 2130837586;
 			
 			// aapt resource value: 0x7f020053
-			public const int ic_delete_white_24dp = 2130837587;
+			public const int ic_search_white_24dp = 2130837587;
 			
 			// aapt resource value: 0x7f020054
-			public const int ic_drawer_to_arrow = 2130837588;
+			public const int Icon = 2130837588;
 			
 			// aapt resource value: 0x7f020055
-			public const int ic_drawer_vector = 2130837589;
+			public const int Lamp = 2130837589;
 			
 			// aapt resource value: 0x7f020056
-			public const int ic_more_vert_white_24dp = 2130837590;
-			
-			// aapt resource value: 0x7f020057
-			public const int ic_pause_to_play = 2130837591;
+			public const int Lijn_bold = 2130837590;
 			
 			// aapt resource value: 0x7f020058
-			public const int ic_pause_vector = 2130837592;
+			public const int notification_template_icon_bg = 2130837592;
 			
-			// aapt resource value: 0x7f020059
-			public const int ic_play_to_pause = 2130837593;
-			
-			// aapt resource value: 0x7f02005a
-			public const int ic_play_to_stop = 2130837594;
-			
-			// aapt resource value: 0x7f02005b
-			public const int ic_play_vector = 2130837595;
-			
-			// aapt resource value: 0x7f02005c
-			public const int ic_search_white_24dp = 2130837596;
-			
-			// aapt resource value: 0x7f02005d
-			public const int ic_stop_to_play = 2130837597;
-			
-			// aapt resource value: 0x7f02005e
-			public const int ic_stop_vector = 2130837598;
-			
-			// aapt resource value: 0x7f02005f
-			public const int Icon = 2130837599;
-			
-			// aapt resource value: 0x7f020060
-			public const int Lamp = 2130837600;
-			
-			// aapt resource value: 0x7f020061
-			public const int Lijn_bold = 2130837601;
-			
-			// aapt resource value: 0x7f020063
-			public const int notification_template_icon_bg = 2130837603;
-			
-			// aapt resource value: 0x7f020062
-			public const int Totem = 2130837602;
+			// aapt resource value: 0x7f020057
+			public const int Totem = 2130837591;
 			
 			static Drawable()
 			{
@@ -1685,35 +1532,35 @@ namespace TotemAndroid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0b0075
-			public const int action0 = 2131427445;
+			// aapt resource value: 0x7f0b006c
+			public const int action0 = 2131427436;
 			
-			// aapt resource value: 0x7f0b004a
-			public const int action_bar = 2131427402;
+			// aapt resource value: 0x7f0b0041
+			public const int action_bar = 2131427393;
 			
 			// aapt resource value: 0x7f0b0000
 			public const int action_bar_activity_content = 2131427328;
 			
-			// aapt resource value: 0x7f0b0049
-			public const int action_bar_container = 2131427401;
+			// aapt resource value: 0x7f0b0040
+			public const int action_bar_container = 2131427392;
 			
-			// aapt resource value: 0x7f0b0045
-			public const int action_bar_root = 2131427397;
+			// aapt resource value: 0x7f0b003c
+			public const int action_bar_root = 2131427388;
 			
 			// aapt resource value: 0x7f0b0001
 			public const int action_bar_spinner = 2131427329;
 			
-			// aapt resource value: 0x7f0b002b
-			public const int action_bar_subtitle = 2131427371;
+			// aapt resource value: 0x7f0b0022
+			public const int action_bar_subtitle = 2131427362;
 			
-			// aapt resource value: 0x7f0b002a
-			public const int action_bar_title = 2131427370;
+			// aapt resource value: 0x7f0b0021
+			public const int action_bar_title = 2131427361;
 			
-			// aapt resource value: 0x7f0b004b
-			public const int action_context_bar = 2131427403;
+			// aapt resource value: 0x7f0b0042
+			public const int action_context_bar = 2131427394;
 			
-			// aapt resource value: 0x7f0b0079
-			public const int action_divider = 2131427449;
+			// aapt resource value: 0x7f0b0070
+			public const int action_divider = 2131427440;
 			
 			// aapt resource value: 0x7f0b0002
 			public const int action_menu_divider = 2131427330;
@@ -1721,161 +1568,149 @@ namespace TotemAndroid
 			// aapt resource value: 0x7f0b0003
 			public const int action_menu_presenter = 2131427331;
 			
-			// aapt resource value: 0x7f0b0047
-			public const int action_mode_bar = 2131427399;
+			// aapt resource value: 0x7f0b003e
+			public const int action_mode_bar = 2131427390;
 			
-			// aapt resource value: 0x7f0b0046
-			public const int action_mode_bar_stub = 2131427398;
+			// aapt resource value: 0x7f0b003d
+			public const int action_mode_bar_stub = 2131427389;
 			
-			// aapt resource value: 0x7f0b002c
-			public const int action_mode_close_button = 2131427372;
+			// aapt resource value: 0x7f0b0023
+			public const int action_mode_close_button = 2131427363;
 			
-			// aapt resource value: 0x7f0b002d
-			public const int activity_chooser_view_content = 2131427373;
+			// aapt resource value: 0x7f0b0024
+			public const int activity_chooser_view_content = 2131427364;
 			
-			// aapt resource value: 0x7f0b0021
-			public const int add = 2131427361;
+			// aapt resource value: 0x7f0b0054
+			public const int addButton = 2131427412;
 			
-			// aapt resource value: 0x7f0b005d
-			public const int addButton = 2131427421;
+			// aapt resource value: 0x7f0b0030
+			public const int alertTitle = 2131427376;
 			
-			// aapt resource value: 0x7f0b0039
-			public const int alertTitle = 2131427385;
+			// aapt resource value: 0x7f0b0056
+			public const int all_eigenschappen_list = 2131427414;
 			
-			// aapt resource value: 0x7f0b005f
-			public const int all_eigenschappen_list = 2131427423;
-			
-			// aapt resource value: 0x7f0b0065
-			public const int all_totem_list = 2131427429;
+			// aapt resource value: 0x7f0b005c
+			public const int all_totem_list = 2131427420;
 			
 			// aapt resource value: 0x7f0b001c
 			public const int always = 2131427356;
 			
-			// aapt resource value: 0x7f0b0059
-			public const int backButton = 2131427417;
+			// aapt resource value: 0x7f0b0050
+			public const int backButton = 2131427408;
 			
 			// aapt resource value: 0x7f0b0019
 			public const int beginning = 2131427353;
 			
-			// aapt resource value: 0x7f0b0074
-			public const int berg = 2131427444;
-			
-			// aapt resource value: 0x7f0b0028
-			public const int bevel = 2131427368;
-			
-			// aapt resource value: 0x7f0b008c
-			public const int body = 2131427468;
-			
-			// aapt resource value: 0x7f0b0060
-			public const int bottomBar = 2131427424;
-			
-			// aapt resource value: 0x7f0b0025
-			public const int butt = 2131427365;
-			
-			// aapt resource value: 0x7f0b0034
-			public const int buttonPanel = 2131427380;
-			
-			// aapt resource value: 0x7f0b0076
-			public const int cancel_action = 2131427446;
-			
-			// aapt resource value: 0x7f0b0042
-			public const int checkbox = 2131427394;
-			
-			// aapt resource value: 0x7f0b0086
-			public const int checkboxWeergeven = 2131427462;
-			
-			// aapt resource value: 0x7f0b0072
-			public const int checklist = 2131427442;
-			
-			// aapt resource value: 0x7f0b0096
-			public const int checklistView = 2131427478;
-			
-			// aapt resource value: 0x7f0b006a
-			public const int child = 2131427434;
-			
 			// aapt resource value: 0x7f0b006b
-			public const int childhead = 2131427435;
+			public const int berg = 2131427435;
 			
-			// aapt resource value: 0x7f0b006c
-			public const int childindent = 2131427436;
+			// aapt resource value: 0x7f0b0083
+			public const int body = 2131427459;
 			
-			// aapt resource value: 0x7f0b007c
-			public const int chronometer = 2131427452;
+			// aapt resource value: 0x7f0b0057
+			public const int bottomBar = 2131427415;
 			
-			// aapt resource value: 0x7f0b005a
-			public const int closeButton = 2131427418;
+			// aapt resource value: 0x7f0b002b
+			public const int buttonPanel = 2131427371;
+			
+			// aapt resource value: 0x7f0b006d
+			public const int cancel_action = 2131427437;
+			
+			// aapt resource value: 0x7f0b0039
+			public const int checkbox = 2131427385;
+			
+			// aapt resource value: 0x7f0b007d
+			public const int checkboxWeergeven = 2131427453;
+			
+			// aapt resource value: 0x7f0b0069
+			public const int checklist = 2131427433;
+			
+			// aapt resource value: 0x7f0b008d
+			public const int checklistView = 2131427469;
+			
+			// aapt resource value: 0x7f0b0061
+			public const int child = 2131427425;
+			
+			// aapt resource value: 0x7f0b0062
+			public const int childhead = 2131427426;
+			
+			// aapt resource value: 0x7f0b0063
+			public const int childindent = 2131427427;
+			
+			// aapt resource value: 0x7f0b0073
+			public const int chronometer = 2131427443;
+			
+			// aapt resource value: 0x7f0b0051
+			public const int closeButton = 2131427409;
 			
 			// aapt resource value: 0x7f0b001d
 			public const int collapseActionView = 2131427357;
 			
-			// aapt resource value: 0x7f0b003a
-			public const int contentPanel = 2131427386;
+			// aapt resource value: 0x7f0b0031
+			public const int contentPanel = 2131427377;
 			
-			// aapt resource value: 0x7f0b0040
-			public const int custom = 2131427392;
+			// aapt resource value: 0x7f0b0037
+			public const int custom = 2131427383;
+			
+			// aapt resource value: 0x7f0b0036
+			public const int customPanel = 2131427382;
 			
 			// aapt resource value: 0x7f0b003f
-			public const int customPanel = 2131427391;
+			public const int decor_content_parent = 2131427391;
 			
-			// aapt resource value: 0x7f0b0048
-			public const int decor_content_parent = 2131427400;
+			// aapt resource value: 0x7f0b0027
+			public const int default_activity_button = 2131427367;
 			
-			// aapt resource value: 0x7f0b0030
-			public const int default_activity_button = 2131427376;
+			// aapt resource value: 0x7f0b0055
+			public const int deleteButton = 2131427413;
 			
-			// aapt resource value: 0x7f0b005e
-			public const int deleteButton = 2131427422;
+			// aapt resource value: 0x7f0b0086
+			public const int deleteItem = 2131427462;
 			
-			// aapt resource value: 0x7f0b008f
-			public const int deleteItem = 2131427471;
-			
-			// aapt resource value: 0x7f0b0088
-			public const int detail = 2131427464;
+			// aapt resource value: 0x7f0b007f
+			public const int detail = 2131427455;
 			
 			// aapt resource value: 0x7f0b000c
 			public const int disableHome = 2131427340;
 			
-			// aapt resource value: 0x7f0b004c
-			public const int edit_query = 2131427404;
+			// aapt resource value: 0x7f0b0043
+			public const int edit_query = 2131427395;
+			
+			// aapt resource value: 0x7f0b005e
+			public const int eigenschap = 2131427422;
 			
 			// aapt resource value: 0x7f0b0067
-			public const int eigenschap = 2131427431;
+			public const int eigenschappen = 2131427431;
 			
-			// aapt resource value: 0x7f0b0070
-			public const int eigenschappen = 2131427440;
-			
-			// aapt resource value: 0x7f0b0082
-			public const int empty_profiel = 2131427458;
+			// aapt resource value: 0x7f0b0079
+			public const int empty_profiel = 2131427449;
 			
 			// aapt resource value: 0x7f0b001a
 			public const int end = 2131427354;
 			
-			// aapt resource value: 0x7f0b0081
-			public const int end_padder = 2131427457;
+			// aapt resource value: 0x7f0b0078
+			public const int end_padder = 2131427448;
 			
-			// aapt resource value: 0x7f0b0066
-			public const int expand = 2131427430;
+			// aapt resource value: 0x7f0b005d
+			public const int expand = 2131427421;
 			
-			// aapt resource value: 0x7f0b002e
-			public const int expand_activities_button = 2131427374;
+			// aapt resource value: 0x7f0b0025
+			public const int expand_activities_button = 2131427365;
 			
-			// aapt resource value: 0x7f0b0041
-			public const int expanded_menu = 2131427393;
+			// aapt resource value: 0x7f0b0038
+			public const int expanded_menu = 2131427384;
 			
-			// aapt resource value: 0x7f0b0022
-			public const int floatType = 2131427362;
+			// aapt resource value: 0x7f0b0085
+			public const int freq = 2131427461;
 			
-			// aapt resource value: 0x7f0b008e
-			public const int freq = 2131427470;
+			// aapt resource value: 0x7f0b008a
+			public const int full = 2131427466;
 			
-			// aapt resource value: 0x7f0b0093
-			public const int full = 2131427475;
+			// aapt resource value: 0x7f0b0088
+			public const int grass_green = 2131427464;
 			
-			// aapt resource value: 0x7f0b0091
-			public const int grass_green = 2131427473;
-			
-			// aapt resource value: 0x7f0b006d
-			public const int head = 2131427437;
+			// aapt resource value: 0x7f0b0064
+			public const int head = 2131427428;
 			
 			// aapt resource value: 0x7f0b0004
 			public const int home = 2131427332;
@@ -1883,53 +1718,47 @@ namespace TotemAndroid
 			// aapt resource value: 0x7f0b000d
 			public const int homeAsUp = 2131427341;
 			
-			// aapt resource value: 0x7f0b0032
-			public const int icon = 2131427378;
+			// aapt resource value: 0x7f0b0029
+			public const int icon = 2131427369;
 			
 			// aapt resource value: 0x7f0b001e
 			public const int ifRoom = 2131427358;
 			
-			// aapt resource value: 0x7f0b002f
-			public const int image = 2131427375;
+			// aapt resource value: 0x7f0b0026
+			public const int image = 2131427366;
 			
-			// aapt resource value: 0x7f0b0080
-			public const int info = 2131427456;
+			// aapt resource value: 0x7f0b0077
+			public const int info = 2131427447;
 			
-			// aapt resource value: 0x7f0b0023
-			public const int intType = 2131427363;
+			// aapt resource value: 0x7f0b0065
+			public const int intro = 2131427429;
 			
-			// aapt resource value: 0x7f0b006e
-			public const int intro = 2131427438;
+			// aapt resource value: 0x7f0b005f
+			public const int jaKnop = 2131427423;
 			
-			// aapt resource value: 0x7f0b0068
-			public const int jaKnop = 2131427432;
+			// aapt resource value: 0x7f0b0071
+			public const int line1 = 2131427441;
 			
-			// aapt resource value: 0x7f0b007a
-			public const int line1 = 2131427450;
-			
-			// aapt resource value: 0x7f0b007e
-			public const int line3 = 2131427454;
+			// aapt resource value: 0x7f0b0075
+			public const int line3 = 2131427445;
 			
 			// aapt resource value: 0x7f0b0009
 			public const int listMode = 2131427337;
 			
-			// aapt resource value: 0x7f0b0031
-			public const int list_item = 2131427377;
+			// aapt resource value: 0x7f0b0028
+			public const int list_item = 2131427368;
 			
-			// aapt resource value: 0x7f0b0078
-			public const int media_actions = 2131427448;
+			// aapt resource value: 0x7f0b006f
+			public const int media_actions = 2131427439;
 			
 			// aapt resource value: 0x7f0b001b
 			public const int middle = 2131427355;
 			
-			// aapt resource value: 0x7f0b0029
-			public const int miter = 2131427369;
-			
 			// aapt resource value: 0x7f0b0014
 			public const int multiply = 2131427348;
 			
-			// aapt resource value: 0x7f0b0069
-			public const int neeKnop = 2131427433;
+			// aapt resource value: 0x7f0b0060
+			public const int neeKnop = 2131427424;
 			
 			// aapt resource value: 0x7f0b001f
 			public const int never = 2131427359;
@@ -1940,20 +1769,17 @@ namespace TotemAndroid
 			// aapt resource value: 0x7f0b000a
 			public const int normal = 2131427338;
 			
-			// aapt resource value: 0x7f0b0089
-			public const int number = 2131427465;
+			// aapt resource value: 0x7f0b0080
+			public const int number = 2131427456;
 			
-			// aapt resource value: 0x7f0b0036
-			public const int parentPanel = 2131427382;
+			// aapt resource value: 0x7f0b002d
+			public const int parentPanel = 2131427373;
 			
-			// aapt resource value: 0x7f0b0024
-			public const int pathType = 2131427364;
+			// aapt resource value: 0x7f0b0068
+			public const int profielen = 2131427432;
 			
-			// aapt resource value: 0x7f0b0071
-			public const int profielen = 2131427441;
-			
-			// aapt resource value: 0x7f0b0083
-			public const int profielen_list = 2131427459;
+			// aapt resource value: 0x7f0b007a
+			public const int profielen_list = 2131427450;
 			
 			// aapt resource value: 0x7f0b0005
 			public const int progress_circular = 2131427333;
@@ -1961,77 +1787,74 @@ namespace TotemAndroid
 			// aapt resource value: 0x7f0b0006
 			public const int progress_horizontal = 2131427334;
 			
-			// aapt resource value: 0x7f0b005b
-			public const int query = 2131427419;
+			// aapt resource value: 0x7f0b0052
+			public const int query = 2131427410;
 			
-			// aapt resource value: 0x7f0b0044
-			public const int radio = 2131427396;
+			// aapt resource value: 0x7f0b003b
+			public const int radio = 2131427387;
 			
-			// aapt resource value: 0x7f0b0094
-			public const int reset = 2131427476;
-			
-			// aapt resource value: 0x7f0b0026
-			public const int round = 2131427366;
+			// aapt resource value: 0x7f0b008b
+			public const int reset = 2131427467;
 			
 			// aapt resource value: 0x7f0b0015
 			public const int screen = 2131427349;
 			
-			// aapt resource value: 0x7f0b0087
-			public const int scroll = 2131427463;
+			// aapt resource value: 0x7f0b007e
+			public const int scroll = 2131427454;
 			
-			// aapt resource value: 0x7f0b003e
-			public const int scrollIndicatorDown = 2131427390;
+			// aapt resource value: 0x7f0b0035
+			public const int scrollIndicatorDown = 2131427381;
 			
-			// aapt resource value: 0x7f0b003b
-			public const int scrollIndicatorUp = 2131427387;
+			// aapt resource value: 0x7f0b0032
+			public const int scrollIndicatorUp = 2131427378;
 			
-			// aapt resource value: 0x7f0b003c
-			public const int scrollView = 2131427388;
-			
-			// aapt resource value: 0x7f0b005c
-			public const int searchButton = 2131427420;
-			
-			// aapt resource value: 0x7f0b004e
-			public const int search_badge = 2131427406;
-			
-			// aapt resource value: 0x7f0b004d
-			public const int search_bar = 2131427405;
-			
-			// aapt resource value: 0x7f0b004f
-			public const int search_button = 2131427407;
-			
-			// aapt resource value: 0x7f0b0054
-			public const int search_close_btn = 2131427412;
-			
-			// aapt resource value: 0x7f0b0050
-			public const int search_edit_frame = 2131427408;
-			
-			// aapt resource value: 0x7f0b0056
-			public const int search_go_btn = 2131427414;
-			
-			// aapt resource value: 0x7f0b0051
-			public const int search_mag_icon = 2131427409;
-			
-			// aapt resource value: 0x7f0b0052
-			public const int search_plate = 2131427410;
+			// aapt resource value: 0x7f0b0033
+			public const int scrollView = 2131427379;
 			
 			// aapt resource value: 0x7f0b0053
-			public const int search_src_text = 2131427411;
+			public const int searchButton = 2131427411;
 			
-			// aapt resource value: 0x7f0b0057
-			public const int search_voice_btn = 2131427415;
+			// aapt resource value: 0x7f0b0045
+			public const int search_badge = 2131427397;
 			
-			// aapt resource value: 0x7f0b0092
-			public const int select = 2131427474;
+			// aapt resource value: 0x7f0b0044
+			public const int search_bar = 2131427396;
+			
+			// aapt resource value: 0x7f0b0046
+			public const int search_button = 2131427398;
+			
+			// aapt resource value: 0x7f0b004b
+			public const int search_close_btn = 2131427403;
+			
+			// aapt resource value: 0x7f0b0047
+			public const int search_edit_frame = 2131427399;
+			
+			// aapt resource value: 0x7f0b004d
+			public const int search_go_btn = 2131427405;
+			
+			// aapt resource value: 0x7f0b0048
+			public const int search_mag_icon = 2131427400;
+			
+			// aapt resource value: 0x7f0b0049
+			public const int search_plate = 2131427401;
+			
+			// aapt resource value: 0x7f0b004a
+			public const int search_src_text = 2131427402;
+			
+			// aapt resource value: 0x7f0b004e
+			public const int search_voice_btn = 2131427406;
+			
+			// aapt resource value: 0x7f0b0089
+			public const int select = 2131427465;
+			
+			// aapt resource value: 0x7f0b004f
+			public const int select_dialog_listview = 2131427407;
 			
 			// aapt resource value: 0x7f0b0058
-			public const int select_dialog_listview = 2131427416;
+			public const int selected = 2131427416;
 			
-			// aapt resource value: 0x7f0b0061
-			public const int selected = 2131427425;
-			
-			// aapt resource value: 0x7f0b0043
-			public const int shortcut = 2131427395;
+			// aapt resource value: 0x7f0b003a
+			public const int shortcut = 2131427386;
 			
 			// aapt resource value: 0x7f0b000f
 			public const int showCustom = 2131427343;
@@ -2042,14 +1865,11 @@ namespace TotemAndroid
 			// aapt resource value: 0x7f0b0011
 			public const int showTitle = 2131427345;
 			
-			// aapt resource value: 0x7f0b0035
-			public const int spacer = 2131427381;
+			// aapt resource value: 0x7f0b002c
+			public const int spacer = 2131427372;
 			
 			// aapt resource value: 0x7f0b0007
 			public const int split_action_bar = 2131427335;
-			
-			// aapt resource value: 0x7f0b0027
-			public const int square = 2131427367;
 			
 			// aapt resource value: 0x7f0b0016
 			public const int src_atop = 2131427350;
@@ -2060,62 +1880,62 @@ namespace TotemAndroid
 			// aapt resource value: 0x7f0b0018
 			public const int src_over = 2131427352;
 			
-			// aapt resource value: 0x7f0b0077
-			public const int status_bar_latest_event_content = 2131427447;
+			// aapt resource value: 0x7f0b006e
+			public const int status_bar_latest_event_content = 2131427438;
 			
-			// aapt resource value: 0x7f0b0055
-			public const int submit_area = 2131427413;
+			// aapt resource value: 0x7f0b004c
+			public const int submit_area = 2131427404;
 			
-			// aapt resource value: 0x7f0b008b
-			public const int synonyms = 2131427467;
+			// aapt resource value: 0x7f0b0082
+			public const int synonyms = 2131427458;
 			
 			// aapt resource value: 0x7f0b000b
 			public const int tabMode = 2131427339;
 			
-			// aapt resource value: 0x7f0b007f
-			public const int text = 2131427455;
+			// aapt resource value: 0x7f0b0076
+			public const int text = 2131427446;
 			
-			// aapt resource value: 0x7f0b007d
-			public const int text2 = 2131427453;
+			// aapt resource value: 0x7f0b0074
+			public const int text2 = 2131427444;
 			
-			// aapt resource value: 0x7f0b003d
-			public const int textSpacerNoButtons = 2131427389;
+			// aapt resource value: 0x7f0b0034
+			public const int textSpacerNoButtons = 2131427380;
+			
+			// aapt resource value: 0x7f0b0072
+			public const int time = 2131427442;
+			
+			// aapt resource value: 0x7f0b008c
+			public const int tinderView = 2131427468;
+			
+			// aapt resource value: 0x7f0b007c
+			public const int tip = 2131427452;
 			
 			// aapt resource value: 0x7f0b007b
-			public const int time = 2131427451;
+			public const int titel = 2131427451;
 			
-			// aapt resource value: 0x7f0b0095
-			public const int tinderView = 2131427477;
+			// aapt resource value: 0x7f0b002a
+			public const int title = 2131427370;
 			
-			// aapt resource value: 0x7f0b0085
-			public const int tip = 2131427461;
+			// aapt resource value: 0x7f0b0081
+			public const int title_synonyms = 2131427457;
+			
+			// aapt resource value: 0x7f0b002f
+			public const int title_template = 2131427375;
+			
+			// aapt resource value: 0x7f0b002e
+			public const int topPanel = 2131427374;
 			
 			// aapt resource value: 0x7f0b0084
-			public const int titel = 2131427460;
+			public const int totem = 2131427460;
 			
-			// aapt resource value: 0x7f0b0033
-			public const int title = 2131427379;
+			// aapt resource value: 0x7f0b0087
+			public const int totem_list = 2131427463;
 			
-			// aapt resource value: 0x7f0b008a
-			public const int title_synonyms = 2131427466;
+			// aapt resource value: 0x7f0b006a
+			public const int totempaal = 2131427434;
 			
-			// aapt resource value: 0x7f0b0038
-			public const int title_template = 2131427384;
-			
-			// aapt resource value: 0x7f0b0037
-			public const int topPanel = 2131427383;
-			
-			// aapt resource value: 0x7f0b008d
-			public const int totem = 2131427469;
-			
-			// aapt resource value: 0x7f0b0090
-			public const int totem_list = 2131427472;
-			
-			// aapt resource value: 0x7f0b0073
-			public const int totempaal = 2131427443;
-			
-			// aapt resource value: 0x7f0b006f
-			public const int totems = 2131427439;
+			// aapt resource value: 0x7f0b0066
+			public const int totems = 2131427430;
 			
 			// aapt resource value: 0x7f0b0008
 			public const int up = 2131427336;
@@ -2123,14 +1943,14 @@ namespace TotemAndroid
 			// aapt resource value: 0x7f0b0012
 			public const int useLogo = 2131427346;
 			
-			// aapt resource value: 0x7f0b0062
-			public const int vind = 2131427426;
+			// aapt resource value: 0x7f0b0059
+			public const int vind = 2131427417;
 			
-			// aapt resource value: 0x7f0b0064
-			public const int vindButton = 2131427428;
+			// aapt resource value: 0x7f0b005b
+			public const int vindButton = 2131427419;
 			
-			// aapt resource value: 0x7f0b0063
-			public const int vindText = 2131427427;
+			// aapt resource value: 0x7f0b005a
+			public const int vindText = 2131427418;
 			
 			// aapt resource value: 0x7f0b0020
 			public const int withText = 2131427360;
@@ -2159,9 +1979,6 @@ namespace TotemAndroid
 			
 			// aapt resource value: 0x7f090000
 			public const int abc_max_action_buttons = 2131296256;
-			
-			// aapt resource value: 0x7f090005
-			public const int anim_duration = 2131296261;
 			
 			// aapt resource value: 0x7f090003
 			public const int cancel_button_image_alpha = 2131296259;
@@ -2382,17 +2199,17 @@ namespace TotemAndroid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f05001b
-			public const int DIN_light = 2131034139;
+			// aapt resource value: 0x7f050016
+			public const int DIN_light = 2131034134;
 			
-			// aapt resource value: 0x7f05001c
-			public const int DIN_regular = 2131034140;
+			// aapt resource value: 0x7f050017
+			public const int DIN_regular = 2131034135;
 			
-			// aapt resource value: 0x7f05001d
-			public const int Sketchblock = 2131034141;
+			// aapt resource value: 0x7f050018
+			public const int Sketchblock = 2131034136;
 			
-			// aapt resource value: 0x7f05001a
-			public const int Verveine = 2131034138;
+			// aapt resource value: 0x7f050015
+			public const int Verveine = 2131034133;
 			
 			// aapt resource value: 0x7f050000
 			public const int abc_action_bar_home_description = 2131034112;
@@ -2451,29 +2268,14 @@ namespace TotemAndroid
 			// aapt resource value: 0x7f050012
 			public const int abc_toolbar_collapse_description = 2131034130;
 			
-			// aapt resource value: 0x7f050019
-			public const int app_name = 2131034137;
-			
-			// aapt resource value: 0x7f05001f
-			public const int checklist_foot = 2131034143;
-			
-			// aapt resource value: 0x7f05001e
-			public const int checklist_head = 2131034142;
-			
 			// aapt resource value: 0x7f050014
-			public const int path_arrow = 2131034132;
+			public const int app_name = 2131034132;
 			
-			// aapt resource value: 0x7f050015
-			public const int path_drawer = 2131034133;
+			// aapt resource value: 0x7f05001a
+			public const int checklist_foot = 2131034138;
 			
-			// aapt resource value: 0x7f050016
-			public const int path_pause = 2131034134;
-			
-			// aapt resource value: 0x7f050017
-			public const int path_play = 2131034135;
-			
-			// aapt resource value: 0x7f050018
-			public const int path_stop = 2131034136;
+			// aapt resource value: 0x7f050019
+			public const int checklist_head = 2131034137;
 			
 			// aapt resource value: 0x7f050013
 			public const int status_bar_notification_info_overflow = 2131034131;
@@ -2503,17 +2305,17 @@ namespace TotemAndroid
 			// aapt resource value: 0x7f080089
 			public const int Animation_AppCompat_DropDownUp = 2131230857;
 			
-			// aapt resource value: 0x7f080140
-			public const int AppBaseTheme = 2131231040;
-			
-			// aapt resource value: 0x7f080142
-			public const int AppBaseThemeNoAction = 2131231042;
-			
 			// aapt resource value: 0x7f08013f
-			public const int AppTheme = 2131231039;
+			public const int AppBaseTheme = 2131231039;
 			
 			// aapt resource value: 0x7f080141
-			public const int AppThemeNoAction = 2131231041;
+			public const int AppBaseThemeNoAction = 2131231041;
+			
+			// aapt resource value: 0x7f08013e
+			public const int AppTheme = 2131231038;
+			
+			// aapt resource value: 0x7f080140
+			public const int AppThemeNoAction = 2131231040;
 			
 			// aapt resource value: 0x7f08008a
 			public const int Base_AlertDialog_AppCompat = 2131230858;
@@ -2941,23 +2743,23 @@ namespace TotemAndroid
 			// aapt resource value: 0x7f080079
 			public const int Base_Widget_AppCompat_Toolbar_Button_Navigation = 2131230841;
 			
-			// aapt resource value: 0x7f080145
-			public const int CheckBoxBackground = 2131231045;
+			// aapt resource value: 0x7f080144
+			public const int CheckBoxBackground = 2131231044;
+			
+			// aapt resource value: 0x7f080142
+			public const int ColoredButton = 2131231042;
 			
 			// aapt resource value: 0x7f080143
-			public const int ColoredButton = 2131231043;
+			public const int CustomImageButton = 2131231043;
 			
-			// aapt resource value: 0x7f080144
-			public const int CustomImageButton = 2131231044;
-			
-			// aapt resource value: 0x7f080146
-			public const int MyActionBar = 2131231046;
-			
-			// aapt resource value: 0x7f080148
-			public const int MyActionBarMaterial = 2131231048;
+			// aapt resource value: 0x7f080145
+			public const int MyActionBar = 2131231045;
 			
 			// aapt resource value: 0x7f080147
-			public const int MyCustomTheme_OverFlow = 2131231047;
+			public const int MyActionBarMaterial = 2131231047;
+			
+			// aapt resource value: 0x7f080146
+			public const int MyCustomTheme_OverFlow = 2131231046;
 			
 			// aapt resource value: 0x7f080017
 			public const int Platform_AppCompat = 2131230743;
@@ -3475,9 +3277,6 @@ namespace TotemAndroid
 			// aapt resource value: 0x7f08013d
 			public const int Widget_AppCompat_Toolbar_Button_Navigation = 2131231037;
 			
-			// aapt resource value: 0x7f08013e
-			public const int Widget_MorphButton = 2131231038;
-			
 			static Style()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -3676,56 +3475,6 @@ namespace TotemAndroid
 			
 			// aapt resource value: 4
 			public const int AlertDialog_singleChoiceItemLayout = 4;
-			
-			public static int[] AnimatedVectorDrawable = new int[] {
-					16843161};
-			
-			// aapt resource value: 0
-			public const int AnimatedVectorDrawable_android_drawable = 0;
-			
-			public static int[] AnimatedVectorDrawableTarget = new int[] {
-					16842755,
-					16843213};
-			
-			// aapt resource value: 1
-			public const int AnimatedVectorDrawableTarget_android_animation = 1;
-			
-			// aapt resource value: 0
-			public const int AnimatedVectorDrawableTarget_android_name = 0;
-			
-			public static int[] Animator = new int[] {
-					16843073,
-					16843160,
-					16843198,
-					16843199,
-					16843200,
-					16843486,
-					16843487,
-					2130772181};
-			
-			// aapt resource value: 1
-			public const int Animator_android_duration = 1;
-			
-			// aapt resource value: 0
-			public const int Animator_android_interpolator = 0;
-			
-			// aapt resource value: 3
-			public const int Animator_android_repeatCount = 3;
-			
-			// aapt resource value: 4
-			public const int Animator_android_repeatMode = 4;
-			
-			// aapt resource value: 2
-			public const int Animator_android_startOffset = 2;
-			
-			// aapt resource value: 5
-			public const int Animator_android_valueFrom = 5;
-			
-			// aapt resource value: 6
-			public const int Animator_android_valueTo = 6;
-			
-			// aapt resource value: 7
-			public const int Animator_vc_valueType = 7;
 			
 			public static int[] AppCompatImageView = new int[] {
 					16843033,
@@ -4218,7 +3967,7 @@ namespace TotemAndroid
 			public const int CompoundButton_buttonTintMode = 2;
 			
 			public static int[] CustomFont = new int[] {
-					2130772205};
+					2130772177};
 			
 			// aapt resource value: 0
 			public const int CustomFont_font = 0;
@@ -4453,40 +4202,6 @@ namespace TotemAndroid
 			// aapt resource value: 7
 			public const int MenuView_preserveIconSpacing = 7;
 			
-			public static int[] MorphButton = new int[] {
-					16843037,
-					2130772182,
-					2130772183,
-					2130772184,
-					2130772185,
-					2130772186,
-					2130772187,
-					2130772188};
-			
-			// aapt resource value: 0
-			public const int MorphButton_android_scaleType = 0;
-			
-			// aapt resource value: 3
-			public const int MorphButton_vc_autoStartAnimation = 3;
-			
-			// aapt resource value: 4
-			public const int MorphButton_vc_backgroundTint = 4;
-			
-			// aapt resource value: 5
-			public const int MorphButton_vc_backgroundTintMode = 5;
-			
-			// aapt resource value: 2
-			public const int MorphButton_vc_endDrawable = 2;
-			
-			// aapt resource value: 6
-			public const int MorphButton_vc_foregroundTint = 6;
-			
-			// aapt resource value: 7
-			public const int MorphButton_vc_foregroundTintMode = 7;
-			
-			// aapt resource value: 1
-			public const int MorphButton_vc_startDrawable = 1;
-			
 			public static int[] PopupWindow = new int[] {
 					16843126,
 					2130772135};
@@ -4502,16 +4217,6 @@ namespace TotemAndroid
 			
 			// aapt resource value: 0
 			public const int PopupWindowBackgroundState_state_above_anchor = 0;
-			
-			public static int[] PropertyAnimator = new int[] {
-					16843489,
-					2130772178};
-			
-			// aapt resource value: 0
-			public const int PropertyAnimator_android_propertyName = 0;
-			
-			// aapt resource value: 1
-			public const int PropertyAnimator_vc_pathData = 1;
 			
 			public static int[] SearchView = new int[] {
 					16842970,
@@ -4685,12 +4390,6 @@ namespace TotemAndroid
 			// aapt resource value: 8
 			public const int TextAppearance_textAllCaps = 8;
 			
-			public static int[] Theme = new int[] {
-					2130772189};
-			
-			// aapt resource value: 0
-			public const int Theme_morphButtonStyle = 0;
-			
 			public static int[] Toolbar = new int[] {
 					16842927,
 					16843072,
@@ -4792,142 +4491,6 @@ namespace TotemAndroid
 			
 			// aapt resource value: 23
 			public const int Toolbar_titleTextColor = 23;
-			
-			public static int[] VectorDrawable = new int[] {
-					16842755,
-					16843093,
-					16843097,
-					16843551,
-					2130772177,
-					2130772179,
-					2130772180,
-					2130772190,
-					2130772191};
-			
-			// aapt resource value: 3
-			public const int VectorDrawable_android_alpha = 3;
-			
-			// aapt resource value: 1
-			public const int VectorDrawable_android_height = 1;
-			
-			// aapt resource value: 0
-			public const int VectorDrawable_android_name = 0;
-			
-			// aapt resource value: 2
-			public const int VectorDrawable_android_width = 2;
-			
-			// aapt resource value: 4
-			public const int VectorDrawable_vc_autoMirrored = 4;
-			
-			// aapt resource value: 5
-			public const int VectorDrawable_vc_tint = 5;
-			
-			// aapt resource value: 6
-			public const int VectorDrawable_vc_tintMode = 6;
-			
-			// aapt resource value: 8
-			public const int VectorDrawable_vc_viewportHeight = 8;
-			
-			// aapt resource value: 7
-			public const int VectorDrawable_vc_viewportWidth = 7;
-			
-			public static int[] VectorDrawableClipPath = new int[] {
-					16842755,
-					2130772178};
-			
-			// aapt resource value: 0
-			public const int VectorDrawableClipPath_android_name = 0;
-			
-			// aapt resource value: 1
-			public const int VectorDrawableClipPath_vc_pathData = 1;
-			
-			public static int[] VectorDrawableGroup = new int[] {
-					16842755,
-					16843189,
-					16843190,
-					16843556,
-					16843557,
-					16843558,
-					2130772192,
-					2130772193};
-			
-			// aapt resource value: 0
-			public const int VectorDrawableGroup_android_name = 0;
-			
-			// aapt resource value: 1
-			public const int VectorDrawableGroup_android_pivotX = 1;
-			
-			// aapt resource value: 2
-			public const int VectorDrawableGroup_android_pivotY = 2;
-			
-			// aapt resource value: 5
-			public const int VectorDrawableGroup_android_rotation = 5;
-			
-			// aapt resource value: 3
-			public const int VectorDrawableGroup_android_scaleX = 3;
-			
-			// aapt resource value: 4
-			public const int VectorDrawableGroup_android_scaleY = 4;
-			
-			// aapt resource value: 6
-			public const int VectorDrawableGroup_vc_translateX = 6;
-			
-			// aapt resource value: 7
-			public const int VectorDrawableGroup_vc_translateY = 7;
-			
-			public static int[] VectorDrawablePath = new int[] {
-					16842755,
-					2130772178,
-					2130772194,
-					2130772195,
-					2130772196,
-					2130772197,
-					2130772198,
-					2130772199,
-					2130772200,
-					2130772201,
-					2130772202,
-					2130772203,
-					2130772204};
-			
-			// aapt resource value: 0
-			public const int VectorDrawablePath_android_name = 0;
-			
-			// aapt resource value: 6
-			public const int VectorDrawablePath_vc_fillAlpha = 6;
-			
-			// aapt resource value: 5
-			public const int VectorDrawablePath_vc_fillColor = 5;
-			
-			// aapt resource value: 1
-			public const int VectorDrawablePath_vc_pathData = 1;
-			
-			// aapt resource value: 4
-			public const int VectorDrawablePath_vc_strokeAlpha = 4;
-			
-			// aapt resource value: 3
-			public const int VectorDrawablePath_vc_strokeColor = 3;
-			
-			// aapt resource value: 10
-			public const int VectorDrawablePath_vc_strokeLineCap = 10;
-			
-			// aapt resource value: 11
-			public const int VectorDrawablePath_vc_strokeLineJoin = 11;
-			
-			// aapt resource value: 12
-			public const int VectorDrawablePath_vc_strokeMiterLimit = 12;
-			
-			// aapt resource value: 2
-			public const int VectorDrawablePath_vc_strokeWidth = 2;
-			
-			// aapt resource value: 8
-			public const int VectorDrawablePath_vc_trimPathEnd = 8;
-			
-			// aapt resource value: 9
-			public const int VectorDrawablePath_vc_trimPathOffset = 9;
-			
-			// aapt resource value: 7
-			public const int VectorDrawablePath_vc_trimPathStart = 7;
 			
 			public static int[] View = new int[] {
 					16842752,

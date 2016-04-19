@@ -22,7 +22,7 @@ namespace TotemAppCore {
 		string originalDBLocation = "SharedAssets/totems.sqlite";
 		#endif
 
-		string currentDBName = "totems.sgv";
+		string currentDBName = "totems.sqlite";
 
 		string DatabasePath { //path for checking if database exists.
 			get { 
@@ -37,16 +37,13 @@ namespace TotemAppCore {
 					documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // Documents folder
 				}
 				var path = Path.Combine(documentsPath, sqliteFilename);
-				#else
-				#if __ANDROID__
+                #else
+                #if __ANDROID__
 				string documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // Documents folder
 				var path = Path.Combine(documentsPath, sqliteFilename);
-				//var path = sqliteFilename;
-				#else // WinPhone
-				var path = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, sqliteFilename);;
-				#endif
-				#endif
-				return path;
+                #endif
+                #endif
+                return path;
 			}
 		}
 

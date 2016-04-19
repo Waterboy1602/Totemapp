@@ -24,7 +24,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;__ANDROID__;</DefineConstants>
+    <DefineConstants>DEBUG;__ANDROID__</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
@@ -47,10 +47,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
-    <Reference Include="VectorCompat, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\VectorCompat.1.0.5.0\lib\MonoAndroid403\VectorCompat.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Xamarin.Android.Support.v4, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xamarin.Android.Support.v4.23.2.1\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
       <Private>True</Private>
@@ -94,6 +90,7 @@
     <Compile Include="SGV\Adapters\TotemAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Assets\totems.sqlite" />
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
@@ -179,7 +176,6 @@
     <AndroidAsset Include="Assets\fonts\DINPro-Regular.ttf" />
     <AndroidAsset Include="Assets\fonts\sketch_block_light.ttf" />
     <AndroidAsset Include="Assets\fonts\Verveine W01 Regular.ttf" />
-    <AndroidAsset Include="Assets\totems.sqlite" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="servicestacktext">
