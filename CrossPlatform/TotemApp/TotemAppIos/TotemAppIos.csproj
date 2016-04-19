@@ -261,6 +261,8 @@
     <BundleResource Include="SharedAssets\lijn_trans.png" />
     <BundleResource Include="SharedAssets\Splash.png" />
     <BundleResource Include="Resources\Default-568h%402x.png" />
+    <BundleResource Include="SharedAssets\visibility_off_white.png" />
+    <BundleResource Include="SharedAssets\visibility_white.png" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="servicestacktext">

@@ -4,12 +4,14 @@ using Foundation;
 using TotemAppCore;
 using UIKit;
 using System.Drawing;
+using System.Xml;
 
 namespace TotemAppIos {
 	public partial class TotemDetailViewController : BaseViewController {
 		public TotemDetailViewController () : base ("TotemDetailViewController", null) {}
 
 		bool add;
+		bool hidden = false;
 
 		public override void ViewDidLoad () {
 			base.ViewDidLoad ();
@@ -45,12 +47,14 @@ namespace TotemAppIos {
 			base.ViewDidAppear (animated);
 			btnReturn.TouchUpInside += btnReturnTouchUpInside;
 			btnAction.TouchUpInside += btnActionTouchUpInside;
+			btnHidden.TouchUpInside += btnHiddenTouchUpInside;
 		}
 
 		public override void ViewWillDisappear (bool animated) {
 			base.ViewWillDisappear (animated);
 			btnReturn.TouchUpInside -= btnReturnTouchUpInside;
 			btnAction.TouchUpInside -= btnActionTouchUpInside;
+			btnHidden.TouchUpInside -= btnHiddenTouchUpInside;
 		}
 
 		public override void setData() {
@@ -60,44 +64,60 @@ namespace TotemAppIos {
 			add = (_appController.CurrentProfiel == null);
 			imgAction.Image = add ? UIImage.FromBundle ("SharedAssets/add_white") : UIImage.FromBundle ("SharedAssets/delete_white");
 
-			//styling for title (totem name)
-			var paragraphStyleTitle = new NSMutableParagraphStyle ();
-			paragraphStyleTitle.LineSpacing = 15;
+			if (hidden) {
+				lblNumber.Text = "";
+				lblHead.Text = "...";
+				lblBody.Text = _appController.CurrentTotem.body.Replace (_appController.CurrentTotem.title, "...");
+			} else {
 
-			//styling for synonyms
-			var paragraphStyleSyn = new NSMutableParagraphStyle ();
-			paragraphStyleSyn.LineSpacing = 20;
+				//styling for title (totem name)
+				var paragraphStyleTitle = new NSMutableParagraphStyle ();
+				paragraphStyleTitle.LineSpacing = 15;
+
+				//styling for synonyms
+				var paragraphStyleSyn = new NSMutableParagraphStyle ();
+				paragraphStyleSyn.LineSpacing = 20;
 
 
-			var titleAttributes = new UIStringAttributes {
-				Font = UIFont.FromName("VerveineW01-Regular", 35f),
-				ParagraphStyle = paragraphStyleTitle	
-			};
+				var titleAttributes = new UIStringAttributes {
+					Font = UIFont.FromName ("VerveineW01-Regular", 35f),
+					ParagraphStyle = paragraphStyleTitle	
+				};
 
-			var synonymsAttributes = new UIStringAttributes {
-				Font = UIFont.FromName("DIN-LightItalic", 17f),
-				ParagraphStyle = paragraphStyleSyn					
-			};
+				var synonymsAttributes = new UIStringAttributes {
+					Font = UIFont.FromName ("DIN-LightItalic", 17f),
+					ParagraphStyle = paragraphStyleSyn					
+				};
 
-			var content = _appController.CurrentTotem.title;
-			if(_appController.CurrentTotem.synonyms != null)
-				content += " - " + _appController.CurrentTotem.synonyms;
+				var content = _appController.CurrentTotem.title;
+				if (_appController.CurrentTotem.synonyms != null)
+					content += " - " + _appController.CurrentTotem.synonyms;
 
-			//whitespace for UI purposes
-			content += "\n";
+				//whitespace for UI purposes
+				content += "\n";
 
-			//applying attributes
-			var title_synonyms = new NSMutableAttributedString(content);
-			title_synonyms.SetAttributes (titleAttributes.Dictionary, new NSRange (0, _appController.CurrentTotem.title.Length));
-			title_synonyms.SetAttributes (synonymsAttributes.Dictionary, new NSRange (_appController.CurrentTotem.title.Length, (title_synonyms.Length-_appController.CurrentTotem.title.Length)));
+				//applying attributes
+				var title_synonyms = new NSMutableAttributedString (content);
+				title_synonyms.SetAttributes (titleAttributes.Dictionary, new NSRange (0, _appController.CurrentTotem.title.Length));
+				title_synonyms.SetAttributes (synonymsAttributes.Dictionary, new NSRange (_appController.CurrentTotem.title.Length, (title_synonyms.Length - _appController.CurrentTotem.title.Length)));
 
-			lblNumber.Text = _appController.CurrentTotem.number + ".";
-			lblHead.AttributedText = title_synonyms;
+				lblNumber.Text = _appController.CurrentTotem.number + ".";
+				lblHead.AttributedText = title_synonyms;
 
-			lblBody.Text = _appController.CurrentTotem.body;
+				lblBody.Text = _appController.CurrentTotem.body;
+			}
+
 			imgLine.Image = UIImage.FromBundle ("SharedAssets/Lijn_bold");
-
 			imgReturn.Image = UIImage.FromBundle ("SharedAssets/arrow_back_white");
+			if(hidden)
+				imgHidden.Image = UIImage.FromBundle ("SharedAssets/visibility_white");
+			else
+				imgHidden.Image = UIImage.FromBundle ("SharedAssets/visibility_off_white");
+		}
+
+		void btnHiddenTouchUpInside (object sender, EventArgs e) {
+			hidden = !hidden;
+			setData ();
 		}
 
 		//handles button click depending on action
