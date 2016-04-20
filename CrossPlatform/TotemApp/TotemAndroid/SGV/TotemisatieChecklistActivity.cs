@@ -1,8 +1,9 @@
 ﻿using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-
+using ServiceStack.Text;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,8 +11,12 @@ namespace TotemAndroid {
 	[Activity (Label = "Checklist")]			
 	public class TotemisatieChecklistActivity : BaseActivity {
 		Dictionary<string, List<string>> dictGroup;
+        ExpandableListView expand;
+        ExpendListAdapter expandAdapater;
 
-		protected override void OnCreate (Bundle savedInstanceState) {
+        ISharedPreferences sharedPrefs;
+
+        protected override void OnCreate (Bundle savedInstanceState) {
 			base.OnCreate (savedInstanceState);
 
 			SetContentView (Resource.Layout.Checklist);
@@ -20,14 +25,36 @@ namespace TotemAndroid {
 
 			ActionBarTitle.Text = "Totemisatie checklist";
 
-			InitializeExpandableListView ();
-		}
+            sharedPrefs = GetSharedPreferences("checklist", FileCreationMode.Private);
+            var ser = sharedPrefs.GetString("states", "empty");
+            List<List<bool>> states;
+            if(!ser.Equals("empty")) {
+                states = JsonSerializer.DeserializeFromString<List<List<bool>>>(ser);
+            } else {
+                states = null;
+            }
 
-		//adds header, footer and data to the ExpandableListView
-		private void InitializeExpandableListView() {
+            expand = FindViewById<ExpandableListView>(Resource.Id.expand);
+
+            InitializeExpandableListView ();
+            expandAdapater = new ExpendListAdapter(this, dictGroup, states);
+            expand.SetAdapter(expandAdapater);
+        }
+
+        protected override void OnPause() {
+            base.OnPause();
+
+            //save eigenschappenlist state in sharedprefs
+            var editor = sharedPrefs.Edit();
+            var ser = ServiceStack.Text.JsonSerializer.SerializeToString(expandAdapater.checkedStates);
+            editor.PutString("states", ser);
+            editor.Commit();
+        }
+
+        //adds header, footer and data to the ExpandableListView
+        private void InitializeExpandableListView() {
 			dictGroup = new Dictionary<string, List<string>> ();
 			FillDictGroup ();
-			var expand = FindViewById<ExpandableListView> (Resource.Id.expand);
 
 			View view = View.Inflate (this, Resource.Layout.ExpandHeadFoot, null);
 			view.FindViewById<TextView> (Resource.Id.intro).Text = Resources.GetString(Resource.String.checklist_head);
@@ -37,7 +64,6 @@ namespace TotemAndroid {
 			expand.AddFooterView (view, null, false);
 
 			expand.DividerHeight = 0;
-			expand.SetAdapter (new ExpendListAdapter(this, dictGroup));
 		}
 
 		//stores the data from arrays.xml in dictgroup per section

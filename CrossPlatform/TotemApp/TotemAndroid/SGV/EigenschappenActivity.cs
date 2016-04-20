@@ -124,7 +124,7 @@ namespace TotemAndroid {
 
             //save eigenschappenlist state in sharedprefs
             var editor = sharedPrefs.Edit();
-            var ser = ServiceStack.Text.JsonSerializer.SerializeToString(_appController.Eigenschappen);
+            var ser = JsonSerializer.SerializeToString(_appController.Eigenschappen);
             editor.PutString("eigenschappen", ser);
             editor.Commit();
 		}

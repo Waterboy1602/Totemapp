@@ -40,7 +40,8 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ServiceStack.Text.XamarinAndrod">
+    <Reference Include="ServiceStack.Text.XamarinAndrod, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Components\servicestacktext-3.9.61.3\lib\android\ServiceStack.Text.XamarinAndrod.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -177,8 +178,8 @@
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="servicestacktext">
-      <Version>3.9.61.3</Version>
       <Visible>False</Visible>
+      <Version>3.9.61.3</Version>
     </XamarinComponentReference>
     <XamarinComponentReference Include="VectorCompat">
       <Version>1.0.5.0</Version>

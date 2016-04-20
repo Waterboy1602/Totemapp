@@ -9,11 +9,25 @@ namespace TotemAndroid {
 		Dictionary<string, List<string>> _dictGroup;
 		List<string> _lstGroupID;
 		Activity _activity;
+        public List<List<bool>> checkedStates;
 
-		public ExpendListAdapter (Activity activity, Dictionary<string, List<string>> dictGroup)	{
+		public ExpendListAdapter (Activity activity, Dictionary<string, List<string>> dictGroup, List<List<bool>> states) {
 			_dictGroup = dictGroup;
 			_activity = activity;
 			_lstGroupID = new List<string>(dictGroup.Keys);
+            if (states != null) {
+                checkedStates = states;
+            } else {
+                checkedStates = new List<List<bool>>();
+                var count = 0;
+                foreach (string s in _dictGroup.Keys) {
+                    checkedStates.Add(new List<bool>());
+                    foreach (string st in _dictGroup[s]) {
+                        checkedStates[count].Add(false);
+                    }
+                    count++;
+                }
+            }
 		}
 
 		public override Java.Lang.Object GetChild (int groupPosition, int childPosition) {
@@ -61,7 +75,29 @@ namespace TotemAndroid {
 				
 			tv.SetText (content, TextView.BufferType.Normal);
 
-			return convertView;
+            var bullet = convertView.FindViewById<TextView>(Resource.Id.bulletPoint);
+
+            if (bullet != null) {
+                bullet.Tag = new int[2] { groupPosition, childPosition };
+                if (checkedStates[((int[])(bullet.Tag))[0]][((int[])(bullet.Tag))[1]])
+                    bullet.Text = "\u25CF";
+                else 
+                    bullet.Text = "\u25CB";
+            }
+
+            if (!convertView.HasOnClickListeners && bullet != null) {
+                convertView.Click += (o, e) => {
+                    if (checkedStates[((int[])(bullet.Tag))[0]][((int[])(bullet.Tag))[1]]) {
+                        bullet.Text = "\u25CB";
+                        checkedStates[((int[])(bullet.Tag))[0]][((int[])(bullet.Tag))[1]] = false;
+                    } else {
+                        bullet.Text = "\u25CF";
+                        checkedStates[((int[])(bullet.Tag))[0]][((int[])(bullet.Tag))[1]] = true;
+                    }
+                };
+            }
+
+            return convertView;
 		}
 
 		public override Java.Lang.Object GetGroup (int groupPosition){
