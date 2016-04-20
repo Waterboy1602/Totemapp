@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using TotemAppCore;
 
 namespace TotemAndroid {
-    [Activity (Label = "Profielen", WindowSoftInputMode=SoftInput.StateAlwaysHidden)]			
+    [Activity (Label = "Profielen", WindowSoftInputMode=SoftInput.StateAlwaysHidden, LaunchMode=Android.Content.PM.LaunchMode.SingleTask)]			
 	public class ProfielenActivity : BaseActivity {
 		ProfielAdapter profielAdapter;
 		ListView profielenListView;

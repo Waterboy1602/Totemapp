@@ -138,8 +138,7 @@ namespace TotemAndroid {
             SetInfo();
 		}
 
-        void ToggleHidden()
-        {
+        void ToggleHidden() {
             hidden = !hidden;
             if (hidden) {
                 search.SetImageResource(Resource.Drawable.ic_visibility_white_24dp);
@@ -210,7 +209,7 @@ namespace TotemAndroid {
 							} else {
 								_appController.AddProfile(value);
 								_appController.AddTotemToProfiel(_appController.CurrentTotem.nid, value);
-								mToast.SetText(_appController.GetTotemOnID(_appController.CurrentTotem.nid).title + " toegevoegd aan profiel " + value.Replace("'", ""));
+								mToast.SetText((hidden ? "Totem" : _appController.GetTotemOnID(_appController.CurrentTotem.nid).title) + " toegevoegd aan profiel " + value.Replace("'", ""));
 								mToast.Show();
 							}
 						});
@@ -229,7 +228,7 @@ namespace TotemAndroid {
 
 					} else {
 						_appController.AddTotemToProfiel(_appController.CurrentTotem.nid, arg1.Item.TitleFormatted.ToString());
-						mToast.SetText(_appController.GetTotemOnID (_appController.CurrentTotem.nid).title + " toegevoegd aan profiel " + arg1.Item.TitleFormatted);
+						mToast.SetText((hidden ? "Totem" : _appController.GetTotemOnID(_appController.CurrentTotem.nid).title) + " toegevoegd aan profiel " + arg1.Item.TitleFormatted);
 						mToast.Show();
 					}
 				};
