@@ -26,7 +26,7 @@ namespace TotemAppIos {
 
 		public HeadTableViewCell (IntPtr handle) : base (handle) {}
 
-		public override void setData(string s, bool firstItem, bool lastItem) {
+		public override void setData(string s, bool firstItem, bool lastItem, bool fill) {
 			if (firstItem)
 				heightPadding.Constant = 16;
 			else
@@ -34,5 +34,7 @@ namespace TotemAppIos {
 			
 			lblHead.Text = s;
 		}
+
+		public override void toggle() {}
 	}
 }

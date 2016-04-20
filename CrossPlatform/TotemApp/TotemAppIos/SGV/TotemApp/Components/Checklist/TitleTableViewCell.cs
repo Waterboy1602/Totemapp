@@ -29,5 +29,9 @@ namespace TotemAppIos {
 		public override void setData(string s, bool firstItem, bool lastItem) {
 			lblTitle.Text = s;
 		}
+
+		public override void toggle() {
+
+		}
 	}
 }

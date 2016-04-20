@@ -6,14 +6,32 @@ using System.Linq;
 using CoreAnimation;
 using Foundation;
 using UIKit;
-using CoreGraphics;
 
 namespace TotemAppIos {
 	public class ChecklistTableViewSource : UITableViewSource {
 		Dictionary<string, List<string>> xmlDict;
+		public List<List<bool>> checkedStates;
 
-		public ChecklistTableViewSource (Dictionary<string, List<string>> xmlDict) {
+		public ChecklistTableViewSource (Dictionary<string, List<string>> xmlDict, List<List<bool>> states) {
 			this.xmlDict = xmlDict;
+
+			if (states != null) {
+				checkedStates = states;
+			} else {
+				checkedStates = new List<List<bool>>();
+				var count = 0;
+				foreach (string s in xmlDict.Keys) {
+					checkedStates.Add(new List<bool>());
+					foreach (string st in xmlDict[s]) {
+						checkedStates[count].Add(false);
+					}
+					count++;
+				}
+			}
+		}
+
+		public void UpdateStates(List<List<bool>> states) {
+			checkedStates = states;
 		}
 
 		//builds layout for section headers
@@ -54,7 +72,6 @@ namespace TotemAppIos {
 		//i -> indented
 		//h -> head
 		//n -> normal
-		//t -> title
 		//e.g.: i_het past in de context
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath) {
 			BaseChecklistTableViewCell cell;
@@ -67,7 +84,7 @@ namespace TotemAppIos {
 			var type = data [0];
 			var content = data [1];
 
-			cell = tableView.DequeueReusableCell (new NSString ("NormalTableViewCell")) as BaseChecklistTableViewCell;
+			cell = tableView.DequeueReusableCell (new NSString ("IndentTableViewCell")) as BaseChecklistTableViewCell;
 
 			//indented cell
 			if (type.Equals ("i") && (cell == null || !cell.Key.Equals ("IndentTableViewCell"))) {
@@ -78,11 +95,10 @@ namespace TotemAppIos {
 			//header cell
 			} else if (type.Equals ("h") && (cell == null || !cell.Key.Equals ("HeadTableViewCell"))) {
 				cell = HeadTableViewCell.Create ();
-			//title cell
-			} else if (cell == null || !cell.Key.Equals ("TitleTableViewCell")) {
-				cell = TitleTableViewCell.Create ();
-			}	
-			cell.setData (content, firstItem, lastItem);
+			}
+
+			cell.setData (content, firstItem, lastItem, checkedStates[indexPath.Section][indexPath.Row]);
+			cell.SelectionStyle = UITableViewCellSelectionStyle.None;
 
 			return cell;
 		}
@@ -100,6 +116,11 @@ namespace TotemAppIos {
 
 		string[] sectionTitles (UITableView tableView) {
 			return xmlDict.Keys.ToArray ();
+		}
+
+		public override void RowSelected (UITableView tableView, NSIndexPath indexPath) {
+			(tableView.CellAt (indexPath) as BaseChecklistTableViewCell).toggle ();
+			checkedStates[indexPath.Section][indexPath.Row] = !(checkedStates[indexPath.Section][indexPath.Row]);
 		}
 	}
 }

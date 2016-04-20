@@ -10,6 +10,8 @@ namespace TotemAppIos {
 		new public static NSString _key = new NSString ("NormalTableViewCell");
 		new public static UINib Nib;
 
+		bool fill;
+
 		public override NSString Key { 
 			get {
 				return _key;
@@ -26,19 +28,27 @@ namespace TotemAppIos {
 
 		public NormalTableViewCell (IntPtr handle) : base (handle) {}
 
-		public override void setData(string s, bool firstItem, bool lastItem) {
-			//bullet point char in UNICODE
-
-
-			if (firstItem) {
-				lblBulletPoint.Text = "\n" + "\u25EF";
-				lblNormal.Text = "\n" + s;
-			} else {
-				lblBulletPoint.Text = "\u25EF";
-				lblNormal.Text = s;
-			}
+		public override void setData(string s, bool firstItem, bool lastItem, bool fill) {
+			this.fill = fill;
 			
-			if(lastItem) lblNormal.Text += "\n";
+			paddingHeigthTop.Constant = firstItem ? 15 : 0;
+			paddingHeight.Constant = lastItem ? 15 : 0;
+
+			lblNormal.Text = s;
+			if (fill)
+				imgBullet.Image = UIImage.FromBundle ("SharedAssets/rsz_black_circle");
+			else
+				imgBullet.Image = UIImage.FromBundle ("SharedAssets/rsz_white_circle");
+		}
+
+		public override void toggle() {
+			if (fill) {
+				fill = false;
+				imgBullet.Image = UIImage.FromBundle ("SharedAssets/rsz_white_circle");
+			} else {
+				fill = true;
+				imgBullet.Image = UIImage.FromBundle ("SharedAssets/rsz_black_circle");
+			}
 		}
 	}
 }

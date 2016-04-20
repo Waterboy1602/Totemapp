@@ -10,6 +10,8 @@ namespace TotemAppIos {
 		new public static NSString _key = new NSString ("IndentTableViewCell");
 		new public static UINib Nib;
 
+		bool fill;
+
 		public nfloat cellHeight { get; set; }
 
 		public override NSString Key { 
@@ -28,18 +30,28 @@ namespace TotemAppIos {
 
 		public IndentTableViewCell (IntPtr handle) : base (handle) {}
 
-		public override void setData(string s, bool firstItem, bool lastItem) {
-			//bullet point char in UNICODE
+		public override void setData(string s, bool firstItem, bool lastItem, bool fill) {
+			this.fill = fill;
 
-			if (firstItem) {
-				lblBulletPoint.Text = "\n" + "\u25EF";
-				lblIndent.Text = "\n" + s;
+			paddingHeightTop.Constant = firstItem ? 15 : 0;
+			paddingHeigthBottom.Constant = lastItem ? 15 : 0;
+
+			lblIndent.Text = s;
+			if (fill)
+				imgBullet.Image = UIImage.FromBundle ("SharedAssets/rsz_black_circle");
+			else
+				imgBullet.Image = UIImage.FromBundle ("SharedAssets/rsz_white_circle");
+			
+		}
+
+		public override void toggle() {
+			if (fill) {
+				fill = false;
+				imgBullet.Image = UIImage.FromBundle ("SharedAssets/rsz_white_circle");
 			} else {
-				lblBulletPoint.Text = "\u25EF";
-				lblIndent.Text = s;
+				fill = true;
+				imgBullet.Image = UIImage.FromBundle ("SharedAssets/rsz_black_circle");
 			}
-			if(lastItem) lblIndent.Text += "\n";
-			cellHeight = lblIndent.Frame.Height;
 		}
 	}
 }

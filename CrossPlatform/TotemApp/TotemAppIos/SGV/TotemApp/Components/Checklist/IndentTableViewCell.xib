@@ -8,7 +8,6 @@
     <customFonts key="customFonts">
         <mutableArray key="DINPro-Regular_13937.ttf">
             <string>DINPro-Regular</string>
-            <string>DINPro-Regular</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -21,31 +20,54 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="254" verticalHuggingPriority="253" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" text="o" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mjk-ts-2L7">
-                        <rect key="frame" x="43" y="5" width="7" height="17"/>
-                        <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="13"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jaO-a7-67X">
+                        <rect key="frame" x="8" y="8" width="304" height="0.0"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" id="FrX-jq-bgO"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="col-EB-O8g">
+                        <rect key="frame" x="8" y="35" width="304" height="0.0"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" id="iEZ-y2-MEs"/>
+                        </constraints>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="748" verticalCompressionResistancePriority="748" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vec-GJ-Cj5">
-                        <rect key="frame" x="65" y="3" width="242" height="37"/>
+                        <rect key="frame" x="60" y="3" width="247" height="37"/>
                         <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="15"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="J6d-rs-L2A">
+                        <rect key="frame" x="38" y="10" width="7" height="7"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="7" id="0vG-n9-I7b"/>
+                            <constraint firstAttribute="height" constant="7" id="vPk-F1-4mH"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="vec-GJ-Cj5" firstAttribute="leading" secondItem="Mjk-ts-2L7" secondAttribute="trailing" constant="15" id="9GJ-cU-g6z"/>
-                    <constraint firstItem="Mjk-ts-2L7" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="topMargin" constant="-3" id="Nas-ze-a87"/>
-                    <constraint firstItem="Mjk-ts-2L7" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leadingMargin" constant="35" id="Q4Q-OK-Jy4"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="vec-GJ-Cj5" secondAttribute="bottom" constant="-5" id="Sr8-nA-xfp"/>
-                    <constraint firstItem="vec-GJ-Cj5" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="topMargin" constant="-5" id="cmj-XE-jOF"/>
+                    <constraint firstItem="col-EB-O8g" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leadingMargin" id="3Dq-1V-mIS"/>
+                    <constraint firstItem="J6d-rs-L2A" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leadingMargin" constant="30" id="6V2-Wc-ngk"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="col-EB-O8g" secondAttribute="trailing" id="8n1-K3-yPH"/>
+                    <constraint firstItem="col-EB-O8g" firstAttribute="top" secondItem="vec-GJ-Cj5" secondAttribute="bottom" constant="-5" id="Ct4-bt-a2I"/>
+                    <constraint firstItem="jaO-a7-67X" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leadingMargin" id="FnO-rY-BL7"/>
+                    <constraint firstItem="vec-GJ-Cj5" firstAttribute="top" secondItem="jaO-a7-67X" secondAttribute="bottom" constant="-5" id="IeP-6i-dSZ"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="col-EB-O8g" secondAttribute="bottom" id="MFq-MR-oXm"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="jaO-a7-67X" secondAttribute="trailing" id="OnM-O3-Yk7"/>
+                    <constraint firstItem="jaO-a7-67X" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="topMargin" id="QCO-5B-P6M"/>
+                    <constraint firstAttribute="topMargin" secondItem="J6d-rs-L2A" secondAttribute="top" constant="-2" id="Uab-lh-DL0"/>
+                    <constraint firstItem="vec-GJ-Cj5" firstAttribute="leading" secondItem="J6d-rs-L2A" secondAttribute="trailing" constant="15" id="kgf-cS-fYU"/>
                     <constraint firstAttribute="trailingMargin" secondItem="vec-GJ-Cj5" secondAttribute="trailing" constant="5" id="z3n-Qq-BWe"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="lblBulletPoint" destination="Mjk-ts-2L7" id="yrB-h3-EEM"/>
+                <outlet property="imgBullet" destination="J6d-rs-L2A" id="xHE-A1-IaA"/>
                 <outlet property="lblIndent" destination="vec-GJ-Cj5" id="pTH-Iz-gks"/>
+                <outlet property="paddingHeightTop" destination="FrX-jq-bgO" id="fk2-jA-dHz"/>
+                <outlet property="paddingHeigthBottom" destination="iEZ-y2-MEs" id="cWe-tT-G7L"/>
             </connections>
         </tableViewCell>
     </objects>
