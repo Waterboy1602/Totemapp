@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
@@ -31,6 +30,7 @@
                 <outlet property="lblHead" destination="CvG-OU-4pN" id="gPv-pU-dAV"/>
                 <outlet property="lblNumber" destination="Bm6-ch-hFJ" id="RwS-v9-hoQ"/>
                 <outlet property="lblTitle" destination="wpT-dP-RC5" id="u7H-QZ-isx"/>
+                <outlet property="paddingHeight" destination="On4-Wt-nck" id="EoZ-aS-kdm"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -76,7 +76,7 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpT-dP-RC5">
-                            <rect key="frame" x="75" y="12" width="294" height="26"/>
+                            <rect key="frame" x="75" y="13" width="294" height="24"/>
                             <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="20"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -128,28 +128,35 @@
                     <rect key="frame" x="0.0" y="70" width="414" height="666"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vqq-5r-YUH">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="103"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="93"/>
                             <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zrd-hn-Prz">
+                                    <rect key="frame" x="0.0" y="51" width="414" height="0.0"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" id="On4-Wt-nck"/>
+                                    </constraints>
+                                </view>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nDL-bp-by6" userLabel="imgLine">
-                                    <rect key="frame" x="10" y="44" width="394" height="18"/>
+                                    <rect key="frame" x="10" y="36" width="394" height="18"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="nDL-bp-by6" secondAttribute="height" multiplier="290:13" id="llM-XL-m4d"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bm6-ch-hFJ">
-                                    <rect key="frame" x="10" y="10" width="58" height="48"/>
+                                    <rect key="frame" x="10" y="10" width="84" height="40"/>
                                     <fontDescription key="fontDescription" name="VerveineW01-Regular" family="VerveineW01-Regular" pointSize="34"/>
                                     <color key="textColor" red="0.3411764705882353" green="0.14509803921568626" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" text="Label " lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CvG-OU-4pN" userLabel="Lbl Head">
-                                    <rect key="frame" x="73" y="10" width="331" height="49"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" text="Label " lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CvG-OU-4pN" userLabel="Lbl Head">
+                                    <rect key="frame" x="95" y="10" width="309" height="41"/>
                                     <fontDescription key="fontDescription" name="VerveineW01-Regular" family="VerveineW01-Regular" pointSize="35"/>
                                     <color key="textColor" red="0.0" green="0.36078431370000003" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Dq-of-Y8a" userLabel="Lbl Body">
-                                    <rect key="frame" x="10" y="67" width="394" height="26"/>
+                                    <rect key="frame" x="10" y="59" width="394" height="24"/>
                                     <fontDescription key="fontDescription" name="DINPro-Light" family="DINPro" pointSize="20"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -160,11 +167,12 @@
                                 <constraint firstItem="nDL-bp-by6" firstAttribute="leading" secondItem="vqq-5r-YUH" secondAttribute="leading" constant="10" id="1DD-kK-Z6H"/>
                                 <constraint firstItem="Bm6-ch-hFJ" firstAttribute="top" secondItem="vqq-5r-YUH" secondAttribute="top" constant="10" id="273-F6-3xZ"/>
                                 <constraint firstAttribute="bottom" secondItem="4Dq-of-Y8a" secondAttribute="bottom" constant="10" id="29N-A5-lEw"/>
-                                <constraint firstItem="nDL-bp-by6" firstAttribute="top" secondItem="CvG-OU-4pN" secondAttribute="bottom" constant="-15" id="BWY-4D-SBU"/>
                                 <constraint firstItem="4Dq-of-Y8a" firstAttribute="top" secondItem="nDL-bp-by6" secondAttribute="bottom" constant="5" id="Ijp-q7-iI7"/>
+                                <constraint firstItem="nDL-bp-by6" firstAttribute="top" secondItem="Zrd-hn-Prz" secondAttribute="bottom" constant="-15" id="UaW-RI-K0q"/>
                                 <constraint firstItem="Bm6-ch-hFJ" firstAttribute="leading" secondItem="vqq-5r-YUH" secondAttribute="leading" constant="10" id="Vmp-4G-Dli"/>
                                 <constraint firstItem="CvG-OU-4pN" firstAttribute="top" secondItem="vqq-5r-YUH" secondAttribute="top" constant="10" id="h3U-3z-vWE"/>
-                                <constraint firstItem="CvG-OU-4pN" firstAttribute="leading" secondItem="Bm6-ch-hFJ" secondAttribute="trailing" constant="5" id="jgJ-Cl-lt0"/>
+                                <constraint firstItem="CvG-OU-4pN" firstAttribute="leading" secondItem="Bm6-ch-hFJ" secondAttribute="trailing" constant="1" id="jgJ-Cl-lt0"/>
+                                <constraint firstItem="Zrd-hn-Prz" firstAttribute="top" secondItem="CvG-OU-4pN" secondAttribute="bottom" id="lVO-1P-cgp"/>
                                 <constraint firstAttribute="trailing" secondItem="CvG-OU-4pN" secondAttribute="trailing" constant="10" id="nWr-FA-1qa"/>
                                 <constraint firstAttribute="trailing" secondItem="nDL-bp-by6" secondAttribute="trailing" constant="10" id="pGL-lm-B8x"/>
                                 <constraint firstAttribute="trailing" secondItem="4Dq-of-Y8a" secondAttribute="trailing" constant="10" id="rCb-jV-YGE"/>
@@ -177,6 +185,8 @@
                         <constraint firstAttribute="bottom" secondItem="vqq-5r-YUH" secondAttribute="bottom" id="I4k-zD-4Vk"/>
                         <constraint firstItem="vqq-5r-YUH" firstAttribute="width" secondItem="pMz-rr-0wj" secondAttribute="width" id="Lvn-CF-3gR"/>
                         <constraint firstAttribute="trailing" secondItem="vqq-5r-YUH" secondAttribute="trailing" id="XDA-7c-9wZ"/>
+                        <constraint firstAttribute="trailing" secondItem="Zrd-hn-Prz" secondAttribute="trailing" id="oGO-CL-g4Z"/>
+                        <constraint firstItem="Zrd-hn-Prz" firstAttribute="leading" secondItem="pMz-rr-0wj" secondAttribute="leading" id="svb-uH-HOR"/>
                         <constraint firstItem="vqq-5r-YUH" firstAttribute="top" secondItem="pMz-rr-0wj" secondAttribute="top" id="zNf-Hf-eYj"/>
                     </constraints>
                 </scrollView>

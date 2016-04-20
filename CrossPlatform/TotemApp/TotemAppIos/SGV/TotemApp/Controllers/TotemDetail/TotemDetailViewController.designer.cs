@@ -44,6 +44,9 @@ namespace TotemAppIos
 
 		[Outlet]
 		UIKit.UILabel lblTitle { get; set; }
+
+		[Outlet]
+		UIKit.NSLayoutConstraint paddingHeight { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -52,9 +55,9 @@ namespace TotemAppIos
 				btnAction = null;
 			}
 
-			if (imgHidden != null) {
-				imgHidden.Dispose ();
-				imgHidden = null;
+			if (btnHidden != null) {
+				btnHidden.Dispose ();
+				btnHidden = null;
 			}
 
 			if (btnReturn != null) {
@@ -67,6 +70,11 @@ namespace TotemAppIos
 				imgAction = null;
 			}
 
+			if (imgHidden != null) {
+				imgHidden.Dispose ();
+				imgHidden = null;
+			}
+
 			if (imgLine != null) {
 				imgLine.Dispose ();
 				imgLine = null;
@@ -75,11 +83,6 @@ namespace TotemAppIos
 			if (imgReturn != null) {
 				imgReturn.Dispose ();
 				imgReturn = null;
-			}
-
-			if (btnHidden != null) {
-				btnHidden.Dispose ();
-				btnHidden = null;
 			}
 
 			if (lblBody != null) {
@@ -100,6 +103,11 @@ namespace TotemAppIos
 			if (lblTitle != null) {
 				lblTitle.Dispose ();
 				lblTitle = null;
+			}
+
+			if (paddingHeight != null) {
+				paddingHeight.Dispose ();
+				paddingHeight = null;
 			}
 		}
 	}
