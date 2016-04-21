@@ -8,6 +8,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
         <TotemAndroid.CustomFontTextView
+            android:id="@+id/totemapp_title"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -61,6 +62,7 @@
             app:font="@string/DIN_regular" />
     </LinearLayout>
     <View
+        android:id="@+id/grass"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"

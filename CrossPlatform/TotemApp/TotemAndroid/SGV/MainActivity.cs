@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Views;
 using Android.Widget;
 
 namespace TotemAndroid {
@@ -12,7 +13,10 @@ namespace TotemAndroid {
 		Button profielen;
 		Button checklist;
 
-		protected override void OnCreate (Bundle bundle) {
+        Toast mToast;
+        View toastView;
+
+        protected override void OnCreate (Bundle bundle) {
 			base.OnCreate (bundle);
 
 			SetContentView (Resource.Layout.Main);
@@ -26,21 +30,38 @@ namespace TotemAndroid {
 			eigenschappen.Click += (sender, eventArgs) => _appController.EigenschappenMenuItemClicked ();
 			profielen.Click += (sender, eventArgs) => _appController.ProfileMenuItemClicked ();
 			checklist.Click += (sender, eventArgs) => _appController.ChecklistMenuItemClicked ();
-		}
 
-		protected override void OnResume ()	{
+            TextView title = FindViewById<TextView>(Resource.Id.totemapp_title);
+            title.LongClick += Title_LongClick;
+
+            LayoutInflater mInflater = LayoutInflater.From(this);
+            toastView = mInflater.Inflate(Resource.Layout.InfoToast, null);
+        }
+
+        private void Title_LongClick(object sender, Android.Views.View.LongClickEventArgs e) {
+            mToast = new Toast(this);
+            mToast.Duration = ToastLength.Long;
+            mToast.SetGravity(GravityFlags.Center | GravityFlags.Bottom, 0, 25);
+
+            toastView.Visibility = ViewStates.Visible;
+            mToast.View = toastView;
+            mToast.Show();
+        }
+
+        protected override void OnResume ()	{
 			base.OnResume ();
 
-			_appController.NavigationController.GotoTotemListEvent+= gotoTotemListHandler;
+            _appController.NavigationController.GotoTotemListEvent+= gotoTotemListHandler;
 			_appController.NavigationController.GotoEigenschapListEvent+= gotoEigenschappenListHandler;
 			_appController.NavigationController.GotoProfileListEvent+= gotoProfileListHandler;
 			_appController.NavigationController.GotoChecklistEvent+= gotoChecklistHandler;
 		}
 
-
 		protected override void OnPause () {
 			base.OnPause ();
-			_appController.NavigationController.GotoTotemListEvent-= gotoTotemListHandler;
+            toastView.Visibility = ViewStates.Gone;
+
+            _appController.NavigationController.GotoTotemListEvent-= gotoTotemListHandler;
 			_appController.NavigationController.GotoEigenschapListEvent-= gotoEigenschappenListHandler;
 			_appController.NavigationController.GotoProfileListEvent-= gotoProfileListHandler;
 			_appController.NavigationController.GotoChecklistEvent-= gotoChecklistHandler;
