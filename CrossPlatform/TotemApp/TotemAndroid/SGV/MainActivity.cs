@@ -3,6 +3,7 @@ using Android.Content;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using System;
 
 namespace TotemAndroid {
     [Activity (Label = "Totemapp", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/AppThemeNoAction")]
@@ -40,12 +41,18 @@ namespace TotemAndroid {
 
         private void Title_LongClick(object sender, Android.Views.View.LongClickEventArgs e) {
             mToast = new Toast(this);
-            mToast.Duration = ToastLength.Long;
-            mToast.SetGravity(GravityFlags.Center | GravityFlags.Bottom, 0, 25);
+            mToast.Duration = ToastLength.Short;
+            mToast.SetGravity(GravityFlags.Center | GravityFlags.Bottom, 0, ConvertDPToPixels(10));
 
             toastView.Visibility = ViewStates.Visible;
             mToast.View = toastView;
             mToast.Show();
+        }
+
+        private int ConvertDPToPixels(float dp) {
+            float scale = Resources.DisplayMetrics.Density;
+            int result = (int)(dp * scale + 0.5f);
+            return result;
         }
 
         protected override void OnResume ()	{
