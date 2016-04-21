@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
 
@@ -30,32 +31,39 @@ namespace TotemAndroid {
 
 			SetContentView (Resource.Layout.AllTotems);
 
-			//Action bar
-			InitializeActionBar (SupportActionBar);
-			title = ActionBarTitle;
-			close = ActionBarClose;
-			back = ActionBarBack;
-			delete = ActionBarDelete;
+            //if else that prevents crash when app is killed
+            if (_appController.CurrentProfiel == null) {
+                var i = new Intent(this, typeof(MainActivity));
+                StartActivity(i);
+                Finish();
+            } else {
+                //Action bar
+                InitializeActionBar(SupportActionBar);
+                title = ActionBarTitle;
+                close = ActionBarClose;
+                back = ActionBarBack;
+                delete = ActionBarDelete;
 
-			//single toast for entire activity
-			mToast = Toast.MakeText (this, "", ToastLength.Short);
+                //single toast for entire activity
+                mToast = Toast.MakeText(this, "", ToastLength.Short);
 
-			profile = _appController.CurrentProfiel;
-			totemList = _appController.GetTotemsFromProfiel (profile.name);
+                profile = _appController.CurrentProfiel;
+                totemList = _appController.GetTotemsFromProfiel(profile.name);
 
-			totemAdapter = new TotemAdapter (this, totemList);
-			allTotemListView = FindViewById<ListView> (Resource.Id.all_totem_list);
-			allTotemListView.Adapter = totemAdapter;
+                totemAdapter = new TotemAdapter(this, totemList);
+                allTotemListView = FindViewById<ListView>(Resource.Id.all_totem_list);
+                allTotemListView.Adapter = totemAdapter;
 
-			allTotemListView.ItemClick += ShowDetail;
-			allTotemListView.ItemLongClick += DeleteTotem;
+                allTotemListView.ItemClick += ShowDetail;
+                allTotemListView.ItemLongClick += DeleteTotem;
 
-			title.Text = "Totems voor " + profile.name;
+                title.Text = "Totems voor " + profile.name;
 
-			close.Click += HideDeleteTotems;
+                close.Click += HideDeleteTotems;
 
-			delete.Visibility = ViewStates.Visible;
-			delete.Click += ShowDeleteTotems;
+                delete.Visibility = ViewStates.Visible;
+                delete.Click += ShowDeleteTotems;
+            }
 		}
 			
 		protected override void OnResume ()	{

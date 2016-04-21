@@ -1,5 +1,6 @@
 ﻿using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Views;
 using Android.Views.InputMethods;
@@ -11,7 +12,7 @@ using System.Collections.Generic;
 using TotemAppCore;
 
 namespace TotemAndroid {
-    [Activity (Label = "Profielen", WindowSoftInputMode=SoftInput.StateAlwaysHidden, LaunchMode=Android.Content.PM.LaunchMode.SingleTask)]			
+    [Activity (Label = "Profielen", WindowSoftInputMode=SoftInput.StateAlwaysHidden, LaunchMode=LaunchMode.SingleTask)]			
 	public class ProfielenActivity : BaseActivity {
 		ProfielAdapter profielAdapter;
 		ListView profielenListView;

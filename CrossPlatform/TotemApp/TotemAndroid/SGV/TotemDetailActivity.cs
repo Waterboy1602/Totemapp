@@ -37,39 +37,46 @@ namespace TotemAndroid {
 
 			SetContentView (Resource.Layout.TotemDetail);
 
-			//Action bar
-			InitializeActionBar (SupportActionBar);
-			title = ActionBarTitle;
-			back = ActionBarBack;
-            search = ActionBarSearch;
+            //if else that prevents crash when app is killed
+            if (_appController.CurrentTotem == null) {
+                var i = new Intent(this, typeof(MainActivity));
+                StartActivity(i);
+                Finish();
+            } else {
+                //Action bar
+                InitializeActionBar(SupportActionBar);
+                title = ActionBarTitle;
+                back = ActionBarBack;
+                search = ActionBarSearch;
 
-            //single toast for entire activity
-            mToast = Toast.MakeText (this, "", ToastLength.Short);
+                //single toast for entire activity
+                mToast = Toast.MakeText(this, "", ToastLength.Short);
 
-			number = FindViewById<TextView> (Resource.Id.number);
-			title_synonyms = FindViewById<TextView> (Resource.Id.title_synonyms);
-			body = FindViewById<TextView> (Resource.Id.body);
+                number = FindViewById<TextView>(Resource.Id.number);
+                title_synonyms = FindViewById<TextView>(Resource.Id.title_synonyms);
+                body = FindViewById<TextView>(Resource.Id.body);
 
-			_gestureDetector = new GestureDetector (this);
+                _gestureDetector = new GestureDetector(this);
 
-			title.Text = "Beschrijving";
+                title.Text = "Beschrijving";
 
-			if (_appController.CurrentProfiel != null) {
-				action = base.ActionBarDelete;
-				action.Click += (sender, e) => RemoveFromProfile (_appController.CurrentProfiel.name);
-			} else {
-				action = base.ActionBarAdd;
-				action.Click += (sender, e) => ProfilePopup();
-			}
-			action.Visibility = ViewStates.Visible;
+                if (_appController.CurrentProfiel != null) {
+                    action = base.ActionBarDelete;
+                    action.Click += (sender, e) => RemoveFromProfile(_appController.CurrentProfiel.name);
+                } else {
+                    action = base.ActionBarAdd;
+                    action.Click += (sender, e) => ProfilePopup();
+                }
+                action.Visibility = ViewStates.Visible;
 
-            search.Visibility = ViewStates.Visible;
-            search.SetImageResource(Resource.Drawable.ic_visibility_off_white_24dp);
-            search.Click += (sender, e) => ToggleHidden();
+                search.Visibility = ViewStates.Visible;
+                search.SetImageResource(Resource.Drawable.ic_visibility_off_white_24dp);
+                search.Click += (sender, e) => ToggleHidden();
 
-            _appController.NavigationController.GotoProfileListEvent += StartProfielenActivity;
+                _appController.NavigationController.GotoProfileListEvent += StartProfielenActivity;
 
-            SetInfo ();
+                SetInfo();
+            }
 		}
 
 		//redirect touch event
