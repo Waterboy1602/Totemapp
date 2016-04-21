@@ -1,7 +1,9 @@
 ﻿using System;
 
 using Foundation;
+
 using TotemAppCore;
+
 using UIKit;
 
 namespace TotemAppIos {

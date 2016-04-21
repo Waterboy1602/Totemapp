@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 
 using CoreGraphics;
-using TotemAppCore;
-using UIKit;
-using System.Drawing;
+
 using Foundation;
+
 using ServiceStack.Text;
-using System.Collections.Generic;
+
+using TotemAppCore;
+
+using UIKit;
 
 namespace TotemAppIos {
 	public partial class EigenschappenViewController : BaseViewController {
@@ -23,6 +27,11 @@ namespace TotemAppIos {
 			_appController.ShowSelected += toggleShowSelected;
 			userDefs = NSUserDefaults.StandardUserDefaults;
 
+			UIApplication.Notifications.ObserveDidEnterBackground ((sender, args) => {
+				var ser = JsonSerializer.SerializeToString (_appController.Eigenschappen);
+				userDefs.SetString (ser, "eigenschappen");
+				userDefs.Synchronize ();
+			});
 		}
 
 		public override void ViewDidAppear (bool animated) {
@@ -191,10 +200,7 @@ namespace TotemAppIos {
 		void updateCounter() {
 			int count = _appController.Eigenschappen.FindAll (x => x.selected).Count;
 			lblNumberSelected.Text = count + " geselecteerd";
-			if(count > 0)
-				bottomBarHeight.Constant = 50;
-			else
-				bottomBarHeight.Constant = 0;
+			bottomBarHeight.Constant = count > 0 ? 50 : 0;
 		}
 
 		void btnVindTouchUpInside (object sender, EventArgs e) {

@@ -1,6 +1,7 @@
 ﻿using System;
 
 using Foundation;
+
 using UIKit;
 
 namespace TotemAppIos {
@@ -37,10 +38,7 @@ namespace TotemAppIos {
 			paddingHeigthBottom.Constant = lastItem ? 15 : 0;
 
 			lblIndent.Text = s;
-			if (fill)
-				imgBullet.Image = UIImage.FromBundle ("SharedAssets/rsz_black_circle");
-			else
-				imgBullet.Image = UIImage.FromBundle ("SharedAssets/rsz_white_circle");
+			imgBullet.Image = fill ? UIImage.FromBundle ("SharedAssets/rsz_black_circle") : UIImage.FromBundle ("SharedAssets/rsz_white_circle");
 			
 		}
 

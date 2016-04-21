@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Xml;
 
 using Foundation;
+
 using UIKit;
+
 using ServiceStack.Text;
 
 namespace TotemAppIos {

@@ -1,17 +1,18 @@
 ﻿using System;
+using System.Drawing;
 
 using Foundation;
+
 using TotemAppCore;
+
 using UIKit;
-using System.Drawing;
-using System.Xml;
 
 namespace TotemAppIos {
 	public partial class TotemDetailViewController : BaseViewController {
 		public TotemDetailViewController () : base ("TotemDetailViewController", null) {}
 
 		bool add;
-		bool hidden = false;
+		bool hidden;
 
 		public override void ViewDidLoad () {
 			base.ViewDidLoad ();
@@ -109,10 +110,7 @@ namespace TotemAppIos {
 
 			imgLine.Image = UIImage.FromBundle ("SharedAssets/Lijn_bold");
 			imgReturn.Image = UIImage.FromBundle ("SharedAssets/arrow_back_white");
-			if(hidden)
-				imgHidden.Image = UIImage.FromBundle ("SharedAssets/visibility_white");
-			else
-				imgHidden.Image = UIImage.FromBundle ("SharedAssets/visibility_off_white");
+			imgHidden.Image = hidden ? UIImage.FromBundle ("SharedAssets/visibility_white") : UIImage.FromBundle ("SharedAssets/visibility_off_white");
 		}
 
 		void btnHiddenTouchUpInside (object sender, EventArgs e) {

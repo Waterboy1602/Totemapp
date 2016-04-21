@@ -1,7 +1,9 @@
 ﻿using System;
 
 using Foundation;
+
 using TotemAppCore;
+
 using UIKit;
 
 namespace TotemAppIos {
@@ -40,7 +42,7 @@ namespace TotemAppIos {
 		class MyBemCheckBoxDelegate : BemCheckBoxDelegate {
 			ProfielTotemsTableViewCell cell;
 
-			public MyBemCheckBoxDelegate(ProfielTotemsTableViewCell cell) : base() {
+			public MyBemCheckBoxDelegate(ProfielTotemsTableViewCell cell) {
 				this.cell = cell;
 			}
 

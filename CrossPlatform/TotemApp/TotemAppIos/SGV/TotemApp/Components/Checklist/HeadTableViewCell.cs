@@ -1,6 +1,7 @@
 ﻿using System;
 
 using Foundation;
+
 using UIKit;
 
 namespace TotemAppIos {
@@ -27,10 +28,7 @@ namespace TotemAppIos {
 		public HeadTableViewCell (IntPtr handle) : base (handle) {}
 
 		public override void setData(string s, bool firstItem, bool lastItem, bool fill) {
-			if (firstItem)
-				heightPadding.Constant = 16;
-			else
-				heightPadding.Constant = 0;
+			heightPadding.Constant = firstItem ? 16 : 0;
 			
 			lblHead.Text = s;
 		}

@@ -19,7 +19,6 @@ namespace TotemAppIos {
 			_mainVC = new MainViewController();
 			_navigationController = new UINavigationController(_mainVC);
 			Window.RootViewController = _navigationController;
-			// Window.RootViewController = myViewController;
 
 			// make the window visible
 			Window.MakeKeyAndVisible ();

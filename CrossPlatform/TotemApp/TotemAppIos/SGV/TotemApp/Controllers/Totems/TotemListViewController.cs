@@ -1,7 +1,9 @@
 ﻿using System;
 
 using CoreGraphics;
+
 using UIKit;
+
 using TotemAppCore;
 
 namespace TotemAppIos {

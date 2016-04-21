@@ -1,13 +1,15 @@
 ﻿using System;
 
 using UIKit;
+
 using Foundation;
+
 using ServiceStack.Text;
 
 namespace TotemAppIos {
 	public partial class TinderEigenschappenViewController : BaseViewController	{
 
-		int eigenschapCount = 0;
+		int eigenschapCount;
 		NSUserDefaults userDefs;
 
 		public TinderEigenschappenViewController () : base ("TinderEigenschappenViewController", null) {}

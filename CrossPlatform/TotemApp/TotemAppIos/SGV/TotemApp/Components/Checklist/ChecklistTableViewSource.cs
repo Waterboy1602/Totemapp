@@ -4,7 +4,9 @@ using System.Drawing;
 using System.Linq;
 
 using CoreAnimation;
+
 using Foundation;
+
 using UIKit;
 
 namespace TotemAppIos {
@@ -104,10 +106,7 @@ namespace TotemAppIos {
 		}
 
 		public override nint RowsInSection (UITableView tableview, nint section) {
-			if (section >= 0)
-				return xmlDict [sectionTitles (tableview) [section]].Count ();
-			else
-				return 0;
+			return section >= 0 ? xmlDict [sectionTitles (tableview) [section]].Count () : 0;
 		}
 
 		public override nint NumberOfSections (UITableView tableView) {
