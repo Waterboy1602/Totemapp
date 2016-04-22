@@ -17,6 +17,7 @@ namespace TotemAppIos {
 			btnEigenschappen.TouchUpInside += btnEigenschappenTouchUpInside;
 			btnProfielen.TouchUpInside += btnProfielenTouchUpInside;
 			btnChecklist.TouchUpInside += BtnChecklistTouchUpInside;
+			btnTip.TouchUpInside += ShowTipPopup;
 
 			//long press on title
 			var uitgr = new UILongPressGestureRecognizer(TapTitle);
@@ -50,12 +51,26 @@ namespace TotemAppIos {
 			}
 		}
 
+		void ShowTipPopup(object sender, EventArgs e) {
+			var alertView = new CRSAlertView {
+				Title = "Tip",
+				Message = _appController.GetRandomTip (),
+				Image = UIImage.FromBundle("SharedAssets/Lamp"),
+				Actions = new CRSAlertAction[] { new CRSAlertAction { Text = "OK", DidSelect = (alert) => {
+							SetNeedsStatusBarAppearanceUpdate ();
+						} }}
+					
+			};
+			alertView.Show();
+		}
+
 		public override void ViewWillDisappear (bool animated) {
 			base.ViewWillDisappear (animated);
 			btnTotems.TouchUpInside -= btnTotemsTouchUpInsideHandler;
 			btnEigenschappen.TouchUpInside -= btnEigenschappenTouchUpInside;
 			btnProfielen.TouchUpInside -= btnProfielenTouchUpInside;
 			btnChecklist.TouchUpInside -= BtnChecklistTouchUpInside;
+			btnTip.TouchUpInside -= ShowTipPopup;
 
 			_appController.NavigationController.GotoTotemListEvent -= gotoTotemListHandler;
 			_appController.NavigationController.GotoEigenschapListEvent -= gotoEigenschapListHandler;

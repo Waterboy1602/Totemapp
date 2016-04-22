@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="CRSAlertView">
+  <name>CRSAlertView</name>
+  <publisher>Curse, Inc.</publisher>
+  <publisher-url>http://www.curseinc.com</publisher-url>
+  <version>1.0.0</version>
+  <summary>A custom, beautiful substitute to UIAlertView</summary>
+  <screenshots>
+    <img src="screenshots/sample.png" title="sample" />
+  </screenshots>
+  <samples>
+    <sample id="CRSAlertViewSample">
+      <name>iOS Sample</name>
+      <summary>iOS Sample</summary>
+    </sample>
+  </samples>
+</component>

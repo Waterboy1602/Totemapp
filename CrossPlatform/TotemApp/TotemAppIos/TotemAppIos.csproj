@@ -196,6 +196,7 @@
     <Compile Include="SGV\TotemApp\Controllers\TinderEigenschappen\TinderEigenschappenViewController.designer.cs">
       <DependentUpon>TinderEigenschappenViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="SGV\CRSAlert\CRSAlertView.cs" />
   </ItemGroup>
   <Import Project="..\TotemAppCore\TotemAppCore.projitems" Label="Shared" Condition="Exists('..\TotemAppCore\TotemAppCore.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -219,6 +220,7 @@
     <Folder Include="SGV\TotemApp\Controllers\TotemsResult\" />
     <Folder Include="SGV\TotemApp\Components\TotemsResult\" />
     <Folder Include="SGV\TotemApp\Controllers\TinderEigenschappen\" />
+    <Folder Include="SGV\CRSAlert\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\TotemAppCore\SharedAssets\totems.sqlite">

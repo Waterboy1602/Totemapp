@@ -22,6 +22,9 @@ namespace TotemAppIos
 		UIKit.UIButton btnProfielen { get; set; }
 
 		[Outlet]
+		UIKit.UIButton btnTip { get; set; }
+
+		[Outlet]
 		UIKit.UIButton btnTotems { get; set; }
 
 		[Outlet]
@@ -65,14 +68,14 @@ namespace TotemAppIos
 				btnProfielen = null;
 			}
 
+			if (btnTip != null) {
+				btnTip.Dispose ();
+				btnTip = null;
+			}
+
 			if (btnTotems != null) {
 				btnTotems.Dispose ();
 				btnTotems = null;
-			}
-
-			if (lblInfo != null) {
-				lblInfo.Dispose ();
-				lblInfo = null;
 			}
 
 			if (imgMountain != null) {
@@ -93,6 +96,11 @@ namespace TotemAppIos
 			if (lblEigenschappenButton != null) {
 				lblEigenschappenButton.Dispose ();
 				lblEigenschappenButton = null;
+			}
+
+			if (lblInfo != null) {
+				lblInfo.Dispose ();
+				lblInfo = null;
 			}
 
 			if (lblProfielenButton != null) {
