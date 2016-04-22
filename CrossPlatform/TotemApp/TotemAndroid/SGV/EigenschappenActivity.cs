@@ -59,8 +59,8 @@ namespace TotemAndroid {
 			mToastLong = Toast.MakeText (this, "", ToastLength.Long);
 
             currProfiel = _appController.CurrentProfiel;
-            eigenschappenList = _appController.Eigenschappen;
             IsProfileNull = (currProfiel == null);
+            eigenschappenList = _appController.Eigenschappen;
 
 			//listener to pass to EigenschapAdapter containing context
 			mListener = new MyOnCheckBoxClickListener (this);
@@ -102,8 +102,10 @@ namespace TotemAndroid {
 			_appController.UpdateCounter += updateCounter;
 			_appController.ShowSelected += ShowSelectedOnly;
 			_appController.NavigationController.GotoTotemResultEvent+= StartResultTotemsActivity;
-            string ser;
 
+            IsProfileNull = (currProfiel == null);
+
+            string ser;
             if (IsProfileNull)
                 ser = sharedPrefs.GetString("eigenschappen", null);
             else
@@ -219,7 +221,7 @@ namespace TotemAndroid {
 			MenuInflater.Inflate(Resource.Menu.EigenschapSelectieMenu, menu);
 			IMenuItem item = menu.FindItem (Resource.Id.full);
 			item.SetVisible (false);
-            if(IsProfileNull) {
+            if(!IsProfileNull) {
                 IMenuItem save = menu.FindItem(Resource.Id.saveSelection);
                 save.SetVisible(false);
             }
