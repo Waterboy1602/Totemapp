@@ -18,6 +18,9 @@ namespace TotemAppIos {
 		bool isSearching;
 		bool isShowingSelected;
 
+		bool IsProfileNull;
+		Profiel currProfiel;
+
 		NSUserDefaults userDefs;
 
 		public EigenschappenViewController () : base ("EigenschappenViewController", null) {}
@@ -29,13 +32,21 @@ namespace TotemAppIos {
 
 			UIApplication.Notifications.ObserveDidEnterBackground ((sender, args) => {
 				var ser = JsonSerializer.SerializeToString (_appController.Eigenschappen);
-				userDefs.SetString (ser, "eigenschappen");
-				userDefs.Synchronize ();
+				if (IsProfileNull) {
+					userDefs.SetString (ser, "eigenschappen");
+					userDefs.Synchronize ();
+				} else {
+					_appController.AddOrUpdateEigenschappenSer (currProfiel.name, ser);
+				}
 			});
 		}
 
 		public override void ViewDidAppear (bool animated) {
 			base.ViewDidAppear (animated);
+
+			currProfiel = _appController.CurrentProfiel;
+			IsProfileNull = (currProfiel == null);
+
 			btnReturn.TouchUpInside+= btnReturnTouchUpInside;
 			btnMore.TouchUpInside+= btnMoreTouchUpInside;
 			btnSearch.TouchUpInside+= btnSearchTouchUpInside;
@@ -46,12 +57,17 @@ namespace TotemAppIos {
 
 			_appController.NavigationController.GotoTotemResultEvent += gotoResultListHandler;
 
-			var ser = userDefs.StringForKey ("eigenschappen");
+			string ser;
+
+			if (IsProfileNull)
+				ser = userDefs.StringForKey ("eigenschappen");
+			else
+				ser = _appController.GetSerFromProfile (currProfiel.name);
+			
 			if (ser != null) {
 				_appController.Eigenschappen = JsonSerializer.DeserializeFromString <List<Eigenschap>> (ser);
 				(tblEigenschappen.Source as EigenschappenTableViewSource).Eigenschappen = _appController.Eigenschappen;
-
-			}				
+			}
 
 			tblEigenschappen.ReloadSections (new NSIndexSet (0), UITableViewRowAnimation.None);
 			tblEigenschappen.ScrollRectToVisible (new CGRect(0,0,1,1), false);
@@ -71,12 +87,16 @@ namespace TotemAppIos {
 			_appController.NavigationController.GotoTotemResultEvent -= gotoResultListHandler;
 
 			var ser = JsonSerializer.SerializeToString (_appController.Eigenschappen);
-			userDefs.SetString (ser, "eigenschappen");
-			userDefs.Synchronize ();
+			if (IsProfileNull) {
+				userDefs.SetString (ser, "eigenschappen");
+				userDefs.Synchronize ();
+			} else {
+				_appController.AddOrUpdateEigenschappenSer (currProfiel.name, ser);
+			}
 		}
 
 		public override void setData() {
-			lblTitle.Text = "Eigenschappen";
+			lblTitle.Text = (_appController.CurrentProfiel == null) ? "Eigenschappen" : "Selectie " + _appController.CurrentProfiel.name;
 
 			imgReturn.Image = UIImage.FromBundle ("SharedAssets/arrow_back_white");
 			imgSearch.Image = UIImage.FromBundle ("SharedAssets/search_white");
@@ -118,6 +138,8 @@ namespace TotemAppIos {
 			actionSheetAlert.AddAction(UIAlertAction.Create("Reset selectie",UIAlertActionStyle.Default, action => resetSelections ()));
 			actionSheetAlert.AddAction(UIAlertAction.Create(isShowingSelected?"Toon volledige lijst":"Toon enkel selectie",UIAlertActionStyle.Default, action => toggleShowSelected ()));
 			actionSheetAlert.AddAction(UIAlertAction.Create("Individuele weergave",UIAlertActionStyle.Default, action => gotoTinderHandler ()));
+			if(IsProfileNull) 
+				actionSheetAlert.AddAction(UIAlertAction.Create("Selectie opslaan",UIAlertActionStyle.Default, action => SaveSelectionPopup ()));
 			actionSheetAlert.AddAction(UIAlertAction.Create("Annuleer",UIAlertActionStyle.Cancel, null));
 
 			// Required for iPad - You must specify a source for the Action Sheet since it is
@@ -130,6 +152,65 @@ namespace TotemAppIos {
 			}
 				
 			PresentViewController(actionSheetAlert,true,null);
+		}
+
+		void SaveSelectionPopup() {
+			UIAlertController actionSheetAlert = UIAlertController.Create (null, null, UIAlertControllerStyle.ActionSheet);
+			foreach (Profiel p in _appController.DistinctProfielen) {
+				actionSheetAlert.AddAction (UIAlertAction.Create (p.name, UIAlertActionStyle.Default, action => saveSelectionToProfile (p.name)));
+			}
+
+			actionSheetAlert.AddAction (UIAlertAction.Create ("Nieuw profiel", UIAlertActionStyle.Default, action => addProfileDialog ()));
+
+			actionSheetAlert.AddAction (UIAlertAction.Create ("Annuleer", UIAlertActionStyle.Cancel, null));
+
+			// Required for iPad - You must specify a source for the Action Sheet since it is
+			// displayed as a popover
+			UIPopoverPresentationController presentationPopover = actionSheetAlert.PopoverPresentationController;
+			if (presentationPopover != null) {
+				presentationPopover.SourceView = imgMore;
+				presentationPopover.SourceRect = new RectangleF(0, 0, 25, 25);
+				presentationPopover.PermittedArrowDirections = UIPopoverArrowDirection.Up;
+			}
+
+			PresentViewController (actionSheetAlert, true, null);
+		}
+
+		void saveSelectionToProfile(string name) {
+			_appController.AddOrUpdateEigenschappenSer (name, JsonSerializer.SerializeToString (_appController.Eigenschappen));
+		}
+
+		void addProfileDialog () {
+			var textInputAlertController = UIAlertController.Create("Nieuw profiel", null, UIAlertControllerStyle.Alert);
+
+			textInputAlertController.AddTextField(textField => {
+				textField.AutocapitalizationType = UITextAutocapitalizationType.Words;
+				textField.Placeholder = "Naam";
+			});
+
+			var cancelAction = UIAlertAction.Create ("Annuleer", UIAlertActionStyle.Cancel, alertAction => Console.WriteLine ());
+			var okayAction = UIAlertAction.Create ("OK", UIAlertActionStyle.Default, alertAction => addProfile(textInputAlertController.TextFields[0].Text));
+
+			textInputAlertController.AddAction(cancelAction);
+			textInputAlertController.AddAction(okayAction);
+
+			PresentViewController(textInputAlertController, true, null);
+		}
+
+		//handles wrong input and adds profile
+		void addProfile(string name) {
+			if (_appController.GetProfielNamen ().Contains (name)) {
+				var okAlertController = UIAlertController.Create (null, "Profiel " + name + " bestaat al", UIAlertControllerStyle.Alert);
+				okAlertController.AddAction (UIAlertAction.Create ("Ok", UIAlertActionStyle.Default, null));
+				PresentViewController (okAlertController, true, null);
+			} else if(name.Replace("'", "").Replace(" ", "").Equals("")) {
+				var okAlertController = UIAlertController.Create (null, "Ongeldige naam", UIAlertControllerStyle.Alert);
+				okAlertController.AddAction (UIAlertAction.Create ("Ok", UIAlertActionStyle.Default, null));
+				PresentViewController (okAlertController, true, null);	
+			} else {
+				_appController.AddProfile (name);
+				_appController.AddOrUpdateEigenschappenSer (name, JsonSerializer.SerializeToString (_appController.Eigenschappen));
+			}
 		}
 
 		//toggles searchbar and handkes visibility, keyboard,...

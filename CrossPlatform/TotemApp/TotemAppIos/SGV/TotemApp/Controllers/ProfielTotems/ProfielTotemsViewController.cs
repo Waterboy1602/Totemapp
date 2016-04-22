@@ -4,18 +4,21 @@ using System.Collections.Generic;
 using TotemAppCore;
 
 using UIKit;
+using System.Drawing;
 
 namespace TotemAppIos {
 	public partial class ProfielTotemsViewController : BaseViewController {
 
 		List<Totem> totems;
+		Profiel currProfiel;
 
 		public ProfielTotemsViewController () : base ("ProfielTotemsViewController", null) {}
 
 		public override void ViewDidAppear (bool animated) {
 			base.ViewDidAppear (animated);
+			currProfiel = _appController.CurrentProfiel;
 			if (tblTotems.Source != null) {
-				var list = _appController.GetTotemsFromProfiel (_appController.CurrentProfiel.name);
+				var list = _appController.GetTotemsFromProfiel (currProfiel.name);
 				var empty = (list.Count == 0);
 				tblTotems.Hidden = empty;
 				btnDelete.Hidden = empty;
@@ -25,16 +28,20 @@ namespace TotemAppIos {
 
 			btnReturn.TouchUpInside += btnReturnTouchUpInside;
 			btnDelete.TouchUpInside += deleteProfileTotems;
+			btnMore.TouchUpInside += btnMoreTouchUpInside;
 
 			_appController.NavigationController.GotoTotemDetailEvent += gotoTotemDetailHandler;
+			_appController.NavigationController.GotoEigenschapListEvent += gotoEigenschappenListHandler;
 		}
 
 		public override void ViewWillDisappear (bool animated) {
 			base.ViewWillDisappear (animated);
 			btnReturn.TouchUpInside -= btnReturnTouchUpInside;
 			btnDelete.TouchUpInside -= deleteProfileTotems;
+			btnMore.TouchUpInside -= btnMoreTouchUpInside;
 
 			_appController.NavigationController.GotoTotemDetailEvent -= gotoTotemDetailHandler;
+			_appController.NavigationController.GotoEigenschapListEvent -= gotoEigenschappenListHandler;
 		}
 
 		public override void setData() {
@@ -42,6 +49,7 @@ namespace TotemAppIos {
 
 			imgReturn.Image = UIImage.FromBundle ("SharedAssets/arrow_back_white");
 			imgDelete.Image = UIImage.FromBundle ("SharedAssets/delete_white");
+			imgMore.Image = UIImage.FromBundle ("SharedAssets/more_vert_white");
 
 			totems = _appController.GetTotemsFromProfiel (_appController.CurrentProfiel.name);
 			tblTotems.Source = new ProfielTotemsTableViewSource (totems);
@@ -54,9 +62,36 @@ namespace TotemAppIos {
 			//empty view at footer to prevent empty cells at the bottom
 			tblTotems.TableFooterView = new UIView ();
 		}
+
+		//creates options menu
+		void btnMoreTouchUpInside (object sender, EventArgs e) {
+			UIAlertController actionSheetAlert = UIAlertController.Create(null,null,UIAlertControllerStyle.ActionSheet);
+
+			actionSheetAlert.AddAction(UIAlertAction.Create("Selectie weergeven",UIAlertActionStyle.Default, action => ViewSelection ()));
+			actionSheetAlert.AddAction(UIAlertAction.Create("Annuleer",UIAlertActionStyle.Cancel, null));
+
+			// Required for iPad - You must specify a source for the Action Sheet since it is
+			// displayed as a popover
+			UIPopoverPresentationController presentationPopover = actionSheetAlert.PopoverPresentationController;
+			if (presentationPopover!=null) {
+				presentationPopover.SourceView = imgMore;
+				presentationPopover.SourceRect = new RectangleF(0, 0, 25, 25);
+				presentationPopover.PermittedArrowDirections = UIPopoverArrowDirection.Up;
+			}
+
+			PresentViewController(actionSheetAlert,true,null);
+		}
+
+		void ViewSelection() {
+			_appController.ProfileEigenschappenSelected (_appController.CurrentProfiel.name);
+		}
 			
 		void gotoTotemDetailHandler() {
 			NavigationController.PushViewController (new TotemDetailViewController(), true);
+		}
+
+		void gotoEigenschappenListHandler() {
+			NavigationController.PushViewController (new EigenschappenViewController(), true);
 		}
 
 		//updates data of TableView and handles necessary UI changes

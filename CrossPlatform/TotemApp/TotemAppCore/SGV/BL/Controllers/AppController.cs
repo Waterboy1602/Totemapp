@@ -122,6 +122,8 @@ namespace TotemAppCore {
 
 		public Dictionary<Totem, int> TotemEigenschapDict { get; set; }
 
+		public bool ShowAdd { get; set; }
+
 
 		/* ------------------------------ DATABASE ------------------------------ */
 
@@ -254,14 +256,15 @@ namespace TotemAppCore {
 
 		//sets current totem and resets current profile
 		public void TotemSelected(string totemID) {
-			setCurrentProfile (null);
 			setCurrentTotem (totemID);
+			ShowAdd = true;
 			_navigationController.GoToTotemDetail ();
 		}
 
 		//sets current profile
 		public void ProfileSelected(string profileName) {
 			setCurrentProfile (profileName);
+			ShowAdd = false;
 			_navigationController.GoToProfileTotemList ();
 		}
 
@@ -269,6 +272,7 @@ namespace TotemAppCore {
 		public void ProfileTotemSelected(string profileName, string totemID) {
 			setCurrentProfile (profileName);
 			setCurrentTotem (totemID);
+			ShowAdd = false;
 			detailMode = DetailMode.PROFILE;
 			_navigationController.GoToTotemDetail ();
 		}
@@ -276,12 +280,14 @@ namespace TotemAppCore {
         //sets current totem and current profile
         public void ProfileEigenschappenSelected(string profileName) {
             setCurrentProfile(profileName);
+			ShowAdd = true;
             _navigationController.GoToEigenschapList();
         }
 
         public void CalculateResultlist(List<Eigenschap> checkboxList) {
 			FillAndSortDict (checkboxList);
 			detailMode = DetailMode.RESULT;
+			ShowAdd = true;
 			_navigationController.GoToTotemResult ();
 		}
 

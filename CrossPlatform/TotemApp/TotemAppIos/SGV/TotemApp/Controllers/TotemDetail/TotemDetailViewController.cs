@@ -62,7 +62,7 @@ namespace TotemAppIos {
 			lblTitle.Text = "Beschrijving";
 
 			//shows button depending on action
-			add = (_appController.CurrentProfiel == null);
+			add = _appController.ShowAdd;
 			imgAction.Image = add ? UIImage.FromBundle ("SharedAssets/add_white") : UIImage.FromBundle ("SharedAssets/delete_white");
 
 			if (hidden) {

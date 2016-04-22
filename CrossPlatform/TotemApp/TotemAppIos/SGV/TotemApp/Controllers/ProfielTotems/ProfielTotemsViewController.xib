@@ -16,8 +16,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfielTotemsViewController">
             <connections>
                 <outlet property="btnDelete" destination="R4a-BE-kt0" id="sg2-VT-YBU"/>
+                <outlet property="btnMore" destination="VbI-qn-xvx" id="SEe-gJ-Kcu"/>
                 <outlet property="btnReturn" destination="Z2i-az-SXT" id="UVu-pJ-n52"/>
                 <outlet property="imgDelete" destination="UsR-i7-F6F" id="094-O4-mcO"/>
+                <outlet property="imgMore" destination="ZMb-zb-ZGQ" id="MEB-cr-ffi"/>
                 <outlet property="imgReturn" destination="J1f-CG-ZGh" id="boH-XR-eEO"/>
                 <outlet property="lblTitle" destination="2tI-99-s8R" id="Sjl-q5-3Vf"/>
                 <outlet property="tblTotems" destination="tFq-R7-nVm" id="BAc-U1-Yxj"/>
@@ -56,10 +58,10 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R4a-BE-kt0" customClass="UIButton">
-                            <rect key="frame" x="530" y="0.0" width="70" height="50"/>
+                            <rect key="frame" x="500" y="0.0" width="50" height="50"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UsR-i7-F6F">
-                                    <rect key="frame" x="23" y="13" width="24" height="24"/>
+                                    <rect key="frame" x="13" y="13" width="24" height="24"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="24" id="KlF-LJ-Y0Y"/>
                                         <constraint firstAttribute="height" constant="24" id="rsl-20-hAO"/>
@@ -67,34 +69,53 @@
                                 </imageView>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="UsR-i7-F6F" firstAttribute="centerX" secondItem="R4a-BE-kt0" secondAttribute="centerX" id="Lde-p0-rfF"/>
-                                <constraint firstItem="UsR-i7-F6F" firstAttribute="centerY" secondItem="R4a-BE-kt0" secondAttribute="centerY" id="WuC-QG-49d"/>
-                                <constraint firstAttribute="width" constant="70" id="mbY-FI-Aht"/>
+                                <constraint firstItem="UsR-i7-F6F" firstAttribute="centerX" secondItem="R4a-BE-kt0" secondAttribute="centerX" id="Q5E-xU-DyC"/>
+                                <constraint firstAttribute="width" constant="50" id="mbY-FI-Aht"/>
+                                <constraint firstItem="UsR-i7-F6F" firstAttribute="centerY" secondItem="R4a-BE-kt0" secondAttribute="centerY" id="sVv-Va-1Ew"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2tI-99-s8R">
-                            <rect key="frame" x="75" y="12" width="450" height="26"/>
+                            <rect key="frame" x="75" y="13" width="49" height="24"/>
                             <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="20"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VbI-qn-xvx" customClass="UIButton">
+                            <rect key="frame" x="550" y="0.0" width="50" height="50"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZMb-zb-ZGQ">
+                                    <rect key="frame" x="13" y="13" width="24" height="24"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="24" id="0ik-f3-YZ0"/>
+                                        <constraint firstAttribute="height" constant="24" id="RXv-vx-P3i"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="ZMb-zb-ZGQ" firstAttribute="centerX" secondItem="VbI-qn-xvx" secondAttribute="centerX" id="KaH-c2-d3T"/>
+                                <constraint firstItem="ZMb-zb-ZGQ" firstAttribute="centerY" secondItem="VbI-qn-xvx" secondAttribute="centerY" id="gQv-VK-s2N"/>
+                                <constraint firstAttribute="width" constant="50" id="zvW-AO-k4B"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" red="0.0" green="0.36078431370000003" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="R4a-BE-kt0" secondAttribute="trailing" id="He4-Fl-1it"/>
                         <constraint firstItem="2tI-99-s8R" firstAttribute="centerY" secondItem="4kq-0H-HOC" secondAttribute="centerY" id="IIQ-cg-otr"/>
+                        <constraint firstAttribute="trailing" secondItem="VbI-qn-xvx" secondAttribute="trailing" id="LEA-Qh-3jw"/>
+                        <constraint firstItem="VbI-qn-xvx" firstAttribute="top" secondItem="4kq-0H-HOC" secondAttribute="top" id="VNM-Zg-7iu"/>
+                        <constraint firstAttribute="bottom" secondItem="VbI-qn-xvx" secondAttribute="bottom" id="Wgy-Yz-aZS"/>
                         <constraint firstItem="R4a-BE-kt0" firstAttribute="top" secondItem="4kq-0H-HOC" secondAttribute="top" id="ZKl-cY-hdY"/>
                         <constraint firstItem="R4a-BE-kt0" firstAttribute="height" secondItem="4kq-0H-HOC" secondAttribute="height" id="beA-Y3-Loz"/>
                         <constraint firstAttribute="height" constant="50" id="bzM-Bo-fDB"/>
                         <constraint firstItem="Z2i-az-SXT" firstAttribute="height" secondItem="4kq-0H-HOC" secondAttribute="height" id="dbz-hp-5dd"/>
-                        <constraint firstItem="R4a-BE-kt0" firstAttribute="leading" secondItem="2tI-99-s8R" secondAttribute="trailing" constant="5" id="tLx-3g-woY"/>
+                        <constraint firstItem="VbI-qn-xvx" firstAttribute="leading" secondItem="R4a-BE-kt0" secondAttribute="trailing" id="rlu-3S-Jo9"/>
                         <constraint firstItem="Z2i-az-SXT" firstAttribute="top" secondItem="4kq-0H-HOC" secondAttribute="top" id="v0V-hv-lT6"/>
                         <constraint firstItem="2tI-99-s8R" firstAttribute="leading" secondItem="Z2i-az-SXT" secondAttribute="trailing" constant="5" id="vHR-fV-cMT"/>
                         <constraint firstItem="Z2i-az-SXT" firstAttribute="leading" secondItem="4kq-0H-HOC" secondAttribute="leading" id="yoI-Z5-BwN"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Geen totems om weer te geven" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="izh-zJ-vYu">
-                    <rect key="frame" x="185" y="85" width="231" height="22"/>
+                    <rect key="frame" x="181" y="85" width="239" height="20"/>
                     <fontDescription key="fontDescription" name="DINPro-Light" family="DINPro" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
