@@ -30,12 +30,10 @@ namespace TotemAndroid {
 			var dialogView = inflater.Inflate (Resource.Layout.TipPopUp, null);
 
 			if (dialogView != null) {
-				weergeven_checkbox = dialogView.FindViewById<CheckBox> (Resource.Id.checkboxWeergeven);
 				tip = dialogView.FindViewById<TextView> (Resource.Id.tip);
 				tip.Text = _appController.GetRandomTip ();
 
 				builder.SetView(dialogView);
-				builder.SetPositiveButton("Volgende tip", HandlePositiveButtonClick);
 				builder.SetNegativeButton("Ok", HandleNegativeButtonClick);
 			}
 				 
@@ -44,16 +42,8 @@ namespace TotemAndroid {
 			return dialog;
 		}
 
-		void HandlePositiveButtonClick(object sender, DialogClickEventArgs e) {
-			//var dialog = TipDialog.NewInstance(context);
-			//dialog.Show(FragmentManager, "a");
-		}
-
 		void HandleNegativeButtonClick(object sender, DialogClickEventArgs e) {
 			var dialog = (AlertDialog) sender;
-			if (weergeven_checkbox.Checked)
-				_appController.ChangePreference ("tips", "false");
-
 			dialog.Dismiss ();
 		}
 	}
