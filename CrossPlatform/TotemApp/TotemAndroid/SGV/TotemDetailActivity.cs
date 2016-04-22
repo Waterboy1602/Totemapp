@@ -60,7 +60,7 @@ namespace TotemAndroid {
 
                 title.Text = "Beschrijving";
 
-                if (_appController.CurrentProfiel != null) {
+                if (!_appController.ShowAdd) {
                     action = base.ActionBarDelete;
                     action.Click += (sender, e) => RemoveFromProfile(_appController.CurrentProfiel.name);
                 } else {

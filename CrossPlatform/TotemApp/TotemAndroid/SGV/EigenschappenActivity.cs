@@ -102,20 +102,16 @@ namespace TotemAndroid {
 			_appController.UpdateCounter += updateCounter;
 			_appController.ShowSelected += ShowSelectedOnly;
 			_appController.NavigationController.GotoTotemResultEvent+= StartResultTotemsActivity;
+            string ser;
 
-            if (IsProfileNull) {
-                //update eigenschappenlist from sharedprefs
-                var ser = sharedPrefs.GetString("eigenschappen", "error");
-                if (!ser.Equals("error")) {
-                    _appController.Eigenschappen = JsonSerializer.DeserializeFromString<List<Eigenschap>>(ser);
-                    eigenschapAdapter.UpdateData(_appController.Eigenschappen);
-                }
-            } else {
-                var ser = _appController.GetSerFromProfile(currProfiel.name);
-                if(ser != null) {
-                    _appController.Eigenschappen = JsonSerializer.DeserializeFromString<List<Eigenschap>>(ser);
-                    eigenschapAdapter.UpdateData(_appController.Eigenschappen);
-                }
+            if (IsProfileNull)
+                ser = sharedPrefs.GetString("eigenschappen", null);
+            else
+                ser = _appController.GetSerFromProfile(currProfiel.name);
+            
+            if (ser != null) {
+                _appController.Eigenschappen = JsonSerializer.DeserializeFromString<List<Eigenschap>>(ser);
+                eigenschapAdapter.UpdateData(_appController.Eigenschappen);
             }
 
             eigenschapAdapter.NotifyDataSetChanged ();
@@ -135,15 +131,14 @@ namespace TotemAndroid {
 			_appController.UpdateCounter -= updateCounter;
 			_appController.ShowSelected -= ShowSelectedOnly;
 			_appController.NavigationController.GotoTotemResultEvent-= StartResultTotemsActivity;
+            var ser = JsonSerializer.SerializeToString(_appController.Eigenschappen);
 
             if (IsProfileNull) {
                 //save eigenschappenlist state in sharedprefs
                 var editor = sharedPrefs.Edit();
-                var ser = JsonSerializer.SerializeToString(_appController.Eigenschappen);
                 editor.PutString("eigenschappen", ser);
                 editor.Commit();
             } else {
-                var ser = JsonSerializer.SerializeToString(_appController.Eigenschappen);
                 _appController.AddOrUpdateEigenschappenSer(currProfiel.name, ser);
             }
 		}
@@ -224,6 +219,10 @@ namespace TotemAndroid {
 			MenuInflater.Inflate(Resource.Menu.EigenschapSelectieMenu, menu);
 			IMenuItem item = menu.FindItem (Resource.Id.full);
 			item.SetVisible (false);
+            if(IsProfileNull) {
+                IMenuItem save = menu.FindItem(Resource.Id.saveSelection);
+                save.SetVisible(false);
+            }
 			return base.OnCreateOptionsMenu(menu);
 		}
 
