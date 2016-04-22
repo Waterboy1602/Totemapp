@@ -31,6 +31,9 @@ namespace TotemAppIos
 		UIKit.UIImageView imgMountain { get; set; }
 
 		[Outlet]
+		UIKit.UIImageView imgTip { get; set; }
+
+		[Outlet]
 		UIKit.UIImageView imgTotem { get; set; }
 
 		[Outlet]
@@ -61,6 +64,11 @@ namespace TotemAppIos
 			if (btnEigenschappen != null) {
 				btnEigenschappen.Dispose ();
 				btnEigenschappen = null;
+			}
+
+			if (imgTip != null) {
+				imgTip.Dispose ();
+				imgTip = null;
 			}
 
 			if (btnProfielen != null) {

@@ -56,10 +56,7 @@ namespace TotemAppIos {
 				Title = "Tip",
 				Message = _appController.GetRandomTip (),
 				Image = UIImage.FromBundle("SharedAssets/Lamp"),
-				Actions = new CRSAlertAction[] { new CRSAlertAction { Text = "OK", DidSelect = (alert) => {
-							SetNeedsStatusBarAppearanceUpdate ();
-						} }}
-					
+				Actions = new CRSAlertAction[] { new CRSAlertAction { Text = "OK", DidSelect = alert => SetNeedsStatusBarAppearanceUpdate () }}
 			};
 			alertView.Show();
 		}
@@ -90,6 +87,7 @@ namespace TotemAppIos {
 
 			imgMountain.Image = UIImage.FromBundle ("SharedAssets/Berg");
 			imgTotem.Image = UIImage.FromBundle ("SharedAssets/Totem");
+			imgTip.Image = UIImage.FromBundle ("SharedAssets/info_white");
 		}
 
 										//button click handlers//

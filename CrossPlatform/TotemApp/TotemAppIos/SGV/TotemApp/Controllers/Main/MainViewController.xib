@@ -25,6 +25,7 @@
                 <outlet property="btnTip" destination="bzr-xF-WmA" id="r2i-sm-zwq"/>
                 <outlet property="btnTotems" destination="hmI-en-E5o" id="K53-7W-chy"/>
                 <outlet property="imgMountain" destination="kOZ-7x-JkA" id="99r-fW-MCw"/>
+                <outlet property="imgTip" destination="tSn-0B-ha9" id="ZCA-Jk-Fq9"/>
                 <outlet property="imgTotem" destination="jfy-EN-nGt" id="ifM-zU-8ZJ"/>
                 <outlet property="lblChecklistButton" destination="Hyt-ea-aK4" id="7vm-Mo-F5w"/>
                 <outlet property="lblEigenschappenButton" destination="s3G-07-O78" id="pEt-ig-FBy"/>
@@ -44,9 +45,19 @@
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bzr-xF-WmA" customClass="UIButton">
                             <rect key="frame" x="10" y="10" width="40" height="30"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tSn-0B-ha9">
+                                    <rect key="frame" x="8" y="3" width="24" height="24"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="24" id="cUg-Fl-NGl"/>
+                                        <constraint firstAttribute="height" constant="24" id="vEP-mz-23R"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
                             <constraints>
+                                <constraint firstItem="tSn-0B-ha9" firstAttribute="centerY" secondItem="bzr-xF-WmA" secondAttribute="centerY" id="ec8-pv-ZqY"/>
                                 <constraint firstAttribute="width" constant="40" id="ngJ-bm-B1B"/>
+                                <constraint firstItem="tSn-0B-ha9" firstAttribute="centerX" secondItem="bzr-xF-WmA" secondAttribute="centerX" id="rsw-3N-peq"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mst-SE-cv7">
