@@ -35,7 +35,7 @@ namespace TotemAndroid {
             TextView title = FindViewById<TextView>(Resource.Id.totemapp_title);
             title.LongClick += Title_LongClick;
 
-            Button tip = FindViewById<Button>(Resource.Id.tst);
+            ImageButton tip = FindViewById<ImageButton>(Resource.Id.tst);
             tip.Click += (sender, e) => ShowTipDialog();
 
             LayoutInflater mInflater = LayoutInflater.From(this);
