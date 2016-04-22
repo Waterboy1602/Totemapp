@@ -24,7 +24,9 @@ namespace TotemAndroid {
 
 		Toast mToast;
 
-		Profiel profile;
+        TextView noTotems;
+
+        Profiel profile;
 
 		protected override void OnCreate (Bundle bundle) {
 			base.OnCreate (bundle);
@@ -59,10 +61,18 @@ namespace TotemAndroid {
 
                 title.Text = "Totems voor " + profile.name;
 
+                noTotems = FindViewById<TextView>(Resource.Id.empty_totem);
+
                 close.Click += HideDeleteTotems;
 
-                delete.Visibility = ViewStates.Visible;
                 delete.Click += ShowDeleteTotems;
+
+                if (totemList.Count == 0) {
+                    noTotems.Visibility = ViewStates.Visible;
+                    delete.Visibility = ViewStates.Gone;
+                } else {
+                    delete.Visibility = ViewStates.Visible;
+                }
             }
 		}
 			
@@ -70,13 +80,16 @@ namespace TotemAndroid {
 			base.OnResume ();
 
 			_appController.NavigationController.GotoTotemDetailEvent+= StartDetailActivity;
-		}
+            _appController.NavigationController.GotoEigenschapListEvent += gotoEigenschappenList;
+        }
 
 		protected override void OnPause ()	{
 			base.OnPause ();
 
 			_appController.NavigationController.GotoTotemDetailEvent-= StartDetailActivity;
-		}
+            _appController.NavigationController.GotoEigenschapListEvent -= gotoEigenschappenList;
+
+        }
 
 		void StartDetailActivity() {
 			var detailActivity = new Intent(this, typeof(TotemDetailActivity));
@@ -86,21 +99,56 @@ namespace TotemAndroid {
 		//update data from adapter on restart
 		protected override void OnRestart() {
 			base.OnRestart ();
-			totemList = _appController.GetTotemsFromProfiel (profile.name);
-			totemAdapter.UpdateData (totemList);
-			totemAdapter.NotifyDataSetChanged ();
+            UpdateList();
 		}
 
-		//get DetailActivity of the totem that is clicked
-		//ID is passed as parameter
-		void ShowDetail(object sender, AdapterView.ItemClickEventArgs e) {
+        void UpdateList() {
+            totemList = _appController.GetTotemsFromProfiel(profile.name);
+            if (totemList.Count == 0) {
+                noTotems.Visibility = ViewStates.Visible;
+                delete.Visibility = ViewStates.Gone;
+            } else {
+                noTotems.Visibility = ViewStates.Gone;
+                delete.Visibility = ViewStates.Visible;
+            }
+            totemAdapter.UpdateData(totemList);
+            totemAdapter.NotifyDataSetChanged();
+        }
+
+        //get DetailActivity of the totem that is clicked
+        //ID is passed as parameter
+        void ShowDetail(object sender, AdapterView.ItemClickEventArgs e) {
 			int pos = e.Position;
 			var item = totemAdapter.GetItemAtPosition(pos);
 
 			_appController.ProfileTotemSelected (profile.name, item.nid);
 		}
 
-		void DeleteTotem(object sender, AdapterView.ItemLongClickEventArgs e) {
+        //create options menu
+        public override bool OnCreateOptionsMenu(IMenu m) {
+            MenuInflater.Inflate(Resource.Menu.ProfielMenu, m);
+            return base.OnCreateOptionsMenu(m);
+        }
+
+        //options menu: add profile, view selection of view full list
+        public override bool OnOptionsItemSelected(IMenuItem item) {
+            switch (item.ItemId) {
+
+                //show selected only
+                case Resource.Id.showSelectionProfile:
+                    _appController.ProfileEigenschappenSelected(profile.name);
+                    return true;
+            }
+
+            return base.OnOptionsItemSelected(item);
+        }
+
+        void gotoEigenschappenList() {
+            var i = new Intent(this, typeof(EigenschappenActivity));
+            StartActivity(i);
+        }
+
+        void DeleteTotem(object sender, AdapterView.ItemLongClickEventArgs e) {
 			int pos = e.Position;
 			var item = totemAdapter.GetItemAtPosition(pos);
 
@@ -110,13 +158,7 @@ namespace TotemAndroid {
 				_appController.DeleteTotemFromProfile(item.nid, profile.name);
 				mToast.SetText(item.title + " verwijderd");
 				mToast.Show();
-				totemList = _appController.GetTotemsFromProfiel(profile.name);
-				if(totemList.Count == 0) {
-					base.OnBackPressed();
-				} else {
-					totemAdapter.UpdateData (totemList);
-					totemAdapter.NotifyDataSetChanged ();
-				}
+                UpdateList();
 			});
 
 			alert.SetNegativeButton ("Nee", (senderAlert, args) => {});
@@ -169,16 +211,10 @@ namespace TotemAndroid {
 					foreach (Totem t in totemList)
 						if (t.selected)
 							_appController.DeleteTotemFromProfile (t.nid, profile.name);
-				
-					totemList = _appController.GetTotemsFromProfiel (profile.name);
-					if (totemList.Count == 0) {
-						base.OnBackPressed ();
-					} else {
-						totemAdapter.UpdateData (totemList);
-						totemAdapter.NotifyDataSetChanged ();
-						HideDeleteTotems (sender, e);
-					}
-				});
+
+                    UpdateList();
+                    HideDeleteTotems(sender, e);
+                });
 
 				alert1.SetNegativeButton ("Nee", (senderAlert, args) => {});
 

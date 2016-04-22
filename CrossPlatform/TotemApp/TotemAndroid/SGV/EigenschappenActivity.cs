@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Text;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
@@ -15,7 +16,7 @@ using System.Threading.Tasks;
 using TotemAppCore;
 
 namespace TotemAndroid {
-    [Activity (Label = "Eigenschappen", WindowSoftInputMode = SoftInput.AdjustPan)]			
+    [Activity (Label = "Eigenschappen", WindowSoftInputMode = SoftInput.AdjustPan | SoftInput.StateAlwaysHidden)]			
 	public class EigenschappenActivity : BaseActivity {
 		EigenschapAdapter eigenschapAdapter;
 		ListView allEigenschappenListView;
@@ -38,8 +39,11 @@ namespace TotemAndroid {
 		MyOnCheckBoxClickListener mListener;
 
 		bool fullList = true;
+        bool IsProfileNull;
+        Profiel currProfiel;
 
-		protected override void OnCreate (Bundle bundle) {
+
+        protected override void OnCreate (Bundle bundle) {
 			base.OnCreate (bundle);
 
 			SetContentView (Resource.Layout.AllEigenschappen);
@@ -54,7 +58,9 @@ namespace TotemAndroid {
 			mToastShort = Toast.MakeText (this, "", ToastLength.Short);
 			mToastLong = Toast.MakeText (this, "", ToastLength.Long);
 
-			eigenschappenList = _appController.Eigenschappen;
+            currProfiel = _appController.CurrentProfiel;
+            eigenschappenList = _appController.Eigenschappen;
+            IsProfileNull = (currProfiel == null);
 
 			//listener to pass to EigenschapAdapter containing context
 			mListener = new MyOnCheckBoxClickListener (this);
@@ -63,8 +69,8 @@ namespace TotemAndroid {
 			allEigenschappenListView = FindViewById<ListView> (Resource.Id.all_eigenschappen_list);
 			allEigenschappenListView.Adapter = eigenschapAdapter;
 
-			title.Text = "Eigenschappen";
-			query.Hint = "Zoek eigenschap";
+            title.Text = IsProfileNull ? "Eigenschappen" : "Selectie " + currProfiel.name;
+            query.Hint = "Zoek eigenschap";
 
 			//hide keyboard when scrolling through list
 			allEigenschappenListView.SetOnTouchListener(new MyOnTouchListener(this, query));
@@ -97,11 +103,19 @@ namespace TotemAndroid {
 			_appController.ShowSelected += ShowSelectedOnly;
 			_appController.NavigationController.GotoTotemResultEvent+= StartResultTotemsActivity;
 
-            //update eigenschappenlist from sharedprefs
-            var ser = sharedPrefs.GetString("eigenschappen", "error");
-            if (!ser.Equals("error")) {
-                _appController.Eigenschappen = JsonSerializer.DeserializeFromString<List<Eigenschap>>(ser);
-                eigenschapAdapter.UpdateData(_appController.Eigenschappen);
+            if (IsProfileNull) {
+                //update eigenschappenlist from sharedprefs
+                var ser = sharedPrefs.GetString("eigenschappen", "error");
+                if (!ser.Equals("error")) {
+                    _appController.Eigenschappen = JsonSerializer.DeserializeFromString<List<Eigenschap>>(ser);
+                    eigenschapAdapter.UpdateData(_appController.Eigenschappen);
+                }
+            } else {
+                var ser = _appController.GetSerFromProfile(currProfiel.name);
+                if(ser != null) {
+                    _appController.Eigenschappen = JsonSerializer.DeserializeFromString<List<Eigenschap>>(ser);
+                    eigenschapAdapter.UpdateData(_appController.Eigenschappen);
+                }
             }
 
             eigenschapAdapter.NotifyDataSetChanged ();
@@ -122,11 +136,16 @@ namespace TotemAndroid {
 			_appController.ShowSelected -= ShowSelectedOnly;
 			_appController.NavigationController.GotoTotemResultEvent-= StartResultTotemsActivity;
 
-            //save eigenschappenlist state in sharedprefs
-            var editor = sharedPrefs.Edit();
-            var ser = JsonSerializer.SerializeToString(_appController.Eigenschappen);
-            editor.PutString("eigenschappen", ser);
-            editor.Commit();
+            if (IsProfileNull) {
+                //save eigenschappenlist state in sharedprefs
+                var editor = sharedPrefs.Edit();
+                var ser = JsonSerializer.SerializeToString(_appController.Eigenschappen);
+                editor.PutString("eigenschappen", ser);
+                editor.Commit();
+            } else {
+                var ser = JsonSerializer.SerializeToString(_appController.Eigenschappen);
+                _appController.AddOrUpdateEigenschappenSer(currProfiel.name, ser);
+            }
 		}
 
 		void updateCounter () {
@@ -248,12 +267,76 @@ namespace TotemAndroid {
 				var totemsActivity = new Intent (this, typeof(TinderEigenschappenActivity));
 				StartActivity (totemsActivity);
 				return true;
-			}
+
+            //show full list
+            case Resource.Id.saveSelection:
+                    ProfilePopup();
+                return true;
+            }
 
 			return base.OnOptionsItemSelected(item);
 		}
 
-		void ShowSelectedOnly() {
+        private void ProfilePopup() {
+            var menu = new PopupMenu(this, search);
+            menu.Inflate(Resource.Menu.Popup);
+            int count = 0;
+            foreach (Profiel p in _appController.DistinctProfielen) {
+                menu.Menu.Add(0, count, count, p.name);
+                count++;
+            }
+
+            menu.Menu.Add(0, count, count, "Nieuw profiel");
+
+            menu.MenuItemClick += (s1, arg1) => {
+                if (arg1.Item.ItemId == count) {
+                    var alert = new AlertDialog.Builder(this);
+                    alert.SetTitle("Nieuw profiel");
+                    var input = new EditText(this);
+                    input.InputType = InputTypes.TextFlagCapWords;
+                    input.Hint = "Naam";
+                    KeyboardHelper.ShowKeyboard(this, input);
+                    alert.SetView(input);
+                    alert.SetPositiveButton("Ok", (s, args) => {
+                        string value = input.Text;
+                        if (value.Replace("'", "").Replace(" ", "").Equals("")) {
+                            mToastShort.SetText("Ongeldige naam");
+                            mToastShort.Show();
+                        } else if (_appController.GetProfielNamen().Contains(value)) {
+                            input.Text = "";
+                            mToastShort.SetText("Profiel " + value + " bestaat al");
+                            mToastShort.Show();
+                        } else {
+                            _appController.AddProfile(value);
+                            _appController.AddOrUpdateEigenschappenSer(value, JsonSerializer.SerializeToString(_appController.Eigenschappen));
+                            mToastShort.SetText("Selectie opgeslagen voor profiel " + value);
+                            mToastShort.Show();
+                        }
+                    });
+
+                    AlertDialog d1 = alert.Create();
+
+                    //add profile when enter is clicked
+                    input.EditorAction += (s2, e) => {
+                        if (e.ActionId == ImeAction.Done)
+                            d1.GetButton(-1).PerformClick();
+                        else
+                            e.Handled = false;
+                    };
+
+                    RunOnUiThread(d1.Show);
+
+                } else {
+                    _appController.AddOrUpdateEigenschappenSer(arg1.Item.TitleFormatted.ToString(), JsonSerializer.SerializeToString(_appController.Eigenschappen));
+                    mToastShort.SetText("Selectie opgeslagen voor profiel " + arg1.Item.TitleFormatted);
+                    mToastShort.Show();
+                }
+            };
+
+            menu.Show();
+        }
+
+        void ShowSelectedOnly() {
 			List<Eigenschap> list = GetSelectedEigenschappen ();
 			if (list.Count == 0) {
 				mToastShort.SetText ("Geen eigenschappen geselecteerd");

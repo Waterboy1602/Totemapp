@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ServiceStack.Text;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,14 +17,16 @@ namespace TotemAppCore {
 
 		List<Totem> _totems;
 		List<Eigenschap> _eigenschappen;
-		List<Profiel> _profielen;
+        List<Eigenschap> _eigenschappen_empty;
+        List<Profiel> _profielen;
 
 		NavigationController _navigationController;
 
 		public AppController () {
 			_totems = database.GetTotems ();
 			_eigenschappen = database.GetEigenschappen ();
-			_navigationController = new NavigationController ();
+            _eigenschappen_empty = database.GetEigenschappen();
+            _navigationController = new NavigationController ();
 			TotemEigenschapDict = new Dictionary<Totem, int> ();
 		}
 
@@ -176,7 +179,8 @@ namespace TotemAppCore {
 		//add a profile
 		public void AddProfile(string name){
 			database.AddProfile (name);
-		}
+            AddOrUpdateEigenschappenSer(name, JsonSerializer.SerializeToString(_eigenschappen_empty));
+        }
 
 		//delete a profile
 		public void DeleteProfile(string name) {
@@ -215,16 +219,25 @@ namespace TotemAppCore {
 			return namen;
 		}
 
+        public string GetSerFromProfile(string profileName) {
+            return database.GetSerFromProfile(profileName);
+        }
 
-		/* ------------------------------ CLICK EVENTS ------------------------------ */
+        public void AddOrUpdateEigenschappenSer(string profielName, string ser) {
+            database.AddOrUpdateEigenschappenSer(profielName, ser);
+        }
 
 
-		public void TotemMenuItemClicked() {
+        /* ------------------------------ CLICK EVENTS ------------------------------ */
+
+
+        public void TotemMenuItemClicked() {
 			_navigationController.GoToTotemList ();
 		}
 
 		public void EigenschappenMenuItemClicked() {
-			_navigationController.GoToEigenschapList ();
+            setCurrentProfile(null);
+            _navigationController.GoToEigenschapList ();
 		}
 
 		public void ProfileMenuItemClicked() {
@@ -259,8 +272,14 @@ namespace TotemAppCore {
 			detailMode = DetailMode.PROFILE;
 			_navigationController.GoToTotemDetail ();
 		}
-			
-		public void CalculateResultlist(List<Eigenschap> checkboxList) {
+
+        //sets current totem and current profile
+        public void ProfileEigenschappenSelected(string profileName) {
+            setCurrentProfile(profileName);
+            _navigationController.GoToEigenschapList();
+        }
+
+        public void CalculateResultlist(List<Eigenschap> checkboxList) {
 			FillAndSortDict (checkboxList);
 			detailMode = DetailMode.RESULT;
 			_navigationController.GoToTotemResult ();

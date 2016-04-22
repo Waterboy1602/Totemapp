@@ -104,12 +104,7 @@ namespace TotemAndroid {
 			int pos = e.Position;
 			var item = profielAdapter.GetItemAtPosition(pos);
 
-			if (_appController.GetTotemsFromProfiel (item.name).Count == 0) {
-				mToast.SetText("Profiel " + item.name + " bevat geen totems");
-				mToast.Show();
-			} else {
-				_appController.ProfileSelected (item.name);
-			}
+			_appController.ProfileSelected (item.name);
 		}
 
 		void DeleteProfile(object sender, AdapterView.ItemLongClickEventArgs e) {

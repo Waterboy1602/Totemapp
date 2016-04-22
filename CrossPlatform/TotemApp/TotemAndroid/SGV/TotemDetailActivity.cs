@@ -165,11 +165,7 @@ namespace TotemAndroid {
 				_appController.DeleteTotemFromProfile(_appController.CurrentTotem.nid, profileName);
 				mToast.SetText(_appController.CurrentTotem.title + " verwijderd");
 				mToast.Show();
-				if(_appController.GetTotemsFromProfiel(profileName).Count == 0) {
-					_appController.ProfileMenuItemClicked ();
-				} else {
-					base.OnBackPressed();
-				}
+				base.OnBackPressed();
 			});
 
 			alert.SetNegativeButton ("Nee", (senderAlert, args) => {});

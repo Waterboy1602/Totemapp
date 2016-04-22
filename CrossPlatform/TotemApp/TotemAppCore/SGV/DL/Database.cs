@@ -177,7 +177,8 @@ namespace TotemAppCore {
 				cmd.CommandText = "DELETE FROM profiel WHERE name='" + cleanName + "'";
 				cmd.ExecuteQuery<Profiel> ();
 			}
-		}
+            DeleteSer(name);
+        }
 
 		//delete a totem from a profile
 		public void DeleteTotemFromProfile(string totemID, string profielName) {
@@ -190,12 +191,66 @@ namespace TotemAppCore {
 			}
 		}
 
+        //returns serialized eigenschappenlist of profile
+        public string GetSerFromProfile(string profileName) {
+            List<Profiel_eigenschappen> res;
+            lock (database) {
+                var cmd = new SQLiteCommand(database);
+                var cleanName = profileName.Replace("'", "");
+                cmd.CommandText = "select * from profiel_eigenschappen where name='" + cleanName + "'";
+                res = cmd.ExecuteQuery<Profiel_eigenschappen>();
+            }
+            if (res.Count == 0)
+                return null;
+            else
+                return res[0].eigenschappen_ser;
+        }
 
-		/* ------------------------------ TOTEMS EN EIGENSCHAPPEN ------------------------------ */
+        //adds or updates serialization-entry of profile
+        public void AddOrUpdateEigenschappenSer(string profielName, string ser) {
+            if (ProfileSerExists(profielName)) {
+                lock (database) {
+                    var cmd = new SQLiteCommand(database);
+                    var cleanName = profielName.Replace("'", "");
+                    cmd.CommandText = "update profiel_eigenschappen set eigenschappen_ser='" + ser + "' where name='" + cleanName + "'";
+                    cmd.ExecuteQuery<Profiel_eigenschappen>();
+                }
+            } else {
+                lock (database) {
+                    var cmd = new SQLiteCommand(database);
+                    var cleanName = profielName.Replace("'", "");
+                    cmd.CommandText = "insert into profiel_eigenschappen (name, eigenschappen_ser) values ('" + cleanName + "', '" + ser + "')";
+                    cmd.ExecuteQuery<Profiel_eigenschappen>();
+                }
+            }
+        }
+
+        //delete serialization entry of profile
+        public void DeleteSer(string profielName) {
+            var cmd = new SQLiteCommand(database);
+            var cleanProfielName = profielName.Replace("'", "");
+            cmd.CommandText = "DELETE FROM profiel_eigenschappen WHERE name='" + cleanProfielName + "'";
+            cmd.ExecuteQuery<Profiel_eigenschappen>();
+        }
+
+        //checks if database already has serialization-entry
+        bool ProfileSerExists(string profielName) {
+            List<Profiel_eigenschappen> res;
+            lock (database) {
+                var cmd = new SQLiteCommand(database);
+                var cleanName = profielName.Replace("'", "");
+                cmd.CommandText = "select name from profiel_eigenschappen where name='" + cleanName + "'";
+                res = cmd.ExecuteQuery<Profiel_eigenschappen>();
+            }
+            return !(res.Count == 0);
+        }
 
 
-		//returns List of Totem_eigenschapp related to eigenschap id
-		public List<Totem_eigenschap> GetTotemsVanEigenschapsID(string id) {
+        /* ------------------------------ TOTEMS EN EIGENSCHAPPEN ------------------------------ */
+
+
+        //returns List of Totem_eigenschapp related to eigenschap id
+        public List<Totem_eigenschap> GetTotemsVanEigenschapsID(string id) {
 			List<Totem_eigenschap> totemsVanEigenschap;
 			lock (database) {
 				var cmd = new SQLiteCommand (database);

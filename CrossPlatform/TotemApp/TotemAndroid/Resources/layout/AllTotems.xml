@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-    <LinearLayout
-        android:orientation="horizontal"
+    <TotemAndroid.CustomFontTextView
+        android:id="@+id/empty_totem"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:descendantFocusability="beforeDescendants"
-        android:focusableInTouchMode="true" />
+        android:textSize="15sp"
+        android:layout_marginTop="15sp"
+        android:gravity="center"
+        android:text="Geen totems om weer te geven"
+        android:visibility="gone"
+        app:font="@string/DIN_light" />
     <ListView
         android:id="@+id/all_totem_list"
         android:layout_width="fill_parent"
