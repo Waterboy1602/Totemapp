@@ -1,12 +1,4 @@
-﻿//
-// Main.cs
-//
-// Author:
-//       Scouts en Gidsen Vlaanderen <informatica@scoutsengidsenvlaanderen.be>
-//
-// Copyright (c) 2016 SGV
-//
-using UIKit;
+﻿using UIKit;
 
 namespace TotemAppIos
 {
