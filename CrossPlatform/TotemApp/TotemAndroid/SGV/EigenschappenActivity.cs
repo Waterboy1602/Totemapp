@@ -80,6 +80,7 @@ namespace TotemAndroid {
             progress = new ProgressDialog(this);
             progress.SetMessage("Totems zoeken...");
             progress.SetProgressStyle(ProgressDialogStyle.Spinner);
+            progress.SetCancelable(false);
 
             LiveSearch ();
 
@@ -100,9 +101,20 @@ namespace TotemAndroid {
 				else
 					e.Handled = false;
 			};
-		}
 
-		protected override void OnResume ()	{
+            FindViewById<TextView>(Resource.Id.selected).Click += EigenschappenActivity_Click;
+        }
+
+
+        private void EigenschappenActivity_Click(object sender, EventArgs e) {
+            foreach (Eigenschap eig in _appController.Eigenschappen) {
+                eig.selected = true;
+                eigenschapAdapter.NotifyDataSetChanged();
+                updateCounter();
+            }
+        }
+
+        protected override void OnResume ()	{
 			base.OnResume ();
 
 			_appController.UpdateCounter += updateCounter;
