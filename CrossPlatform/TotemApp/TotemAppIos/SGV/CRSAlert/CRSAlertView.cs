@@ -128,7 +128,7 @@ namespace TotemAppIos
 
 			// Build Main View
 			Alpha = 0f;
-			BackgroundColor = UIColor.Black.ColorWithAlpha (0.75f);
+			BackgroundColor = UIColor.Black.ColorWithAlpha (0.5f);
 			Frame = CRSAlertView.AlertWindow.Bounds;
 
 			// Build Container
