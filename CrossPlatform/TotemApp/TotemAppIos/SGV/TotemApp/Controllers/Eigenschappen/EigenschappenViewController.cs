@@ -11,6 +11,9 @@ using ServiceStack.Text;
 using TotemAppCore;
 
 using UIKit;
+using System.Threading;
+using System.Threading.Tasks;
+using MaterialControls;
 
 namespace TotemAppIos {
 	public partial class EigenschappenViewController : BaseViewController {
@@ -285,7 +288,38 @@ namespace TotemAppIos {
 		}
 
 		void btnVindTouchUpInside (object sender, EventArgs e) {
-			_appController.CalculateResultlist(_appController.Eigenschappen);
+			nfloat centerX = View.Frame.Width / 2;
+			nfloat centerY = View.Frame.Height / 2;
+
+			var activitySpinner = new UIActivityIndicatorView(UIActivityIndicatorViewStyle.WhiteLarge);
+			activitySpinner.Frame = new CGRect (centerX - (activitySpinner.Frame.Width / 2), centerY - activitySpinner.Frame.Height, 40f, 40f);
+			var view = new UIView(new CGRect(centerX, centerY, 150f, 150f));
+			var label = new UILabel(new CGRect(centerX - (130f/2), centerY + 20, 130f, 22f));
+
+			label.Text = "Totems zoeken...";
+			label.TextColor = UIColor.White;
+			view.Layer.CornerRadius = 15f;
+			view.BackgroundColor = UIColor.Black;
+			view.Alpha = 0.75f;
+			view.Center = View.Center;
+			activitySpinner.AutoresizingMask = UIViewAutoresizing.All;
+
+			View.AddSubview (view);
+			View.AddSubview (label);
+			View.AddSubview (activitySpinner);
+
+			View.BringSubviewToFront (view);
+			View.BringSubviewToFront (label);
+			View.BringSubviewToFront (activitySpinner);
+
+			activitySpinner.StartAnimating ();
+
+			new Thread(new ThreadStart(() => InvokeOnMainThread (() => {
+				_appController.CalculateResultlist (_appController.Eigenschappen);
+				activitySpinner.StopAnimating ();
+				view.Hidden = true;
+				label.Hidden = true;
+			}))).Start();
 		}
 	}
 }
