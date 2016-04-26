@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using TotemAppCore;
 
 namespace TotemAndroid {
-    [Activity (Label = "Totems")]			
+    [Activity (Label = "Totems", WindowSoftInputMode = SoftInput.StateAlwaysHidden)]			
 	public class TotemsActivity : BaseActivity {
 		TotemAdapter totemAdapter;
 		ListView allTotemListView;

@@ -42,6 +42,8 @@ namespace TotemAndroid {
         bool IsProfileNull;
         Profiel currProfiel;
 
+        ProgressDialog progress;
+
 
         protected override void OnCreate (Bundle bundle) {
 			base.OnCreate (bundle);
@@ -75,7 +77,11 @@ namespace TotemAndroid {
 			//hide keyboard when scrolling through list
 			allEigenschappenListView.SetOnTouchListener(new MyOnTouchListener(this, query));
 
-			LiveSearch ();
+            progress = new ProgressDialog(this);
+            progress.SetMessage("Totems zoeken...");
+            progress.SetProgressStyle(ProgressDialogStyle.Spinner);
+
+            LiveSearch ();
 
             sharedPrefs = GetSharedPreferences("data", FileCreationMode.Private);
 
@@ -118,6 +124,7 @@ namespace TotemAndroid {
 
             eigenschapAdapter.NotifyDataSetChanged ();
             HideSearch();
+            progress.Dismiss();
 
             //this needs a delay for some reason
             Task.Factory.StartNew(() => Thread.Sleep(50)).ContinueWith(t => {
@@ -207,8 +214,12 @@ namespace TotemAndroid {
 		//renders list of totems with frequencies based on selected eigenschappen
 		//and redirects to TotemsActivity to view them
 		void VindTotem(object sender, EventArgs e) {
-			_appController.CalculateResultlist(_appController.Eigenschappen);
-		}
+            RunOnUiThread(progress.Show);
+            new Thread(new ThreadStart(delegate {
+                _appController.CalculateResultlist(_appController.Eigenschappen);
+                RunOnUiThread(() => progress.Dismiss());
+            })).Start();
+        }
 
 		void StartResultTotemsActivity() {
 			var totemsActivity = new Intent (this, typeof(ResultTotemsActivity));
