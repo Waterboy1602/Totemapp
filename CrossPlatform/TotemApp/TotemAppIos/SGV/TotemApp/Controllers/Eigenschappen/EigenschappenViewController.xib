@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -83,7 +84,7 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gmK-tp-k98">
-                            <rect key="frame" x="75" y="13" width="440" height="24"/>
+                            <rect key="frame" x="75" y="12" width="440" height="26"/>
                             <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="20"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -106,7 +107,7 @@
                             </constraints>
                         </view>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Zoek eigenschap" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sNK-5N-ksf">
-                            <rect key="frame" x="23" y="13" width="492" height="24"/>
+                            <rect key="frame" x="23" y="12" width="492" height="26"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="DINPro-Light" family="DINPro" pointSize="20"/>
                             <textInputTraits key="textInputTraits"/>
@@ -136,22 +137,23 @@
                     <rect key="frame" x="0.0" y="550" width="600" height="50"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U39-ja-cca">
-                            <rect key="frame" x="10" y="13" width="49" height="24"/>
+                            <rect key="frame" x="10" y="12" width="49" height="26"/>
                             <fontDescription key="fontDescription" name="DINPro-Light" family="DINPro" pointSize="20"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="u1f-1Q-Bxk" userLabel="Vw Vind Button" customClass="UIButton">
-                            <rect key="frame" x="466" y="0.0" width="124" height="50"/>
+                            <rect key="frame" x="472" y="0.0" width="118" height="50"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1wZ-yt-6wh">
-                                    <rect key="frame" x="100" y="13" width="24" height="24"/>
+                                    <rect key="frame" x="94" y="13" width="24" height="24"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="24" id="XK0-5W-88u"/>
+                                        <constraint firstAttribute="height" constant="24" id="bWb-N0-6k3"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VIND TOTEM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrj-1m-Fx3">
-                                    <rect key="frame" x="5" y="16" width="90" height="18"/>
+                                    <rect key="frame" x="5" y="15" width="84" height="20"/>
                                     <fontDescription key="fontDescription" name="DINPro-Light" family="DINPro" pointSize="15"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -163,7 +165,6 @@
                                 <constraint firstItem="zrj-1m-Fx3" firstAttribute="leading" secondItem="u1f-1Q-Bxk" secondAttribute="leading" constant="5" id="dqK-1U-tq2"/>
                                 <constraint firstItem="zrj-1m-Fx3" firstAttribute="centerY" secondItem="u1f-1Q-Bxk" secondAttribute="centerY" id="elh-D6-9gM"/>
                                 <constraint firstAttribute="trailing" secondItem="1wZ-yt-6wh" secondAttribute="trailing" id="oBO-tf-vdi"/>
-                                <constraint firstItem="1wZ-yt-6wh" firstAttribute="top" secondItem="u1f-1Q-Bxk" secondAttribute="top" constant="13" id="ydA-87-ZgO"/>
                             </constraints>
                         </view>
                     </subviews>
