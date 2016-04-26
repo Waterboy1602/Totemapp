@@ -195,8 +195,8 @@ namespace TotemAndroid {
 			title.Visibility = ViewStates.Visible;
 			query.Visibility = ViewStates.Gone;
             search.SetImageResource(Resource.Drawable.ic_search_white_24dp);
-            KeyboardHelper.HideKeyboard (this);
-			eigenschapAdapter.UpdateData (_appController.Eigenschappen);
+            KeyboardHelper.HideKeyboard (this, query);
+            eigenschapAdapter.UpdateData (_appController.Eigenschappen);
 			eigenschapAdapter.NotifyDataSetChanged ();
 			query.Text = "";
 			fullList = true;
