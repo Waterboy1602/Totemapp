@@ -77,6 +77,7 @@ namespace TotemAndroid {
 			//hide keyboard when scrolling through list
 			allEigenschappenListView.SetOnTouchListener(new MyOnTouchListener(this, query));
 
+            //initialize progress dialog used when calculating totemlist
             progress = new ProgressDialog(this);
             progress.SetMessage("Totems zoeken...");
             progress.SetProgressStyle(ProgressDialogStyle.Spinner);
@@ -102,10 +103,11 @@ namespace TotemAndroid {
 					e.Handled = false;
 			};
 
+            //temporary for testing
             FindViewById<TextView>(Resource.Id.selected).Click += EigenschappenActivity_Click;
         }
 
-
+        //temporary for testing
         private void EigenschappenActivity_Click(object sender, EventArgs e) {
             foreach (Eigenschap eig in _appController.Eigenschappen) {
                 eig.selected = true;
@@ -136,7 +138,6 @@ namespace TotemAndroid {
 
             eigenschapAdapter.NotifyDataSetChanged ();
             HideSearch();
-            progress.Dismiss();
 
             //this needs a delay for some reason
             Task.Factory.StartNew(() => Thread.Sleep(50)).ContinueWith(t => {
@@ -223,10 +224,12 @@ namespace TotemAndroid {
 				allEigenschappenListView.SetSelection (0);
 		}
 
-		//renders list of totems with frequencies based on selected eigenschappen
-		//and redirects to TotemsActivity to view them
+		//adds loading dialog and calculates totemlist
 		void VindTotem(object sender, EventArgs e) {
+            //show progress dialog on UI thread
             RunOnUiThread(progress.Show);
+
+            //calculate list on different thread and dismiss loading dialog afterwards
             new Thread(new ThreadStart(delegate {
                 _appController.CalculateResultlist(_appController.Eigenschappen);
                 RunOnUiThread(() => progress.Dismiss());
