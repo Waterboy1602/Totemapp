@@ -285,15 +285,18 @@ namespace TotemAppIos {
 			bottomBarHeight.Constant = count > 0 ? 50 : 0;
 		}
 
+		//adds loading dialog and calculates totems
 		void btnVindTouchUpInside (object sender, EventArgs e) {
 			nfloat centerX = View.Frame.Width / 2;
 			nfloat centerY = View.Frame.Height / 2;
 
+			//spinner, label and surrounding view
 			var activitySpinner = new UIActivityIndicatorView(UIActivityIndicatorViewStyle.WhiteLarge);
 			activitySpinner.Frame = new CGRect (centerX - (activitySpinner.Frame.Width / 2), centerY - activitySpinner.Frame.Height, 40f, 40f);
 			var view = new UIView(new CGRect(centerX, centerY, 150f, 150f));
 			var label = new UILabel(new CGRect(centerX - (130f/2), centerY + 20, 130f, 22f));
 
+			//UI settings
 			label.Text = "Totems zoeken...";
 			label.TextColor = UIColor.White;
 			view.Layer.CornerRadius = 15f;
@@ -302,16 +305,20 @@ namespace TotemAppIos {
 			view.Center = View.Center;
 			activitySpinner.AutoresizingMask = UIViewAutoresizing.All;
 
+			//add to currnet view
 			View.AddSubview (view);
 			View.AddSubview (label);
 			View.AddSubview (activitySpinner);
 
+			//bring to front
 			View.BringSubviewToFront (view);
 			View.BringSubviewToFront (label);
 			View.BringSubviewToFront (activitySpinner);
 
+			//start spinner
 			activitySpinner.StartAnimating ();
 
+			//calculate list on different thread and stop/hide loading dialog afterwards
 			new Thread(new ThreadStart(() => InvokeOnMainThread (() => {
 				_appController.CalculateResultlist (_appController.Eigenschappen);
 				activitySpinner.StopAnimating ();
