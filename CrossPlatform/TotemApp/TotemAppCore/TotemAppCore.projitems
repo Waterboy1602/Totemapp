@@ -18,7 +18,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)SGV\BL\VO\Tip.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SGV\BL\VO\Totem_eigenschap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SGV\BL\VO\Totem.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SGV\BL\VO\Userpref.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SGV\BL\Controllers\NavigationController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SGV\Utilities\CollectionHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SGV\DL\DatabaseHelper.cs" />

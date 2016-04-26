@@ -199,16 +199,6 @@ namespace TotemAppCore {
 			return database.GetTotemsVanEigenschapsID (id);
 		}
 
-		//returns Userpref-object based on parameter
-		public Userpref GetPreference(string preference) {
-			return database.GetPreference (preference);
-		}
-
-		//updates the preference with new value
-		public void ChangePreference(string preference, string value) {
-			database.ChangePreference (preference,value);
-		}
-
 		//returns random tip out of the database
 		public string GetRandomTip() {
 			return database.GetRandomTip ();

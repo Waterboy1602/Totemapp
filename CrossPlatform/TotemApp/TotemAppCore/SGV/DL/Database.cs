@@ -274,31 +274,8 @@ namespace TotemAppCore {
 		}
 
 
-		/* ------------------------------ UTILS ------------------------------ */
+		/* ------------------------------ MISC ------------------------------ */
 
-
-		//returns Userpref-object based on parameter
-		public Userpref GetPreference(string preference) {
-			lock (database) {
-				List<Userpref> list;
-				var cmd = new SQLiteCommand (database);
-				var cleanPreference = preference.Replace("'", "");
-				cmd.CommandText = "select value from userprefs where preference='" + cleanPreference + "'";
-				list = cmd.ExecuteQuery<Userpref> ();
-				return list [0];
-			}
-		}
-
-		//updates the preference with new value
-		public void ChangePreference(string preference, string value) {
-			lock (database) {
-				var cmd = new SQLiteCommand (database);
-				var cleanPreference = preference.Replace("'", "");
-				var cleanValue = value.Replace("'", "");
-				cmd.CommandText = "update userprefs set value='" + cleanValue + "' where preference='" + cleanPreference + "'";
-				cmd.ExecuteQuery<Userpref> ();
-			}
-		}
 
 		//returns random tip out of the database
 		public string GetRandomTip() {
