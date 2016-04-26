@@ -44,7 +44,6 @@ namespace TotemAndroid {
 
         ProgressDialog progress;
 
-
         protected override void OnCreate (Bundle bundle) {
 			base.OnCreate (bundle);
 

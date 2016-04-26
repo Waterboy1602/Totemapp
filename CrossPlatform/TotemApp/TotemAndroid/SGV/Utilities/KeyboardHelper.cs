@@ -13,8 +13,13 @@ namespace TotemAndroid {
 			if(((Activity)context).CurrentFocus != null)
 				inputManager.HideSoftInputFromWindow (((Activity)context).CurrentFocus.WindowToken, HideSoftInputFlags.None);
 		}
-			
-		public static void ShowKeyboard(Context context, View pView) {
+
+        public static void HideKeyboard(Context context, View v) {
+            var inputManager = (InputMethodManager)context.GetSystemService(Context.InputMethodService);
+            inputManager.HideSoftInputFromWindow(v.WindowToken, HideSoftInputFlags.None);
+        }
+
+        public static void ShowKeyboard(Context context, View pView) {
 			pView.RequestFocus();
 			InputMethodManager inputMethodManager = (InputMethodManager)context.GetSystemService (Context.InputMethodService);
 			inputMethodManager.ShowSoftInput(pView, ShowFlags.Forced);
