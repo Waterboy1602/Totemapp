@@ -18,7 +18,7 @@ namespace TotemAppCore {
 	public class Database {
 
 		SQLiteConnection database;
-		const int DATABASE_VERSION = 1;
+		const int DATABASE_VERSION = 2;
 		#if __ANDROID__
 		string originalDBLocation = "totems.sqlite";
 		#elif __IOS__

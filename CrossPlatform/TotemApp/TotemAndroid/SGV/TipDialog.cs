@@ -7,7 +7,6 @@ using TotemAppCore;
 
 namespace TotemAndroid {
     public class TipDialog : DialogFragment	{
-		CheckBox weergeven_checkbox;
 		TextView tip;
 
 		Context context;

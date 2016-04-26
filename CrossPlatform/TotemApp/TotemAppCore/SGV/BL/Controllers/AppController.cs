@@ -1,5 +1,5 @@
 ﻿using ServiceStack.Text;
-using System;
+
 using System.Collections.Generic;
 using System.Linq;
 
@@ -276,7 +276,7 @@ namespace TotemAppCore {
 
         public void CalculateResultlist(List<Eigenschap> checkboxList) {
 			FillAndSortDict (checkboxList);
-			detailMode = DetailMode.RESULT;
+            detailMode = DetailMode.RESULT;
 			ShowAdd = true;
 			_navigationController.GoToTotemResult ();
 		}
