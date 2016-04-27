@@ -20,12 +20,13 @@ namespace TotemAppCore {
 		SQLiteConnection database;
 		#if __ANDROID__
 		string originalDBLocation = "totems.sqlite";
-		#elif __IOS__
+        #elif __IOS__
 		string originalDBLocation = "SharedAssets/totems.sqlite";
-		#endif
+        #endif
 
-		string currentDBName = "totems3.sqlite";
-        string oldDBName = "totems2.sqlite";
+        static int DATABASE_VERSION = 1;
+		string currentDBName = "totems" + DATABASE_VERSION + ".sqlite";
+        string oldDBName = "totems" + (DATABASE_VERSION - 1) + ".sqlite";
 
         //path for checking if database exists
         string DatabasePath { 
