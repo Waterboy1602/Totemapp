@@ -22,7 +22,7 @@ namespace TotemAppCore {
 		string originalDBLocation = "SharedAssets/totems.sqlite";
         #endif
 
-        static int DATABASE_VERSION = 1;
+        const int DATABASE_VERSION = 1;
 		string currentDBName = "totems" + DATABASE_VERSION + ".sqlite";
         string oldDBName = "totems" + (DATABASE_VERSION - 1) + ".sqlite";
 
@@ -33,7 +33,7 @@ namespace TotemAppCore {
 
                 #if __IOS__
 				int SystemVersion = Convert.ToInt16(UIKit.UIDevice.CurrentDevice.SystemVersion.Split('.')[0]);
-				string documentsPath = SystemVersion >= 8 ? NSFileManager.DefaultManager.GetUrls(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User)[0].Path : Environment.GetFolderPath (Environment.SpecialFolder.Personal)
+				string documentsPath = SystemVersion >= 8 ? NSFileManager.DefaultManager.GetUrls(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User)[0].Path : Environment.GetFolderPath (Environment.SpecialFolder.Personal);
 				var path = Path.Combine(documentsPath, sqliteFilename);
 
                 #elif __ANDROID__
@@ -52,7 +52,7 @@ namespace TotemAppCore {
 
                 #if __IOS__
 				int SystemVersion = Convert.ToInt16(UIKit.UIDevice.CurrentDevice.SystemVersion.Split('.')[0]);
-				string documentsPath = SystemVersion >= 8 ? NSFileManager.DefaultManager.GetUrls(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User)[0].Path : Environment.GetFolderPath (Environment.SpecialFolder.Personal)
+				string documentsPath = SystemVersion >= 8 ? NSFileManager.DefaultManager.GetUrls(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User)[0].Path : Environment.GetFolderPath (Environment.SpecialFolder.Personal);
 				var path = Path.Combine(documentsPath, sqliteFilename);
 
                 #elif __ANDROID__
