@@ -18,15 +18,14 @@ namespace TotemAppCore {
 	public class Database {
 
 		SQLiteConnection database;
-		const int DATABASE_VERSION = 1;
 		#if __ANDROID__
 		string originalDBLocation = "totems.sqlite";
 		#elif __IOS__
 		string originalDBLocation = "SharedAssets/totems.sqlite";
 		#endif
 
-		string currentDBName = "totems2.sqlite";
-        string oldDBName = "totems.sqlite";
+		string currentDBName = "totems3.sqlite";
+        string oldDBName = "totems2.sqlite";
 
         //path for checking if database exists
         string DatabasePath { 
@@ -52,7 +51,7 @@ namespace TotemAppCore {
 			}
 		}
 
-        //path for checking if database exists
+        //path for previous version of database
         string OldDatabasePath {
             get {
                 var sqliteFilename = oldDBName;
@@ -94,52 +93,43 @@ namespace TotemAppCore {
 		//if the database doesn't exist, it will create the database
 		public Database() {
 			var dbPath = DatabasePath;
-			int dbVersion;
 
-			if (File.Exists (dbPath)) {
-                database = new SQLiteConnection(dbPath);
-                dbVersion = GetDatabaseVersion();
-                if (dbVersion != DATABASE_VERSION) {
-                    CreateDatabase(dbPath);
-                    database = new SQLiteConnection(dbPath);
-                    SetDatabaseVersion(DATABASE_VERSION);
-                }
-			} else {
+			if (!File.Exists (dbPath)) {
                 CreateDatabase(dbPath);
-                database = new SQLiteConnection(dbPath);
-                SetDatabaseVersion(DATABASE_VERSION);
-            }			
+			}
+
+            database = new SQLiteConnection(dbPath);			
 		}
 
-		void CreateDatabase(string dbPath) {
-			#if __ANDROID__
-			var s = Application.Context.Assets.Open (originalDBLocation);
-			var writeStream = new FileStream (dbPath, FileMode.OpenOrCreate, FileAccess.Write);
-			ReadWriteStream (s, writeStream);
-			writeStream.Close ();
+        void CreateDatabase(string dbPath) {
+            #if __ANDROID__
+            var s = Application.Context.Assets.Open(originalDBLocation);
+            var writeStream = new FileStream(dbPath, FileMode.OpenOrCreate, FileAccess.Write);
+            ReadWriteStream(s, writeStream);
+            writeStream.Close();
 
-			#elif __IOS__
+            #elif __IOS__
 			var appDir = NSBundle.MainBundle.ResourcePath;
 			var originalLocation = Path.Combine (appDir, originalDBLocation);
-			File.Delete(dbPath);
 			File.Copy (originalLocation, dbPath);
-			#endif
-		}
+            #endif
 
-        int GetDatabaseVersion() {
-            lock (database) {
-                var cmd = new SQLiteCommand(database);
-                cmd.CommandText = "select * from version where component='database'";
-                var res = cmd.ExecuteQuery<Version>();
-                return res[0].version;
-            }
-        }
+            if (File.Exists(OldDatabasePath)) {
+                SQLiteConnection oldDb = new SQLiteConnection(OldDatabasePath);
+                SQLiteConnection newDB = new SQLiteConnection(dbPath);
 
-        void SetDatabaseVersion(int version) {
-            lock (database) {
-                var cmd = new SQLiteCommand(database);
-                cmd.CommandText = "update version set version='" + version + "' where component='database'";
-                cmd.ExecuteQuery<Version>();
+                var oldProfielen = oldDb.Query<Profiel>("SELECT * FROM profiel");
+                var oldEigenschappenSer = oldDb.Query<Profiel_eigenschappen>("SELECT * FROM profiel_eigenschappen");
+                foreach(Profiel p in oldProfielen) {
+                    newDB.Execute("INSERT INTO profiel (name, nid) values (?, ?)", p.name, p.nid);
+                }
+                foreach (Profiel_eigenschappen pe in oldEigenschappenSer) {
+                    newDB.Execute("INSERT INTO profiel_eigenschappen (name, eigenschappen_ser) values (?, ?)", pe.name, pe.eigenschappen_ser);
+                }
+
+                oldDb.Dispose();
+                newDB.Dispose();
+                File.Delete(OldDatabasePath);
             }
         }
 
