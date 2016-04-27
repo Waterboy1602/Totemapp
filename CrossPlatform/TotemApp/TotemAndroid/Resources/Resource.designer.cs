@@ -1514,7 +1514,7 @@ namespace TotemAndroid
 			public const int ic_visibility_white_24dp = 2130837590;
 			
 			// aapt resource value: 0x7f020057
-			public const int Icon = 2130837591;
+			public const int icon = 2130837591;
 			
 			// aapt resource value: 0x7f020058
 			public const int Lamp = 2130837592;
