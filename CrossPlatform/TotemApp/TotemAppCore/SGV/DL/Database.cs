@@ -41,12 +41,12 @@ namespace TotemAppCore {
 					documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // Documents folder
 				}
 				var path = Path.Combine(documentsPath, sqliteFilename);
-                #else
-                #if __ANDROID__
+
+                #elif __ANDROID__
 				string documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // Documents folder
 				var path = Path.Combine(documentsPath, sqliteFilename);
                 #endif
-                #endif
+
                 return path;
 			}
 		}
@@ -66,7 +66,7 @@ namespace TotemAppCore {
 		}
 
 		//initializes a new instance of the database
-		//if the database doesn't exist, it will create the database and all the tables
+		//if the database doesn't exist, it will create the database
 		public Database() {
 			var dbPath = DatabasePath;
 			int dbVersion;
