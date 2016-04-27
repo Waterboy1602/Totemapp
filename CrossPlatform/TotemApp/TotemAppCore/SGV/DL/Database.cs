@@ -18,7 +18,7 @@ namespace TotemAppCore {
 	public class Database {
 
 		SQLiteConnection database;
-		const int DATABASE_VERSION = 2;
+		const int DATABASE_VERSION = 1;
 		#if __ANDROID__
 		string originalDBLocation = "totems.sqlite";
 		#elif __IOS__
@@ -71,19 +71,19 @@ namespace TotemAppCore {
 			var dbPath = DatabasePath;
 			int dbVersion;
 
-			#if __ANDROID__
-			ISharedPreferences sharedPrefs = PreferenceManager.GetDefaultSharedPreferences (Application.Context);
-			dbVersion = sharedPrefs.GetInt ("db_ver", 0);
-			#elif __IOS__
-			NSUserDefaults userDefs = NSUserDefaults.StandardUserDefaults;
-			dbVersion = (int)userDefs.IntForKey ("db_ver");
-			#endif
-
-			if (!File.Exists (dbPath) || dbVersion != DATABASE_VERSION) {
-				CreateDatabase (dbPath);
-			}
-
-			database = new SQLiteConnection (dbPath);
+			if (File.Exists (dbPath)) {
+                database = new SQLiteConnection(dbPath);
+                dbVersion = GetDatabaseVersion();
+                if (dbVersion != DATABASE_VERSION) {
+                    CreateDatabase(dbPath);
+                    database = new SQLiteConnection(dbPath);
+                    SetDatabaseVersion(DATABASE_VERSION);
+                }
+			} else {
+                CreateDatabase(dbPath);
+                database = new SQLiteConnection(dbPath);
+                SetDatabaseVersion(DATABASE_VERSION);
+            }			
 		}
 
 		void CreateDatabase(string dbPath) {
@@ -92,27 +92,38 @@ namespace TotemAppCore {
 			var writeStream = new FileStream (dbPath, FileMode.OpenOrCreate, FileAccess.Write);
 			ReadWriteStream (s, writeStream);
 			writeStream.Close ();
-			ISharedPreferences sharedPrefs = PreferenceManager.GetDefaultSharedPreferences (Application.Context);
-			ISharedPreferencesEditor editor = sharedPrefs.Edit ();
-			editor.PutInt ("db_ver", DATABASE_VERSION);
-            editor.Commit();
 
 			#elif __IOS__
 			var appDir = NSBundle.MainBundle.ResourcePath;
 			var originalLocation = Path.Combine (appDir, originalDBLocation);
 			File.Delete(dbPath);
 			File.Copy (originalLocation, dbPath);
-			NSUserDefaults userDefs = NSUserDefaults.StandardUserDefaults;
-			userDefs.SetInt (DATABASE_VERSION, "db_ver");
-			userDefs.Synchronize ();
 			#endif
 		}
 
-		/* ------------------------------ INITIALIZE DB ------------------------------ */
+        int GetDatabaseVersion() {
+            lock (database) {
+                var cmd = new SQLiteCommand(database);
+                cmd.CommandText = "select * from version where component='database'";
+                var res = cmd.ExecuteQuery<Version>();
+                return res[0].version;
+            }
+        }
+
+        void SetDatabaseVersion(int version) {
+            lock (database) {
+                var cmd = new SQLiteCommand(database);
+                cmd.CommandText = "update version set version='" + version + "' where component='database'";
+                cmd.ExecuteQuery<Version>();
+            }
+        }
+
+        
+        /* ------------------------------ INITIALIZE DB ------------------------------ */
 
 
-		//extract eigenschappen from DB and put them in a list
-		public List<Eigenschap> GetEigenschappen() {
+        //extract eigenschappen from DB and put them in a list
+        public List<Eigenschap> GetEigenschappen() {
 			lock (database) {
 				var cmd = new SQLiteCommand (database);
 				cmd.CommandText = "select * from eigenschap order by name";

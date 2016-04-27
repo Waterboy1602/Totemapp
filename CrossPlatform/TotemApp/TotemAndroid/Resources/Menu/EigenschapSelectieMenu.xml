@@ -6,8 +6,8 @@
           android:title="Toon volledige lijst" />
     <item android:id="@+id/reset"
           android:title="Reset selectie" />
-    <item android:id="@+id/tinderView"
-          android:title="Individuele weergave" />
     <item android:id="@+id/saveSelection"
           android:title="Selectie opslaan" />
+    <item android:id="@+id/tinderView"
+          android:title="Individuele weergave" />
 </menu>

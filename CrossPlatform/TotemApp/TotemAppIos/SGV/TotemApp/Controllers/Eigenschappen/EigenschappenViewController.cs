@@ -138,9 +138,9 @@ namespace TotemAppIos {
 
 			actionSheetAlert.AddAction(UIAlertAction.Create("Reset selectie",UIAlertActionStyle.Default, action => resetSelections ()));
 			actionSheetAlert.AddAction(UIAlertAction.Create(isShowingSelected?"Toon volledige lijst":"Toon enkel selectie",UIAlertActionStyle.Default, action => toggleShowSelected ()));
-			actionSheetAlert.AddAction(UIAlertAction.Create("Individuele weergave",UIAlertActionStyle.Default, action => gotoTinderHandler ()));
-			if(IsProfileNull) 
-				actionSheetAlert.AddAction(UIAlertAction.Create("Selectie opslaan",UIAlertActionStyle.Default, action => SaveSelectionPopup ()));
+            if (IsProfileNull)
+                actionSheetAlert.AddAction(UIAlertAction.Create("Selectie opslaan", UIAlertActionStyle.Default, action => SaveSelectionPopup()));
+            actionSheetAlert.AddAction(UIAlertAction.Create("Individuele weergave",UIAlertActionStyle.Default, action => gotoTinderHandler ()));
 			actionSheetAlert.AddAction(UIAlertAction.Create("Annuleer",UIAlertActionStyle.Cancel, null));
 
 			// Required for iPad - You must specify a source for the Action Sheet since it is
