@@ -24,6 +24,7 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>CFBundleShortVersionString</key>
 	<string>0.1</string>
@@ -45,6 +46,7 @@
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>XSLaunchImageAssets</key>
 	<string>Resources/Images.xcassets/LaunchImage.launchimage</string>
@@ -52,5 +54,7 @@
 	<string>SGV/TotemApp/Controllers/Main/MainViewController</string>
 	<key>XSAppIconAssets</key>
 	<string>Resources/Images.xcassets/AppIcon.appiconset</string>
+	<key>UIMainNibFile~ipad</key>
+	<string>SGV/TotemApp/Controllers/Main/MainViewController</string>
 </dict>
 </plist>
