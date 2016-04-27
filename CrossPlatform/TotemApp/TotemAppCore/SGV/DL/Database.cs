@@ -14,8 +14,8 @@ using SQLite;
 
 namespace TotemAppCore {
     public class Database {
-
 		SQLiteConnection database;
+
 		#if __ANDROID__
 		string originalDBLocation = "totems.sqlite";
         #elif __IOS__
@@ -26,7 +26,7 @@ namespace TotemAppCore {
 		string currentDBName = "totems" + DATABASE_VERSION + ".sqlite";
         string oldDBName = "totems" + (DATABASE_VERSION - 1) + ".sqlite";
 
-        //path for checking if database exists
+        //path of current version of database
         string DatabasePath { 
 			get { 
 				var sqliteFilename = currentDBName;
@@ -37,7 +37,7 @@ namespace TotemAppCore {
 				var path = Path.Combine(documentsPath, sqliteFilename);
 
                 #elif __ANDROID__
-                string documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // Documents folder
+                string documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal);
 				var path = Path.Combine(documentsPath, sqliteFilename);
                 #endif
 
@@ -45,7 +45,7 @@ namespace TotemAppCore {
 			}
 		}
 
-        //path for previous version of database
+        //path of previous version of database
         string OldDatabasePath {
             get {
                 var sqliteFilename = oldDBName;
@@ -56,7 +56,7 @@ namespace TotemAppCore {
 				var path = Path.Combine(documentsPath, sqliteFilename);
 
                 #elif __ANDROID__
-                string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal); // Documents folder
+                string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
                 var path = Path.Combine(documentsPath, sqliteFilename);
                 #endif
 
@@ -102,6 +102,7 @@ namespace TotemAppCore {
 			File.Copy (originalLocation, dbPath);
             #endif
 
+            //copies profiles and selected eigenschappen from the old database to the new one
             if (File.Exists(OldDatabasePath)) {
                 SQLiteConnection oldDb = new SQLiteConnection(OldDatabasePath);
                 SQLiteConnection newDB = new SQLiteConnection(dbPath);

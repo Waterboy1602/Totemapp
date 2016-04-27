@@ -5,12 +5,12 @@ using Android.App;
 // Information about this assembly is defined by the following attributes.
 // Change them to the values specific to your project.
 
-[assembly: AssemblyTitle ("TotemAndroid")]
+[assembly: AssemblyTitle ("Totemapp")]
 [assembly: AssemblyDescription ("")]
 [assembly: AssemblyConfiguration ("")]
-[assembly: AssemblyCompany ("Bazookas")]
+[assembly: AssemblyCompany ("Scouts en Gidsen Vlaanderen")]
 [assembly: AssemblyProduct ("")]
-[assembly: AssemblyCopyright ("Bazookas")]
+[assembly: AssemblyCopyright ("Scouts en Gidsen Vlaanderen")]
 [assembly: AssemblyTrademark ("")]
 [assembly: AssemblyCulture ("")]
 
@@ -25,4 +25,10 @@ using Android.App;
 
 //[assembly: AssemblyDelaySign(false)]
 //[assembly: AssemblyKeyFile("")]
+
+#if DEBUG
+[assembly: Application(Debuggable = true)]
+#else
+[assembly: Application(Debuggable = false)]
+#endif
 
