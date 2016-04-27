@@ -4,8 +4,6 @@ using System.IO;
 
 #if __ANDROID__
 using Android.App;
-using Android.Content;
-using Android.Preferences;
 #endif
 
 #if __IOS__
@@ -15,7 +13,7 @@ using Foundation;
 using SQLite;
 
 namespace TotemAppCore {
-	public class Database {
+    public class Database {
 
 		SQLiteConnection database;
 		#if __ANDROID__
@@ -33,18 +31,13 @@ namespace TotemAppCore {
 			get { 
 				var sqliteFilename = currentDBName;
 
-				#if __IOS__
+                #if __IOS__
 				int SystemVersion = Convert.ToInt16(UIKit.UIDevice.CurrentDevice.SystemVersion.Split('.')[0]);
-				string documentsPath;
-				if(SystemVersion >= 8) {
-					documentsPath = NSFileManager.DefaultManager.GetUrls(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User)[0].Path;
-				} else {
-					documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // Documents folder
-				}
+				string documentsPath = SystemVersion >= 8 ? NSFileManager.DefaultManager.GetUrls(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User)[0].Path : Environment.GetFolderPath (Environment.SpecialFolder.Personal)
 				var path = Path.Combine(documentsPath, sqliteFilename);
 
                 #elif __ANDROID__
-				string documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // Documents folder
+                string documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // Documents folder
 				var path = Path.Combine(documentsPath, sqliteFilename);
                 #endif
 
@@ -59,12 +52,7 @@ namespace TotemAppCore {
 
                 #if __IOS__
 				int SystemVersion = Convert.ToInt16(UIKit.UIDevice.CurrentDevice.SystemVersion.Split('.')[0]);
-				string documentsPath;
-				if(SystemVersion >= 8) {
-					documentsPath = NSFileManager.DefaultManager.GetUrls(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User)[0].Path;
-				} else {
-					documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // Documents folder
-				}
+				string documentsPath = SystemVersion >= 8 ? NSFileManager.DefaultManager.GetUrls(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User)[0].Path : Environment.GetFolderPath (Environment.SpecialFolder.Personal)
 				var path = Path.Combine(documentsPath, sqliteFilename);
 
                 #elif __ANDROID__
@@ -79,7 +67,7 @@ namespace TotemAppCore {
         //reads the write stream.
         void ReadWriteStream(Stream readStream, Stream writeStream) {
 			int Length = 256;
-			var buffer = new Byte[Length];
+			var buffer = new byte[Length];
 			int bytesRead = readStream.Read(buffer, 0, Length);
 			// write the required bytes
 			while (bytesRead > 0) {
@@ -95,9 +83,8 @@ namespace TotemAppCore {
 		public Database() {
 			var dbPath = DatabasePath;
 
-			if (!File.Exists (dbPath)) {
+			if (!File.Exists (dbPath))
                 CreateDatabase(dbPath);
-			}
 
             database = new SQLiteConnection(dbPath);			
 		}
@@ -121,13 +108,12 @@ namespace TotemAppCore {
 
                 var oldProfielen = oldDb.Query<Profiel>("SELECT * FROM profiel");
                 var oldEigenschappenSer = oldDb.Query<Profiel_eigenschappen>("SELECT * FROM profiel_eigenschappen");
-                foreach(Profiel p in oldProfielen) {
+                foreach(Profiel p in oldProfielen)
                     newDB.Execute("INSERT INTO profiel (name, nid) values (?, ?)", p.name, p.nid);
-                }
-                foreach (Profiel_eigenschappen pe in oldEigenschappenSer) {
+                
+                foreach (Profiel_eigenschappen pe in oldEigenschappenSer)
                     newDB.Execute("INSERT INTO profiel_eigenschappen (name, eigenschappen_ser) values (?, ?)", pe.name, pe.eigenschappen_ser);
-                }
-
+                
                 oldDb.Dispose();
                 newDB.Dispose();
                 File.Delete(OldDatabasePath);
