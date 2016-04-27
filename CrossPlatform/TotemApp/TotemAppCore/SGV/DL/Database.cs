@@ -25,7 +25,8 @@ namespace TotemAppCore {
 		string originalDBLocation = "SharedAssets/totems.sqlite";
 		#endif
 
-		string currentDBName = "totems.sqlite";
+		string currentDBName = "totems2.sqlite";
+        string oldDBName = "totems.sqlite";
 
         //path for checking if database exists
         string DatabasePath { 
@@ -51,8 +52,32 @@ namespace TotemAppCore {
 			}
 		}
 
-		//reads the write stream.
-		void ReadWriteStream(Stream readStream, Stream writeStream) {
+        //path for checking if database exists
+        string OldDatabasePath {
+            get {
+                var sqliteFilename = oldDBName;
+
+                #if __IOS__
+				int SystemVersion = Convert.ToInt16(UIKit.UIDevice.CurrentDevice.SystemVersion.Split('.')[0]);
+				string documentsPath;
+				if(SystemVersion >= 8) {
+					documentsPath = NSFileManager.DefaultManager.GetUrls(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User)[0].Path;
+				} else {
+					documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // Documents folder
+				}
+				var path = Path.Combine(documentsPath, sqliteFilename);
+
+                #elif __ANDROID__
+                string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal); // Documents folder
+                var path = Path.Combine(documentsPath, sqliteFilename);
+                #endif
+
+                return path;
+            }
+        }
+
+        //reads the write stream.
+        void ReadWriteStream(Stream readStream, Stream writeStream) {
 			int Length = 256;
 			var buffer = new Byte[Length];
 			int bytesRead = readStream.Read(buffer, 0, Length);
