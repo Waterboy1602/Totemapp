@@ -70,7 +70,7 @@ namespace TotemAndroid {
 			allEigenschappenListView = FindViewById<ListView> (Resource.Id.all_eigenschappen_list);
 			allEigenschappenListView.Adapter = eigenschapAdapter;
 
-            title.Text = IsProfileNull ? "Eigenschappen" : "Selectie " + currProfiel.name;
+            title.Text = IsProfileNull ? "Eigenschappen" : "Selectie";
             query.Hint = "Zoek eigenschap";
 
 			//hide keyboard when scrolling through list
