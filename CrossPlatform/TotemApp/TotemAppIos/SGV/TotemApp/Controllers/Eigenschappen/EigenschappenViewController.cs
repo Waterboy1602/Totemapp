@@ -97,7 +97,7 @@ namespace TotemAppIos {
 		}
 
 		public override void setData() {
-			lblTitle.Text = (_appController.CurrentProfiel == null) ? "Eigenschappen" : "Selectie " + _appController.CurrentProfiel.name;
+			lblTitle.Text = (_appController.CurrentProfiel == null) ? "Eigenschappen" : "Selectie";
 
 			imgReturn.Image = UIImage.FromBundle ("SharedAssets/arrow_back_white");
 			imgSearch.Image = UIImage.FromBundle ("SharedAssets/search_white");
