@@ -56,5 +56,7 @@
 	<string>Resources/Images.xcassets/AppIcon.appiconset</string>
 	<key>UIMainNibFile~ipad</key>
 	<string>SGV/TotemApp/Controllers/Main/MainViewController</string>
+	<key>UIRequiresFullScreen</key>
+	<string>Yes</string>
 </dict>
 </plist>
