@@ -101,18 +101,6 @@ namespace TotemAndroid {
 				else
 					e.Handled = false;
 			};
-
-            //temporary for testing
-            FindViewById<TextView>(Resource.Id.selected).Click += EigenschappenActivity_Click;
-        }
-
-        //temporary for testing
-        private void EigenschappenActivity_Click(object sender, EventArgs e) {
-            foreach (Eigenschap eig in _appController.Eigenschappen) {
-                eig.selected = true;
-                eigenschapAdapter.NotifyDataSetChanged();
-                updateCounter();
-            }
         }
 
         protected override void OnResume ()	{
