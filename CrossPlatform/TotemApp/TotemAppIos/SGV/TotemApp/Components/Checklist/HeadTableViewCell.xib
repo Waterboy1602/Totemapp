@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -33,15 +32,25 @@
                             <constraint firstAttribute="height" id="uLv-Qb-WF6" userLabel="PaddingHeight"/>
                         </constraints>
                     </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jVB-02-EoA">
+                        <rect key="frame" x="8" y="35" width="304" height="0.0"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" id="Zy9-6b-Y9S"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="iL1-Ek-7qM" secondAttribute="trailing" id="7Xw-u0-MGh"/>
+                    <constraint firstItem="jVB-02-EoA" firstAttribute="top" secondItem="iL1-Ek-7qM" secondAttribute="bottom" constant="-9" id="9gB-Ja-p3T"/>
                     <constraint firstItem="dBq-JV-Nfv" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="topMargin" id="EqT-JW-xdZ"/>
                     <constraint firstAttribute="trailingMargin" secondItem="dBq-JV-Nfv" secondAttribute="trailing" id="HyS-I9-cA0"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="jVB-02-EoA" secondAttribute="bottom" id="YTY-P9-EH9"/>
+                    <constraint firstItem="jVB-02-EoA" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leadingMargin" id="Zir-Db-Mzh"/>
                     <constraint firstItem="iL1-Ek-7qM" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leadingMargin" constant="5" id="adV-I6-96F"/>
                     <constraint firstItem="iL1-Ek-7qM" firstAttribute="top" secondItem="dBq-JV-Nfv" secondAttribute="bottom" constant="-9" id="ati-DT-wkr"/>
                     <constraint firstItem="dBq-JV-Nfv" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leadingMargin" id="h2h-EQ-FXJ"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="iL1-Ek-7qM" secondAttribute="bottom" constant="-9" id="huC-kG-Pgf"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="jVB-02-EoA" secondAttribute="trailing" id="u8f-01-2tK"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
