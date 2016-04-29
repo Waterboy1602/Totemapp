@@ -13,6 +13,9 @@ namespace TotemAppIos
 	partial class HeadTableViewCell
 	{
 		[Outlet]
+		UIKit.NSLayoutConstraint bottomPadding { get; set; }
+
+		[Outlet]
 		UIKit.NSLayoutConstraint heightPadding { get; set; }
 
 		[Outlet]
@@ -28,6 +31,11 @@ namespace TotemAppIos
 			if (lblHead != null) {
 				lblHead.Dispose ();
 				lblHead = null;
+			}
+
+			if (bottomPadding != null) {
+				bottomPadding.Dispose ();
+				bottomPadding = null;
 			}
 		}
 	}
