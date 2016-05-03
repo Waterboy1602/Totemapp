@@ -7,7 +7,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>be.scoutsengidsenvlaanderen.totemapp</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>1.1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -26,8 +26,6 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
-	<key>CFBundleShortVersionString</key>
-	<string>0.1</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>DINPro-Light.ttf</string>
@@ -58,5 +56,7 @@
 	<string>SGV/TotemApp/Controllers/Main/MainViewController</string>
 	<key>UIRequiresFullScreen</key>
 	<string>Yes</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
 </dict>
 </plist>
