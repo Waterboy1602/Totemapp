@@ -154,8 +154,20 @@ namespace TotemAppCore {
 			return result;
 		}
 
-		//returns eigenschap-object with given name
-		public List<Eigenschap> FindEigenschapOpNaam(string name) {
+        public List<Totem> FindTotemOpNaamOfSyn(string name) {
+            var result = new List<Totem>();
+            foreach (Totem t in _totems) {
+                if (t.title.ToLower().Contains(name.ToLower()))
+                    result.Add(t);
+                else if (t.synonyms != null && t.synonyms.ToLower().Contains(name.ToLower()))
+                    result.Add(t);
+            }
+
+            return result;
+        }
+
+        //returns eigenschap-object with given name
+        public List<Eigenschap> FindEigenschapOpNaam(string name) {
 			var result = new List<Eigenschap> ();
 			foreach(Eigenschap e in _eigenschappen)
 				if(e.name.ToLower().Contains(name.ToLower()))

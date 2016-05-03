@@ -109,7 +109,7 @@ namespace TotemAndroid {
 
 		//shows only totems that are searched
 		void Search() {
-			totemList = _appController.FindTotemOpNaam (query.Text);
+			totemList = _appController.FindTotemOpNaamOfSyn (query.Text);
 			totemAdapter.UpdateData (totemList); 
 			totemAdapter.NotifyDataSetChanged ();
 			if(query.Length() > 0)

@@ -82,7 +82,7 @@ namespace TotemAppIos {
 
 		//updates list to match entered query
 		void TxtSearchValueChangedHandler (object sender, EventArgs e) {
-			(tblTotems.Source as TotemsTableViewSource).Totems = _appController.FindTotemOpNaam ((sender as UITextField).Text);
+			(tblTotems.Source as TotemsTableViewSource).Totems = _appController.FindTotemOpNaamOfSyn ((sender as UITextField).Text);
 			tblTotems.ReloadData ();
 			tblTotems.ScrollRectToVisible (new CGRect(0,0,1,1), false);
 		}
