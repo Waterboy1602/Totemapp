@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 
 using TotemAppCore;
 
 using UIKit;
-using System.Drawing;
 
 namespace TotemAppIos {
 	public partial class ProfielTotemsViewController : BaseViewController {

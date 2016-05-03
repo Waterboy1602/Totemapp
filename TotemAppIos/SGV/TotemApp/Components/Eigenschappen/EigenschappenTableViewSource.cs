@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Foundation;
 
-using Foundation;
+using System;
+using System.Collections.Generic;
 
 using TotemAppCore;
 

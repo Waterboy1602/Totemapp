@@ -45,13 +45,13 @@ namespace TotemAndroid {
 		protected override void OnResume ()	{
 			base.OnResume ();
 
-			_appController.NavigationController.GotoTotemDetailEvent+= StartDetailActivity;
+			_appController.NavigationController.GotoTotemDetailEvent += StartDetailActivity;
 		}
 
 		protected override void OnPause ()	{
 			base.OnPause ();
 
-			_appController.NavigationController.GotoTotemDetailEvent-= StartDetailActivity;
+			_appController.NavigationController.GotoTotemDetailEvent -= StartDetailActivity;
 		}
 
 		//fill totemList with Totem-objects whose ID is in totemIDs

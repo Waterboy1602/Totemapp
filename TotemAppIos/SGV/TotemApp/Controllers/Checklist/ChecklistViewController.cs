@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Foundation;
+
+using ServiceStack.Text;
+
 using System.Collections.Generic;
 using System.Xml;
 
-using Foundation;
-
 using UIKit;
-
-using ServiceStack.Text;
 
 namespace TotemAppIos {
 	public partial class ChecklistViewController : BaseViewController {

@@ -1,7 +1,10 @@
+using CoreAnimation;
+
+using Foundation;
+
 using System;
 using System.Collections.Generic;
-using CoreAnimation;
-using Foundation;
+
 using UIKit;
 
 namespace TotemAppIos {

@@ -1,10 +1,10 @@
-﻿using System;
+﻿using CoreGraphics;
 
-using CoreGraphics;
-
-using UIKit;
+using System;
 
 using TotemAppCore;
+
+using UIKit;
 
 namespace TotemAppIos {
 	public partial class TotemListViewController : BaseViewController {

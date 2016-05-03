@@ -1,7 +1,6 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Util;
 using Android.Views;
 using Android.Widget;
 
@@ -88,7 +87,6 @@ namespace TotemAndroid {
 
 			_appController.NavigationController.GotoTotemDetailEvent-= StartDetailActivity;
             _appController.NavigationController.GotoEigenschapListEvent -= gotoEigenschappenList;
-
         }
 
 		void StartDetailActivity() {

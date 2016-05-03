@@ -162,7 +162,6 @@
     <AndroidResource Include="Resources\layout\ExpandHeadFoot.axml" />
     <AndroidResource Include="Resources\layout\ExpandParent.axml" />
     <AndroidResource Include="Resources\layout\Profielen.xml" />
-    <AndroidResource Include="Resources\layout\SplashScreen.axml" />
     <AndroidResource Include="Resources\layout\TipPopUp.xml" />
     <AndroidResource Include="Resources\layout\TotemDetail.xml" />
     <AndroidResource Include="Resources\layout\TotemListItem.xml" />

@@ -1,10 +1,10 @@
-﻿using System;
-
-using UIKit;
-
-using Foundation;
+﻿using Foundation;
 
 using ServiceStack.Text;
+
+using System;
+
+using UIKit;
 
 namespace TotemAppIos {
 	public partial class TinderEigenschappenViewController : BaseViewController	{

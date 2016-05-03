@@ -88,7 +88,7 @@ namespace TotemAndroid {
 
 		//updates data of the adapter and shows/hides the "empty"-message when needed
 		void UpdateList() {
-			this.profielen = _appController.DistinctProfielen;
+			profielen = _appController.DistinctProfielen;
 			if (profielen.Count == 0) {
 				noProfiles.Visibility = ViewStates.Visible;
 				delete.Visibility = ViewStates.Gone;

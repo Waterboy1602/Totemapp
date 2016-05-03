@@ -1,7 +1,7 @@
-﻿using System;
-using System.Drawing;
+﻿using Foundation;
 
-using Foundation;
+using System;
+using System.Drawing;
 
 using TotemAppCore;
 

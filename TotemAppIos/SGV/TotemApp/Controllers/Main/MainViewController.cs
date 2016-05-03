@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 using UIKit;
-using System.Threading.Tasks;
 
 namespace TotemAppIos {
 	public partial class MainViewController : BaseViewController {

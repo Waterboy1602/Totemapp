@@ -3,7 +3,6 @@ using Android.Content;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-using System;
 
 namespace TotemAndroid {
     [Activity (Label = "Totemapp", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/AppThemeNoAction")]
@@ -33,29 +32,13 @@ namespace TotemAndroid {
 			checklist.Click += (sender, eventArgs) => _appController.ChecklistMenuItemClicked ();
 
             TextView title = FindViewById<TextView>(Resource.Id.totemapp_title);
-            title.LongClick += Title_LongClick;
+            title.LongClick += ShowEasterEgg;
 
             ImageButton tip = FindViewById<ImageButton>(Resource.Id.tst);
             tip.Click += (sender, e) => ShowTipDialog();
 
             LayoutInflater mInflater = LayoutInflater.From(this);
             toastView = mInflater.Inflate(Resource.Layout.InfoToast, null);
-        }
-
-        private void Title_LongClick(object sender, Android.Views.View.LongClickEventArgs e) {
-            mToast = new Toast(this);
-            mToast.Duration = ToastLength.Short;
-            mToast.SetGravity(GravityFlags.Center | GravityFlags.Bottom, 0, ConvertDPToPixels(10));
-
-            toastView.Visibility = ViewStates.Visible;
-            mToast.View = toastView;
-            mToast.Show();
-        }
-
-        private int ConvertDPToPixels(float dp) {
-            float scale = Resources.DisplayMetrics.Density;
-            int result = (int)(dp * scale + 0.5f);
-            return result;
         }
 
         protected override void OnResume ()	{
@@ -77,7 +60,23 @@ namespace TotemAndroid {
 			_appController.NavigationController.GotoChecklistEvent-= gotoChecklistHandler;
 		}
 
-		void GoToActivity(string activity) {
+        private void ShowEasterEgg(object sender, Android.Views.View.LongClickEventArgs e) {
+            mToast = new Toast(this);
+            mToast.Duration = ToastLength.Short;
+            mToast.SetGravity(GravityFlags.Center | GravityFlags.Bottom, 0, ConvertDPToPixels(10));
+
+            toastView.Visibility = ViewStates.Visible;
+            mToast.View = toastView;
+            mToast.Show();
+        }
+
+        private int ConvertDPToPixels(float dp) {
+            float scale = Resources.DisplayMetrics.Density;
+            int result = (int)(dp * scale + 0.5f);
+            return result;
+        }
+
+        void GoToActivity(string activity) {
 			Intent intent = null;
 			switch (activity) {
 			case "totems":

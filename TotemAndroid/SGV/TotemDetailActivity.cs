@@ -61,10 +61,10 @@ namespace TotemAndroid {
                 title.Text = "Beschrijving";
 
                 if (!_appController.ShowAdd) {
-                    action = base.ActionBarDelete;
+                    action = ActionBarDelete;
                     action.Click += (sender, e) => RemoveFromProfile(_appController.CurrentProfiel.name);
                 } else {
-                    action = base.ActionBarAdd;
+                    action = ActionBarAdd;
                     action.Click += (sender, e) => ProfilePopup();
                 }
                 action.Visibility = ViewStates.Visible;

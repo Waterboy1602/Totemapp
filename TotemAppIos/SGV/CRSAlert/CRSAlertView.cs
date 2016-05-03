@@ -1,8 +1,12 @@
-﻿using System;
+﻿using CoreAnimation;
+
 using CoreGraphics;
+
 using Foundation;
+
+using System;
+
 using UIKit;
-using CoreAnimation;
 
 namespace TotemAppIos
 {

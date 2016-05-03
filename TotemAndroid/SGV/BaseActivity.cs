@@ -1,5 +1,4 @@
-﻿
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Support.V7.App;
@@ -8,8 +7,7 @@ using Android.Widget;
 
 using TotemAppCore;
 
-namespace TotemAndroid
-{
+namespace TotemAndroid {
     [Activity (Label = "BaseActivity")]			
 	public abstract class BaseActivity : AppCompatActivity {
 

@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Foundation;
+
+using System;
 using System.Collections.Generic;
 
-using Foundation;
 using TotemAppCore;
+
 using UIKit;
 
 namespace TotemAppIos {

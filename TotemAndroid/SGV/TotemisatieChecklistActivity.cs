@@ -28,11 +28,10 @@ namespace TotemAndroid {
             sharedPrefs = GetSharedPreferences("checklist", FileCreationMode.Private);
             var ser = sharedPrefs.GetString("states", "empty");
             List<List<bool>> states;
-            if(!ser.Equals("empty")) {
+            if(!ser.Equals("empty"))
                 states = JsonSerializer.DeserializeFromString<List<List<bool>>>(ser);
-            } else {
+            else
                 states = null;
-            }
 
             expand = FindViewById<ExpandableListView>(Resource.Id.expand);
 
@@ -46,7 +45,7 @@ namespace TotemAndroid {
 
             //save eigenschappenlist state in sharedprefs
             var editor = sharedPrefs.Edit();
-            var ser = ServiceStack.Text.JsonSerializer.SerializeToString(expandAdapater.checkedStates);
+            var ser = JsonSerializer.SerializeToString(expandAdapater.checkedStates);
             editor.PutString("states", ser);
             editor.Commit();
         }

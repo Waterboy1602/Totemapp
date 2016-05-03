@@ -25,6 +25,8 @@ namespace TotemAppCore {
 		public AppController () {
 			_totems = database.GetTotems ();
 			_eigenschappen = database.GetEigenschappen ();
+
+            //default list of eigenschappen which are never selected
             _eigenschappen_empty = database.GetEigenschappen();
             _navigationController = new NavigationController ();
 			TotemEigenschapDict = new Dictionary<Totem, int> ();
@@ -90,13 +92,13 @@ namespace TotemAppCore {
 		public Totem NextTotem {
 			get {
 				List<Totem> list;
-				if (detailMode == DetailMode.NORMAL) {
+				if (detailMode == DetailMode.NORMAL)
 					list = Totems;
-				} else if (detailMode == DetailMode.PROFILE) {
+				else if (detailMode == DetailMode.PROFILE)
 					list = GetTotemsFromProfiel (CurrentProfiel.name);
-				} else {
+				else
 					list = TotemEigenschapDict.Keys.ToList ();
-				}
+				
 				var index = list.FindIndex (x => x.title.Equals (CurrentTotem.title));
 				return index != (list.Count - 1) ? list [index + 1] : null;
 			}
@@ -106,13 +108,13 @@ namespace TotemAppCore {
 		public Totem PrevTotem {
 			get {
 				List<Totem> list;
-				if (detailMode == DetailMode.NORMAL) {
+				if (detailMode == DetailMode.NORMAL)
 					list = Totems;
-				} else if (detailMode == DetailMode.PROFILE) {
+				else if (detailMode == DetailMode.PROFILE)
 					list = GetTotemsFromProfiel (CurrentProfiel.name);
-				} else {
+				else
 					list = TotemEigenschapDict.Keys.ToList ();
-				}
+				
 				var index = list.FindIndex (x => x.title.Equals (CurrentTotem.title));
 				return index != 0 ? list [index - 1] : null;
 			}

@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Threading;
-
-using CoreGraphics;
+﻿using CoreGraphics;
 
 using Foundation;
 
 using ServiceStack.Text;
+
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Threading;
 
 using TotemAppCore;
 
 using UIKit;
 
 namespace TotemAppIos {
-	public partial class EigenschappenViewController : BaseViewController {
+    public partial class EigenschappenViewController : BaseViewController {
 
 		bool isSearching;
 		bool isShowingSelected;

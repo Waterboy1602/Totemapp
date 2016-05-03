@@ -13,7 +13,7 @@ namespace TotemAndroid {
 		public CustomTypefaceSpan (string family, Typeface type, TypefaceStyle style) : base(family) {
 			newType = type;
 			this.style = style;
-			this.size = 0;
+			size = 0;
 		}
 
 		public CustomTypefaceSpan (string family, Typeface type, TypefaceStyle style, int size) : base(family) {
