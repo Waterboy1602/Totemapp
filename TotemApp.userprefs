@@ -1,0 +1,73 @@
+﻿<Properties StartupItem="TotemAndroid\TotemAndroid.csproj" RefactoringSettings.EnableRefactorings="True">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" PreferredExecutionTarget="Android.0bb3642e43e4b26c" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="TotemAndroid\SGV\EigenschappenActivity.cs">
+    <Files>
+      <File FileName="TotemAndroid\SGV\BaseActivity.cs" Line="1" Column="1" />
+      <File FileName="TotemAndroid\SGV\EigenschappenActivity.cs" Line="126" Column="23" />
+      <File FileName="TotemAndroid\SGV\MainActivity.cs" Line="1" Column="1" />
+      <File FileName="TotemAndroid\SGV\ProfielenActivity.cs" Line="1" Column="1" />
+      <File FileName="TotemAndroid\SGV\ProfielTotemsActivity.cs" Line="1" Column="1" />
+      <File FileName="TotemAndroid\SGV\ResultTotemsActivity.cs" Line="1" Column="1" />
+      <File FileName="TotemAndroid\SGV\TinderEigenschappenActivity.cs" Line="1" Column="1" />
+      <File FileName="TotemAndroid\SGV\TipDialog.cs" Line="1" Column="1" />
+      <File FileName="TotemAndroid\SGV\TotemsActivity.cs" Line="1" Column="1" />
+      <File FileName="TotemAndroid\SGV\TotemisatieChecklistActivity.cs" Line="1" Column="1" />
+      <File FileName="TotemAndroid\SGV\TotemDetailActivity.cs" Line="1" Column="1" />
+      <File FileName="TotemAndroid\Resources\values\Strings.xml" Line="1" Column="1" />
+      <File FileName="TotemAndroid\Resources\values\arrays.xml" Line="1" Column="1" />
+      <File FileName="TotemAndroid\Resources\values\attrs.xml" Line="1" Column="1" />
+      <File FileName="TotemAndroid\Resources\values\styles.xml" Line="1" Column="1" />
+      <File FileName="TotemAndroid\SGV\Adapters\EigenschapAdapter.cs" Line="1" Column="1" />
+      <File FileName="TotemAndroid\SGV\Adapters\ProfielAdapter.cs" Line="1" Column="1" />
+      <File FileName="TotemAndroid\SGV\Adapters\TotemAdapter.cs" Line="1" Column="1" />
+      <File FileName="TotemAndroid\SGV\Adapters\ExpendListAdapter.cs" Line="1" Column="1" />
+      <File FileName="TotemAndroid\SGV\Utilities\CustomFontButton.cs" Line="1" Column="1" />
+      <File FileName="TotemAndroid\SGV\Utilities\CustomFontEditText.cs" Line="1" Column="1" />
+      <File FileName="TotemAndroid\SGV\Utilities\CustomFontHelper.cs" Line="1" Column="1" />
+      <File FileName="TotemAndroid\SGV\Utilities\CustomFontTextView.cs" Line="1" Column="1" />
+      <File FileName="TotemAndroid\SGV\Utilities\CustomTypefaceSpan.cs" Line="1" Column="1" />
+      <File FileName="TotemAndroid\SGV\Utilities\DynamicImageView.cs" Line="1" Column="1" />
+      <File FileName="TotemAndroid\SGV\Utilities\KeyboardHelper.cs" Line="1" Column="1" />
+      <File FileName="TotemAndroid\SGV\Utilities\MyOnCheckBoxClickListener.cs" Line="1" Column="1" />
+      <File FileName="TotemAndroid\SGV\Utilities\MyOnDismissListener.cs" Line="1" Column="1" />
+      <File FileName="TotemAndroid\SGV\Utilities\MyOnTouchListener.cs" Line="1" Column="1" />
+      <File FileName="c:\Users\fe\TotemCrossPlatform\CrossPlatform\TotemApp\TotemAppCore\SGV\DL\Database.cs" Line="1" Column="1" />
+      <File FileName="c:\Users\fe\TotemCrossPlatform\CrossPlatform\TotemApp\TotemAppCore\SGV\BL\Controllers\NavigationController.cs" Line="1" Column="1" />
+      <File FileName="TotemAndroid\Properties\AndroidManifest.xml" Line="1" Column="1" />
+      <File FileName="TotemAppCore\SGV\Utilities\CollectionHelper.cs" Line="1" Column="1" />
+      <File FileName="TotemAppCore\SGV\BL\VO\Totem.cs" Line="1" Column="1" />
+      <File FileName="TotemAppIos\SGV\TotemApp\Components\Totems\TotemsTableViewSource.cs" Line="1" Column="1" />
+      <File FileName="TotemAndroid\Resources\Menu\EigenschapSelectieMenu.xml" Line="1" Column="1" />
+      <File FileName="c:\Users\fe\TotemCrossPlatform\CrossPlatform\TotemApp\TotemAppCore\SGV\DL\SQLite.cs" Line="1" Column="1" />
+      <File FileName="TotemAppCore\SGV\BL\VO\Eigenschap.cs" Line="1" Column="1" />
+      <File FileName="TotemAppIos\SGV\TotemApp\Controllers\TotemDetail\TotemDetailViewController.cs" Line="1" Column="1" />
+      <File FileName="TotemAppCore\SGV\BL\Controllers\AppController.cs" Line="99" Column="4" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="TotemApp" expanded="True">
+            <Node name="TotemAndroid" expanded="True">
+              <Node name="References" expanded="True" />
+              <Node name="SGV" expanded="True">
+                <Node name="EigenschappenActivity.cs" selected="True" />
+              </Node>
+            </Node>
+            <Node name="TotemAppCore" expanded="True">
+              <Node name="SGV" expanded="True">
+                <Node name="BL" expanded="True">
+                  <Node name="Controllers" expanded="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.TotemAndroid AndroidDesignerPreferredDevice="Nexus 4" />
+</Properties>

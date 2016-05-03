@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/reset"
-          android:title="Reset selectie" />
-   	<item android:id="@+id/select"
-          android:title="Toon enkel selectie" />
-  	<item android:id="@+id/full"
-          android:title="Toon volledige lijst" />
-</menu>
