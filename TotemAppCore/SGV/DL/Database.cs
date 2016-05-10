@@ -22,7 +22,7 @@ namespace TotemAppCore {
 		string originalDBLocation = "SharedAssets/totems.sqlite";
         #endif
 
-        const int DATABASE_VERSION = 2;
+        const int DATABASE_VERSION = 3;
 		string currentDBName = "totems" + DATABASE_VERSION + ".sqlite";
         string oldDBName = "totems" + (DATABASE_VERSION - 1) + ".sqlite";
 
