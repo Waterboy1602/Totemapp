@@ -15,11 +15,14 @@ namespace TotemAndroid {
 
 		MyOnCheckBoxClickListener mListener;
 
-		public EigenschapAdapter (Activity activity, List<Eigenschap> list, MyOnCheckBoxClickListener listener) {	
+        int mScreenWidth;
+
+		public EigenschapAdapter (Activity activity, List<Eigenschap> list, MyOnCheckBoxClickListener listener, int screenWidth) {	
 			_activity = activity;
 			eigenschapList = list;
 			mListener = listener;
 			_appController.FireUpdateEvent();
+            mScreenWidth = screenWidth;
 		}
 
 		public void UpdateData(List<Eigenschap> list) {
@@ -59,8 +62,13 @@ namespace TotemAndroid {
 			viewHolder.eigenschap.Text = eigenschapList [position].name; 
 			viewHolder.checkbox.Checked = eigenschapList [(int)viewHolder.checkbox.Tag].selected;
 
-			//notifies CheckBoxListener and stores selection
-			if (!viewHolder.checkbox.HasOnClickListeners) {
+            //smaller font size for smaller screens
+            //otherwise UI issue
+            if (mScreenWidth <= 480)
+                viewHolder.eigenschap.TextSize = 15;
+
+            //notifies CheckBoxListener and stores selection
+            if (!viewHolder.checkbox.HasOnClickListeners) {
 				viewHolder.checkbox.Click += (o, e) => {
 					mListener.OnCheckboxClicked ();
 					if (viewHolder.checkbox.Checked)

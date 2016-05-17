@@ -1,5 +1,6 @@
 ﻿using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
@@ -39,34 +40,56 @@ namespace TotemAndroid {
 
             LayoutInflater mInflater = LayoutInflater.From(this);
             toastView = mInflater.Inflate(Resource.Layout.InfoToast, null);
+
+            //smaller font size for smaller screens
+            //otherwise UI issue
+            var disp = WindowManager.DefaultDisplay;
+            Point size = new Point();
+            disp.GetSize(size);
+
+            if (size.X <= 480) {
+                title.TextSize = 60;
+            }
         }
 
         protected override void OnResume ()	{
 			base.OnResume ();
 
-            _appController.NavigationController.GotoTotemListEvent+= gotoTotemListHandler;
-			_appController.NavigationController.GotoEigenschapListEvent+= gotoEigenschappenListHandler;
-			_appController.NavigationController.GotoProfileListEvent+= gotoProfileListHandler;
-			_appController.NavigationController.GotoChecklistEvent+= gotoChecklistHandler;
+            _appController.NavigationController.GotoTotemListEvent += gotoTotemListHandler;
+			_appController.NavigationController.GotoEigenschapListEvent += gotoEigenschappenListHandler;
+			_appController.NavigationController.GotoProfileListEvent += gotoProfileListHandler;
+			_appController.NavigationController.GotoChecklistEvent += gotoChecklistHandler;
 		}
 
 		protected override void OnPause () {
 			base.OnPause ();
             toastView.Visibility = ViewStates.Gone;
 
-            _appController.NavigationController.GotoTotemListEvent-= gotoTotemListHandler;
-			_appController.NavigationController.GotoEigenschapListEvent-= gotoEigenschappenListHandler;
-			_appController.NavigationController.GotoProfileListEvent-= gotoProfileListHandler;
-			_appController.NavigationController.GotoChecklistEvent-= gotoChecklistHandler;
+            _appController.NavigationController.GotoTotemListEvent -= gotoTotemListHandler;
+			_appController.NavigationController.GotoEigenschapListEvent -= gotoEigenschappenListHandler;
+			_appController.NavigationController.GotoProfileListEvent -= gotoProfileListHandler;
+			_appController.NavigationController.GotoChecklistEvent -= gotoChecklistHandler;
 		}
 
-        private void ShowEasterEgg(object sender, Android.Views.View.LongClickEventArgs e) {
+        private void ShowEasterEgg(object sender, View.LongClickEventArgs e) {
             mToast = new Toast(this);
             mToast.Duration = ToastLength.Short;
             mToast.SetGravity(GravityFlags.Center | GravityFlags.Bottom, 0, ConvertDPToPixels(10));
 
             toastView.Visibility = ViewStates.Visible;
             mToast.View = toastView;
+
+            //smaller font size for smaller screens
+            //otherwise UI issue
+            var disp = WindowManager.DefaultDisplay;
+            Point size = new Point();
+            disp.GetSize(size);
+
+            if (size.X <= 480) {
+                var t = mToast.View.FindViewById<TextView>(Resource.Id.info);
+                t.TextSize = 10;
+            }
+
             mToast.Show();
         }
 

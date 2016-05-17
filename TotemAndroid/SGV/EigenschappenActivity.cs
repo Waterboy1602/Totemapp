@@ -1,5 +1,6 @@
 ﻿using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Text;
 using Android.Views;
@@ -44,37 +45,42 @@ namespace TotemAndroid {
 
         ProgressDialog progress;
 
-        protected override void OnCreate (Bundle bundle) {
-			base.OnCreate (bundle);
+        protected override void OnCreate(Bundle bundle) {
+            base.OnCreate(bundle);
 
-			SetContentView (Resource.Layout.AllEigenschappen);
+            SetContentView(Resource.Layout.AllEigenschappen);
 
-			//Action bar
-			InitializeActionBar (SupportActionBar);
-			title = ActionBarTitle;
-			query = ActionBarQuery;
-			search = ActionBarSearch;
-			back = ActionBarBack;
+            //Action bar
+            InitializeActionBar(SupportActionBar);
+            title = ActionBarTitle;
+            query = ActionBarQuery;
+            search = ActionBarSearch;
+            back = ActionBarBack;
 
-			mToastShort = Toast.MakeText (this, "", ToastLength.Short);
-			mToastLong = Toast.MakeText (this, "", ToastLength.Long);
+            mToastShort = Toast.MakeText(this, "", ToastLength.Short);
+            mToastLong = Toast.MakeText(this, "", ToastLength.Long);
 
             currProfiel = _appController.CurrentProfiel;
             IsProfileNull = (currProfiel == null);
             eigenschappenList = _appController.Eigenschappen;
 
-			//listener to pass to EigenschapAdapter containing context
-			mListener = new MyOnCheckBoxClickListener (this);
+            //listener to pass to EigenschapAdapter containing context
+            mListener = new MyOnCheckBoxClickListener(this);
 
-			eigenschapAdapter = new EigenschapAdapter (this, _appController.Eigenschappen, mListener);
-			allEigenschappenListView = FindViewById<ListView> (Resource.Id.all_eigenschappen_list);
-			allEigenschappenListView.Adapter = eigenschapAdapter;
+            //pass screen width to adapter
+            var disp = WindowManager.DefaultDisplay;
+            Point size = new Point();
+            disp.GetSize(size);
+
+            eigenschapAdapter = new EigenschapAdapter(this, _appController.Eigenschappen, mListener, size.X);
+            allEigenschappenListView = FindViewById<ListView>(Resource.Id.all_eigenschappen_list);
+            allEigenschappenListView.Adapter = eigenschapAdapter;
 
             title.Text = IsProfileNull ? "Eigenschappen" : "Selectie";
             query.Hint = "Zoek eigenschap";
 
-			//hide keyboard when scrolling through list
-			allEigenschappenListView.SetOnTouchListener(new MyOnTouchListener(this, query));
+            //hide keyboard when scrolling through list
+            allEigenschappenListView.SetOnTouchListener(new MyOnTouchListener(this, query));
 
             //initialize progress dialog used when calculating totemlist
             progress = new ProgressDialog(this);
@@ -82,25 +88,25 @@ namespace TotemAndroid {
             progress.SetProgressStyle(ProgressDialogStyle.Spinner);
             progress.SetCancelable(false);
 
-            LiveSearch ();
+            LiveSearch();
 
             sharedPrefs = GetSharedPreferences("data", FileCreationMode.Private);
 
-			var vind = FindViewById<LinearLayout> (Resource.Id.vind);
-			vind.Click += VindTotem;
+            var vind = FindViewById<LinearLayout>(Resource.Id.vind);
+            vind.Click += VindTotem;
 
-			bottomBar = FindViewById<RelativeLayout> (Resource.Id.bottomBar);
+            bottomBar = FindViewById<RelativeLayout>(Resource.Id.bottomBar);
 
-			search.Visibility = ViewStates.Visible;
-			search.Click += (sender, e) => ToggleSearch ();
+            search.Visibility = ViewStates.Visible;
+            search.Click += (sender, e) => ToggleSearch();
 
-			//hide keyboard when enter is pressed
-			query.EditorAction += (sender, e) => {
-				if (e.ActionId == ImeAction.Search)
-					KeyboardHelper.HideKeyboard(this);
-				else
-					e.Handled = false;
-			};
+            //hide keyboard when enter is pressed
+            query.EditorAction += (sender, e) => {
+                if (e.ActionId == ImeAction.Search)
+                    KeyboardHelper.HideKeyboard(this);
+                else
+                    e.Handled = false;
+            };          
         }
 
         protected override void OnResume ()	{

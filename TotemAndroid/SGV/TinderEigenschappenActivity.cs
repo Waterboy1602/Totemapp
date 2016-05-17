@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.Content.PM;
+using Android.Graphics;
 using Android.OS;
 using Android.Widget;
 
@@ -33,7 +34,18 @@ namespace TotemAndroid {
 
 			jaKnop.Click += (sender, eventArgs) => Push(true);
 			neeKnop.Click += (sender, eventArgs) => Push(false);
-		}
+
+            //smaller font size for smaller screens
+            //otherwise UI issue
+            var disp = WindowManager.DefaultDisplay;
+            Point size = new Point();
+            disp.GetSize(size);
+
+            if (size.X < 4000) {
+                var eig = FindViewById<TextView>(Resource.Id.eigenschap);
+                eig.TextSize = 20;
+            }
+        }
 
         protected override void OnPause() {
             base.OnPause();
