@@ -1,13 +1,11 @@
 // WARNING
 //
-// This file has been generated automatically by Xamarin Studio from the outlets and
-// actions declared in your storyboard file.
-// Manual changes to this file will not be maintained.
+// This file has been generated automatically by Xamarin Studio Community to store outlets and
+// actions made in the UI designer. If it is removed, they will be lost.
+// Manual changes to this file may not be handled correctly.
 //
 using Foundation;
-using System;
 using System.CodeDom.Compiler;
-using UIKit;
 
 namespace TotemAppIos
 {
@@ -43,45 +41,54 @@ namespace TotemAppIos
 
 		[Outlet]
 		UIKit.UITableView tblProfielen { get; set; }
-
+		
 		void ReleaseDesignerOutlets ()
 		{
 			if (addBtnWidth != null) {
 				addBtnWidth.Dispose ();
 				addBtnWidth = null;
 			}
+
 			if (btnAdd != null) {
 				btnAdd.Dispose ();
 				btnAdd = null;
 			}
+
 			if (btnDelete != null) {
 				btnDelete.Dispose ();
 				btnDelete = null;
 			}
+
 			if (btnReturn != null) {
 				btnReturn.Dispose ();
 				btnReturn = null;
 			}
+
 			if (imgAdd != null) {
 				imgAdd.Dispose ();
 				imgAdd = null;
 			}
+
 			if (imgDelete != null) {
 				imgDelete.Dispose ();
 				imgDelete = null;
 			}
+
 			if (imgReturn != null) {
 				imgReturn.Dispose ();
 				imgReturn = null;
 			}
+
 			if (lblEmpty != null) {
 				lblEmpty.Dispose ();
 				lblEmpty = null;
 			}
+
 			if (lblTitle != null) {
 				lblTitle.Dispose ();
 				lblTitle = null;
 			}
+
 			if (tblProfielen != null) {
 				tblProfielen.Dispose ();
 				tblProfielen = null;

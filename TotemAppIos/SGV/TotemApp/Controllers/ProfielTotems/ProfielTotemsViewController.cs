@@ -45,7 +45,7 @@ namespace TotemAppIos {
 		}
 
 		public override void setData() {
-			lblTitle.Text = "Totems voor " + _appController.CurrentProfiel.name;
+			lblTitle.Text = "Totems";
 
 			imgReturn.Image = UIImage.FromBundle ("SharedAssets/arrow_back_white");
 			imgDelete.Image = UIImage.FromBundle ("SharedAssets/delete_white");

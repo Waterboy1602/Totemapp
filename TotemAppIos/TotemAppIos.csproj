@@ -319,6 +319,7 @@
     <BundleResource Include="SharedAssets\rsz_black_circle.png" />
     <BundleResource Include="SharedAssets\rsz_white_circle.png" />
     <BundleResource Include="SharedAssets\info_white.png" />
+    <BundleResource Include="SharedAssets\reset_white.png" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="servicestacktext">

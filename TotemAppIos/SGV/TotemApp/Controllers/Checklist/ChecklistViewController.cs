@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Xml;
 
 using UIKit;
+using System;
 
 namespace TotemAppIos {
 	public partial class ChecklistViewController : BaseViewController {
@@ -24,7 +25,8 @@ namespace TotemAppIos {
 
 		public override void ViewDidAppear (bool animated) {
 			base.ViewDidAppear (animated);
-			btnReturn.TouchUpInside+= btnReturnTouchUpInside;
+			btnReturn.TouchUpInside += btnReturnTouchUpInside;
+			btnReset.TouchUpInside += BtnResetTouchUpInside;
 
 			var ser = userDefs.StringForKey ("states");
 			if (ser != null) {
@@ -34,9 +36,24 @@ namespace TotemAppIos {
 			}
 		}
 
+		void BtnResetTouchUpInside (object sender, System.EventArgs e) {
+			var okCancelAlertController = UIAlertController.Create(null, "Checklist resetten?", UIAlertControllerStyle.Alert);
+
+			okCancelAlertController.AddAction(UIAlertAction.Create("Ja", UIAlertActionStyle.Default, alert => ResetChecklist(sender, e)));
+			okCancelAlertController.AddAction(UIAlertAction.Create("Nee", UIAlertActionStyle.Cancel, null));
+
+			PresentViewController(okCancelAlertController, true, null);
+		}
+
+		void ResetChecklist(object sender, EventArgs e) {
+			tvSource.ResetStates ();
+			tblChecklist.ReloadData ();
+		}
+
 		public override void ViewWillDisappear (bool animated) {
 			base.ViewWillDisappear (animated);
-			btnReturn.TouchUpInside-= btnReturnTouchUpInside;
+			btnReturn.TouchUpInside -= btnReturnTouchUpInside;
+			btnReset.TouchUpInside -= BtnResetTouchUpInside;
 
 			var ser = JsonSerializer.SerializeToString (tvSource.checkedStates);
 			userDefs.SetString (ser, "states");
@@ -55,6 +72,7 @@ namespace TotemAppIos {
 			lblTitle.Text = "Totemisatie checklist";
 
 			imgReturn.Image = UIImage.FromBundle ("SharedAssets/arrow_back_white");
+			imgReset.Image = UIImage.FromBundle ("SharedAssets/reset_white");
 
 			ExtractDataFromXML ();
 
@@ -65,7 +83,6 @@ namespace TotemAppIos {
 
 			tvSource = new ChecklistTableViewSource (dictData, states);
 			tblChecklist.Source = tvSource;
-
 		}
 
 		//extracts data from XML and puts it in a Dictionary (section header as key, list of children as value)

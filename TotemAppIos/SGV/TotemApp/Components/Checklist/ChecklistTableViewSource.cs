@@ -32,6 +32,14 @@ namespace TotemAppIos {
 			}
 		}
 
+		public void ResetStates() {
+			foreach(var list in checkedStates) {
+				for(int i = 0; i < list.Count; i++) {
+					list[i] = false;
+				}
+			}
+		}
+
 		public void UpdateStates(List<List<bool>> states) {
 			checkedStates = states;
 		}
