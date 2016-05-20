@@ -79,7 +79,7 @@ namespace TotemAppIos {
 			lblHead.Font = UIFont.FromName("VerveineW01-Regular", 20f);
 			lblFoot.Font = UIFont.FromName("VerveineW01-Regular", 20f);
 			lblFoot.Text = "VEEL SUCCES!";
-			lblHead.Text = "Een totemisatie vergt tijd en inspanning.\nDeze checklist leidt je doorheen de totemmap en helpt om niets te vergeten. Sta even stil bij jullie totemisatie en check of dit overeenstemt met onze lijst.\n ";
+			lblHead.Text = "Een goede, kwalitatieve totemisatie vergt tijd en inspanning. Deze handige checklist helpt je om niets te vergeten. Wil je weten wat er achter deze checklist schuilt? Kijk dan in de Totemmap, hét handboek voor elke totemisatie en een bron van ideeën en inspiratie om je totemactiviteiten top te maken.";
 
 			tvSource = new ChecklistTableViewSource (dictData, states);
 			tblChecklist.Source = tvSource;
