@@ -30,6 +30,14 @@ namespace TotemAndroid {
             }
 		}
 
+        public void ResetChecklist() {
+            foreach(var list in checkedStates) {
+                for(int i = 0; i < list.Count; i++) {
+                    list[i] = false;
+                }
+            }
+        }
+
 		public override Java.Lang.Object GetChild (int groupPosition, int childPosition) {
 			return _dictGroup [_lstGroupID [groupPosition]] [childPosition];
 		}

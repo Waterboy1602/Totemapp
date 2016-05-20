@@ -1505,28 +1505,31 @@ namespace TotemAndroid
 			public const int ic_more_vert_white_24dp = 2130837587;
 			
 			// aapt resource value: 0x7f020054
-			public const int ic_search_white_24dp = 2130837588;
+			public const int ic_reset_white_24dp = 2130837588;
 			
 			// aapt resource value: 0x7f020055
-			public const int ic_visibility_off_white_24dp = 2130837589;
+			public const int ic_search_white_24dp = 2130837589;
 			
 			// aapt resource value: 0x7f020056
-			public const int ic_visibility_white_24dp = 2130837590;
+			public const int ic_visibility_off_white_24dp = 2130837590;
 			
 			// aapt resource value: 0x7f020057
-			public const int icon = 2130837591;
+			public const int ic_visibility_white_24dp = 2130837591;
 			
 			// aapt resource value: 0x7f020058
-			public const int Lamp = 2130837592;
+			public const int icon = 2130837592;
 			
 			// aapt resource value: 0x7f020059
-			public const int Lijn_bold = 2130837593;
-			
-			// aapt resource value: 0x7f02005b
-			public const int notification_template_icon_bg = 2130837595;
+			public const int Lamp = 2130837593;
 			
 			// aapt resource value: 0x7f02005a
-			public const int Totem = 2130837594;
+			public const int Lijn_bold = 2130837594;
+			
+			// aapt resource value: 0x7f02005c
+			public const int notification_template_icon_bg = 2130837596;
+			
+			// aapt resource value: 0x7f02005b
+			public const int Totem = 2130837595;
 			
 			static Drawable()
 			{

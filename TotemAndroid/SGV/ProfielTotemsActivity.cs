@@ -58,7 +58,7 @@ namespace TotemAndroid {
                 allTotemListView.ItemClick += ShowDetail;
                 allTotemListView.ItemLongClick += DeleteTotem;
 
-                title.Text = "Totems voor " + profile.name;
+                title.Text = "Totems";
 
                 noTotems = FindViewById<TextView>(Resource.Id.empty_totem);
 

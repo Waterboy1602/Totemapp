@@ -3,7 +3,10 @@ using Android.Content;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+
 using ServiceStack.Text;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,14 +19,18 @@ namespace TotemAndroid {
 
         ISharedPreferences sharedPrefs;
 
+        ImageButton delete;
+
         protected override void OnCreate (Bundle savedInstanceState) {
 			base.OnCreate (savedInstanceState);
 
 			SetContentView (Resource.Layout.Checklist);
 
+            //Action bar
 			InitializeActionBar (SupportActionBar);
+            delete = ActionBarDelete;
 
-			ActionBarTitle.Text = "Totemisatie checklist";
+            ActionBarTitle.Text = "Totemisatie checklist";
 
             sharedPrefs = GetSharedPreferences("checklist", FileCreationMode.Private);
             var ser = sharedPrefs.GetString("states", "empty");
@@ -32,6 +39,10 @@ namespace TotemAndroid {
                 states = JsonSerializer.DeserializeFromString<List<List<bool>>>(ser);
             else
                 states = null;
+
+            delete.SetImageResource(Resource.Drawable.ic_reset_white_24dp);
+            delete.Click += ResetChecklist;
+            delete.Visibility = ViewStates.Visible;
 
             expand = FindViewById<ExpandableListView>(Resource.Id.expand);
 
@@ -48,6 +59,20 @@ namespace TotemAndroid {
             var ser = JsonSerializer.SerializeToString(expandAdapater.checkedStates);
             editor.PutString("states", ser);
             editor.Commit();
+        }
+
+        void ResetChecklist(object sender, EventArgs e) {
+            var alert = new AlertDialog.Builder(this);
+            alert.SetMessage("Checklist resetten?");
+            alert.SetPositiveButton("Ja", (senderAlert, args) => {
+                expandAdapater.ResetChecklist();
+                expandAdapater.NotifyDataSetChanged();
+            });
+
+            alert.SetNegativeButton("Nee", (senderAlert, args) => { });
+
+            Dialog dialog = alert.Create();
+            RunOnUiThread(dialog.Show);
         }
 
         //adds header, footer and data to the ExpandableListView
