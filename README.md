@@ -5,5 +5,5 @@ De app is geschreven in C# aan de hand van Xamarin.
 
 Handleidingen om aanpassingen te maken en updates te publishen staan in de map Handleiding.
 
-Bij vragen of opmerking: [Frederick Eskens](mailto:frederickeskens@gmail.com).
+Bij vragen of opmerking: [Frederick Eskens](mailto:frederickeskens@gmail.com?subject=Totemapp).
 In opdracht van Scouts en Gidsen Vlaanderen vzw
