@@ -4,3 +4,6 @@ De Totemapp is een tool voor totems op te zoeken en gepaste totems te vinden voo
 De app is geschreven in C# aan de hand van Xamarin.
 
 Handleidingen om aanpassingen te maken en updates te publishen staan in de map Handleiding.
+
+Bij vragen of opmerking: [Frederick Eskens](mailto:frederickeskens@gmail.com).
+In opdracht van Scouts en Gidsen Vlaanderen vzw
