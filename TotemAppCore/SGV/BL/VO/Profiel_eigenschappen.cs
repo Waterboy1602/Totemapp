@@ -1,8 +1,8 @@
 ﻿using SQLite;
 
 namespace TotemAppCore {
-    public class Profiel_eigenschappen {
-        public string name { get; set; }
-        public string eigenschappen_ser { get; set; }
+    public class ProfielEigenschappen {
+        public string Name { get; set; }
+        public string EigenschappenSerialized { get; set; }
     }
 }

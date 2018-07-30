@@ -123,7 +123,7 @@ namespace TotemAndroid {
 			var item = totemAdapter.GetItemAtPosition(pos);
 			KeyboardHelper.HideKeyboard (this);
 
-			_appController.TotemSelected (item.nid);
+			_appController.TotemSelected (item.Nid);
 		}
 
 		void StartDetailActivity() {

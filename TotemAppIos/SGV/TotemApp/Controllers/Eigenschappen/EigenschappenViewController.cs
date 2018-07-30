@@ -253,7 +253,7 @@ namespace TotemAppIos {
 		//resets selection
 		void resetSelections() {
 			foreach (var eigenschap in _appController.Eigenschappen) 
-				eigenschap.selected = false;
+				eigenschap.Selected = false;
 			
 			txtSearch.Text = "";
 			TxtSearchValueChangedHandler (txtSearch,null);
@@ -270,8 +270,8 @@ namespace TotemAppIos {
 				tblEigenschappen.ReloadSections (new NSIndexSet (0), UITableViewRowAnimation.Automatic);
 				tblEigenschappen.ScrollRectToVisible (new CGRect(0,0,1,1), false);
 				isShowingSelected = !isShowingSelected;
-			} else if ((_appController.Eigenschappen.FindAll (x=>x.selected)).Count != 0) {
-				(tblEigenschappen.Source as EigenschappenTableViewSource).Eigenschappen = _appController.Eigenschappen.FindAll (x => x.selected);
+			} else if ((_appController.Eigenschappen.FindAll (x=>x.Selected)).Count != 0) {
+				(tblEigenschappen.Source as EigenschappenTableViewSource).Eigenschappen = _appController.Eigenschappen.FindAll (x => x.Selected);
 				tblEigenschappen.ReloadSections (new NSIndexSet (0), UITableViewRowAnimation.Automatic);
 				isShowingSelected = !isShowingSelected;
 				tblEigenschappen.ScrollRectToVisible (new CGRect(0,0,1,1), false);
@@ -280,7 +280,7 @@ namespace TotemAppIos {
 
 		//updates number of selected eigenschappen on bottom bar
 		void updateCounter() {
-			int count = _appController.Eigenschappen.FindAll (x => x.selected).Count;
+			int count = _appController.Eigenschappen.FindAll (x => x.Selected).Count;
 			lblNumberSelected.Text = count + " geselecteerd";
 			bottomBarHeight.Constant = count > 0 ? 50 : 0;
 		}

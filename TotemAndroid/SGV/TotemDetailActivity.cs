@@ -160,10 +160,10 @@ namespace TotemAndroid {
 
         private void RemoveFromProfile(string profileName) {
 			var alert = new AlertDialog.Builder (this);
-			alert.SetMessage (_appController.CurrentTotem.title + " verwijderen uit profiel " + profileName + "?");
+			alert.SetMessage (_appController.CurrentTotem.Title + " verwijderen uit profiel " + profileName + "?");
 			alert.SetPositiveButton ("Ja", (senderAlert, args) => {
-				_appController.DeleteTotemFromProfile(_appController.CurrentTotem.nid, profileName);
-				mToast.SetText(_appController.CurrentTotem.title + " verwijderd");
+				_appController.DeleteTotemFromProfile(_appController.CurrentTotem.Nid, profileName);
+				mToast.SetText(_appController.CurrentTotem.Title + " verwijderd");
 				mToast.Show();
 				base.OnBackPressed();
 			});
@@ -211,8 +211,8 @@ namespace TotemAndroid {
 								mToast.Show();
 							} else {
 								_appController.AddProfile(value);
-								_appController.AddTotemToProfiel(_appController.CurrentTotem.nid, value);
-								mToast.SetText((hidden ? "Totem" : _appController.GetTotemOnID(_appController.CurrentTotem.nid).title) + " toegevoegd aan profiel " + value.Replace("'", ""));
+								_appController.AddTotemToProfiel(_appController.CurrentTotem.Nid, value);
+								mToast.SetText((hidden ? "Totem" : _appController.GetTotemOnId(_appController.CurrentTotem.Nid).Title) + " toegevoegd aan profiel " + value.Replace("'", ""));
 								mToast.Show();
 							}
 						});
@@ -230,8 +230,8 @@ namespace TotemAndroid {
 					RunOnUiThread (d1.Show);
 
 					} else {
-						_appController.AddTotemToProfiel(_appController.CurrentTotem.nid, arg1.Item.TitleFormatted.ToString());
-						mToast.SetText((hidden ? "Totem" : _appController.GetTotemOnID(_appController.CurrentTotem.nid).title) + " toegevoegd aan profiel " + arg1.Item.TitleFormatted);
+						_appController.AddTotemToProfiel(_appController.CurrentTotem.Nid, arg1.Item.TitleFormatted.ToString());
+						mToast.SetText((hidden ? "Totem" : _appController.GetTotemOnId(_appController.CurrentTotem.Nid).Title) + " toegevoegd aan profiel " + arg1.Item.TitleFormatted);
 						mToast.Show();
 					}
 				};
@@ -247,21 +247,24 @@ namespace TotemAndroid {
 
 		//displays totem info
 		private void SetInfo() {
-            body.Text = _appController.CurrentTotem.body;
+            body.Text = _appController.CurrentTotem.Body;
             if (hidden) {
                 title_synonyms.Text = "...";
-                body.Text = _appController.CurrentTotem.body.Replace(_appController.CurrentTotem.title, "...");
+                var totemBody = _appController.CurrentTotem.Body.Replace(_appController.CurrentTotem.Title, "...");
+                totemBody = totemBody.Replace(_appController.CurrentTotem.Title.ToLower(), "...");
+                totemBody = totemBody.Replace(_appController.CurrentTotem.Title.Normalize(), "...");
+                body.Text = totemBody;
             } else {
-                number.Text = _appController.CurrentTotem.number + ". ";
+                number.Text = _appController.CurrentTotem.Number + ". ";
 
                 Typeface Verveine = Typeface.CreateFromAsset(Assets, "fonts/Verveine W01 Regular.ttf");
 
                 //code to get formatting right
                 //title and synonyms are in the same TextView
                 //font, size,... are given using spans
-                if (_appController.CurrentTotem.synonyms != null) {
-                    string titlestring = _appController.CurrentTotem.title;
-                    string synonymsstring = " - " + _appController.CurrentTotem.synonyms + " ";
+                if (_appController.CurrentTotem.Synonyms != null) {
+                    string titlestring = _appController.CurrentTotem.Title;
+                    string synonymsstring = " - " + _appController.CurrentTotem.Synonyms + " ";
 
                     Typeface Din = Typeface.CreateFromAsset(Assets, "fonts/DINPro-Light.ttf");
 
@@ -271,7 +274,7 @@ namespace TotemAndroid {
 
                     title_synonyms.TextFormatted = sp;
                 } else {
-                    title_synonyms.Text = _appController.CurrentTotem.title;
+                    title_synonyms.Text = _appController.CurrentTotem.Title;
                     title_synonyms.SetTypeface(Verveine, 0);
                 }
             }

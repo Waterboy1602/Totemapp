@@ -26,7 +26,7 @@ namespace TotemAppIos {
 		}
 
 		public void setData(bool check) {
-			lblTotemName.Text = Totem.title;
+			lblTotemName.Text = Totem.Title;
 
 			if (check) {
 				_checkBox = new BemCheckBox (new CoreGraphics.CGRect (0, 0, 20, 20), new MyBemCheckBoxDelegate(this));
@@ -36,7 +36,7 @@ namespace TotemAppIos {
 
 		public void toggleCheckbox() {
 			_checkBox.SetOn (!_checkBox.On,true);
-			Totem.selected = _checkBox.On;
+			Totem.Selected = _checkBox.On;
 		}
 
 		class MyBemCheckBoxDelegate : BemCheckBoxDelegate {
@@ -47,7 +47,7 @@ namespace TotemAppIos {
 			}
 
 			public override void DidTapCheckBox(bool checkBoxIsOn) {
-				cell.Totem.selected = checkBoxIsOn;
+				cell.Totem.Selected = checkBoxIsOn;
 			}
 		}
 	}

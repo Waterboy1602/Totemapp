@@ -68,7 +68,7 @@ namespace TotemAppIos {
 			if (hidden) {
 				lblNumber.Text = "";
 				lblHead.Text = "...";
-				lblBody.Text = _appController.CurrentTotem.body.Replace (_appController.CurrentTotem.title, "...");
+				lblBody.Text = _appController.CurrentTotem.Body.Replace (_appController.CurrentTotem.Title, "...");
 			} else {
 
 				//styling for title (totem name)
@@ -90,22 +90,22 @@ namespace TotemAppIos {
 					ParagraphStyle = paragraphStyleSyn					
 				};
 
-				var content = _appController.CurrentTotem.title;
-				if (_appController.CurrentTotem.synonyms != null)
-					content += " - " + _appController.CurrentTotem.synonyms;
+				var content = _appController.CurrentTotem.Title;
+				if (_appController.CurrentTotem.Synonyms != null)
+					content += " - " + _appController.CurrentTotem.Synonyms;
 
 				//whitespace for UI purposes
 				content += "\n";
 
 				//applying attributes
 				var title_synonyms = new NSMutableAttributedString (content);
-				title_synonyms.SetAttributes (titleAttributes.Dictionary, new NSRange (0, _appController.CurrentTotem.title.Length));
-				title_synonyms.SetAttributes (synonymsAttributes.Dictionary, new NSRange (_appController.CurrentTotem.title.Length, (title_synonyms.Length - _appController.CurrentTotem.title.Length)));
+				title_synonyms.SetAttributes (titleAttributes.Dictionary, new NSRange (0, _appController.CurrentTotem.Title.Length));
+				title_synonyms.SetAttributes (synonymsAttributes.Dictionary, new NSRange (_appController.CurrentTotem.Title.Length, (title_synonyms.Length - _appController.CurrentTotem.Title.Length)));
 
-				lblNumber.Text = _appController.CurrentTotem.number + ". ";
+				lblNumber.Text = _appController.CurrentTotem.Number + ". ";
 				lblHead.AttributedText = title_synonyms;
 
-				lblBody.Text = _appController.CurrentTotem.body;
+				lblBody.Text = _appController.CurrentTotem.Body;
 			}
 
 			imgLine.Image = UIImage.FromBundle ("SharedAssets/Lijn_bold");
@@ -143,7 +143,7 @@ namespace TotemAppIos {
 					
 				PresentViewController (actionSheetAlert, true, null);
 			} else {
-				var okCancelAlertController = UIAlertController.Create(null, _appController.CurrentTotem.title + " verwijderen uit profiel " + _appController.CurrentProfiel.name + "?", UIAlertControllerStyle.Alert);
+				var okCancelAlertController = UIAlertController.Create(null, _appController.CurrentTotem.Title + " verwijderen uit profiel " + _appController.CurrentProfiel.name + "?", UIAlertControllerStyle.Alert);
 
 				okCancelAlertController.AddAction(UIAlertAction.Create("Ja", UIAlertActionStyle.Default, alert => deleteFromProfile()));
 				okCancelAlertController.AddAction(UIAlertAction.Create("Nee", UIAlertActionStyle.Cancel, null));
@@ -153,7 +153,7 @@ namespace TotemAppIos {
 		}
 
 		void addToProfile(string name) {
-			_appController.AddTotemToProfiel (_appController.CurrentTotem.nid, name);
+			_appController.AddTotemToProfiel (_appController.CurrentTotem.Nid, name);
 		}
 
 		void addProfileDialog () {
@@ -185,13 +185,13 @@ namespace TotemAppIos {
 				PresentViewController (okAlertController, true, null);	
 			} else {
 				_appController.AddProfile (name);
-				_appController.AddTotemToProfiel (_appController.CurrentTotem.nid, name);
+				_appController.AddTotemToProfiel (_appController.CurrentTotem.Nid, name);
 			}
 		}
 
 		//deletes totem drom profile and returns to totem page
 		void deleteFromProfile() {
-			_appController.DeleteTotemFromProfile (_appController.CurrentTotem.nid, _appController.CurrentProfiel.name);
+			_appController.DeleteTotemFromProfile (_appController.CurrentTotem.Nid, _appController.CurrentProfiel.name);
 			NavigationController.PopViewController (true);
 		}
 	}

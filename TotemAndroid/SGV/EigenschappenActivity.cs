@@ -159,7 +159,7 @@ namespace TotemAndroid {
 		}
 
 		void updateCounter () {
-			int count = _appController.Eigenschappen.FindAll (x => x.selected).Count;
+			int count = _appController.Eigenschappen.FindAll (x => x.Selected).Count;
 			var tvNumberSelected = FindViewById<TextView> (Resource.Id.selected);
 			tvNumberSelected.Text = count + " geselecteerd";
 			if (count > 0)
@@ -194,27 +194,33 @@ namespace TotemAndroid {
 			eigenschapAdapter.NotifyDataSetChanged ();
 			query.Text = "";
 			fullList = true;
-            if(menu != null)
-			    UpdateOptionsMenu ();
+		    if (menu != null)
+		    {
+		        UpdateOptionsMenu();
+		    }
 		}
 
 		//update list after every keystroke
 		void LiveSearch() {
 			query.AfterTextChanged += (sender, args) => {
 				Search();
-				if(query.Text.Equals(""))
-					fullList = true;
+			    if (query.Text.Equals(""))
+			    {
+			        fullList = true;
+			    }
 			};
 		}
 
 		//shows only totems that match the query
 		void Search() {
 			fullList = false;
-			eigenschappenList = _appController.FindEigenschapOpNaam (query.Text);
+			eigenschappenList = _appController.FindEigenschapOpNaam(query.Text);
 			eigenschapAdapter.UpdateData (eigenschappenList);
 			eigenschapAdapter.NotifyDataSetChanged ();
-			if(query.Length() > 0)
-				allEigenschappenListView.SetSelection (0);
+		    if (query.Length() > 0)
+		    {
+		        allEigenschappenListView.SetSelection(0);
+		    }
 		}
 
 		//adds loading dialog and calculates totemlist
@@ -256,7 +262,7 @@ namespace TotemAndroid {
                 query.Text = "";
 				fullList = true;
 				foreach (Eigenschap e in eigenschappenList)
-					e.selected = false;
+					e.Selected = false;
 				eigenschapAdapter.UpdateData (_appController.Eigenschappen);
 				eigenschapAdapter.NotifyDataSetChanged ();
                 UpdateOptionsMenu ();
@@ -391,7 +397,7 @@ namespace TotemAndroid {
 		List<Eigenschap> GetSelectedEigenschappen() {
 			var result = new List<Eigenschap> ();
 			foreach(Eigenschap e in _appController.Eigenschappen)
-				if (e.selected)
+				if (e.Selected)
 					result.Add (e);
 
 			return result;

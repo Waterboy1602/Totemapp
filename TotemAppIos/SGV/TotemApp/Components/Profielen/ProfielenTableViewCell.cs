@@ -34,7 +34,7 @@ namespace TotemAppIos {
 
 		public void toggleCheckbox() {
 			_checkBox.SetOn (!_checkBox.On,true);
-			Profiel.selected = _checkBox.On;
+			Profiel.Selected = _checkBox.On;
 		}
 
 		class MyBemCheckBoxDelegate : BemCheckBoxDelegate {
@@ -45,7 +45,7 @@ namespace TotemAppIos {
 			}
 
 			public override void DidTapCheckBox(bool checkBoxIsOn) {
-				cell.Profiel.selected = checkBoxIsOn;
+				cell.Profiel.Selected = checkBoxIsOn;
 			}
 		}
 	}

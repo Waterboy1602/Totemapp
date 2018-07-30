@@ -60,10 +60,10 @@ namespace TotemAndroid {
 			viewHolder.checkbox.Tag = position;
 
 			viewHolder.profiel.Text = profielList [position].name;
-			viewHolder.checkbox.Checked = profielList [(int)viewHolder.checkbox.Tag].selected;
+			viewHolder.checkbox.Checked = profielList [(int)viewHolder.checkbox.Tag].Selected;
 
 			viewHolder.checkbox.Click += (o, e) => {
-				profielList [(int)viewHolder.checkbox.Tag].selected = viewHolder.checkbox.Checked ? true : false;
+				profielList [(int)viewHolder.checkbox.Tag].Selected = viewHolder.checkbox.Checked ? true : false;
 			};
 
 			return convertView;

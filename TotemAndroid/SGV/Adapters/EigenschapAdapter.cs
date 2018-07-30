@@ -59,8 +59,8 @@ namespace TotemAndroid {
 			//and which aren't during scrolling
 			viewHolder.checkbox.Tag = position;
 
-			viewHolder.eigenschap.Text = eigenschapList [position].name; 
-			viewHolder.checkbox.Checked = eigenschapList [(int)viewHolder.checkbox.Tag].selected;
+			viewHolder.eigenschap.Text = eigenschapList [position].Name; 
+			viewHolder.checkbox.Checked = eigenschapList [(int)viewHolder.checkbox.Tag].Selected;
 
             //smaller font size for smaller screens
             //otherwise UI issue
@@ -72,9 +72,9 @@ namespace TotemAndroid {
 				viewHolder.checkbox.Click += (o, e) => {
 					mListener.OnCheckboxClicked ();
 					if (viewHolder.checkbox.Checked)
-						eigenschapList [(int)viewHolder.checkbox.Tag].selected = true;
+						eigenschapList [(int)viewHolder.checkbox.Tag].Selected = true;
 					else
-						eigenschapList [(int)viewHolder.checkbox.Tag].selected = false;
+						eigenschapList [(int)viewHolder.checkbox.Tag].Selected = false;
 				
 					_appController.FireUpdateEvent ();
 				};
@@ -85,9 +85,9 @@ namespace TotemAndroid {
 					mListener.OnCheckboxClicked ();
 					viewHolder.checkbox.Checked = !(viewHolder.checkbox.Checked);
 					if (viewHolder.checkbox.Checked)
-						eigenschapList [(int)viewHolder.checkbox.Tag].selected = true;
+						eigenschapList [(int)viewHolder.checkbox.Tag].Selected = true;
 					else
-						eigenschapList [(int)viewHolder.checkbox.Tag].selected = false;
+						eigenschapList [(int)viewHolder.checkbox.Tag].Selected = false;
 
 					_appController.FireUpdateEvent();
 				};

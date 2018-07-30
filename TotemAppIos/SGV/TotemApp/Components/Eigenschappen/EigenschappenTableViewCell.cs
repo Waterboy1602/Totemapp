@@ -29,15 +29,15 @@ namespace TotemAppIos {
 
 		//add custom checkbox and initialize it with the right value
 		public void setData() {
-			lblEigenschapName.Text = Eigenschap.name;
+			lblEigenschapName.Text = Eigenschap.Name;
 			_checkBox = new BemCheckBox (new CoreGraphics.CGRect (0, 0, 20, 20), new MyBemCheckBoxDelegate(this));
 			vwCheckBoxHolder.Add (_checkBox);
-			_checkBox.SetOn (Eigenschap.selected,false);
+			_checkBox.SetOn (Eigenschap.Selected,false);
 		}
 			
 		public void toggleCheckbox() {
 			_checkBox.SetOn (!_checkBox.On,true);
-			Eigenschap.selected = _checkBox.On;
+			Eigenschap.Selected = _checkBox.On;
 			_appController.FireUpdateEvent ();
 		}
 
@@ -50,7 +50,7 @@ namespace TotemAppIos {
 			}
 
 			public override void DidTapCheckBox(bool checkBoxIsOn) {
-				cell.Eigenschap.selected = checkBoxIsOn;
+				cell.Eigenschap.Selected = checkBoxIsOn;
 				_appController.FireUpdateEvent ();
 			}
 		}

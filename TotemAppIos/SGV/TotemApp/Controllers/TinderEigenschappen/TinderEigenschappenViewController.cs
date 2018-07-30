@@ -50,7 +50,7 @@ namespace TotemAppIos {
 
 		public void UpdateScreen() {
 			if (eigenschapCount < 324) {
-				lblEigenschap.Text = _appController.Eigenschappen[eigenschapCount].name;
+				lblEigenschap.Text = _appController.Eigenschappen[eigenschapCount].Name;
 			} else {
 				_appController.FireSelectedEvent ();
 				NavigationController.PopViewController (true);
@@ -58,13 +58,13 @@ namespace TotemAppIos {
 		}
 
 		public void pushJa(object sender, EventArgs e) {
-			_appController.Eigenschappen[eigenschapCount].selected = true;
+			_appController.Eigenschappen[eigenschapCount].Selected = true;
 			eigenschapCount++;
 			UpdateScreen ();
 		}
 
 		public void pushNee(object sender, EventArgs e) {
-			_appController.Eigenschappen[eigenschapCount].selected = false;
+			_appController.Eigenschappen[eigenschapCount].Selected = false;
 			eigenschapCount++;
 			UpdateScreen ();
 		}

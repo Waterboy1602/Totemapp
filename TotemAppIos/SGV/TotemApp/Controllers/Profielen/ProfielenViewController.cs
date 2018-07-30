@@ -137,7 +137,7 @@ namespace TotemAppIos {
 
 		//the actual deletion of the selected profiles
 		void deleteSelected(object sender, EventArgs e) {
-			var deleteList = profielen.FindAll (x => x.selected);
+			var deleteList = profielen.FindAll (x => x.Selected);
 			foreach(Profiel p in deleteList)
 				_appController.DeleteProfile (p.name);
 

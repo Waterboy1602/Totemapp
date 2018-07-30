@@ -58,7 +58,7 @@ namespace TotemAndroid {
 		List<Totem> ConvertIDArrayToTotemList(int[] totemIDs) {
 			var list = new List<Totem> ();
 			foreach(int idx in totemIDs)
-				list.Add (_appController.GetTotemOnID (idx));
+				list.Add (_appController.GetTotemOnId (idx));
 
 			return list;
 		}
@@ -67,7 +67,7 @@ namespace TotemAndroid {
 			int pos = e.Position;
 			var item = totemAdapter.GetItemAtPosition(pos);
 
-			_appController.TotemSelected (item.nid);
+			_appController.TotemSelected (item.Nid);
 		}
 
 		void StartDetailActivity() {

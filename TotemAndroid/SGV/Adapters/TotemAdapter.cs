@@ -27,7 +27,7 @@ namespace TotemAndroid {
 
 			alphaIndex = new Dictionary<string, int>();
 			for (int i = 0; i < items.Length; i++) {
-				var key = items[i].title[0].ToString();
+				var key = items[i].Title[0].ToString();
 				if (!alphaIndex.ContainsKey(key)) 
 					alphaIndex.Add(key, i);
 			}
@@ -86,13 +86,13 @@ namespace TotemAndroid {
 
 			viewHolder.checkbox.Tag = position;
 
-			viewHolder.totem.Text = totemList [position].title;
-			viewHolder.checkbox.Checked = totemList [(int)viewHolder.checkbox.Tag].selected;
+			viewHolder.totem.Text = totemList [position].Title;
+			viewHolder.checkbox.Checked = totemList [(int)viewHolder.checkbox.Tag].Selected;
 			if (freqs != null)
 				viewHolder.freq.Text = freqs [position].ToString ();
 
 			viewHolder.checkbox.Click += (o, e) => {
-				totemList [(int)viewHolder.checkbox.Tag].selected = viewHolder.checkbox.Checked;
+				totemList [(int)viewHolder.checkbox.Tag].Selected = viewHolder.checkbox.Checked;
 			};
 
 			return convertView;

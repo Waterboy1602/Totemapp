@@ -119,7 +119,7 @@ namespace TotemAndroid {
 			int pos = e.Position;
 			var item = totemAdapter.GetItemAtPosition(pos);
 
-			_appController.ProfileTotemSelected (profile.name, item.nid);
+			_appController.ProfileTotemSelected (profile.name, item.Nid);
 		}
 
         //create options menu
@@ -151,10 +151,10 @@ namespace TotemAndroid {
 			var item = totemAdapter.GetItemAtPosition(pos);
 
 			var alert = new AlertDialog.Builder (this);
-			alert.SetMessage (item.title + " verwijderen uit profiel " + profile.name + "?");
+			alert.SetMessage (item.Title + " verwijderen uit profiel " + profile.name + "?");
 			alert.SetPositiveButton ("Ja", (senderAlert, args) => {
-				_appController.DeleteTotemFromProfile(item.nid, profile.name);
-				mToast.SetText(item.title + " verwijderd");
+				_appController.DeleteTotemFromProfile(item.Nid, profile.name);
+				mToast.SetText(item.Title + " verwijderd");
 				mToast.Show();
                 UpdateList();
 			});
@@ -168,7 +168,7 @@ namespace TotemAndroid {
 		//also sets all the checkboxes unchecked
 		private void ShowDeleteTotems(object sender, EventArgs e) {
 			foreach (Totem t in totemList)
-				t.selected = false;
+				t.Selected = false;
 
 			totemAdapter.ShowDelete ();
 			totemAdapter.UpdateData (totemList);
@@ -197,7 +197,7 @@ namespace TotemAndroid {
 		private void RemoveSelectedTotems(object sender, EventArgs e) {
 			bool selected = false;
 			foreach(Totem t in totemList) {
-				if (t.selected) {
+				if (t.Selected) {
 					selected = true;
 					break;
 				}
@@ -207,8 +207,8 @@ namespace TotemAndroid {
 				alert1.SetMessage ("Geselecteerde totems verwijderen?");
 				alert1.SetPositiveButton ("Ja", (senderAlert, args) => {
 					foreach (Totem t in totemList)
-						if (t.selected)
-							_appController.DeleteTotemFromProfile (t.nid, profile.name);
+						if (t.Selected)
+							_appController.DeleteTotemFromProfile (t.Nid, profile.name);
 
                     UpdateList();
                     HideDeleteTotems(sender, e);

@@ -108,12 +108,12 @@ namespace TotemAppCore {
                 SQLiteConnection newDB = new SQLiteConnection(dbPath);
 
                 var oldProfielen = oldDb.Query<Profiel>("SELECT * FROM profiel");
-                var oldEigenschappenSer = oldDb.Query<Profiel_eigenschappen>("SELECT * FROM profiel_eigenschappen");
+                var oldEigenschappenSer = oldDb.Query<ProfielEigenschappen>("SELECT * FROM profiel_eigenschappen");
                 foreach(Profiel p in oldProfielen)
-                    newDB.Execute("INSERT INTO profiel (name, nid) values (?, ?)", p.name, p.nid);
+                    newDB.Execute("INSERT INTO profiel (name, nid) values (?, ?)", p.name, p.Nid);
                 
-                foreach (Profiel_eigenschappen pe in oldEigenschappenSer)
-                    newDB.Execute("INSERT INTO profiel_eigenschappen (name, eigenschappen_ser) values (?, ?)", pe.name, pe.eigenschappen_ser);
+                foreach (ProfielEigenschappen pe in oldEigenschappenSer)
+                    newDB.Execute("INSERT INTO profiel_eigenschappen (name, eigenschappen_ser) values (?, ?)", pe.Name, pe.EigenschappenSerialized);
                 
                 oldDb.Dispose();
                 newDB.Dispose();
@@ -207,17 +207,17 @@ namespace TotemAppCore {
 
         //returns serialized eigenschappenlist of profile
         public string GetSerFromProfile(string profileName) {
-            List<Profiel_eigenschappen> res;
+            List<ProfielEigenschappen> res;
             lock (database) {
                 var cmd = new SQLiteCommand(database);
                 var cleanName = profileName.Replace("'", "");
                 cmd.CommandText = "select * from profiel_eigenschappen where name='" + cleanName + "'";
-                res = cmd.ExecuteQuery<Profiel_eigenschappen>();
+                res = cmd.ExecuteQuery<ProfielEigenschappen>();
             }
             if (res.Count == 0)
                 return null;
             else
-                return res[0].eigenschappen_ser;
+                return res[0].EigenschappenSerialized;
         }
 
         //adds or updates serialization-entry of profile
@@ -227,14 +227,14 @@ namespace TotemAppCore {
                     var cmd = new SQLiteCommand(database);
                     var cleanName = profielName.Replace("'", "");
                     cmd.CommandText = "update profiel_eigenschappen set eigenschappen_ser='" + ser + "' where name='" + cleanName + "'";
-                    cmd.ExecuteQuery<Profiel_eigenschappen>();
+                    cmd.ExecuteQuery<ProfielEigenschappen>();
                 }
             } else {
                 lock (database) {
                     var cmd = new SQLiteCommand(database);
                     var cleanName = profielName.Replace("'", "");
                     cmd.CommandText = "insert into profiel_eigenschappen (name, eigenschappen_ser) values ('" + cleanName + "', '" + ser + "')";
-                    cmd.ExecuteQuery<Profiel_eigenschappen>();
+                    cmd.ExecuteQuery<ProfielEigenschappen>();
                 }
             }
         }
@@ -244,17 +244,17 @@ namespace TotemAppCore {
             var cmd = new SQLiteCommand(database);
             var cleanProfielName = profielName.Replace("'", "");
             cmd.CommandText = "DELETE FROM profiel_eigenschappen WHERE name='" + cleanProfielName + "'";
-            cmd.ExecuteQuery<Profiel_eigenschappen>();
+            cmd.ExecuteQuery<ProfielEigenschappen>();
         }
 
         //checks if database already has serialization-entry
         bool ProfileSerExists(string profielName) {
-            List<Profiel_eigenschappen> res;
+            List<ProfielEigenschappen> res;
             lock (database) {
                 var cmd = new SQLiteCommand(database);
                 var cleanName = profielName.Replace("'", "");
                 cmd.CommandText = "select name from profiel_eigenschappen where name='" + cleanName + "'";
-                res = cmd.ExecuteQuery<Profiel_eigenschappen>();
+                res = cmd.ExecuteQuery<ProfielEigenschappen>();
             }
             return !(res.Count == 0);
         }
@@ -300,7 +300,7 @@ namespace TotemAppCore {
 				list = cmd.ExecuteQuery<Tip> ();
 			}
 			var rnd = new Random ();
-			return list [rnd.Next (list.Count)].tip;
+			return list [rnd.Next (list.Count)].TipBody;
 		}
 	}
 }

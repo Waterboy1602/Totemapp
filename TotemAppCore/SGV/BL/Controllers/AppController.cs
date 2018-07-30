@@ -92,14 +92,21 @@ namespace TotemAppCore {
 		public Totem NextTotem {
 			get {
 				List<Totem> list;
-				if (detailMode == DetailMode.NORMAL)
-					list = Totems;
-				else if (detailMode == DetailMode.PROFILE)
-					list = GetTotemsFromProfiel (CurrentProfiel.name);
-				else
-					list = TotemEigenschapDict.Keys.ToList ();
+				switch (detailMode)
+				{
+				    case DetailMode.NORMAL:
+				        list = Totems;
+				        break;
+				    case DetailMode.PROFILE:
+				        list = GetTotemsFromProfiel(CurrentProfiel.name);
+				        break;
+				    default:
+				        list = TotemEigenschapDict.Keys.ToList ();
+				        break;
+				}
 				
-				var index = list.FindIndex (x => x.title.Equals (CurrentTotem.title));
+				var index = list.FindIndex (x => x.Title.Equals (CurrentTotem.Title));
+
 				return index != (list.Count - 1) ? list [index + 1] : null;
 			}
 		}
@@ -108,15 +115,22 @@ namespace TotemAppCore {
 		public Totem PrevTotem {
 			get {
 				List<Totem> list;
-				if (detailMode == DetailMode.NORMAL)
-					list = Totems;
-				else if (detailMode == DetailMode.PROFILE)
-					list = GetTotemsFromProfiel (CurrentProfiel.name);
-				else
-					list = TotemEigenschapDict.Keys.ToList ();
+				switch (detailMode)
+				{
+				    case DetailMode.NORMAL:
+				        list = Totems;
+				        break;
+				    case DetailMode.PROFILE:
+				        list = GetTotemsFromProfiel(CurrentProfiel.name);
+				        break;
+				    default:
+				        list = TotemEigenschapDict.Keys.ToList ();
+				        break;
+				}
 				
-				var index = list.FindIndex (x => x.title.Equals (CurrentTotem.title));
-				return index != 0 ? list [index - 1] : null;
+				var index = list.FindIndex (x => x.Title.Equals (CurrentTotem.Title));
+
+				return index != 0 ? list[index - 1] : null;
 			}
 		}
 
@@ -131,36 +145,44 @@ namespace TotemAppCore {
 
 
 		//returns totem-object with given id (int)
-		public Totem GetTotemOnID(int idx) {
-			foreach(Totem t in _totems)
-				if(t.nid.Equals(idx.ToString()))
-					return t;
+		public Totem GetTotemOnId(int idx) {
+		    foreach (var totem in _totems)
+		    {
+		        if (totem.Nid.Equals(idx.ToString()))
+		        {
+		            return totem;
+		        }
+		    }
 
-			return null;
+		    return null;
 		}
 
 		//returns totem-object with given id (string)
-		public Totem GetTotemOnID(string idx) {
-			return GetTotemOnID (int.Parse (idx));
+		public Totem GetTotemOnId(string idx) {
+			return GetTotemOnId (int.Parse (idx));
 		}
 
 		//returns totem-object with given name
 		public List<Totem> FindTotemOpNaam(string name) {
 			var result = new List<Totem> ();
-			foreach(Totem t in _totems)
-				if(t.title.ToLower().Contains(name.ToLower()))
-					result.Add (t);
+			foreach(var totem in _totems)
+				if(totem.Title.ToLower().Contains(name.ToLower()))
+					result.Add (totem);
 
 			return result;
 		}
 
         public List<Totem> FindTotemOpNaamOfSyn(string name) {
             var result = new List<Totem>();
-            foreach (Totem t in _totems) {
-                if (t.title.ToLower().Contains(name.ToLower()))
-                    result.Add(t);
-                else if (t.synonyms != null && t.synonyms.ToLower().Contains(name.ToLower()))
-                    result.Add(t);
+            foreach (var totem in _totems) {
+                if (totem.Title.ToLower().Contains(name.ToLower()))
+                {
+                    result.Add(totem);
+                }
+                else if (totem.Synonyms != null && totem.Synonyms.ToLower().Contains(name.ToLower()))
+                {
+                    result.Add(totem);
+                }
             }
 
             return result;
@@ -169,21 +191,27 @@ namespace TotemAppCore {
         //returns eigenschap-object with given name
         public List<Eigenschap> FindEigenschapOpNaam(string name) {
 			var result = new List<Eigenschap> ();
-			foreach(Eigenschap e in _eigenschappen)
-				if(e.name.ToLower().Contains(name.ToLower()))
-					result.Add (e);
+            foreach (var eigenschap in _eigenschappen)
+            {
+                if (eigenschap.Name.Normalize().Contains(name.Normalize()))
+                {
+                    result.Add(eigenschap);
+                }
+            }
 
-			return result;
+            return result;
 		}
 
 		//returns a list of totems related to a profile
 		public List<Totem> GetTotemsFromProfiel(string name) {
-			List<Profiel> list = AllProfielen.FindAll (x=>x.name == name);
-			var profiles = list.FindAll (y =>y.nid!=null);
+			var list = AllProfielen.FindAll (x => x.name == name);
+			var profiles = list.FindAll (y =>y.Nid!=null);
 			var result = new List<Totem> ();
-			foreach (var profile in profiles) {
-				result.Add (GetTotemOnID (profile.nid));
+			foreach (var profile in profiles)
+			{
+				result.Add (GetTotemOnId (profile.Nid));
 			}
+
 			return result;
 		}
 
@@ -300,7 +328,7 @@ namespace TotemAppCore {
 
 			
 		void setCurrentTotem(string totemID) {
-			var totem = _totems.Find (x => x.nid.Equals (totemID));
+			var totem = _totems.Find (x => N.nid.Equals (totemID));
 			CurrentTotem = totem;
 		}
 
@@ -318,8 +346,8 @@ namespace TotemAppCore {
 		void FillAndSortDict(List<Eigenschap> checkboxList) {
 			TotemEigenschapDict = new Dictionary<Totem, int> ();
 			foreach (Eigenschap eig in checkboxList) {
-				if(eig.selected) {
-					List<Totem_eigenschap> toAdd = GetTotemsVanEigenschapsID (eig.eigenschapID);
+				if(eig.Selected) {
+					List<Totem_eigenschap> toAdd = GetTotemsVanEigenschapsID (eig.EigenschapId);
 					foreach(Totem_eigenschap totem in toAdd) {
 						CollectionHelper.AddOrUpdateDictionaryEntry (TotemEigenschapDict, database.GetTotemsOnId(totem.nid));
 					}

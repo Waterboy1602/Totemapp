@@ -36,10 +36,10 @@ namespace TotemAppIos {
 		void FillDict(List<Totem> list) {
 			dict = new Dictionary<string, List<Totem>> ();
 			foreach (var t in list) {
-				if (dict.ContainsKey (t.title[0].ToString ())) {
-					dict[t.title[0].ToString ()].Add(t);
+				if (dict.ContainsKey (t.Title[0].ToString ())) {
+					dict[t.Title[0].ToString ()].Add(t);
 				} else {
-					dict.Add (t.title[0].ToString (), new List<Totem> {t});
+					dict.Add (t.Title[0].ToString (), new List<Totem> {t});
 				}
 			}
 			keys = dict.Keys.ToArray ();
@@ -81,7 +81,7 @@ namespace TotemAppIos {
 		}
 
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath) {
-			_appController.TotemSelected (dict[keys[indexPath.Section]][indexPath.Row].nid);
+			_appController.TotemSelected (dict[keys[indexPath.Section]][indexPath.Row].Nid);
 			tableView.DeselectRow (indexPath,true);
 		}
 	}

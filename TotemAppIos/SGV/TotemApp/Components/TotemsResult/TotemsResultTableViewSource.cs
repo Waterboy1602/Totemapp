@@ -52,7 +52,7 @@ namespace TotemAppIos {
 		}
 
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath) {
-			_appController.TotemSelected (Dict.Keys.ToList()[indexPath.Row].nid);
+			_appController.TotemSelected (Dict.Keys.ToList()[indexPath.Row].Nid);
 			tableView.DeselectRow (indexPath,true);
 		}
 	}

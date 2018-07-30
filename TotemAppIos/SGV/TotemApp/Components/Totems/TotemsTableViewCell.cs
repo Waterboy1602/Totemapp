@@ -24,7 +24,7 @@ namespace TotemAppIos {
 		public TotemsTableViewCell (IntPtr handle) : base (handle) {}
 
 		public void setData() {
-			lblTotemName.Text = Totem.title;
+			lblTotemName.Text = Totem.Title;
 			if (Freq != 0)
 				lblFreq.Text = Freq.ToString ();
 		}

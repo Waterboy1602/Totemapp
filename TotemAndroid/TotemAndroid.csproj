@@ -99,6 +99,7 @@
     <Compile Include="SGV\Adapters\ExpendListAdapter.cs" />
     <Compile Include="SGV\Adapters\ProfielAdapter.cs" />
     <Compile Include="SGV\Adapters\TotemAdapter.cs" />
+    <Compile Include="SGV\Utilities\StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

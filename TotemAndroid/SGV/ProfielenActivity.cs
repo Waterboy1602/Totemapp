@@ -191,7 +191,7 @@ namespace TotemAndroid {
 		void RemoveSelectedProfiles(object sender, EventArgs e) {
 			bool selected = false;
 			foreach(Profiel p in profielen) {
-				if (p.selected) {
+				if (p.Selected) {
 					selected = true;
 					break;
 				}
@@ -202,7 +202,7 @@ namespace TotemAndroid {
 				alert1.SetMessage ("Geselecteerde profielen verwijderen?");
 				alert1.SetPositiveButton ("Ja", (senderAlert, args) => {
 					foreach (Profiel p in profielen)
-						if (p.selected)
+						if (p.Selected)
 							_appController.DeleteProfile (p.name);
 				
 					UpdateList ();

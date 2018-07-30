@@ -22,7 +22,7 @@ namespace TotemAppCore {
 		//adds entry to dictionary if it doesn't exist
 		//updates it if it does
 		public static void AddOrUpdateDictionaryEntry(Dictionary<Totem, int> dict, Totem key) {
-			var k = dict.Keys.ToList().Find(x=>x.nid == key.nid);
+			var k = dict.Keys.ToList().Find(x=>x.Nid == key.Nid);
 			if (k != null)
 				dict[k]++;
 			else 

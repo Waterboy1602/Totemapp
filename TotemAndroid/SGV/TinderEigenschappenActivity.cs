@@ -60,7 +60,7 @@ namespace TotemAndroid {
         //show next eigenschap
         public void UpdateScreen() {
 			if (eigenschapCount < 324) {
-				adjectief.Text = _appController.Eigenschappen[eigenschapCount].name;
+				adjectief.Text = _appController.Eigenschappen[eigenschapCount].Name;
 			} else {
 				var i = new Intent (this, typeof(EigenschappenActivity));
 				i.SetFlags(ActivityFlags.ClearTop | ActivityFlags.SingleTop);
@@ -70,7 +70,7 @@ namespace TotemAndroid {
 		}
 			
 		public void Push(bool choice) {
-			_appController.Eigenschappen [eigenschapCount].selected = choice;
+			_appController.Eigenschappen [eigenschapCount].Selected = choice;
 			eigenschapCount++;
 			UpdateScreen ();
 		}

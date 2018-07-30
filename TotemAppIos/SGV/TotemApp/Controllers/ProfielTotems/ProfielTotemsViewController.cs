@@ -141,9 +141,9 @@ namespace TotemAppIos {
 
 		//the actual deletion of the selected profiles
 		void deleteSelected(object sender, EventArgs e) {
-			var deleteList = totems.FindAll (x => x.selected);
+			var deleteList = totems.FindAll (x => x.Selected);
 			foreach (Totem t in deleteList)
-				_appController.DeleteTotemFromProfile (t.nid, _appController.CurrentProfiel.name);
+				_appController.DeleteTotemFromProfile (t.Nid, _appController.CurrentProfiel.name);
 
 			updateListSource ();
 			exitDelete (sender, e);
@@ -152,9 +152,9 @@ namespace TotemAppIos {
 		//resets selection and updates list
 		void deselectAndUpdate() {
 			totems = _appController.GetTotemsFromProfiel (_appController.CurrentProfiel.name);
-			var deselect = totems.FindAll (x => x.selected);
+			var deselect = totems.FindAll (x => x.Selected);
 			foreach (Totem t in deselect)
-				t.selected = false;
+				t.Selected = false;
 
 			(tblTotems.Source as ProfielTotemsTableViewSource).Totems = totems;
 		}
