@@ -270,7 +270,7 @@ namespace TotemAppCore {
 		}
 
 		public void EigenschappenMenuItemClicked() {
-            setCurrentProfile(null);
+            SetCurrentProfile(null);
             _navigationController.GoToEigenschapList ();
 		}
 
@@ -288,22 +288,22 @@ namespace TotemAppCore {
 
 		//sets current totem and resets current profile
 		public void TotemSelected(string totemID) {
-			setCurrentTotem (totemID);
+			SetCurrentTotem (totemID);
 			ShowAdd = true;
 			_navigationController.GoToTotemDetail ();
 		}
 
 		//sets current profile
 		public void ProfileSelected(string profileName) {
-			setCurrentProfile (profileName);
+			SetCurrentProfile (profileName);
 			ShowAdd = false;
 			_navigationController.GoToProfileTotemList ();
 		}
 
 		//sets current totem and current profile
 		public void ProfileTotemSelected(string profileName, string totemID) {
-			setCurrentProfile (profileName);
-			setCurrentTotem (totemID);
+			SetCurrentProfile (profileName);
+			SetCurrentTotem (totemID);
 			ShowAdd = false;
 			detailMode = DetailMode.PROFILE;
 			_navigationController.GoToTotemDetail ();
@@ -311,7 +311,7 @@ namespace TotemAppCore {
 
         //sets current totem and current profile
         public void ProfileEigenschappenSelected(string profileName) {
-            setCurrentProfile(profileName);
+            SetCurrentProfile(profileName);
 			ShowAdd = true;
             _navigationController.GoToEigenschapList();
         }
@@ -327,12 +327,12 @@ namespace TotemAppCore {
 		/* ------------------------------ MISC ------------------------------ */
 
 			
-		void setCurrentTotem(string totemID) {
-			var totem = _totems.Find (x => N.nid.Equals (totemID));
+		void SetCurrentTotem(string totemId) {
+			var totem = _totems.Find (x => x.Nid.Equals (totemId));
 			CurrentTotem = totem;
 		}
 
-		void setCurrentProfile(string profileName) {
+		void SetCurrentProfile(string profileName) {
 			if (profileName == null) {
 				CurrentProfiel = null;
 			} else {
@@ -356,14 +356,14 @@ namespace TotemAppCore {
 			TotemEigenschapDict = CollectionHelper.GetSortedDict (TotemEigenschapDict);
 		}
 
-		public void FireUpdateEvent() {
-			if (UpdateCounter != null)
-				UpdateCounter ();
+		public void FireUpdateEvent()
+		{
+		    UpdateCounter?.Invoke ();
 		}
 
-		public void FireSelectedEvent() {
-			if (ShowSelected != null)
-				ShowSelected ();
+		public void FireSelectedEvent()
+		{
+		    ShowSelected?.Invoke ();
 		}
 	}
 }
