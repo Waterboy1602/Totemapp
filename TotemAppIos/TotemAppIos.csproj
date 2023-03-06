@@ -63,7 +63,39 @@
     </IpaPackageName>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SQLite-net, Version=1.8.116.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\sqlite-net-pcl.1.8.116\lib\netstandard2.0\SQLite-net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_v2, Version=2.0.4.976, Culture=neutral, PublicKeyToken=8226ea5df37bcae9, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLitePCLRaw.bundle_green.2.0.4\lib\Xamarin.iOS10\SQLitePCLRaw.batteries_v2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.core, Version=2.0.4.976, Culture=neutral, PublicKeyToken=1488e028ca7ab535, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLitePCLRaw.core.2.0.4\lib\netstandard2.0\SQLitePCLRaw.core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.nativelibrary, Version=2.0.4.976, Culture=neutral, PublicKeyToken=502ed628492ab262, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLitePCLRaw.bundle_green.2.0.4\lib\Xamarin.iOS10\SQLitePCLRaw.nativelibrary.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.provider.dynamic_cdecl, Version=2.0.4.976, Culture=neutral, PublicKeyToken=b68184102cba0b3b, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLitePCLRaw.provider.dynamic_cdecl.2.0.4\lib\netstandard2.0\SQLitePCLRaw.provider.dynamic_cdecl.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
@@ -161,6 +193,7 @@
   <ItemGroup>
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
     <None Include="SGV\BemCheckBox\BemCheckBox.csproj" />
   </ItemGroup>
   <ItemGroup>
@@ -257,28 +290,7 @@
   </ItemGroup>
   <Import Project="..\TotemAppCore\TotemAppCore.projitems" Label="Shared" Condition="Exists('..\TotemAppCore\TotemAppCore.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="SGV\" />
-    <Folder Include="SGV\TotemApp\" />
-    <Folder Include="SGV\TotemApp\Controllers\" />
-    <Folder Include="SGV\TotemApp\Components\" />
-    <Folder Include="SGV\TotemApp\Components\Checklist\" />
-    <Folder Include="SGV\TotemApp\Components\Eigenschappen\" />
-    <Folder Include="SGV\TotemApp\Components\Totems\" />
-    <Folder Include="SGV\TotemApp\Components\Profielen\" />
-    <Folder Include="SGV\TotemApp\Components\ProfielTotems\" />
-    <Folder Include="SGV\TotemApp\Controllers\Checklist\" />
-    <Folder Include="SGV\TotemApp\Controllers\Eigenschappen\" />
-    <Folder Include="SGV\TotemApp\Controllers\Totems\" />
-    <Folder Include="SGV\TotemApp\Controllers\Profielen\" />
-    <Folder Include="SGV\TotemApp\Controllers\ProfielTotems\" />
-    <Folder Include="SGV\TotemApp\Controllers\TotemDetail\" />
-    <Folder Include="SGV\TotemApp\Controllers\Main\" />
-    <Folder Include="SGV\TotemApp\Controllers\TotemsResult\" />
-    <Folder Include="SGV\TotemApp\Components\TotemsResult\" />
-    <Folder Include="SGV\TotemApp\Controllers\TinderEigenschappen\" />
-    <Folder Include="SGV\CRSAlert\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="..\TotemAppCore\SharedAssets\totems.sqlite">
       <Link>SharedAssets\totems.sqlite</Link>
@@ -320,12 +332,6 @@
     <BundleResource Include="SharedAssets\rsz_white_circle.png" />
     <BundleResource Include="SharedAssets\info_white.png" />
     <BundleResource Include="SharedAssets\reset_white.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <XamarinComponentReference Include="servicestacktext">
-      <Version>3.9.61.3</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

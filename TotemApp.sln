@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TotemAndroid", "TotemAndroid\TotemAndroid.csproj", "{0A5E81FF-E6EF-40D2-89AE-6E969422EF41}"
 EndProject
@@ -10,11 +10,6 @@ EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "TotemAppCore", "TotemAppCore\TotemAppCore.shproj", "{2CB05FEE-01CE-46E5-B8B5-A6D6AB2CDDE8}"
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		TotemAppCore\TotemAppCore.projitems*{0a5e81ff-e6ef-40d2-89ae-6e969422ef41}*SharedItemsImports = 4
-		TotemAppCore\TotemAppCore.projitems*{2cb05fee-01ce-46e5-b8b5-a6d6ab2cdde8}*SharedItemsImports = 13
-		TotemAppCore\TotemAppCore.projitems*{47cd0a50-00af-4dab-bc4d-16e099b64a73}*SharedItemsImports = 4
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhone = Debug|iPhone
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
@@ -47,5 +42,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E12B6469-ADFA-462A-96A0-316858E047EF}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		TotemAppCore\TotemAppCore.projitems*{0a5e81ff-e6ef-40d2-89ae-6e969422ef41}*SharedItemsImports = 4
+		TotemAppCore\TotemAppCore.projitems*{2cb05fee-01ce-46e5-b8b5-a6d6ab2cdde8}*SharedItemsImports = 13
+		TotemAppCore\TotemAppCore.projitems*{47cd0a50-00af-4dab-bc4d-16e099b64a73}*SharedItemsImports = 4
 	EndGlobalSection
 EndGlobal

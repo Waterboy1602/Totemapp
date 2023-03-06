@@ -12,7 +12,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)SGV\BL\Controllers\AppController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SGV\BL\VO\Profiel_eigenschappen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SGV\DL\Database.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SGV\DL\SQLite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SGV\BL\VO\Eigenschap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SGV\BL\VO\Profiel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SGV\BL\VO\Tip.cs" />
