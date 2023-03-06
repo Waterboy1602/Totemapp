@@ -195,4 +195,3 @@ FakesAssemblies/
 .vscode/settings.json
 
 *.csproj.user
-/TotemAndroid/TotemAndroid.csproj.user
